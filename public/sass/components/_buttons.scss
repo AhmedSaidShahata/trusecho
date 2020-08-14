@@ -1,0 +1,106 @@
+// .btn {
+//     &,
+//     &:link, 
+//     &:visited {
+//         text-transform: uppercase;
+//         text-decoration: none;
+//         padding: 1.5rem 4rem;
+//         display: inline-block;
+//         border-radius: 10rem;
+//         transition: all 0.2s;
+//         position: relative;
+//         font-size: $default-font-size;
+
+//         // CHANGE THE BUTTON ELEMENT
+//         border: none;
+//         cursor: pointer;
+
+//     }
+
+//     &:hover {
+//         transform: translateY(-.5rem);
+//         box-shadow: 0rem 1rem 2rem rgba($color-black, 0.2);
+//         &::after {
+//             transform: scaleX(1.4) scaleY(1.8);
+//             opacity: 0;
+//         }
+//     }
+
+//     &:active,
+//     &:focus {
+//         outline: none;
+//         transform: translateY(-.25rem);
+//         box-shadow: 0px 1rem 1rem rgba($color-black, 0.2);
+//     }
+
+//     &::after {
+//         content: "";
+//         display: inline-block;
+//         width: 100%;
+//         height: 100%;
+//         position: absolute;
+//         border-radius: 10rem;
+//         top: 0;
+//         left: 0;
+//         z-index: -1;
+//         transition: all 0.2s;
+//     }
+
+//     &--white {
+//         background-color: $color-white;
+//         color: $color-grey-dark;
+    
+//         &::after {
+//             background-color: $color-white;
+//         }
+//     }
+
+//     &--green {
+//         background-color: $color-primary;
+//         color: $color-white;
+//         box-shadow: 0 0.5rem 4rem rgba($color-black, 0.2);
+    
+//         &::after {
+//             background-color: $color-primary;
+//         }
+//     }
+    
+    
+//     &--animated {
+//         animation: moveInBottom 0.4s ease-out 0.75s backwards;
+//     }
+
+// }
+
+// .btn-text {
+//     &:link,
+//     &:visited {
+//         font-size: $default-font-size;
+//         font-weight: 400;
+//         text-decoration: none;
+//         border-bottom: 1px solid $color-primary;
+//         display: inline-block;
+//         padding: 0.5rem;
+//         color: $color-primary;
+//         transition: all .2s;
+//     }
+
+//     &:hover {
+//         box-shadow: 0px 10px 20px rgba($color-black, .2);
+//         background-color: $color-primary;
+//         color: $color-white;
+//         transform: translateY(-3px);
+//     }
+
+//     &:active {
+//         transform: translateY(1px);
+//     }
+// }
+
+.btn_sign-up {
+    background-color: $color-primary;
+    color: white !important;
+    padding: .9rem 2.4rem .9rem 2.4rem;
+    border-radius: 2rem;
+    box-shadow: 0rem .3rem 1rem rgba($color: #000000, $alpha: .16);
+}

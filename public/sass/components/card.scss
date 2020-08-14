@@ -1,0 +1,111 @@
+.organizations-card {
+  width: 28.3rem !important;
+  height: 36.5rem !important;
+  background-color: $color-tertiary;
+  border-radius: 2rem;
+  box-shadow: 0rem 0rem 3rem rgba($color: #000000, $alpha: 0.16);
+  position: relative;
+  text-align: center;
+  margin-right: 5rem;
+  .colored-container {
+    width: 100%;
+    height: 13.7rem;
+    background-color: #aec1b2;
+    border-radius: 2rem 2rem 0 0;
+  }
+  .logo-box {
+    width: 17.9rem;
+    height: 8.9rem;
+    border-radius: 1.5rem;
+    background-color: #f9f9f9;
+    position: absolute;
+    top: 25%;
+    left: 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .best-jobs-section__logo {
+    width: 13rem;
+  }
+
+  &__sub-header {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 7rem;
+    color: $color-black;
+  }
+  &__followers {
+    font-family: inherit;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+    color: $color-black;
+  }
+
+  &__btn-follow {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #a5c4b6;
+    color: $color-tertiary;
+    padding: 1rem 4.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem rgba($color: #a5c4b6, $alpha: 0.5);
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
+}
+
+.testmonials-card {
+  width: 45.5rem !important;
+  // height: 28.2rem !important;
+  border-radius: 2rem;
+  box-shadow: 0 0 4rem rgba($color: $color-black, $alpha: 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+  padding: 4rem;
+  &-name {
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: $color-black;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+  }
+  &-description {
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: $color-black;
+    margin-top: 2.5rem;
+  }
+  &-rating-box {
+    display: flex;
+    margin-top: 2rem;
+  }
+  &-rating-number {
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: inherit;
+    color: $color-black;
+    margin-left: 2.5rem;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .organizations-card {
+    margin-right: 2.5rem;
+  }
+}

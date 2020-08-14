@@ -1,0 +1,14 @@
+//SWIPER STYLE 
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    // overflow: visible !important;
+}
+.swiper-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+.swiper-slide {
+    width: 38.7rem;
+}

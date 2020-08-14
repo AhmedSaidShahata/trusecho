@@ -1,0 +1,209 @@
+.post-details {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__content-box {
+    width: 160rem;
+    padding-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 4rem;
+  }
+  &__header {
+    font-size: 2.3rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: black;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  &__paragraph {
+    line-height: 5rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-family: inherit;
+    color: black;
+  }
+  &__buttons {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    .apply-thorough-truescho {
+      text-decoration: none;
+      font-size: 1.6rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: $color-tertiary;
+      text-transform: uppercase;
+      background-color: $color-secondary;
+      padding: 1.4rem 4rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 1rem rgba($color: #6173ff, $alpha: 0.6);
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-primary;
+      }
+      margin-bottom: 2rem;
+    }
+    .apply-now {
+      text-decoration: none;
+      font-size: 1.6rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: $color-tertiary;
+      text-transform: uppercase;
+      background-color: #a58ef5;
+      padding: 1.5rem 6rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 1rem rgba($color: #6173ff, $alpha: 0.6);
+      margin-bottom: 2rem;
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-primary;
+      }
+    }
+    .offical-website {
+      text-decoration: none;
+      font-size: 1.6rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: $color-tertiary;
+      text-transform: uppercase;
+      background-color: #3d455d;
+      padding: 1.5rem 6rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 1rem rgba($color: #6173ff, $alpha: 0.6);
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-secondary;
+      }
+    }
+  }
+  &__social-media {
+    display: flex;
+    justify-content: center;
+    .social-media {
+      &:not(:last-child) {
+        margin-right: 4rem;
+      }
+
+      &__logo {
+        width: 5rem;
+        height: 5rem;
+      }
+      &__number {
+        color: #6b8585;
+        font-size: 1rem;
+        font-weight: 400;
+        font-family: inherit;
+      }
+    }
+  }
+  &__rating {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    &-header {
+      font-size: 2rem;
+      font-weight: 500;
+      font-family: inherit;
+      text-transform: uppercase;
+      color: black;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.rating {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  overflow: hidden;
+  flex-direction: row-reverse;
+  position: relative;
+}
+
+.rating-0 {
+  filter: grayscale(100%);
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin-top: auto;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23e3e3e3' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 76%;
+  transition: .3s;
+}
+
+.rating > input:checked ~ label,
+.rating > input:checked ~ label ~ label {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23fcd93a' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+}
+
+
+.rating > input:not(:checked) ~ label:hover,
+.rating > input:not(:checked) ~ label:hover ~ label {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23d8b11e' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+}
+#rating-1:checked ~ .emoji-wrapper > .emoji { transform: translateY(-100px); }
+#rating-2:checked ~ .emoji-wrapper > .emoji { transform: translateY(-200px); }
+#rating-3:checked ~ .emoji-wrapper > .emoji { transform: translateY(-300px); }
+#rating-4:checked ~ .emoji-wrapper > .emoji { transform: translateY(-400px); }
+#rating-5:checked ~ .emoji-wrapper > .emoji { transform: translateY(-500px); }
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .blog-summary__info {
+    flex-direction: column;
+  }
+  .blog-summary__favourite {
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+  .blog-summary__picture {
+    width: 35rem;
+  }
+  .post-details {
+    padding: 2rem;
+  }
+  .comments-section__send-box {
+    flex-direction: column;
+    align-items: center;
+  }
+  .comments-section .user-comment {
+    margin-top: 5rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  .comments-section .user-name {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .comments-section__content-box {
+    width: 100%;
+    padding: 4rem;
+  }
+  .blog-summary__picutre-box {
+    align-self: flex-start;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .comments-section__content-box {
+    width: 100%;
+    padding: 4rem;
+  }
+}

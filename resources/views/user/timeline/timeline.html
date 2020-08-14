@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truescho | Timeline</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/font-style.css" />
+    <!-- POPPINS FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- SWIPER JS CSS STYLE -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
+    <!-- AOS CSS STYLESHEET -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="navigation" id="navbar">
+      <div class="navigation__logo-box">
+        <img src="img/2.png" alt="Logo" class="nav-bar__logo" />
+      </div>
+      <div class="nav-bar">
+        <ul class="nav-bar__list">
+          <li class="nav-bar__item">
+            <a href="home-page.html" class="nav-bar__item-nav">Home</a>
+          </li>
+          <li class="nav-bar__item">
+            <a href="my-network.html" class="nav-bar__item-nav">My network</a>
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="jobs.html" class="nav-bar__item-nav dropbtn">Jobs</a>
+            <div class="dropdown-content">
+              <a href="#">All Jobs</a>
+              <a href="#">Engineering</a>
+              <a href="#">Information Technology</a>
+              <a href="#">Media, TV, and Jounrals</a>
+              <a href="#">Future Jobs</a>
+              <a href="#">Education Sector</a>
+            </div>
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="services.html" class="nav-bar__item-nav dropbtn"
+              >Services</a
+            >
+            <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <a href="organizations.html" class="nav-bar__item-nav"
+              >Organizations</a
+            >
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="organizations.html" class="nav-bar__item-nav dropbtn"
+              >Opportunities</a
+            >
+            <div class="dropdown-content">
+              <a href="#">Bachelor scholarships</a>
+              <a href="#">Masters scholarships</a>
+              <a href="#">PHD scholarships</a>
+              <a href="#">Exchange Programs</a>
+              <a href="#">Job Offers</a>
+              <a href="#">Internships</a>
+              <a href="#">Volunteering Opportunities</a>
+              <a href="#">Workshops</a>
+              <a href="#">Courses</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <div class="messages-icon-box">
+              <img
+                src="img/messages-icon.svg"
+                alt="messages"
+                class="messages-icon"
+              />
+              <span class="messages-number">1</span>
+            </div>
+          </li>
+          <li class="nav-bar__item dropdown">
+            <div class="notification-icon-box">
+              <img
+                src="img/notification-icon.svg"
+                alt="notification"
+                class="notification-icon"
+              />
+              <span class="notification-number">3</span>
+            </div>
+          </li>
+          <li class="nav-bar__item user-info dropdown">
+            <div class="user-pic-box">
+              <img src="img/user-pic.png" alt="user pic" class="user-pic" />
+            </div>
+            <div class="user-info__name dropbtn">Michelle</div>
+            <div class="dropdown-content u-absolute-top">
+              <a href="timeline.html">Timeline</a>
+              <a href="profile.html">Profile</a>
+              <a href="home-page.html">Log out</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <a href="#" class="nav-bar__item-nav">Ar</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Burger Side bar -->
+      <nav role="responsive-navigation">
+        <div id="menuToggle">
+          <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+          <input type="checkbox" />
+  
+          <!--
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+          <span></span>
+          <span></span>
+          <span></span>
+  
+          <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+          <ul id="menu">
+            <a href="home-page-signed.html"><li>Home</li></a>
+            <a href="my-network-org.html"><li>My network</li></a>
+            <a href="organizations-signed.html"><li>Organizations</li></a>
+            <a href="jobs-signed.html"><li>Jobs</li></a>
+            <a href="opportunities-signed.html"><li>Opportunities</li></a>
+            <a href="services-signed.html"><li>Services</li></a>
+            <a href="profile.html"><li>Profile</li></a>
+            <a href="home-page.html"><li>Log out</li></a>
+            
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="timeline">
+      <div class="timeline__left-panel">
+        <div class="timeline__options">
+          <ul class="options__list">
+            <li class="options__items">
+              <a href="#" class="options__item">Latest Posts</a>
+            </li>
+            <hr />
+            <li class="options__items">
+              <a href="#add-experience" class="options__item">Add an experience</a>
+            </li>
+            <li class="options__items">
+              <a href="#promoted-post" class="options__item">Add a promoted post</a>
+            </li>
+            <li class="options__items">
+              <a href="#volunteer-with-truescho" class="options__item">Volunteer</a>
+            </li>
+            <li class="options__items">
+              <a href="#" class="options__item">Favourities</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="posts-section u-margin-fix">
+        <div class="post">
+          <div class="post-user-info">
+            <div class="post-user-info__pic-box">
+              <img
+                src="img/post-user-pic.png"
+                alt="post-user-pic"
+                class="post-user-info__pic"
+              />
+            </div>
+            <div class="post-user-info__details">
+              <h1 class="post-user-info__details-name">Marco Sanco</h1>
+              <h2 class="post-user-info__details-job">Thaq organization</h2>
+              <h3 class="post-user-info__details-time">7h</h3>
+            </div>
+          </div>
+          <h1 class="post-user-info__title">Title name</h1>
+          <p class="post-user-info__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+            similique incidunt vel tempore praesentium qui temporibus atque
+            neque asperiores, explicabo, alias molestias, modi maiores sunt aut
+            consequuntur iste excepturi animi.
+          </p>
+          <div class="post-user-info__sub-details-box">
+            <div class="post-user-info__sub-subtitle-box">
+              <p class="post-user-info__subtitle">Deadline:</p>
+            </div>
+            <p class="post-user-info__subtitle-value">13 - 10 - 2020</p>
+          </div>
+          <div class="post-pic-box">
+            <img
+              src="img/tourist-set-travel-around-world_24797-1010.png"
+              alt="Post pic"
+              class="post-pic"
+            />
+          </div>
+          <div class="post-interaction-panel">
+            <div class="post-interaction-panel__control">
+              <img src="img/like.svg" alt="like" class="post-btn" />
+              <span class="post-control-name">Like</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-comment.svg"
+                alt="comment"
+                class="post-btn"
+              />
+              <span class="post-control-name">Comment</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-share-alt.svg"
+                alt="share"
+                class="post-btn"
+              />
+              <span class="post-control-name">Share</span>
+            </div>
+          </div>
+          <div class="post-comment">
+            <div class="post-comment-pic-box">
+              <img
+                src="img/user-comment-pic.png"
+                alt="user pic"
+                class="post-comment-pic"
+              />
+            </div>
+            <div class="post-comment-details">
+              <h1 class="post-comment-name">Taylor Adams</h1>
+              <p class="post-comment-paragraph">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste
+                in beatae praesentium dolores porro, nobis labore ut omnis, nam
+                temporibus neque inventore culpa dolore reiciendis molestias
+                optio libero? Velit debitis eligendi necessitatibus enim ratione
+                cupiditate
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="post-user-info">
+            <div class="post-user-info__pic-box">
+              <img
+                src="img/post-user-pic.png"
+                alt="post-user-pic"
+                class="post-user-info__pic"
+              />
+            </div>
+            <div class="post-user-info__details">
+              <h1 class="post-user-info__details-name">Marco Sanco</h1>
+              <h2 class="post-user-info__details-job">Thaq organization</h2>
+              <h3 class="post-user-info__details-time">7h</h3>
+            </div>
+          </div>
+          <h1 class="post-user-info__title">Title name</h1>
+          <p class="post-user-info__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+            similique incidunt vel tempore praesentium qui temporibus atque
+            neque asperiores, explicabo, alias molestias, modi maiores sunt aut
+            consequuntur iste excepturi animi.
+          </p>
+          <div class="post-user-info__sub-details-box">
+            <div class="post-user-info__sub-subtitle-box">
+              <p class="post-user-info__subtitle">Deadline:</p>
+            </div>
+            <p class="post-user-info__subtitle-value">13 - 10 - 2020</p>
+          </div>
+          <div class="post-pic-box">
+            <img
+              src="img/tourist-set-travel-around-world_24797-1010.png"
+              alt="Post pic"
+              class="post-pic"
+            />
+          </div>
+          <div class="post-interaction-panel">
+            <div class="post-interaction-panel__control">
+              <img src="img/like.svg" alt="like" class="post-btn" />
+              <span class="post-control-name">Like</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-comment.svg"
+                alt="comment"
+                class="post-btn"
+              />
+              <span class="post-control-name">Comment</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-share-alt.svg"
+                alt="share"
+                class="post-btn"
+              />
+              <span class="post-control-name">Share</span>
+            </div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="post-user-info">
+            <div class="post-user-info__pic-box">
+              <img
+                src="img/post-user-pic.png"
+                alt="post-user-pic"
+                class="post-user-info__pic"
+              />
+            </div>
+            <div class="post-user-info__details">
+              <h1 class="post-user-info__details-name">Marco Sanco</h1>
+              <h2 class="post-user-info__details-job">Thaq organization</h2>
+              <h3 class="post-user-info__details-time">7h</h3>
+            </div>
+          </div>
+          <h1 class="post-user-info__title">Title name</h1>
+          <p class="post-user-info__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+            similique incidunt vel tempore praesentium qui temporibus atque
+            neque asperiores, explicabo, alias molestias, modi maiores sunt aut
+            consequuntur iste excepturi animi.
+          </p>
+          <div class="post-user-info__sub-details-box">
+            <div class="post-user-info__sub-subtitle-box">
+              <p class="post-user-info__subtitle">Deadline:</p>
+            </div>
+            <p class="post-user-info__subtitle-value">13 - 10 - 2020</p>
+          </div>
+          <div class="post-pic-box">
+            <img
+              src="img/tourist-set-travel-around-world_24797-1010.png"
+              alt="Post pic"
+              class="post-pic"
+            />
+          </div>
+          <div class="post-interaction-panel">
+            <div class="post-interaction-panel__control">
+              <img src="img/like.svg" alt="like" class="post-btn" />
+              <span class="post-control-name">Like</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-comment.svg"
+                alt="comment"
+                class="post-btn"
+              />
+              <span class="post-control-name">Comment</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-share-alt.svg"
+                alt="share"
+                class="post-btn"
+              />
+              <span class="post-control-name">Share</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <div class="timeline__options">
+          <ul class="options__list">
+            <li class="options__items">
+              <a href="#" class="options__item">About Truescho</a>
+            </li>
+            <li class="options__items">
+              <a href="#" class="options__item">FAQ</a>
+            </li>
+            <li class="options__items">
+              <a href="#" class="options__item">Important links</a>
+            </li>
+            <li class="options__items">
+              <a href="#" class="options__item">Contact us</a>
+            </li>
+          </ul>
+        </div>
+        <div class="timeline__social-media-icons">
+            <img src="img/Icon awesome-facebook.png" alt="facebook" class="socail-media-icon">
+            <img src="img/Icon awesome-instagram.png" alt="instgram" class="socail-media-icon">
+            <img src="img/Icon awesome-linkedin.png" alt="linkedin" class="socail-media-icon">
+            <img src="img/Icon awesome-telegram.png" alt="telegram" class="socail-media-icon">
+            <img src="img/Icon ionic-logo-twitter.png" alt="tw" class="socail-media-icon">
+        </div>
+      </div>
+    </div>
+    <footer class="footer u-margin-top-medium">
+      <div class="footer__content-box">
+        <div class="footer__left">
+          <img src="img/truescho-logo-new-version.png" alt="new logo" class="footer__left-logo">
+          <div class="footer__left-social">
+            <a href="#"" class="footer__left-social-icon">
+              <img src="img/facebook.png" alt="fb-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/twitter.png" alt="twitter-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/instagram.png" alt="instgram-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/linkedin.png" alt="linkedin-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/telegram.png" alt="telegram-icon" class="sm-icon">
+            </a>
+          </div>
+          <p class="footer__left-copywrites">Copywrites &copy; reserved at Truescho</p>
+        </div>
+        <div class="footer__right">
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">About the company</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Important links</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Frequently asked questions</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Contact us</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">Latest Posts</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Add an experience</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Add a promoted post</a>
+          </li>
+          <li class="footer__right-info-list-item">
+            <a href="#">Volunteer</a>
+          </li>
+          <li class="footer__right-info-list-item">
+            <a href="#">Favourties</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">Terms and conitions</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Posting policy</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Blogs</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Privacy</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">About the company</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Important links</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Frequently asked questions</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Contact us</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#" class="footer__title">All Jobs</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Engineering</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Information Technology</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Media, tv, and journals</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Future Jobs</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Education Sector</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Managment, business, and accounting</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">professional and techincal sector</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#" class="footer__title">Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Bachelor Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Masters Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">PHD Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Job offers</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Internships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Volunteering Opportunities</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Workshops Or Courses</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+              <li class="footer__right-info-list-item"> 
+                get our app
+              </li>
+              <li>
+                <img src="img/google-play-download-android-app-logo-png-transparent.png" alt="google play" class="app-store-pic">
+              </li>
+              <li>
+                <img src="img/App Store.png" alt="App Store" class="google-play-pic">
+              </li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="popup" id="volunteer-with-truescho">
+      <div class="popup__content">
+        <div class="popup__left">
+          <h1 class="popup__header">Volunteer with truescho</h1>
+          <div class="header__underline"></div>
+          <form action="/action_page.php">
+            <input
+              type="file"
+              id="myfile"
+              name="myfile"
+              placeholder="none"
+              class="add-cv-input"
+            />
+            <div class="add-cv">
+              <div class="add-cv__title-box">
+                <img
+                  src="img/adding icon.svg"
+                  alt="add icon"
+                  class="add-cv-icon"
+                />
+                <h3 class="add-cv__title">add a cv</h3>
+              </div>
+            </div>
+          </form>
+          <div class="applying-for-job-illustration-box">
+            <img
+              src="img/volunteer-with-truescho.svg"
+              alt="apply for job"
+              class="applying-for-job-illustration"
+            />
+          </div>
+        </div>
+        <div class="popup__right">
+          <a href="#tours_section" class="popup__closing">×</a>
+          <form>
+            <div class="input">
+              <label for="fullname" class="popup__label-style">Full Name</label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                class="popup__input-style"
+                placeholder="Full Name..."
+              />
+            </div>
+            <div class="input">
+              <label for="email" class="popup__label-style">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="popup__input-style"
+                placeholder="Email..."
+              />
+            </div>
+            <div class="input">
+              <label for="phone" class="popup__label-style">Phone Number</label>
+              <input
+                type="text"
+                id="phone-number"
+                name="phone-number"
+                class="popup__input-style"
+                placeholder="Phone Number..."
+              />
+            </div>
+            <div class="input">
+              <label for="type-for-volunteer" class="popup__label-style">Phone Number</label>
+              <input
+                type="text"
+                id="type-for-volunteer"
+                name="type-for-volunteer"
+                class="popup__input-style"
+                placeholder="Type for volunteer..."
+              />
+            </div>
+            <div class="input">
+              <label for="message" class="popup__label-style">Message</label>
+              <textarea id="message" name="message" rows="3" cols="60" class="input-message" placeholder="Your message ....">
+              
+              </textarea>
+            </div>
+            <button class="input-btn" method="POST">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="add-experience">
+      <div class="popup__content">
+        <div class="popup__left">
+          <h1 class="popup__header">Add an experience</h1>
+          <div class="header__underline"></div>
+          <form action="/action_page.php">
+            <input
+              type="file"
+              id="myfile"
+              name="myfile"
+              placeholder="none"
+              class="add-cv-input"
+            />
+            <div class="add-cv">
+              <div class="add-cv__title-box">
+                <img
+                  src="img/adding icon.svg"
+                  alt="add icon"
+                  class="add-cv-icon"
+                />
+                <h3 class="add-cv__title">add a cv</h3>
+              </div>
+            </div>
+          </form>
+          <div class="applying-for-job-illustration-box">
+            <img
+              src="img/adding-experience.svg"
+              alt="apply for job"
+              class="applying-for-job-illustration"
+            />
+          </div>
+        </div>
+        <div class="popup__right">
+          <a href="#tours_section" class="popup__closing">×</a>
+          <form>
+            <div class="input">
+              <label for="fullname" class="popup__label-style">Full Name</label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                class="popup__input-style"
+                placeholder="Full Name..."
+              />
+            </div>
+            <div class="input">
+              <label for="email" class="popup__label-style">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="popup__input-style"
+                placeholder="Email..."
+              />
+            </div>
+            <div class="input">
+              <label for="experience" class="popup__label-style">Experience Title</label>
+              <input
+                type="text"
+                id="experience"
+                name="experience"
+                class="popup__input-style"
+                placeholder="Experience title..."
+              />
+            </div>
+            <div class="input">
+              <label for="experience-description" class="popup__label-style">Experience description</label>
+              <textarea id="experience-description" name="experience-description" rows="3" cols="60" class="input-message" placeholder="Your experience ....">
+              
+              </textarea>
+            </div>
+            <div class="input">
+              <h2 class="input__options-header">DO YOU WANT TO DISPLAY NAME AND EMAIL ON TRUESCHO?</h2>
+              <div class="input-radio-buttons">
+                <div class="input__options">
+                  <input type="radio" id="yes" name="display-author-name" value="yes">
+                  <label for="yes" class="popup__label-style radio-label">Yes</label>
+                </div>
+                <div class="input__options">
+                  <input type="radio" id="no" name="display-author-name" value="no">
+                  <label for="no" class="popup__label-style radio-label">No</label>
+                </div>
+
+              </div>
+            </div>
+            <button class="input-btn" method="POST">Send Information  </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="promoted-post">
+      <div class="popup__content">
+        <div class="popup__left promoted-post-fix">
+          <h1 class="popup__header">Add an experience</h1>
+          <div class="header__underline"></div>
+          <form action="/action_page.php">
+            <input
+              type="file"
+              id="myfile"
+              name="myfile"
+              placeholder="none"
+              class="add-cv-input"
+            />
+            <div class="add-cv">
+              <div class="add-cv__title-box">
+                <img
+                  src="img/adding icon.svg"
+                  alt="add icon"
+                  class="add-cv-icon"
+                />
+                <h3 class="add-cv__title">add a picture</h3>
+              </div>
+            </div>
+            <div class="add-cv">
+              <div class="add-cv__title-box">
+                <img
+                  src="img/adding icon.svg"
+                  alt="add icon"
+                  class="add-cv-icon"
+                />
+                <h3 class="add-cv__title">add a payment proof</h3>
+              </div>
+            </div>
+          </form>
+          <div class="applying-for-job-illustration-box">
+            <img
+              src="img/promoted-post.svg"
+              alt="apply for job"
+              class="applying-for-job-illustration"
+            />
+          </div>
+        </div>
+        <div class="popup__right promoted-post-closing-fix">
+          <a href="#tours_section" class="popup__closing">×</a>
+          <form>
+            <div class="input ">
+              <label for="fullname" class="popup__label-style">Full Name</label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                class="popup__input-style"
+                placeholder="Full Name..."
+              />
+            </div>
+            <div class="input">
+              <label for="email" class="popup__label-style">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="popup__input-style"
+                placeholder="Email..."
+              />
+            </div>
+            <div class="input">
+              <label for="ad-post-title" class="popup__label-style">AD/POST TITLE</label>
+              <input
+                type="text"
+                id="ad-post-title"
+                name="ad-post-title"
+                class="popup__input-style"
+                placeholder="Add post title..."
+              />
+            </div>
+            <div class="input">
+              <label for="ad-post-title" class="popup__label-style">CLASSIFICATION/TYPE OF POST/AD</label>
+              <input
+                type="text"
+                id="classification"
+                name="classification"
+                class="popup__input-style"
+                placeholder="Type the classification..."
+              />
+            </div>
+            <div class="input">
+              <label for="experience-description" class="popup__label-style">AD/ POST DESCRIPTION</label>
+              <textarea id="ad-post-description" name="ad-post-description" rows="3" cols="60" class="input-message" placeholder="Your experience ....">
+              </textarea>
+            </div>
+            <div class="input">
+              <h2 class="input__options-header">DO YOU WANT TO DISPLAY NAME AND EMAIL ON TRUESCHO?</h2>
+              <div class="input-radio-buttons">
+                <div class="input__options">
+                  <input type="radio" id="yes" name="display-author-name" value="yes">
+                  <label for="yes" class="popup__label-style radio-label">Yes</label>
+                </div>
+                <div class="input__options">
+                  <input type="radio" id="no" name="display-author-name" value="no">
+                  <label for="no" class="popup__label-style radio-label">No</label>
+                </div>
+
+              </div>
+            </div>
+            <div class="input u-margin-bottom-xsmall">
+              <input type="checkbox" id="agree" name="agree" value="agree" class="input-checkbox">
+              <label for="vehicle1" class="popup__label-style "> I ACCEPT TERMS AND CONDITIONS FOR PUBLISHING AND ADDING PROMOTED PSOTS</label>
+            </div>
+            <button class="input-btn" method="POST">Send Information  </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,86 @@
+.pagination {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+    &__prev {
+        font-weight: 400;
+        font-size: 1.7rem;
+        font-family: inherit;
+        color: #134568;
+        text-decoration: none;
+        margin-right: 4.5rem;
+        margin-left: 4.5rem;
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+    &__next {
+        font-weight: 400;
+        font-size: 1.7rem;
+        font-family: inherit;
+        color: #134568;
+        text-decoration: none;
+        margin-left: 4.5rem;
+        margin-right: 4.5rem;
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+    &__right-arrow {
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+    &__left-arrow {
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+    &__list {
+        list-style: none;
+        display: flex;
+    }
+    &__list-item {
+        font-weight: 400;
+        font-size: 1.7rem;
+        font-family: inherit;
+        font-weight: 600;
+        & a {
+            color: #134568;
+            text-decoration: none;
+            transition: all .2s;
+            &:hover {
+                color: $color-secondary;
+            }
+        }
+
+        &:not(:last-child) {
+            margin-right: 4.5rem;
+        }
+
+    }
+    .selected {
+        color: $color-tertiary;
+        background-color: $color-primary;
+        padding: .4rem 1.3rem;
+        border-radius: 50%;
+        transition: all .2s;
+        &:hover {
+            color: $color-primary;
+            background-color: $color-tertiary-light;
+        }
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 475px) {
+    .pagination {
+        &__prev, &__next {
+            display: none;
+        }
+        &__right-arrow, &__left-arrow {
+            display: none;
+        }
+  }
+}

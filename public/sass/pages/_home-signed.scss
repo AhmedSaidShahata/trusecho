@@ -1,0 +1,770 @@
+.best-scolarships-section-signed {
+  width: 100%;
+  min-height: 102.5rem;
+  background-color: $color-tertiary-light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__header {
+    color: $color-black;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 600;
+    display: flex;
+    align-self: flex-start;
+    margin-left: 15rem;
+    margin-top: 10rem;
+  }
+  &__cards-info {
+    width: 180rem;
+    min-height: 40.5rem;
+    margin-top: 5rem;
+    padding-left: 15rem;
+    padding-right: 15rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__card {
+    width: 38.8rem !important;
+    min-height: 41.7rem !important;
+    background-color: $color-tertiary;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.16);
+    border-radius: 2rem;
+    margin-right: 8rem;
+    &-header {
+      font-size: 1.5rem;
+      font-family: inherit;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-left: 3rem;
+      color: $color-black;
+    }
+    &-paragraph {
+      font-size: 1.1rem;
+      font-family: inherit;
+      font-weight: 500;
+      margin-top: 2rem;
+      margin-left: 3rem;
+      padding-right: 11rem;
+      color: $color-black;
+    }
+    &-deadline-box {
+      display: flex;
+      align-items: center;
+      margin: 3rem 0;
+    }
+    &-deadline {
+      // margin-top: 2rem;
+      margin-left: 3rem;
+    }
+    .deadline-number {
+      font-size: 1.5rem;
+      color: $color-black;
+      margin-left: 1.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      margin-right: auto;
+    }
+    .deadline-header {
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-weight: 600;
+      color: $color-black;
+      text-transform: uppercase;
+    }
+    .deadline-value {
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-weight: 500;
+      color: $color-black;
+      text-transform: uppercase;
+    }
+    .details-button {
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: inherit;
+      text-transform: uppercase;
+      background-color: $color-primary;
+      padding: 0.8rem 3.5rem;
+      border-radius: 2rem;
+      color: $color-tertiary;
+      margin-right: 4rem;
+      // margin-bottom: 2.2rem;
+      margin-left: 2rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-secondary;
+        // color: $color-black;
+      }
+    }
+  }
+  .card-picture-box {
+    position: relative;
+  }
+  .card-picture {
+    width: 100%;
+  }
+  .opportunity-type-label {
+    position: absolute;
+    left: 0;
+    top: 20%;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    background-color: $color-tertiary;
+    padding: 0.9rem 2.7rem;
+    border-radius: 0 1.5rem 1.5rem 0;
+  }
+  .btn-view-more {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 10rem;
+    background-color: $color-secondary;
+    padding: 2.5rem 6.5rem;
+    border-radius: 5rem;
+    color: $color-tertiary;
+    box-shadow: 0rem 0rem 1rem rgba($color: $color-secondary, $alpha: 0.6);
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-tertiary;
+    }
+  }
+}
+
+.best-jobs-section-signed {
+  width: 100%;
+  min-height: 80.5rem;
+  // background-color: $color-tertiary-dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  &__header {
+    color: $color-black;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-left: 15rem;
+  }
+  &__cards {
+    &-info {
+      width: 180rem;
+      min-height: 40.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 6rem;
+      padding-left: 10rem;
+      padding-right: 10rem;
+      position: relative;
+    }
+  }
+  .card-picture {
+    width: 47rem;
+  }
+  &__card {
+    width: 47.8rem !important ;
+    min-height: 40.7rem !important ;
+    background-color: $color-tertiary;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.16);
+    border-radius: 2rem;
+    margin-right: 8rem;
+    .card-picture {
+      width: 100%;
+    }
+    &-header {
+      font-size: 1.5rem;
+      font-family: inherit;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-left: 3rem;
+      color: $color-black;
+    }
+    &-paragraph {
+      font-size: 1.1rem;
+      font-family: inherit;
+      font-weight: 500;
+      margin-top: 2rem;
+      margin-left: 3rem;
+      padding-right: 11rem;
+      color: $color-black;
+      margin-bottom: 2rem;
+    }
+    &-deadline-box {
+      display: flex;
+      align-items: center;
+      margin: 3rem 0;
+    }
+    &-deadline {
+      // margin-top: 2rem;
+      margin-left: 3rem;
+    }
+    .deadline-number {
+      font-size: 1.5rem;
+      color: $color-black;
+      margin-left: 1.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      margin-right: auto;
+    }
+    .deadline-header {
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-weight: 600;
+      color: $color-black;
+      text-transform: uppercase;
+    }
+    .deadline-value {
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-weight: 500;
+      color: $color-black;
+      text-transform: uppercase;
+    }
+    .details-button {
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: inherit;
+      text-transform: uppercase;
+      background-color: $color-primary;
+      padding: 0.8rem 3.5rem;
+      border-radius: 2rem;
+      color: $color-tertiary;
+      margin-right: 4rem;
+      // margin-bottom: 2.2rem;
+      margin-left: 2rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-secondary;
+        // color: $color-black;
+      }
+    }
+  }
+  .opportunity-type-label {
+    position: absolute;
+    left: 0;
+    top: 10%;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    background-color: $color-tertiary;
+    padding: 0.9rem 2.7rem;
+    border-radius: 0 1.5rem 1.5rem 0;
+  }
+  .btn-view-more {
+    margin-top: 10rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #c1baaa;
+    padding: 2.5rem 6.5rem;
+    border-radius: 5rem;
+    color: $color-tertiary;
+    box-shadow: 0rem 0rem 1rem rgba($color: #c1baaa, $alpha: 0.6);
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-tertiary;
+    }
+  }
+}
+.best-jobs-section__logo {
+  width: 16rem;
+}
+
+.best-services-section-signed {
+  width: 100%;
+  height: 87.5rem;
+  background-color: $color-tertiary-dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &__header {
+    color: $color-black;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-left: 15rem;
+  }
+  &__cards {
+    &-info {
+      width: 180rem;
+      min-height: 42.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 6rem;
+      padding-left: 10rem;
+      padding-right: 10rem;
+    }
+  }
+  .card-picture {
+    width: 100%;
+  }
+  &__card {
+    width: 38.8rem !important;
+    height: 43.7rem !important;
+    background-color: $color-tertiary;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.16);
+    border-radius: 2rem;
+    margin-right: 8rem;
+    position: relative;
+    &-header {
+      font-size: 1.5rem;
+      font-family: inherit;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-left: 3rem;
+      color: $color-black;
+    }
+    &-paragraph {
+      font-size: 1.1rem;
+      font-family: inherit;
+      font-weight: 500;
+      margin-top: 2rem;
+      margin-left: 3rem;
+      padding-right: 11rem;
+      color: $color-black;
+      margin-bottom: 2rem;
+    }
+    
+    &-rating-box {
+      display: flex;
+      align-items: baseline;
+    }
+    &-rating {
+      margin-top: 2rem;
+      margin-left: 3rem;
+    }
+    .rating-number {
+      font-size: 1.5rem;
+      color: $color-black;
+      margin-left: 1.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      margin-right: auto;
+    }
+    .details-button {
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: inherit;
+      text-transform: uppercase;
+      background-color: $color-primary;
+      padding: 0.8rem 3.5rem;
+      border-radius: 2rem;
+      color: $color-tertiary;
+      margin-right: 4rem;
+      margin-bottom: 2.2rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-secondary;
+        // color: $color-black;
+      }
+    }
+  }
+  .opportunity-type-label {
+    position: absolute;
+    left: 0;
+    top: 10%;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    background-color: $color-tertiary;
+    padding: 0.9rem 2.7rem;
+    border-radius: 0 1.5rem 1.5rem 0;
+  }
+  .btn-view-more {
+    margin-top: 10rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: $color-secondary;
+    padding: 2.5rem 6.5rem;
+    border-radius: 5rem;
+    color: $color-tertiary;
+    box-shadow: 0rem 0rem 1rem rgba($color: $color-secondary, $alpha: 0.6);
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-tertiary;
+    }
+  }
+}
+
+.best-organizations-section-signed {
+  width: 100%;
+  min-height: auto;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  &__header {
+    color: $color-black;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-left: 15rem;
+  }
+  &__cards {
+    &-info {
+      width: 180rem;
+      min-height: 42.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10rem;
+      padding-left: 10rem;
+      padding-right: 10rem;
+    }
+  }
+  &__card {
+    width: 28.3rem !important;
+    height: 36.5rem !important;
+    background-color: $color-tertiary;
+    border-radius: 2rem;
+    box-shadow: 0rem 0rem 3rem rgba($color: #000000, $alpha: 0.16);
+    position: relative;
+    text-align: center;
+    margin-right: 3.5rem;
+    .colored-container {
+      width: 100%;
+      height: 13.7rem;
+      background-color: #aec1b2;
+      border-radius: 2rem 2rem 0 0;
+    }
+    .logo-box {
+      width: 17.9rem;
+      height: 8.9rem;
+      border-radius: 1.5rem;
+      background-color: #f9f9f9;
+      position: absolute;
+      top: 25%;
+      left: 18%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &__sub-header {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 7rem;
+    color: $color-black;
+  }
+  &__followers {
+    font-family: inherit;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+    color: $color-black;
+  }
+
+  &__btn-follow {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #a5c4b6;
+    color: $color-tertiary;
+    padding: 1rem 4.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem rgba($color: #a5c4b6, $alpha: 0.5);
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
+
+  .btn-view-more {
+    margin-top: 10rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #b7beae;
+    padding: 2.5rem 6.5rem;
+    border-radius: 5rem;
+    color: $color-tertiary;
+    box-shadow: 0rem 0rem 1rem rgba($color: $color-secondary, $alpha: 0.6);
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-tertiary;
+    }
+  }
+}
+
+.blog-section {
+  width: 100%;
+  height: auto;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  background-color: $color-tertiary-dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &__header {
+    color: $color-black;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-left: 15rem;
+  }
+  &__cards {
+    &-info {
+      width: 177rem;
+      min-height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-left: 8rem;
+      margin-right: 8rem;
+    }
+  }
+  &__card {
+    width: 42rem;
+    height: 17.5rem;
+    display: flex;
+    background-color: $color-tertiary;
+    border-radius: 2rem;
+    box-shadow: 0 0 2rem rgba($color: #000000, $alpha: 0.16);
+    padding: 3rem;
+    position: relative;
+    margin-right: 10.5rem;
+    margin-top: 5.5rem;
+    .blog-card-content {
+      // display: flex;
+      &__header {
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 1.5rem;
+        color: $color-primary;
+        text-transform: uppercase;
+      }
+      &-info {
+        display: flex;
+        margin-top: 1rem;
+      }
+      &__subtitle {
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 1.2rem;
+        color: $color-primary;
+        text-transform: uppercase;
+        margin-right: auto;
+        &-value {
+          font-family: inherit;
+          font-weight: 500;
+          font-size: 1.2rem;
+          color: $color-primary;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+  .blog-section__pic-box {
+    margin-right: auto;
+  }
+  .blog-section__pic {
+    width: 11.9rem;
+  }
+
+  &__btn {
+    color: $color-tertiary;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: $color-primary;
+    padding: 0.5rem 3.2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 0 0 1rem rgba($color: #6173ff, $alpha: 0.6);
+    position: absolute;
+    bottom: 2.7rem;
+    right: 3rem;
+  }
+
+  .btn-view-more {
+    margin-top: 10rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #b7beae;
+    padding: 2.5rem 6.5rem;
+    border-radius: 5rem;
+    color: $color-tertiary;
+    box-shadow: 0rem 0rem 1rem rgba($color: $color-secondary, $alpha: 0.6);
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-tertiary;
+    }
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .blog-section {
+    width: 100%;
+    height: auto;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    background-color: #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .blog-section__cards-info {
+    width: 100%;
+    min-height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* margin-left: 8rem; */
+    padding: 1rem;
+    /* margin-right: 8rem; */
+  }
+  .blog-section__card {
+    width: 42rem;
+    height: 17.5rem;
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 2rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.16);
+    padding: 3rem;
+    position: relative;
+    /* margin-right: 10.5rem; */
+    margin-top: 5.5rem;
+  }
+  .blog-section .blog-section__pic {
+    width: 9.9rem;
+  }
+  .best-organizations-section-signed__cards-info {
+    width: 100%;
+    min-height: 42.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10rem;
+    padding-left: 5rem;
+    padding-right: 0;
+  }
+  .best-organizations-section-signed__header {
+    color: #000000;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-left: 4rem;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
+  .best-scolarships-section-signed {
+    &__cards-info {
+      width: 100%;
+      padding-left: 0rem;
+      padding-right: 0rem;
+    }
+    &__header {
+      margin-left: 2rem;
+    }
+    &__card {
+      margin-right: 3rem;
+    }
+  }
+  .best-jobs-section-signed {
+    &__header {
+      margin-left: 2rem;
+    }
+    &__cards {
+      &-info {
+        width: 100%;
+        padding-left: 0rem;
+        padding-right: 0rem;
+      }
+    }
+    &__card {
+      margin-right: 0;
+      width: 38.7rem !important;
+    }
+  }
+  .best-services-section-signed {
+    &__header {
+      margin-left: 2rem;
+    }
+    &__cards {
+      &-info {
+        width: 100%;
+        padding-left: 0rem;
+        padding-right: 0rem;
+      }
+    }
+    &__card {
+      margin-right: 0;
+    }
+  }
+  .best-organizations-section-signed {
+    &__header {
+      margin-left: 2rem;
+    }
+    &__cards {
+      &-info {
+        width: 100%;
+        padding-left: 0rem;
+        padding-right: 0rem;
+      }
+    }
+    &__card {
+      margin-right: 0;
+    }
+  }
+  .best-jobs-section-signed .card-picture {
+    width: 100%;
+  }
+  .blog-section__card {
+    margin-right: 2rem;
+
+}
+.blog-section__cards-info {
+    width: 100%;
+
+}
+}

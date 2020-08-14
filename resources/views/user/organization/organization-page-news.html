@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truescho | Organization - News</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/font-style.css" />
+    <!-- POPPINS FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- SWIPER JS CSS STYLE -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
+    <!-- AOS CSS STYLESHEET -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="navigation" id="navbar">
+      <div class="navigation__logo-box">
+        <img src="img/2.png" alt="Logo" class="nav-bar__logo" />
+      </div>
+      <div class="nav-bar">
+        <ul class="nav-bar__list">
+          <li class="nav-bar__item">
+            <a href="home-page.html" class="nav-bar__item-nav">Home</a>
+          </li>
+          <li class="nav-bar__item">
+            <a href="my-network.html" class="nav-bar__item-nav">My network</a>
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="jobs.html" class="nav-bar__item-nav dropbtn">Jobs</a>
+            <div class="dropdown-content">
+              <a href="#">All Jobs</a>
+              <a href="#">Engineering</a>
+              <a href="#">Information Technology</a>
+              <a href="#">Media, TV, and Jounrals</a>
+              <a href="#">Future Jobs</a>
+              <a href="#">Education Sector</a>
+            </div>
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="services.html" class="nav-bar__item-nav dropbtn"
+              >Services</a
+            >
+            <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <a href="organizations.html" class="nav-bar__item-nav"
+              >Organizations</a
+            >
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="organizations.html" class="nav-bar__item-nav dropbtn"
+              >Opportunities</a
+            >
+            <div class="dropdown-content">
+              <a href="#">Bachelor scholarships</a>
+              <a href="#">Masters scholarships</a>
+              <a href="#">PHD scholarships</a>
+              <a href="#">Exchange Programs</a>
+              <a href="#">Job Offers</a>
+              <a href="#">Internships</a>
+              <a href="#">Volunteering Opportunities</a>
+              <a href="#">Workshops</a>
+              <a href="#">Courses</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <div class="messages-icon-box">
+              <img
+                src="img/messages-icon.svg"
+                alt="messages"
+                class="messages-icon"
+              />
+              <span class="messages-number">1</span>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <div class="notification-icon-box">
+              <img
+                src="img/notification-icon.svg"
+                alt="notification"
+                class="notification-icon"
+              />
+              <span class="notification-number">3</span>
+            </div>
+          </li>
+          <li class="nav-bar__item user-info dropdown">
+            <div class="user-pic-box">
+              <img src="img/user-pic.png" alt="user pic" class="user-pic" />
+            </div>
+            <div class="user-info__name dropbtn">Michelle</div>
+            <div class="dropdown-content u-absolute-top">
+              <a href="timeline.html">Timeline</a>
+              <a href="profile.html">Profile</a>
+              <a href="home-page.html">Log out</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <a href="#" class="nav-bar__item-nav">Ar</a>
+          </li>
+        </ul>
+      </div>
+      <div class="responsive-nav-icons">
+        <ul class="responsive-nav-icons__list">
+          <li class="responsive-nav-icons__list-item">
+            <div class="messages-icon-box">
+              <img
+                src="img/messages-icon.svg"
+                alt="messages"
+                class="messages-icon"
+              />
+              <span class="messages-number">1</span>
+            </div>
+          </li>
+          <li class="responsive-nav-icons__list-item">
+            <div class="notification-icon-box">
+              <img
+                src="img/notification-icon.svg"
+                alt="notification"
+                class="notification-icon"
+              />
+              <span class="notification-number">3</span>
+            </div>
+          </li>
+          <li class="responsive-nav-icons__list-item">
+            <div class="user-pic-box">
+              <a href="profile.html"><img src="img/user-pic.png" alt="user pic" class="user-pic" /></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Burger Side bar -->
+      <nav role="responsive-navigation">
+        <div id="menuToggle">
+          <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+          <input type="checkbox" />
+  
+          <!--
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+          <span></span>
+          <span></span>
+          <span></span>
+  
+          <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+          <ul id="menu">
+            <a href="home-page-signed.html"><li>Home</li></a>
+            <a href="my-network-org.html"><li>My network</li></a>
+            <a href="organizations-signed.html"><li>Organizations</li></a>
+            <a href="jobs-signed.html"><li>Jobs</li></a>
+            <a href="opportunities-signed.html"><li>Opportunities</li></a>
+            <a href="services-signed.html"><li>Services</li></a>
+            <a href="profile.html"><li>Profile</li></a>
+            <a href="home-page.html"><li>Log out</li></a>
+            
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="organization-cover-pic-box">
+      <img
+        src="img/org-cover-pic.png"
+        alt="org cover pic"
+        class="organization-cover-pic"
+      />
+      <div class="organization-profile-info-box">
+        <div class="organization-profile-pic-box">
+          <img
+            src="img/Cargomatic_(Company)_Logo.png"
+            alt="Company Logo"
+            class="organization-profile-pic"
+          />
+        </div>
+        <div class="organization-info">
+          <h1 class="organization-name">CARGOMATIC INC.</h1>
+          <div class="followers-box">
+            <p class="followers-title">followers:</p>
+            <p class="followers-value">956,384</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="org-job-section-info">
+      <div class="left-panel">
+        <div class="org-job-section-info__options">
+          <ul class="options__list">
+            <li class="options__items">
+              <a href="organization-page-about.html" class="options__item">About</a>
+            </li>
+            <hr />
+            <li class="options__items">
+              <a href="#" class="options__item">News</a>
+            </li>
+          </ul>
+        </div>
+        <div class="org-job-section-info__options u-margin-top-small">
+          <ul class="options__list">
+            <li class="options__items">
+              <a href="#" class="options__item">contact us</a>
+            </li>
+            <hr />
+            <li class="options__items">
+              <a href="#" class="options__item">Call us</a>
+            </li>
+            <li class="options__items">
+              <a href="#" class="options__item">Report a problem</a>
+            </li>
+          </ul>
+        </div>
+        <a href="#" class="orgs-job-new-post-btn">
+          <img src="img/add-icon.svg" alt="add-icon" class="contact-icon" />
+          new post
+        </a>
+      </div>
+      <div class="posts-section">
+        <div class="post">
+          <div class="post-user-info">
+            <div class="post-user-info__pic-box">
+              <img
+                src="img/post-user-pic.png"
+                alt="post-user-pic"
+                class="post-user-info__pic"
+              />
+            </div>
+            <div class="post-user-info__details">
+              <h1 class="post-user-info__details-name">Marco Sanco</h1>
+              <h2 class="post-user-info__details-job">Thaq organization</h2>
+              <h3 class="post-user-info__details-time">7h</h3>
+            </div>
+          </div>
+          <h1 class="post-user-info__title">Title name</h1>
+          <p class="post-user-info__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+            similique incidunt vel tempore praesentium qui temporibus atque
+            neque asperiores, explicabo, alias molestias, modi maiores sunt aut
+            consequuntur iste excepturi animi.
+          </p>
+          <div class="post-user-info__sub-details-box">
+            <div class="post-user-info__sub-subtitle-box">
+              <p class="post-user-info__subtitle">Deadline:</p>
+            </div>
+            <p class="post-user-info__subtitle-value">13 - 10 - 2020</p>
+          </div>
+          <div class="post-pic-box">
+            <img
+              src="img/tourist-set-travel-around-world_24797-1010.png"
+              alt="Post pic"
+              class="post-pic"
+            />
+          </div>
+          <div class="post-interaction-panel">
+            <div class="post-interaction-panel__control">
+              <img src="img/like.svg" alt="like" class="post-btn" />
+              <span class="post-control-name">Like</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-comment.svg"
+                alt="comment"
+                class="post-btn"
+              />
+              <span class="post-control-name">Comment</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-share-alt.svg"
+                alt="share"
+                class="post-btn"
+              />
+              <span class="post-control-name">Share</span>
+            </div>
+          </div>
+          <div class="post-comment">
+            <div class="post-comment-pic-box">
+              <img
+                src="img/user-comment-pic.png"
+                alt="user pic"
+                class="post-comment-pic"
+              />
+            </div>
+            <div class="post-comment-details">
+              <h1 class="post-comment-name">Taylor Adams</h1>
+              <p class="post-comment-paragraph">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste
+                in beatae praesentium dolores porro, nobis labore ut omnis, nam
+                temporibus neque inventore culpa dolore reiciendis molestias
+                optio libero? Velit debitis eligendi necessitatibus enim ratione
+                cupiditate
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="post-user-info">
+            <div class="post-user-info__pic-box">
+              <img
+                src="img/post-user-pic.png"
+                alt="post-user-pic"
+                class="post-user-info__pic"
+              />
+            </div>
+            <div class="post-user-info__details">
+              <h1 class="post-user-info__details-name">Marco Sanco</h1>
+              <h2 class="post-user-info__details-job">Thaq organization</h2>
+              <h3 class="post-user-info__details-time">7h</h3>
+            </div>
+          </div>
+          <h1 class="post-user-info__title">Title name</h1>
+          <p class="post-user-info__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+            similique incidunt vel tempore praesentium qui temporibus atque
+            neque asperiores, explicabo, alias molestias, modi maiores sunt aut
+            consequuntur iste excepturi animi.
+          </p>
+          <div class="post-user-info__sub-details-box">
+            <div class="post-user-info__sub-subtitle-box">
+              <p class="post-user-info__subtitle">Deadline:</p>
+            </div>
+            <p class="post-user-info__subtitle-value">13 - 10 - 2020</p>
+          </div>
+          <div class="post-pic-box">
+            <img
+              src="img/tourist-set-travel-around-world_24797-1010.png"
+              alt="Post pic"
+              class="post-pic"
+            />
+          </div>
+          <div class="post-interaction-panel">
+            <div class="post-interaction-panel__control">
+              <img src="img/like.svg" alt="like" class="post-btn" />
+              <span class="post-control-name">Like</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-comment.svg"
+                alt="comment"
+                class="post-btn"
+              />
+              <span class="post-control-name">Comment</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-share-alt.svg"
+                alt="share"
+                class="post-btn"
+              />
+              <span class="post-control-name">Share</span>
+            </div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="post-user-info">
+            <div class="post-user-info__pic-box">
+              <img
+                src="img/post-user-pic.png"
+                alt="post-user-pic"
+                class="post-user-info__pic"
+              />
+            </div>
+            <div class="post-user-info__details">
+              <h1 class="post-user-info__details-name">Marco Sanco</h1>
+              <h2 class="post-user-info__details-job">Thaq organization</h2>
+              <h3 class="post-user-info__details-time">7h</h3>
+            </div>
+          </div>
+          <h1 class="post-user-info__title">Title name</h1>
+          <p class="post-user-info__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+            similique incidunt vel tempore praesentium qui temporibus atque
+            neque asperiores, explicabo, alias molestias, modi maiores sunt aut
+            consequuntur iste excepturi animi.
+          </p>
+          <div class="post-user-info__sub-details-box">
+            <div class="post-user-info__sub-subtitle-box">
+              <p class="post-user-info__subtitle">Deadline:</p>
+            </div>
+            <p class="post-user-info__subtitle-value">13 - 10 - 2020</p>
+          </div>
+          <div class="post-pic-box">
+            <img
+              src="img/tourist-set-travel-around-world_24797-1010.png"
+              alt="Post pic"
+              class="post-pic"
+            />
+          </div>
+          <div class="post-interaction-panel">
+            <div class="post-interaction-panel__control">
+              <img src="img/like.svg" alt="like" class="post-btn" />
+              <span class="post-control-name">Like</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-comment.svg"
+                alt="comment"
+                class="post-btn"
+              />
+              <span class="post-control-name">Comment</span>
+            </div>
+            <div class="post-interaction-panel__control">
+              <img
+                src="img/Icon awesome-share-alt.svg"
+                alt="share"
+                class="post-btn"
+              />
+              <span class="post-control-name">Share</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer u-margin-top-medium">
+      <div class="footer__content-box">
+        <div class="footer__left">
+          <img src="img/truescho-logo-new-version.png" alt="new logo" class="footer__left-logo">
+          <div class="footer__left-social">
+            <a href="#"" class="footer__left-social-icon">
+              <img src="img/facebook.png" alt="fb-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/twitter.png" alt="twitter-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/instagram.png" alt="instgram-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/linkedin.png" alt="linkedin-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/telegram.png" alt="telegram-icon" class="sm-icon">
+            </a>
+          </div>
+          <p class="footer__left-copywrites">Copywrites &copy; reserved at Truescho</p>
+        </div>
+        <div class="footer__right">
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">About the company</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Important links</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Frequently asked questions</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Contact us</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">Latest Posts</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Add an experience</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Add a promoted post</a>
+          </li>
+          <li class="footer__right-info-list-item">
+            <a href="#">Volunteer</a>
+          </li>
+          <li class="footer__right-info-list-item">
+            <a href="#">Favourties</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">Terms and conitions</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Posting policy</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Blogs</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Privacy</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">About the company</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Important links</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Frequently asked questions</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Contact us</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#" class="footer__title">All Jobs</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Engineering</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Information Technology</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Media, tv, and journals</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Future Jobs</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Education Sector</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Managment, business, and accounting</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">professional and techincal sector</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#" class="footer__title">Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Bachelor Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Masters Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">PHD Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Job offers</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Internships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Volunteering Opportunities</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Workshops Or Courses</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+              <li class="footer__right-info-list-item"> 
+                get our app
+              </li>
+              <li>
+                <img src="img/google-play-download-android-app-logo-png-transparent.png" alt="google play" class="app-store-pic">
+              </li>
+              <li>
+                <img src="img/App Store.png" alt="App Store" class="google-play-pic">
+              </li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

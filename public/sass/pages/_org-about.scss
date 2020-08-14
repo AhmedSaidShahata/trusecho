@@ -1,0 +1,46 @@
+.orgs-job-whatsapp-btn {
+    font-weight: 600;
+    // width: 20rem;
+    font-family: inherit;
+    font-size: 1.3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 2.4rem 6rem;
+    margin-top: 3rem;
+    background-color: #22E18E;
+    color: $color-tertiary;
+    border-radius: 1.5rem;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 1rem rgba($color: #000000, $alpha: 0.26);
+    &:hover {
+        background-color: $color-secondary;
+    }
+}
+.orgs-job-email-btn {
+    // width: 20rem;
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 1.3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 2.4rem 8rem;
+    text-align: center;
+    margin-top: 3rem;
+    background-color: $color-secondary;
+    color: $color-tertiary;
+    border-radius: 1.5rem;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 1rem rgba($color: #000000, $alpha: 0.26);
+    &:hover {
+        background-color: $color-primary;
+    }
+}
+
+.contact-icon {
+    margin-right: 3rem;
+}

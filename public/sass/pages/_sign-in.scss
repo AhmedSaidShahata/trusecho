@@ -1,0 +1,13 @@
+.forgot-password {
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-family: inherit;
+    
+}
+
+.sign-in {
+    &__btn {
+        width: 97% !important;
+        margin-bottom: 1rem;
+    }
+}

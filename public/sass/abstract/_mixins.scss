@@ -1,0 +1,46 @@
+// @mixin clearfix {
+//     &::after {
+//     content: "";
+//     display: table;
+//     clear: both;
+// }
+// }
+
+// @mixin absCenter {
+//     position: absolute;
+//     top: 50%;
+//     right: 50%;
+//     transform: translate(50%,-50%);
+// }
+
+@mixin dropShadow {
+    box-shadow: 0 .3rem 1.7rem rgba($color-black, .16);
+}
+
+// /*
+// $breakpoint arguments:
+// - phone 600px
+// - tab-port 900px
+// - tab-land 1200px
+// - big-desktop 1800px
+
+// 1em =16px
+
+// */
+
+
+// @mixin respond ($break-point) {
+//     @if $break-point == phone {
+//         @media (max-width:37.5em) {@content}; //600px
+//     }
+
+//     @if $break-point == tab-port {
+//         @media (max-width:56.25em) {@content}; //900px
+//     }
+//     @if $break-point == tab-land {
+//         @media (max-width:75em) {@content}; //1200px
+//     }
+//     @if $break-point == big-desktop {
+//         @media (min-width:112.5em) {@content}; //1800px
+//     }
+// }

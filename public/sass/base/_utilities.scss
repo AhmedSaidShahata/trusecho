@@ -1,0 +1,50 @@
+// .u-center-text { text-align: center !important;}
+// .u-margin-bottom-small {margin-bottom: 1.6rem !important;}
+// .u-margin-bottom-medium {margin-bottom: 5rem !important;}
+// .u-margin-bottom-large {
+//     margin-bottom: 8rem !important;
+
+//     @include respond (tab-port) {
+//         margin-bottom: 5rem !important;  
+//     }
+// }
+// .u-margin-top-small {margin-top: 1.6rem !important;}
+// .u-margin-top-medium {margin-top: 5rem !important;}
+// .u-margin-top-huge {margin-top: 8rem !important;}
+// .u-padding-left {padding-left: 3rem !important;}
+// .u-padding-top {padding-top: 3rem !important;}
+
+.grn-color {
+    background-color: #B7BEAE !important;
+    transition: all .2s;
+    &:hover {
+        background-color: $color-primary !important;
+    }
+}
+
+.footer-sub-item {
+    font-weight: 400;
+}
+
+.list-split {
+    column-count: 2;
+    column-gap: 5rem;
+}
+.u-padding-top {padding-top: 5.5rem;}
+
+.u-centeral-flex {display: flex; flex-direction: column; align-items: center;}
+.u-margin-right {margin-right: 1rem;}
+.u-margin-right-medium {margin-right: 3rem;}
+.u-margin-right-large {margin-right: 20rem;}
+.u-margin-left-big {margin-left: 20rem;}
+.u-margin-top-small {margin-top: 5rem !important;}
+.u-margin-top-medium {margin-top: 10rem !important;}
+.u-margin-bottom-small {margin-bottom: 5rem !important;}
+.u-margin-bottom-xsmall {margin-bottom: 2.5rem !important;}
+.u-padding-top-big {padding-top: 25rem;}
+.u-flex-justifiy {display: flex; justify-content: flex-start !important;}
+.u-padding-top-medium {padding-top: 5rem !important;}
+.u-width-fix {width: 30rem !important;}
+.u-color-primary {color: $color-primary !important;}
+.u-margin-fix {margin: 0 !important;}
+.u-absolute-top {top: 18rem !important;}

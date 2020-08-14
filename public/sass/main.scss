@@ -1,0 +1,59 @@
+// ABSTRACT FILES
+
+@import "abstract/functions";
+@import "abstract/mixins";
+@import "abstract/variables";
+
+// BASE FILES
+
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+
+// COMPONENTS FILES
+
+@import "components/buttons";
+@import "components/card.scss";
+@import "components/footer";
+// @import "components/nav-bar";
+@import "components/pagination";
+@import "components/drop-down-menu";
+
+
+// LAYOUT FILES
+
+@import "layout/navigation";
+@import "layout/footer";
+@import "layout/search-style";
+
+// PAGES FILES
+
+@import "pages/home";
+@import "pages/home-signed";
+@import "pages/my-network";
+@import "pages/blogs";
+@import "pages/blogs-detailed";
+@import "pages/single-post-blog";
+@import "pages/single-post";
+@import "pages/job-page";
+@import "pages/org-about";
+@import "pages/org-news";
+@import "pages/timeline";
+@import "pages/single-service-page";
+@import "pages/popup";
+@import "pages/apply-through-truescho";
+@import "pages/sign-up";
+@import "pages/sign-in";
+@import "pages/welcome";
+@import "pages/profile";
+@import "pages/profile-info";
+@import "pages/page-not-found";
+@import "pages/contact-us";
+@import "pages/FAQ";
+@import "pages/messages";
+@import "pages/sign-in-required";
+
+//SWIPER FILES
+@import "components/swipper.scss";
+

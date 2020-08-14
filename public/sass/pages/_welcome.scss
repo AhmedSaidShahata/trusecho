@@ -1,0 +1,71 @@
+.welcome-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-box {
+    // width: 100rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: auto;
+    flex-direction: column;
+    &__btn {
+        background-color: $color-secondary;
+        font-size: 2rem;
+        font-weight: 400;
+        font-family: inherit;
+        color: $color-tertiary;
+        text-decoration: none;
+        padding: 2.5rem 12.5rem;
+        box-shadow: 0 0 2rem rgba($color-secondary, $alpha: 0.3);
+        z-index: 10;
+        border-radius: 1rem;
+        transition: all .2s;
+        &:hover {
+            background-color: $color-primary;
+        }
+    }
+    &__header {
+        font-weight: 500;
+        font-size: 1.5rem;
+        font-family: inherit;
+        color: black;
+        text-transform: uppercase;
+        margin: 1.5rem 0;
+        
+    }
+    &__paragraph {
+        font-weight: 400;
+        font-size: 1.5rem;
+        font-family: inherit;
+        color: black;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+    }
+}
+.welcome-illustration {
+    width: 110rem;
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    .welcome-container {
+        width: 100%;
+        height: auto;
+    }
+    .welcome-box {
+        width: 100%;
+        margin-top: 10rem;
+    }
+    .welcome-illustration {
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1440px) {
+    .welcome-illustration {
+        width: 65%;
+    }
+}

@@ -1,0 +1,104 @@
+.profile-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.profile-illustration {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100rem;
+}
+
+.profile-info {
+  width: 125rem;
+  min-height: 50rem;
+  // background-color: orangered;
+  display: flex;
+  z-index: 1;
+  &__left-box {
+      margin-right: 10rem;
+    &-profile-pic-box {
+      position: relative;
+    }
+    &-profile-pic {
+      border-radius: 50%;
+    }
+    .country-picture {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+  &__right-box {
+    width: 66.67%;
+    .info-piece {
+      .profile {
+        &__header {
+          font-size: 2.3rem;
+          font-weight: 600;
+          font-family: inherit;
+          color: $color-primary;
+        }
+        &__subtitle {
+          font-size: 2rem;
+          font-weight: 400;
+          font-family: inherit;
+        //   width: 50%;
+        }
+      }
+    }
+  }
+  .extra-info-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      &__right-box {
+        width: 50%;
+      }
+      &__left-box {
+        width: 50%;
+      }
+  }
+}
+
+.left-box-width-fix {
+  width: 33.33% !important;
+}
+
+.btn-grn-color {
+  background-color: #22e18e !important;
+}
+.btn-prp-color {
+  background-color: #00a8cc !important;
+}
+.btn-drk-blue-color {
+  background-color: $color-primary !important;
+}
+.btn-rd-color {
+  background-color: #E63B19 !important;
+}
+.hr {
+  width: 20%;
+  height: 0.4rem;
+  border-radius: 1rem;
+  background-color: black;
+  margin: 1.5rem 0;
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .left-box-width-fix {
+    width: 90% !important;
+    margin-top: 30rem;
+  }  
+  .profile-info .extra-info-container {
+    flex-direction: column;
+}
+.profile-info__left-box .country-picture {
+  right: 15%;
+}
+}

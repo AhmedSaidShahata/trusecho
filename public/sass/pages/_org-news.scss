@@ -1,0 +1,245 @@
+.orgs-job-new-post-btn {
+    // width: 20rem;
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 1.3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 2.4rem 12rem;
+    text-align: center;
+    margin-top: 3rem;
+    background-color: $color-secondary;
+    color: $color-tertiary;
+    border-radius: 1.5rem;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 1rem rgba($color: #000000, $alpha: 0.26);
+    &:hover {
+        background-color: $color-primary;
+    }
+}
+
+.posts-section {
+    margin-left: 20rem;
+}
+
+.post {
+    width: 65rem;
+    min-height: 20rem;
+    background-color: $color-tertiary;
+    border-radius: 2rem;
+    box-shadow: 0 0 2.5rem rgba($color: #000000, $alpha: 0.16);
+    // margin-left: 10rem;
+    padding: 5rem;
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+    .post-user-info {
+        display: flex;
+        align-items: center;
+        &__pic {
+            width: 6rem;
+            height: 6rem;
+        }
+        &__details {
+            margin-left: 2rem;
+            &-name {
+                font-size: 1.5rem;
+                font-weight: 600;
+                font-family: inherit;
+                color: black;
+            }
+            &-job {
+                font-size: 1.2rem;
+                font-weight: 400;
+                font-family: inherit;
+                color: #A1A1A1;
+            }
+            &-time {
+                font-size: 1.2rem;
+                font-weight: 400;
+                font-family: inherit;
+                color: #A1A1A1;
+            }
+        }
+        &__title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: inherit;
+            color: $color-primary;
+            text-transform: uppercase;
+            margin-top: 2.5rem;
+        }
+        &__description {
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-family: inherit;
+            color: $color-primary;
+            text-transform: uppercase;
+            margin-top: 2.5rem;
+        }
+        &__sub-details-box {
+            display: flex;
+            margin-top: 2.5rem;
+        }
+        &__sub-subtitle-box {
+            width: 20rem;
+        }
+        &__subtitle {
+            font-family: inherit;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: black;
+            text-transform: uppercase;
+            &-value {
+                font-family: inherit;
+                font-size: 1.8rem;
+                font-weight: 400;
+                color: black;
+                text-transform: uppercase;
+            }
+        }
+    }
+    .post-pic {
+        width: 55rem;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+    .post-interaction-panel {
+        display: flex;
+        justify-content: space-between;
+        border-top: 0.1px solid #707070 ;
+        border-bottom: 0.1px solid #707070 ;
+    }
+    .post-interaction-panel__control{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 2.8rem;
+        cursor: pointer;
+        border-radius: 1rem;
+        transition: all .2s;
+        &:hover {
+            background-color: $color-tertiary-dark;
+        }
+    }
+    .post-control-name {
+        font-size: 1.2rem;
+        font-weight: 400;
+        font-family: inherit;
+        margin-left: 2rem;
+    }
+    .post-comment {
+        display: flex;
+        margin-top: 5rem;
+    }
+    .post-comment-pic-box {
+        margin-right: 4rem;
+    }
+    .post-comment-pic {
+        width: 6rem;
+        height: 6rem;
+    }
+    .post-comment-details {
+        display: flex;
+        flex-direction: column;
+    }
+    .post-comment-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: inherit;
+        text-transform: uppercase;
+        color: $color-primary;
+        margin-bottom: 1rem;
+    }
+    .post-comment-paragraph {
+        font-size: 1.4rem;
+        font-weight: 500;
+        font-family: inherit;
+        color: $color-primary;
+    }
+
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .posts-section {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    .post {
+        width: 90%;
+        background-color: #FFFFFF;
+        border-radius: 2rem;
+        box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.16);
+        padding: 5rem 2.5rem;
+        margin-top: 3rem;
+    }
+    .post .post-pic {
+        width: 100%;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+    .post .post-interaction-panel__control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0.8rem;
+        cursor: pointer;
+        border-radius: 1rem;
+        transition: all .2s;
+        width: 8rem;
+    }
+}
+@media only screen and (min-width: 610px) and (max-width: 768px) {
+    .posts-section {
+        margin-left: 1rem;
+    }
+    .post {
+        // width: 50rem;
+        margin-top: 0;
+    }
+    .post .post-pic {
+        width: 100%;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+    .post .post-interaction-panel__control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0.8rem;
+        cursor: pointer;
+        border-radius: 1rem;
+        transition: all .2s;
+        width: 8rem;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 967px) {
+    .posts-section {
+        margin-left: 0;
+    }
+    .post {
+        // width: 50rem;
+        margin-top: 3rem;
+    }
+    .post .post-pic {
+        width: 100%;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+    .post .post-interaction-panel__control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0.8rem;
+        cursor: pointer;
+        border-radius: 1rem;
+        transition: all .2s;
+        width: 8rem;
+    }
+}

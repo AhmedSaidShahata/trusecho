@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truescho - Shape Your Dreams</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <!-- POPPINS FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="navigation" id="navbar">
+      <div class="navigation__logo-box">
+        <img src="img/2.png" alt="Logo" class="nav-bar__logo" />
+      </div>
+      <div class="nav-bar">
+        <ul class="nav-bar__list">
+          <li class="nav-bar__item">
+            <a href="home-page.html" class="nav-bar__item-nav">Home</a>
+          </li>
+          <li class="nav-bar__item">
+            <a href="my-network.html" class="nav-bar__item-nav">My network</a>
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="jobs.html" class="nav-bar__item-nav dropbtn">Jobs</a>
+            <div class="dropdown-content">
+              <a href="#">All Jobs</a>
+              <a href="#">Engineering</a>
+              <a href="#">Information Technology</a>
+              <a href="#">Media, TV, and Jounrals</a>
+              <a href="#">Future Jobs</a>
+              <a href="#">Education Sector</a>
+            </div>
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="services.html" class="nav-bar__item-nav dropbtn"
+              >Services</a
+            >
+            <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <a href="organizations.html" class="nav-bar__item-nav"
+              >Organizations</a
+            >
+          </li>
+          <li class="nav-bar__item dropdown">
+            <a href="organizations.html" class="nav-bar__item-nav dropbtn"
+              >Opportunities</a
+            >
+            <div class="dropdown-content">
+              <a href="#">Bachelor scholarships</a>
+              <a href="#">Masters scholarships</a>
+              <a href="#">PHD scholarships</a>
+              <a href="#">Exchange Programs</a>
+              <a href="#">Job Offers</a>
+              <a href="#">Internships</a>
+              <a href="#">Volunteering Opportunities</a>
+              <a href="#">Workshops</a>
+              <a href="#">Courses</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <div class="messages-icon-box">
+              <img
+                src="img/messages-icon.svg"
+                alt="messages"
+                class="messages-icon"
+              />
+              <span class="messages-number">1</span>
+            </div>
+          </li>
+          <li class="nav-bar__item dropdown">
+            <div class="notification-icon-box">
+              <img
+                src="img/notification-icon.svg"
+                alt="notification"
+                class="notification-icon"
+              />
+              <span class="notification-number">3</span>
+            </div>
+          </li>
+          <li class="nav-bar__item user-info dropdown">
+            <div class="user-pic-box">
+              <img src="img/user-pic.png" alt="user pic" class="user-pic" />
+            </div>
+            <div class="user-info__name dropbtn">Michelle</div>
+            <div class="dropdown-content u-absolute-top">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </li>
+          <li class="nav-bar__item">
+            <a href="#" class="nav-bar__item-nav">Ar</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Burger Side bar -->
+      <nav role="responsive-navigation">
+        <div id="menuToggle">
+          <!--
+      A fake / hidden checkbox is used as click reciever,
+      so you can use the :checked selector on it.
+      -->
+          <input type="checkbox" />
+
+          <!--
+      Some spans to act as a hamburger.
+      
+      They are acting like a real hamburger,
+      not that McDonalds stuff.
+      -->
+          <span></span>
+          <span></span>
+          <span></span>
+
+          <!--
+      Too bad the menu has to be inside of the button
+      but hey, it's pure CSS magic.
+      -->
+          <ul id="menu">
+            <a href="home-page.html"><li>Home</li></a>
+            <a href="organizations.html"><li>Organizations</li></a>
+            <a href="jobs.html"><li>Jobs</li></a>
+            <a href="opportunities.html"><li>Opportunities</li></a>
+            <a href="services.html"><li>Services</li></a>
+            <a href="sign-in.html"><li>Log In</li></a>
+            <a href="sign-up-1.html"><li>Sign Up</li></a>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="contact-us-section">
+      <h1 class="contact-us-section__header">Get in touch</h1>
+      <div class="contact-us-section__info">
+        <div class="contact-us-section__info-content">
+          <h1 class="contact-us-section__sub-header">
+            Feel free to get in touch
+          </h1>
+          <p class="contact-us-section__paragraph">
+            We would love to hear from you
+          </p>
+        </div>
+
+        <img
+          src="img/contact-us.svg"
+          alt="organization"
+          class="contact-us-section__illustration"
+        />
+      </div>
+    </div>
+    <div class="contact-us-form">
+      <div class="contact-us-form__container">
+        <div class="contact-us-form__container-left">
+          <h1 class="left-header">Drop a message</h1>
+          <form action="#">
+            <div class="input-field">
+              <label for="fullname">Full name</label>
+              <input type="text" name="fullname" id="fullname" placeholder="Full name..." required />
+            </div>
+            <div class="input-field">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" placeholder="Email..." required/>
+            </div>
+            <div class="input-field">
+              <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10" placeholder="Message..." required></textarea>
+            </div>
+            <button type="submit" class="send-now-btn">Send now</button>
+          </form>
+        </div>
+        <div class="contact-us-form__container-right">
+          <h1 class="right-header">Contact Info</h1>
+          <div class="contact-info">
+            <img src="img/pin.svg" alt="location" class="contact-info__icon" />
+            <p class="contact-info__paragraph">
+              quis nostrud exercitation ullamco laboris nisi.
+            </p>
+          </div>
+          <div class="contact-info">
+            <img src="img/phone.svg" alt="phone" class="contact-info__icon" />
+            <p class="contact-info__paragraph">+0123456789</p>
+          </div>
+          <div class="contact-info push-down">
+            <img src="img/mail.svg" alt="mail" class="contact-info__icon" />
+            <p class="contact-info__paragraph">email@email.com</p>
+          </div>
+          <div class="contact-us-social-media">
+              <img src="img/facebook-white-contact.svg" alt="facebook" class="contact-us-social-media-icon">
+              <img src="img/twitter-white.svg" alt="twitter" class="contact-us-social-media-icon">
+              <img src="img/instagram-white.svg" alt="instgram" class="contact-us-social-media-icon">
+              <img src="img/linkedin-white.svg" alt="linkedin" class="contact-us-social-media-icon">
+              <img src="img/telegram-white.svg" alt="telegram-white" class="contact-us-social-media-icon">
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer u-margin-top-medium">
+      <div class="footer__content-box">
+        <div class="footer__left">
+          <img src="img/truescho-logo-new-version.png" alt="new logo" class="footer__left-logo">
+          <div class="footer__left-social">
+            <a href="#"" class="footer__left-social-icon">
+              <img src="img/facebook.png" alt="fb-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/twitter.png" alt="twitter-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/instagram.png" alt="instgram-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/linkedin.png" alt="linkedin-icon" class="sm-icon">
+            </a>
+            <a href="#" class="footer__left-social-icon">
+              <img src="img/telegram.png" alt="telegram-icon" class="sm-icon">
+            </a>
+          </div>
+          <p class="footer__left-copywrites">Copywrites &copy; reserved at Truescho</p>
+        </div>
+        <div class="footer__right">
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">About the company</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Important links</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Frequently asked questions</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Contact us</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">Latest Posts</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Add an experience</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Add a promoted post</a>
+          </li>
+          <li class="footer__right-info-list-item">
+            <a href="#">Volunteer</a>
+          </li>
+          <li class="footer__right-info-list-item">
+            <a href="#">Favourties</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">Terms and conitions</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Posting policy</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Blogs</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Privacy</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#">About the company</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Important links</a>
+          </li>
+          <li class="footer__right-info-list-item">
+          <a href="#">Frequently asked questions</a>
+          </li>
+          <li class="footer__right-info-list-item"><a href="#">Contact us</a></li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#" class="footer__title">All Jobs</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Engineering</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Information Technology</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Media, tv, and journals</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Future Jobs</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Education Sector</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Managment, business, and accounting</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">professional and techincal sector</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+          <li class="footer__right-info-list-item">
+          <a href="#" class="footer__title">Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Bachelor Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+          <a href="#">Masters Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">PHD Scholarships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Job offers</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Internships</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Volunteering Opportunities</a>
+          </li>
+          <li class="footer__right-info-list-item sub-item">
+            <a href="#">Workshops Or Courses</a>
+          </li>
+          </ul>
+          </div>
+          <div class="footer__right-info">
+            <ul class="footer__right-info-list">
+              <li class="footer__right-info-list-item"> 
+                get our app
+              </li>
+              <li>
+                <img src="img/google-play-download-android-app-logo-png-transparent.png" alt="google play" class="app-store-pic">
+              </li>
+              <li>
+                <img src="img/App Store.png" alt="App Store" class="google-play-pic">
+              </li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

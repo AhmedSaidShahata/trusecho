@@ -1,0 +1,98 @@
+.page-not-found-container {
+    width: 100%;
+    height: 90rem;
+    // background-color: orangered;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.pnf {
+    width: 60%;
+    min-height: 40rem;
+    // background-color: orangered;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.pnf-illustration {
+    width: 40%;
+    margin-bottom: 2rem;
+}
+.pnf-header {
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 2rem;
+}
+.pnf-sub-header {
+    font-weight: 300;
+    font-family: inherit;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 4rem;
+}
+.search-form {
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 1.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pnf-search-input {
+    width: 50%;
+    padding: 2rem 4rem;
+    border-radius: 3rem;
+    border: none;
+    font-weight: 300;
+    font-family: inherit;
+    font-size: 1.5rem;
+    box-shadow: 0 0 3rem rgba($color: #000000, $alpha: 0.1);
+    &:focus {
+        outline: none;
+    }
+}
+.search-btn {
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 1.5rem;
+    padding: 2rem 5rem;
+    color: white;
+    border-radius: 3rem;
+    border: none;
+    text-transform: uppercase;
+    background-color: $color-secondary;
+    box-shadow: 0 0 3rem rgba($color: #6C63FF, $alpha: 0.3);
+    transition: all .2s;
+    cursor: pointer;
+    margin-left: 4rem;
+    &:focus {
+        box-shadow: 0 1rem 3rem rgba($color: #6C63FF, $alpha: 0.7);
+        outline: none;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    .pnf-illustration {
+        width: 75%;
+    }
+    .search-form {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .pnf-search-input {
+        width: 100%;
+    }
+    .search-btn {
+        margin-left: 0;
+        margin-top: 3rem;
+    }
+}

@@ -1,0 +1,373 @@
+.organization-cover-pic-box {
+  position: relative;
+}
+.organization-cover-pic {
+  max-width: 100%;
+  height: auto;
+}
+.organization-profile-info-box {
+  position: absolute;
+  bottom: -20%;
+  left: 15%;
+  display: flex;
+  align-items: center;
+}
+.organization-profile-pic-box {
+  width: 25rem;
+  height: 25rem;
+  border-radius: 50%;
+  border-width: 1.5rem;
+  border-style: solid;
+  border-color: $color-secondary;
+  background-color: $color-tertiary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.organization {
+  &-info {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin-bottom: 3rem;
+  }
+  &-name {
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: $color-primary;
+  }
+}
+.followers {
+  &-box {
+    display: flex;
+  }
+  &-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: $color-primary;
+    margin-right: 1.5rem;
+  }
+  &-value {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: $color-primary;
+  }
+}
+
+.org-job-section-info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20rem;
+
+  &__options {
+    width: 35rem;
+    min-height: 20rem;
+    background-color: $color-tertiary;
+    box-shadow: 0 0 2rem rgba($color: #000000, $alpha: 0.16);
+    border-radius: 2rem;
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5rem;
+  }
+  .left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+  }
+  .orgs-job-apply-btn {
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 1.6rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 2.4rem 12rem;
+    margin-top: 3rem;
+    background-color: $color-primary;
+    color: $color-tertiary;
+    border-radius: 1.5rem;
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-secondary;
+    }
+  }
+  .options__list {
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    .options__items {
+      &:not(:first-child) {
+        margin-top: 5rem;
+      }
+    }
+    .options__item {
+      text-decoration: none;
+      color: $color-primary;
+      font-family: inherit;
+      font-weight: 400;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+      &:hover {
+        color: $color-secondary;
+      }
+    }
+    .selected {
+      background-color: $color-tertiary-dark;
+      padding: 2.5rem 4rem 2.5rem 4rem;
+      border-radius: 2rem;
+    }
+    .not-selected {
+      padding: 2.5rem 4rem 2.5rem 4rem;
+    }
+  }
+  .right-panel {
+    width: 96rem;
+    min-height: 20rem;
+    background-color: $color-tertiary;
+    border-radius: 2rem;
+    box-shadow: 0 0 2.5rem rgba($color: #000000, $alpha: 0.16);
+    margin-left: 10rem;
+    padding: 5rem;
+    &__header {
+      font-family: inherit;
+      font-size: 2rem;
+      font-weight: 600;
+      color: black;
+      text-transform: uppercase;
+    }
+    &__details-box {
+      display: flex;
+      margin-top: 5rem;
+    }
+    &__subtitle-box {
+      width: 20rem;
+      margin-right: 28rem;
+    }
+    &__subtitle {
+      font-family: inherit;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: black;
+      text-transform: uppercase;
+      &-value {
+        font-family: inherit;
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: black;
+        text-transform: uppercase;
+      }
+    }
+    &__description {
+      font-size: 1.8rem;
+      font-weight: 400;
+      font-family: inherit;
+      color: black;
+      width: 90%;
+      margin-top: 5rem;
+    }
+    .job-rate-star {
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+    &__job-requirements {
+      // &-list {
+
+      // }
+      &-item {
+        font-family: inherit;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: black;
+        margin-top: 2rem;
+      }
+    }
+    .job-comments {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      &__content-box {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+      &__header {
+        display: flex;
+        align-items: center;
+        margin-top: 3rem;
+        .horizontal-line {
+          width: 100%;
+          height: 1px;
+        }
+      }
+      &__word {
+        font-size: 2.3rem;
+        font-weight: 400;
+        font-family: inherit;
+        text-transform: uppercase;
+        margin-right: 2rem;
+      }
+      &__send-box {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+      }
+      &__content {
+        padding: 3rem;
+        width: 90%;
+        align-self: center;
+        border-radius: 2rem;
+        border-color: #707070;
+        border-width: 0.1rem;
+        background-color: white;
+        font-size: 1.5rem;
+        font-weight: 500;
+        font-family: inherit;
+        margin-right: 1rem;
+        &:focus {
+          outline: none;
+        }
+      }
+      .send-icon {
+        width: 5rem;
+      }
+      &__send-icon {
+        cursor: pointer;
+      }
+      &__reviews {
+        display: flex;
+        flex-direction: column;
+      }
+      .user-job-comment {
+        display: flex;
+        margin-top: 5rem;
+      }
+      .user-job-pic-box {
+        margin-right: 4rem;
+      }
+      .user-job-pic {
+        width: 7.5rem;
+      }
+      .user-job-details {
+        display: flex;
+        flex-direction: column;
+      }
+      .user-job-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: inherit;
+        text-transform: uppercase;
+        color: $color-primary;
+        margin-bottom: 1rem;
+      }
+      .user-job-comment-paragraph {
+        font-size: 1.4rem;
+        font-weight: 500;
+        font-family: inherit;
+        color: $color-primary;
+      }
+      .job-comments__reviews hr {
+        margin-top: 3rem;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .org-job-section-info .right-panel {
+    width: 75%;
+    margin-left: 0;
+    margin-top: 5rem;
+    &__details-box {
+      flex-direction: column;
+    }
+  }
+  .organization-cover-pic {
+    height: 35rem;
+  }
+  .organization-profile-info-box {
+    bottom: -35%;
+    flex-direction: row;
+    left: 5%;
+  }
+  .organization-profile-pic {
+    width: 100%;
+  }
+  .organization-profile-pic-box {
+    width: 20rem;
+    height: 20rem;
+}
+  .organization-info {
+    align-self: flex-end;
+  }
+  .org-job-section-info .right-panel .job-comments .user-job-comment {
+    flex-direction: column;
+  }
+
+  .org-job-section-info .right-panel .job-comments__send-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .org-job-section-info .right-panel {
+    width: 95%;
+}
+.popup__content {
+  width: 95% !important;
+  flex-direction: column;
+}
+.applying-for-job-illustration-box {
+  display: none;
+}
+.popup__right {
+  padding: 0 !important;
+  width: 100% !important;
+}
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .org-job-section-info .right-panel {
+      width: 75%;
+      margin-left: 0;
+      margin-top: 5rem;
+      &__details-box {
+        flex-direction: column;
+      }
+    }
+    .organization-cover-pic {
+      height: 39rem;
+    }
+    .organization-profile-info-box {
+      bottom: -25%;
+      flex-direction: row;
+    }
+    .organization-info {
+      align-self: flex-end;
+    }
+    .org-job-section-info .right-panel .job-comments .user-job-comment {
+      flex-direction: row;
+    }
+  
+    .org-job-section-info .right-panel .job-comments__send-box {
+      flex-direction: row;
+    }
+    .org-job-section-info {
+        margin-top: 15rem;
+    }
+  }
+  
+
