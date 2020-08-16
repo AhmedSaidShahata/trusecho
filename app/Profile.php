@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 
-class Profile extends Model 
+class Profile extends Model
 {
     protected $fillable = [
         'picture', 'nationality', 'job', 'fullname', 'country', 'phone', 'date_of_birth',
-        'address', 'education_level', 'specialization', 'personal_desc', 'gender', 'user_id'
+        'gender','education_level','specialization','address', 'personal_desc',  'user_id'
 
     ];
 

@@ -1,11 +1,8 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\UserController;
-use App\Http\Middleware\verify_is_admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\verify_is_admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,24 +15,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('home-page','HomePageController@index')->name('home-page');
-
-Auth::routes();
-
-Route::get('/users/{user}/profile','UserController@edit')->name('user.edit');
-Route::post('/users/{user}/profile','UserController@update')->name('user.update');
 
 
-Route::middleware(['auth','admin'])->group(function(){
-    Route::get('/users','UserController@index')->name('admin.index');
+
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
+
+Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::resource('blogs', 'blogs');
+    Route::resource('users', 'UserController');
+    Route::resource('categories', 'CategoryBlogController');
+    Route::resource('scholarships', 'ScholarshipController');
+    Route::resource('costs', 'CostController');
+});
+
+
+Route::namespace('user')->name('user.')->group(function () {
+    Route::resource('users', 'UserController');
+    Route::resource('homepages', 'HomePageController');
+});
+
+//======================================= login with facebook =====================================
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider')->name('facebook.login');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+//======================================= login with google =====================================
+Route::get('login/google', 'Auth\LoginController@redirectToProviderGoogle')->name('google.login');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGoogle');
 
-// Route::get('login/google', 'Auth\LoginController@redirectToProvider');
-// Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');

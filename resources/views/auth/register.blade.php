@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
 <div class="fluid-containter">
     <img src="img/sign-up-1-left.svg" alt="illustration" class="fluid-containter__left-illustration">
     <img src="img/sign-up-1-right.svg" alt="illustration" class="fluid-containter__right-illustration">
@@ -51,8 +49,8 @@
             <button class="sign-up-box__input-submit-btn" type="submit">Submit</button>
         </form>
         <span class="or-word">OR</span>
-        <a href="#" class="social-media-sign fb">facebook</a>
-        <a href="#" class="social-media-sign g">Google</a>
+        <a href="{{route('facebook.login')}}" class="social-media-sign fb">facebook</a>
+        <a href="{{route('google.login')}}" class="social-media-sign g">Google</a>
     </div>
 </div>
 @endsection

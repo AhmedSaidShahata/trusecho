@@ -16,8 +16,8 @@ class verify_is_admin
     public function handle($request, Closure $next)
     {
         if(!auth()->user()->is_admin()){
-            
-            return redirect('home-page');
+
+            return redirect(route('user.homepages.index'));
         }
         return $next($request);
     }

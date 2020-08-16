@@ -35,11 +35,11 @@ return [
         'redirect' => 'http://localhost:8000/login/facebook/callback',
 
     ],
-    // 'google' => [
-    //     'client_id' => '735176153944047',
-    //     'client_secret' => 'f87b7506b4895e17e3b213d0cba66a08',
-    //     'redirect' => 'http://localhost:8000/login/google/callback',
+    'google' => [
+        'client_id' => '480275604959-mihkbvvue2q77no34rgvp8ajov6ba5dk.apps.googleusercontent.com',
+        'client_secret' => '95LlHkeJVLz-A2j-uNDffl_8',
+        'redirect' => 'http://localhost:8000/login/google/callback',
 
-    // ],
+    ],
 
 ];

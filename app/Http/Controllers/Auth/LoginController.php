@@ -90,33 +90,37 @@ class LoginController extends Controller
 
     //========================================= Start login with google ===============================
 
-    // public function redirectToProviderGoogle()
-    // {
-    //     return Socialite::driver('google')->redirect();
-    // }
+    public function redirectToProviderGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
 
-    // /**
-    //  * Obtain the user information from google.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function handleProviderCallbackGoogle()
-    // {
-    //     $userSocial = Socialite::driver('google')->user();
+    /**
+     * Obtain the user information from google.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallbackGoogle()
+    {
 
-    //     $findUser = User::where('email', $userSocial->email)->first();
-    //     if ($findUser) {
-    //         Auth::login($findUser);
-    //         return "done with old";
-    //     } else {
-    //         $user = new User;
-    //         $user->name = $userSocial->name;
-    //         $user->email = $userSocial->email;
-    //         $user->password = bcrypt(123456);
-    //         $user->save();
-    //         Auth::login($user);
-    //         return 'welcome my bro';
-    //     }
-    // }
+        $userSocial = Socialite::driver('google')->stateless()->user();
+
+        $findUser = User::where('email', $userSocial->email)->first();
+        if ($findUser) {
+            Auth::login($findUser);
+
+        } else {
+            $user = new User;
+            $user->name = $userSocial->name;
+            $user->email = $userSocial->email;
+            $user->password = bcrypt(123456);
+            $user->save();
+            Auth::login($user);
+            Profile::create(['user_id'=>$user->id]);
+
+        }
+        return redirect('/');
+    }
+
 
 }

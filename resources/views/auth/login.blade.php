@@ -46,7 +46,7 @@
         </form>
         <span class="or-word">OR</span>
         <a href="{{route('facebook.login')}}" class="social-media-sign fb">facebook</a>
-        <a href="#" class="social-media-sign g">Google</a>
+        <a href="{{route('google.login')}}" class="social-media-sign g">Google</a>
     </div>
 </div>
 

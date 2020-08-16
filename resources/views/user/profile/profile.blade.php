@@ -7,13 +7,14 @@
         class="profile-illustration"
       />
       <div class="profile-info">
-        <form action="{{route('user.update',$user->id)}}" class="profile-info" enctype="multipart/form-data" method="POST">
+        <form action="{{route('user.users.update',$user->id)}}" class="profile-info" enctype="multipart/form-data" method="POST">
             @csrf
+            @method('PUT')
           <div class="profile-info__left-box">
             <div class="profile-info__left-box-profile-pic-box">
 
               <img
-                src="/{{$profile->picture }}"
+                src="/storage/{{$profile->picture }}"
                 alt="profile-pic"
                 class="profile-info__left-box-profile-pic"
 
@@ -28,7 +29,7 @@
               >
               <input
                 type="text"
-                value="{{--$profile->country--}}"
+                value="{{$profile->country}}"
                 name="country"
                 id="Nationality"
                 class="profile-input__input"
@@ -39,7 +40,7 @@
               <label for="job" class="profile-input__label">Job</label>
               <input
                 type="text"
-                value="{{--$profile->job--}}"
+                value="{{$profile->job}}"
                 name="job"
                 id="job"
                 class="profile-input__input"
@@ -54,7 +55,7 @@
               >
               <input
                 type="text"
-                value="{{--$profile->fullname--}}"
+                value="{{$profile->fullname}}"
                 name="fullname"
                 id="fullname"
                 class="profile-input__input"
@@ -78,7 +79,7 @@
               >
               <input
                 type="text"
-                value="{{--$profile->phone--}}"
+                value="{{$profile->phone}}"
                 name="phone"
                 id="phone-number"
                 class="profile-input__input"
@@ -91,7 +92,7 @@
               >
               <input
                 type="date"
-                value="{{--$profile->date_of_birth--}}"
+                value="{{$profile->date_of_birth}}"
                 name="date_of_birth"
                 id="date_of_birth"
                 class="profile-input__input"
@@ -102,7 +103,12 @@
               <label for="job" class="profile-input__label">Gender</label>
               <div class="gender-options">
                 <div class="options">
-                  <input type="radio" id="male" name="gender" value="{{$profile->gender}}" />
+                  <input type="radio"
+                   id="male"
+                   name="gender"
+                    value="male"
+                    <?php if($profile->gender=='male') echo 'checked' ?>
+                     />
                   <label for="male" class="profile-input__raido-label"
                     >Male</label
                   >
@@ -112,7 +118,8 @@
                     type="radio"
                     id="female"
                     name="gender"
-                    value="{{--$profile->gender--}}"
+                    value="female"
+                    <?php if($profile->gender=='female') echo 'checked' ?>
                   />
                   <label for="male" class="profile-input__raido-label"
                     >Female</label>
@@ -122,13 +129,14 @@
           </div>
           <div class="profile-info__right-box">
             <div class="profile-input">
-                <label for="education-level" class="profile-input__label"
+                <label for="education_level" class="profile-input__label"
                   >Educational Level</label
                 >
                 <input
                   type="text"
+                  value="{{$profile->education_level}}"
                   name="education_level"
-                  id="education-level"
+                  id="education_level"
                   class="profile-input__input"
                   placeholder="Educational level..."
                 />
@@ -137,10 +145,12 @@
                 <label for="specialization" class="profile-input__label">Specialization</label>
                 <input
                   type="text"
+                  value="{{$profile->specialization}}"
                   name="specialization"
                   id="specialization"
                   class="profile-input__input"
                   placeholder="Specialization..."
+
                 />
               </div>
               <div class="profile-input">
@@ -149,10 +159,12 @@
                 >
                 <input
                   type="text"
+                  value="{{$profile->address}}"
                   name="address"
                   id="address"
                   class="profile-input__input"
                   placeholder="Address..."
+
                 />
               </div>
               <div class="profile-input">
@@ -172,7 +184,10 @@
                   >personal-desription</label
                 >
 
-                <textarea id="personal-description" value="{{--$profile->personal_desc}--}" name="personal_desc" rows="6" cols="50" class="profil-input__textarea" placeholder="Personal Description"></textarea>
+                <textarea id="personal-description"  name="personal_desc" rows="6" cols="50" class="profil-input__textarea" placeholder="Personal Description">
+                        {{$profile->personal_desc}}
+
+                </textarea>
               </div>
               <button class="profile-submit-btn">Save</button>
           </div>

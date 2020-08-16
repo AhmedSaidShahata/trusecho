@@ -105,14 +105,14 @@
 
                 <li class="nav-bar__item user-info dropdown">
                     <div class="user-pic-box">
-                        <img style="width:70px;height:70px;"  src="/{{ Auth::user()->profile->picture }}" alt="user pic" class="user-pic" />
+                        <img style="width:70px;height:70px;"  src="storage/{{ Auth::user()->profile->picture }}" alt="user pic" class="user-pic" />
                     </div>
                     <div class="user-info__name dropbtn"> {{ Auth::user()->name }}</div>
                     <div class="dropdown-content u-absolute-top">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-                        <a class="dropdown-item" href="{{route('user.edit',  Auth::user()->id )}}">
+                        <a class="dropdown-item" href="{{route('user.users.edit',  Auth::user()->id )}}">
                             Profile
                         </a>
 
