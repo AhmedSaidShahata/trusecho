@@ -84,6 +84,12 @@ body {
 .fa-trash-alt {
     color: red;
 }
+.fa-eye{
+    color: white;
+}
+.bg-red{
+    background-color: red;
+}
 
 /* Start Form */
 

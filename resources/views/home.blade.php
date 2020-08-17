@@ -129,6 +129,9 @@
                     <li class="list-group-item">
                         <a href="{{route('admin.faqs.index')}}"><i class="fas fa-gifts"></i> Faqs</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i> Contacts</a>
+                    </li>
 
                 </ul>
             </div>
