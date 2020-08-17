@@ -53,9 +53,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">content</label>
-                <textarea class="form-control" name="content" id="" cols="50" rows="10">
-                {{isset($job) ? $job->content : ''}}
-                </textarea>
+                <textarea class="form-control" name="content" id="" cols="50" rows="10">{{isset($job) ? $job->content : ''}}</textarea>
 
                 @if(isset($job))
                 <div>
@@ -71,9 +69,7 @@
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Requirements</label>
-                <textarea class="form-control" name="requirments" id="" cols="50" rows="10" placeholder="Enter Requirments with seoerated dashed">
-                {{isset($job) ? $job->requirments : ''}}
-                </textarea>
+                <textarea class="form-control" name="requirments" id="" cols="50" rows="10" placeholder="Enter Requirments with seoerated dashed">{{isset($job) ? $job->requirments : ''}}</textarea>
             </div>
 
             <div class="form-group">

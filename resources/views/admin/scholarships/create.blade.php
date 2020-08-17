@@ -39,9 +39,7 @@
                 <label for="exampleFormControlTextarea1">content</label>
                 <!-- <textarea class="form-control" name="content" rows="3"></textarea> -->
 
-                <textarea class="form-control" name="content" id="" cols="50" rows="10">
-                {{isset($scholarship) ? $scholarship->content : ''}}
-                </textarea>
+                <textarea class="form-control" name="content" id="" cols="50" rows="10">{{isset($scholarship) ? $scholarship->content : ''}}</textarea>
 
                 @if(isset($scholarship))
                 <div>

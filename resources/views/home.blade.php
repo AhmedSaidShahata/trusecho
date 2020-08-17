@@ -98,26 +98,38 @@
                         <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i> Users</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> Blogs</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> Categories</a>
-                    </li>
-                    <li class="list-group-item">
                         <a href="{{route('admin.scholarships.index')}}"><i class="fas fa-gifts"></i> Scholarships</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> Costs</a>
                     </li>
                     <li class="list-group-item">
                         <a href="{{route('admin.jobs.index')}}"><i class="fas fa-gifts"></i> jobs</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> Blogs</a>
+                    </li>
+                    <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> Categories</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> Costs</a>
+                    </li>
+
                     <li class="list-group-item">
                         <a href="{{route('admin.types.index')}}"><i class="fas fa-gifts"></i> Types</a>
                     </li>
                     <li class="list-group-item">
                         <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> Specializations</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.languages.index')}}"><i class="fas fa-gifts"></i> languages</a>
+                    </li>
+                    <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.faqs.index')}}"><i class="fas fa-gifts"></i> Faqs</a>
+                    </li>
+
                 </ul>
             </div>
             <div class="col-md-9 ">

@@ -37,6 +37,8 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('jobs', 'JobController');
     Route::resource('types', 'TypeController');
     Route::resource('specializations', 'SpecializationController');
+    Route::resource('languages', 'LanguageController');
+    Route::resource('faqs', 'FaqController');
     Route::resource('blogs', 'blogs');
 });
 

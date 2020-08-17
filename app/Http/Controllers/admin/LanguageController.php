@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TypeRequest;
-use App\Type;
+use App\Http\Requests\LanguageRequest;
+use App\Language;
 use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.types.index')->with('types', Type::all());
+        return view('admin.languages.index')->with('languages', language::all());
     }
 
     /**
@@ -26,7 +26,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.types.create');
+        return view('admin.languages.create');
     }
 
     /**
@@ -35,11 +35,11 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TypeRequest $request)
+    public function store(LanguageRequest $request)
     {
-        Type::create($request->all());
-        session()->flash('success', 'Success Adding Type ' . $request->name);
-        return redirect(route('admin.types.index'));
+        Language::create($request->all());
+        session()->flash('success', 'Success Adding language ' . $request->name);
+        return redirect(route('admin.languages.index'));
     }
 
 
@@ -60,9 +60,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Type $type)
+    public function edit(Language $language)
     {
-        return view('admin.types.create')->with('type', $type);
+        return view('admin.languages.create')->with('language', $language);
     }
 
     /**
@@ -72,12 +72,12 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TypeRequest $request, Type $type)
+    public function update(LanguageRequest $request, Language $language)
     {
-        $type->update($request->all());
-        $type->save();
-        session()->flash('success', 'Success Updating Type to ' . $request->name);
-        return redirect(route('admin.types.index'));
+        $language->update($request->all());
+        $language->save();
+        session()->flash('success', 'Success Updating language to ' . $request->name);
+        return redirect(route('admin.languages.index'));
     }
 
     /**
@@ -86,10 +86,10 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(Language $language)
     {
-        $type->delete();
-        session()->flash('success', 'Success Deleting Type ');
-        return redirect(route('admin.types.index'));
+        $language->delete();
+        session()->flash('success', 'Success Deleting language ');
+        return redirect(route('admin.languages.index'));
     }
 }

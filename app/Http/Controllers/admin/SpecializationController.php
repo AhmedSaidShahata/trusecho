@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SpecializationRequest;
 use App\specialization;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class SpecializationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SpecializationRequest $request)
     {
         specialization::create($request->all());
         session()->flash('success', 'Success Adding specialization ' . $request->name);
@@ -73,7 +74,7 @@ class SpecializationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, specialization $specialization)
+    public function update(SpecializationRequest $request, specialization $specialization)
     {
         $specialization->update($request->all());
         $specialization->save();

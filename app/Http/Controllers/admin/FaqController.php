@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Faq;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TypeRequest;
-use App\Type;
+use App\Http\Requests\FaqRequest;
 use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class FaqController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.types.index')->with('types', Type::all());
+        return view('admin.faqs.index')->with('faqs', Faq::all());
     }
 
     /**
@@ -26,7 +26,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.types.create');
+        return view('admin.faqs.create');
     }
 
     /**
@@ -35,13 +35,13 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TypeRequest $request)
+    public function store(FaqRequest $request)
     {
-        Type::create($request->all());
-        session()->flash('success', 'Success Adding Type ' . $request->name);
-        return redirect(route('admin.types.index'));
-    }
 
+        faq::create($request->all());
+        session()->flash('success', 'Success Adding faq ' . $request->name);
+        return redirect(route('admin.faqs.index'));
+    }
 
     /**
      * Display the specified resource.
@@ -60,9 +60,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Type $type)
+    public function edit(Faq $faq)
     {
-        return view('admin.types.create')->with('type', $type);
+        return view('admin.faqs.create')->with('faq', $faq);
     }
 
     /**
@@ -72,12 +72,12 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TypeRequest $request, Type $type)
+    public function update(faqRequest $request, Faq $faq)
     {
-        $type->update($request->all());
-        $type->save();
-        session()->flash('success', 'Success Updating Type to ' . $request->name);
-        return redirect(route('admin.types.index'));
+        $faq->update($request->all());
+        $faq->save();
+        session()->flash('success', 'Success Updating faq to ' . $request->name);
+        return redirect(route('admin.faqs.index'));
     }
 
     /**
@@ -86,10 +86,10 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(Faq $faq)
     {
-        $type->delete();
-        session()->flash('success', 'Success Deleting Type ');
-        return redirect(route('admin.types.index'));
+        $faq->delete();
+        session()->flash('success', 'Success Deleting faq ' );
+        return redirect(route('admin.faqs.index'));
     }
 }
