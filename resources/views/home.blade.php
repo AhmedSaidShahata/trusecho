@@ -66,7 +66,11 @@
             @endif
             @else
             <li class="nav-item dropdown">
+
+
+
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <img style="width:50px;height:50px;" src="/storage/{{ Auth::user()->profile->picture }}" alt="user pic" class="user-pic rounded-circle" />
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
 
@@ -97,13 +101,16 @@
                         <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> Blogs</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> Category Blog</a>
+                        <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> Categories</a>
                     </li>
                     <li class="list-group-item">
                         <a href="{{route('admin.scholarships.index')}}"><i class="fas fa-gifts"></i> Scholarships</a>
                     </li>
                     <li class="list-group-item">
                         <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> Costs</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.jobs.index')}}"><i class="fas fa-gifts"></i> jobs</a>
                     </li>
                 </ul>
             </div>

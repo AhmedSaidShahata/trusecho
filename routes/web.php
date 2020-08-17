@@ -29,11 +29,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-    Route::resource('blogs', 'blogs');
+
     Route::resource('users', 'UserController');
     Route::resource('categories', 'CategoryBlogController');
     Route::resource('scholarships', 'ScholarshipController');
     Route::resource('costs', 'CostController');
+    Route::resource('jobs', 'JobController');
+    Route::resource('blogs', 'blogs');
 });
 
 

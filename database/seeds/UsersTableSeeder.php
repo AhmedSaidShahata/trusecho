@@ -1,5 +1,6 @@
 <?php
 
+use App\Profile;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,15 +15,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user =DB::table('users')->where('email','admin@gmail.com')->first();
-        if(!$user){
-            User::create([
-                'name'=>'admin',
-                'email'=>'admin@gmail.com',
-                'password'=>Hash::make('123456'),
-                'role'=>'admin'
+        $user = DB::table('users')->where('email', 'admin@gmail.com')->first();
+        if (!$user) {
+            $user =  User::create([
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('123456'),
+                'role' => 'admin'
             ]);
+            Profile::create(['user_id' => $user->id]);
         }
-
     }
 }
