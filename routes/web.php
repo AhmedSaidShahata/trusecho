@@ -35,6 +35,8 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('scholarships', 'ScholarshipController');
     Route::resource('costs', 'CostController');
     Route::resource('jobs', 'JobController');
+    Route::resource('types', 'TypeController');
+    Route::resource('specializations', 'SpecializationController');
     Route::resource('blogs', 'blogs');
 });
 

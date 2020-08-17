@@ -112,6 +112,12 @@
                     <li class="list-group-item">
                         <a href="{{route('admin.jobs.index')}}"><i class="fas fa-gifts"></i> jobs</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.types.index')}}"><i class="fas fa-gifts"></i> Types</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> Specializations</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-9 ">
