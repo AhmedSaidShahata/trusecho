@@ -12,4 +12,9 @@ class Cost extends Model
     {
         return $this->hasMany(Scholarship::class);
     }
+
+    public function job()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

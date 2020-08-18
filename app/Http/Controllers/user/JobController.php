@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Cost;
+use App\Commentjob;
 use App\Http\Controllers\Controller;
 use App\Job;
 use Illuminate\Http\Request;
 
-class HomePageController extends Controller
+class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,7 @@ class HomePageController extends Controller
      */
     public function index()
     {
-
-        return view('user.home-page.home-page-signed',['jobs'=>Job::all() ,'costs'=>Cost::all() ]);
+        //
     }
 
     /**
@@ -47,9 +46,11 @@ class HomePageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Job $job)
     {
-        //
+        $comment_jobs = $job->comment;
+
+        return view('user.jobs.job-page', ['job' => $job, 'comment_jobs' => $comment_jobs]);
     }
 
     /**

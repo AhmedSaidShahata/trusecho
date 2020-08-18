@@ -66,6 +66,18 @@
                     </div>
                 </div>
             </div>
+            <div class="input-group ">
+
+                <label>Cost</label>
+
+                <select class="form-control" name="cost_id">
+                    @foreach($costs as $cost)
+
+                    <option <?php if (isset($job) and $job->id == $job->cost_id) echo 'selected' ?> value="{{$cost->id}}">{{$cost->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Requirements</label>

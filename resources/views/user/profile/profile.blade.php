@@ -11,7 +11,7 @@
             @csrf
             @method('PUT')
           <div class="profile-info__left-box">
-            <div class="profile-info__left-box-profile-pic-box">
+        <div class="profile-info__left-box-profile-pic-box">
 
               <img
                 src="/storage/{{$profile->picture }}"

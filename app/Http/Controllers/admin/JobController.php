@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Commentjob;
+use App\Cost;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JobRequest;
 use App\Job;
@@ -17,6 +19,7 @@ class JobController extends Controller
      */
     public function index()
     {
+       
         return view('admin.jobs.index')->with('jobs', Job::all());
     }
 
@@ -27,7 +30,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.jobs.create');
+        return view('admin.jobs.create')->with('costs',Cost::all());;
     }
 
     /**
@@ -50,6 +53,7 @@ class JobController extends Controller
             'deadline' => $request->deadline,
             'heading_details' => $request->heading_details,
             'requirments' => $request->requirments,
+            'cost_id'=>$request->cost_id
 
         ]);
         session()->flash('success', ' Job' . $request->name . 'created successfully ');
@@ -75,7 +79,7 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        return view('admin.jobs.create', ['job' => $job]);
+        return view('admin.jobs.create', ['job' => $job,'cost'=>Cost::all()]);
     }
 
 

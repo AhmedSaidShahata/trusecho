@@ -46,6 +46,12 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
 
 Route::namespace('user')->name('user.')->group(function () {
     Route::resource('users', 'UserController');
+    Route::resource('contacts', 'ContactController');
+    Route::resource('commentjobs', 'CommentjobController');
+    Route::resource('ratejobs', 'RatejobController');
+    Route::resource('jobs', 'JobController');
+    Route::resource('jobapps', 'JobappController');
+    Route::resource('faqs', 'FaqController');
     Route::resource('homepages', 'HomePageController');
 });
 
@@ -55,4 +61,3 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallba
 //======================================= login with google =====================================
 Route::get('login/google', 'Auth\LoginController@redirectToProviderGoogle')->name('google.login');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGoogle');
-

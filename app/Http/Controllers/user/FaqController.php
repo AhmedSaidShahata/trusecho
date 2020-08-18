@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Cost;
+use App\Faq;
 use App\Http\Controllers\Controller;
-use App\Job;
 use Illuminate\Http\Request;
 
-class HomePageController extends Controller
+class FaqController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class HomePageController extends Controller
      */
     public function index()
     {
-
-        return view('user.home-page.home-page-signed',['jobs'=>Job::all() ,'costs'=>Cost::all() ]);
+        return view('user.faqs.FAQ')->with('faqs', Faq::all());
     }
 
     /**

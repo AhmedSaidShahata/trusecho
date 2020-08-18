@@ -32,7 +32,8 @@ class JobRequest extends FormRequest
             'heading_details'=>'required',
             'location'=>'required|max:190',
             'deadline'=>'required|date',
-            'requirements'=>'required'
+            'requirments'=>'required',
+            'cost_id'=>'required'
 
         ];
     }

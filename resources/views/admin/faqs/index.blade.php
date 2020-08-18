@@ -16,7 +16,8 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">title</th>
+            <th scope="col">Question</th>
+            <th scope="col">Answer</th>
             <th scope="col">Add Date</th>
             <th scope="col">Update Date</th>
             <th scope="col">controls</th>

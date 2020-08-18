@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Cost;
+use App\Contact;
 use App\Http\Controllers\Controller;
-use App\Job;
 use Illuminate\Http\Request;
 
-class HomePageController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class HomePageController extends Controller
      */
     public function index()
     {
-
-        return view('user.home-page.home-page-signed',['jobs'=>Job::all() ,'costs'=>Cost::all() ]);
+        return view('user.contact-us.contact-us');
     }
 
     /**
@@ -38,7 +36,8 @@ class HomePageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Contact::create($request->all());
+        return view('user.contact-us.thanks');
     }
 
     /**

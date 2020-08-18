@@ -52,7 +52,10 @@ class ContactController extends Controller
     public function show(Contact $contact)
 
     {
-        return view('admin.contacts.show')->with('contact',$contact);
+        $contact->watch = 'Seen';
+        $contact->save();
+
+        return view('admin.contacts.show')->with('contact', $contact);
     }
 
     /**
@@ -63,7 +66,6 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-
     }
 
     /**
@@ -86,7 +88,7 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        session()->flash('success', 'Success Deleting Contact ' );
+        session()->flash('success', 'Success Deleting Contact ');
         return redirect(route('admin.contacts.index'));
     }
 }

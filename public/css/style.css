@@ -476,7 +476,7 @@ a:hover {
 #menuToggle span:nth-last-child(2) {
   transform-origin: 0% 100%; }
 
-/* 
+/*
   * Transform all the slices of hamburger
   * into a crossmark.
   */
@@ -6071,3 +6071,21 @@ a:hover {
 
 .swiper-slide {
   width: 38.7rem; }
+
+
+  /* Start My style */
+
+  .fa-star{
+      cursor: pointer;
+  }
+
+
+.fa-star,
+.fa-star-half-alt {
+    color: orange;
+}
+.rate_numbers{
+    color: red;
+    font-size: 15px;
+    font-weight: bolder;
+}
