@@ -13,9 +13,15 @@
         <tr>
             <th scope="col">id</th>
             <th scope="cpl">image</th>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Content</th>
+            <th scope="col">Author</th>
+            <th scope="col">Title English</th>
+            <th scope="col">Description English</th>
+            <th scope="col">Content English</th>
+            <th scope="col">Category English</th>
+            <th scope="col">Title Arabic</th>
+            <th scope="col">Description Arabic</th>
+            <th scope="col">Content Arabic</th>
+            <th scope="col">Category Arabic</th>
             <th>Controls</th>
         </tr>
     </thead>
@@ -24,10 +30,18 @@
         <tr>
             <th scope="row">{{$blog->id}}</th>
             <td><img src="{{asset('storage/'.$blog->picture)}}" alt="image blog" style="width:100px;height:100px"></td>
-            <td>{{$blog->title}}</td>
-            <td>{{$blog->description}}</td>
-            <td>{{$blog->content}}</td>
-
+            <td>{{$blog->user->name}}</td>
+            <td>{{$blog->title_en}}</td>
+            <td>{{$blog->description_en}}</td>
+            <td>{{$blog->content_en}}</td>
+            <td>
+                {{!$category=App\CategoryBlog::find($blog->cat_id) }}
+                {{$category->name_en}}
+            </td>
+            <td>{{$blog->title_ar}}</td>
+            <td>{{$blog->description_ar}}</td>
+            <td>{{$blog->content_ar}}</td>
+            <td>{{$category->name_ar}}</td>
             <td class="d-flex">
 
                 <a href="{{route('admin.blogs.edit',$blog->id)}}" class="btn"><i class="far fa-edit"></i> </a>

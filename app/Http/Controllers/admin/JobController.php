@@ -19,7 +19,7 @@ class JobController extends Controller
      */
     public function index()
     {
-       
+
         return view('admin.jobs.index')->with('jobs', Job::all());
     }
 
@@ -30,7 +30,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.jobs.create')->with('costs',Cost::all());;
+        return view('admin.jobs.create')->with('costs',Cost::all());
     }
 
     /**
@@ -79,7 +79,7 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        return view('admin.jobs.create', ['job' => $job,'cost'=>Cost::all()]);
+        return view('admin.jobs.create', ['job' => $job,'costs'=>Cost::all()]);
     }
 
 

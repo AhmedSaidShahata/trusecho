@@ -144,12 +144,12 @@
                     </a>
                 </div>
                 <div class="job-comments__reviews">
+                    @auth
                     <span hidden class="commentor-id">{{ Auth::user()->id }}</span>
                     <span hidden class="commentor-name">{{ Auth::user()->name }}</span>
                     <span hidden class="commentor-image">{{Auth::user()->profile->picture}}</span>
                     <span hidden class="job-id">{{$job->id}}</span>
-
-
+                    @endauth
                     <div class="user-job-comment">
                         <div class="user-job-pic-box">
                             <img src="{{asset('img/user-comment-pic.png')}}" alt="user pic" class="user-job-pic" />
@@ -182,7 +182,7 @@
                             <img src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-job-pic" />
                         </div>
                         <div class="user-job-details">
-                            <h1 class="user-job-name">{{ Auth::user()->name }}</h1>
+                            <h1 class="user-job-name">{{  $comment_job->user->name }}</h1>
                             <p class="user-job-comment-paragraph">
                                 {{$comment_job->body}}
                             </p>
@@ -202,9 +202,9 @@
             <h1 class="popup__header">Applying for a job</h1>
             <div class="header__underline"></div>
             <form action="{{route('user.jobapps.store')}}" method="post" enctype="multipart/form-data">
-            @csrf
-            <!-- class="add-cv-input" -->
-                <input type="file" id="" name="cv" placeholder="none"  />
+                @csrf
+                <!-- class="add-cv-input" -->
+                <input type="file" id="" name="cv" placeholder="none" />
                 <!-- <div class="add-cv">
                     <div class="add-cv__title-box">
                         <img src="img/adding icon.svg" alt="add icon" class="add-cv-icon" />

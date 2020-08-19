@@ -98,6 +98,9 @@
                         <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i> Users</a>
                     </li>
                     <li class="list-group-item">
+                        <a href="{{route('admin.services.index')}}"><i class="fas fa-gifts"></i> Services</a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="{{route('admin.scholarships.index')}}"><i class="fas fa-gifts"></i> Scholarships</a>
                     </li>
                     <li class="list-group-item">

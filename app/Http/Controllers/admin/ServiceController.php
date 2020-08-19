@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\CategoryBlog;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\ServiceRequest;
+use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class CategoryBlogController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class CategoryBlogController extends Controller
      */
     public function index()
     {
-        return view('admin.categories_blogs.index')->with('categories', CategoryBlog::all());
+        return view('admin.services.index')->with('services', Service::all());
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryBlogController extends Controller
      */
     public function create()
     {
-        return view('admin.categories_blogs.create');
+        return view('admin.services.create');
     }
 
     /**
@@ -36,16 +36,15 @@ class CategoryBlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(ServiceRequest $request)
     {
-
         $data = $request->all();
+
         $picture = $request->picture->store('images', 'public');
         $data['picture'] = $picture;
-        CategoryBlog::create($data);
-
-        session()->flash('success', 'Success Add Category ' . $request->name);
-        return redirect(route('admin.categories.index'));
+        Service::create($data);
+        session()->flash('success', ' service' . $request->name . 'created successfully ');
+        return redirect(route('admin.services.index'));
     }
 
     /**
@@ -65,11 +64,9 @@ class CategoryBlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Service $service)
     {
-        $categoryBlog = CategoryBlog::find($id);
-
-        return view('admin.categories_blogs.create')->with('categoryBlog', $categoryBlog);
+        return view('admin.services.create',['service'=>$service]) ;
     }
 
     /**
@@ -79,24 +76,18 @@ class CategoryBlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(ServiceRequest $request, Service $service)
     {
-        $data = $request->all();
-        $categoryBlog = CategoryBlog::find($id);
 
+        $data = $request->all();
         if ($request->hasFile('picture')) {
             $picture = $request->picture->store('images', 'public');
-            Storage::disk('public')->delete($categoryBlog->picture);
+            Storage::disk('public')->delete($service->picture);
             $data['picture'] = $picture;
         }
-
-        $categoryBlog->update($data);
-
-        $categoryBlog->save();
-
-        session()->flash('success', 'Success Updated Category ');
-
-        return redirect(route('admin.categories.index'));
+        $service->update($data);
+        session()->flash('success', 'service Updated successfully');
+        return redirect(route('admin.services.index'));
     }
 
     /**
@@ -105,11 +96,10 @@ class CategoryBlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-        $categoryBlog = CategoryBlog::find($id);
-        $categoryBlog->delete();
-        session()->flash('success', 'Success Delete Category ');
-        return redirect(route('admin.categories.index'));
+        $service->delete();
+        session()->flash('success', 'service deleted successfully');
+        return redirect(route('admin.services.index'));
     }
 }

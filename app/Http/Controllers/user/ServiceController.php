@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\user;
 
-use App\CategoryBlog;
-use App\Cost;
 use App\Http\Controllers\Controller;
-use App\Job;
 use App\Service;
 use Illuminate\Http\Request;
 
-class HomePageController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +15,7 @@ class HomePageController extends Controller
      */
     public function index()
     {
-
-        return view('user.home-page.home-page-signed',
-         ['jobs' => Job::all(),
-          'costs' => Cost::all(),
-          'services'=>Service::all(),
-          'categories'=>CategoryBlog::all()
-         ]);
+        //
     }
 
     /**
@@ -54,9 +45,10 @@ class HomePageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Service $service)
     {
-        //
+        
+        return view('user.services.single-service-page', ['service' => $service]);
     }
 
     /**

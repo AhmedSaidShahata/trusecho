@@ -33,6 +33,7 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('users', 'UserController');
     Route::resource('categories', 'CategoryBlogController');
     Route::resource('scholarships', 'ScholarshipController');
+    Route::resource('services', 'ServiceController');
     Route::resource('costs', 'CostController');
     Route::resource('jobs', 'JobController');
     Route::resource('types', 'TypeController');
@@ -40,19 +41,22 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('languages', 'LanguageController');
     Route::resource('faqs', 'FaqController');
     Route::resource('contacts', 'ContactController');
-    Route::resource('blogs', 'blogs');
+    Route::resource('blogs', 'BlogController');
 });
 
 
 Route::namespace('user')->name('user.')->group(function () {
     Route::resource('users', 'UserController');
     Route::resource('contacts', 'ContactController');
+    Route::resource('services', 'ServiceController');
     Route::resource('commentjobs', 'CommentjobController');
     Route::resource('ratejobs', 'RatejobController');
     Route::resource('jobs', 'JobController');
     Route::resource('jobapps', 'JobappController');
     Route::resource('faqs', 'FaqController');
+    Route::resource('favouritesers','FavouriteserController');
     Route::resource('homepages', 'HomePageController');
+    Route::resource('categoryblogs', 'CategoryblogController');
 });
 
 //======================================= login with facebook =====================================

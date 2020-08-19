@@ -381,7 +381,7 @@
 
 
 
-
+            //=========================================== Start Rate With Ajax===============================
             $(document).on("click", ".fa-star", function() {
 
                 let reference = $(this);
@@ -405,11 +405,11 @@
 
 
 
-
+            //=========================================== Start Comment With Ajax ===============================
 
 
             $(".add-comment").on("click", function() {
-                let comment=$(".comment-job");
+                let comment = $(".comment-job");
                 let commentJob = comment.val();
                 let commentorName = $(".commentor-name").text();
                 let commentorImage = $(".commentor-image").text();
@@ -449,6 +449,29 @@
                 })
 
 
+            })
+
+            //=========================================== Start favourite With Ajax ===============================
+            $(document).on("click", ".add-fav", function() {
+
+                let reference = $(this);
+                let serviceId = reference.data("serviceid");
+
+
+
+                $.ajax({
+                    url: "/favouritesers",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        serviceId: serviceId,
+
+                    },
+                    success: function(data) {
+                        reference.toggleClass("red")
+                    }
+                })
             })
 
         })

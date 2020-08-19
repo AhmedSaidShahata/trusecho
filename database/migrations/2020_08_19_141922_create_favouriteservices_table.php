@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPictureToBlogs extends Migration
+class CreateFavouriteservicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddPictureToBlogs extends Migration
      */
     public function up()
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->string('picture');
+        Schema::create('favouriteservices', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->integer('service_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddPictureToBlogs extends Migration
      */
     public function down()
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('favouriteservices');
     }
 }

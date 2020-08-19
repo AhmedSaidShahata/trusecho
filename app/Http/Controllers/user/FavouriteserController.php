@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\user;
 
-use App\CategoryBlog;
-use App\Cost;
+use App\Favouriteservice;
 use App\Http\Controllers\Controller;
-use App\Job;
-use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class HomePageController extends Controller
+class FavouriteserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +16,7 @@ class HomePageController extends Controller
      */
     public function index()
     {
-
-        return view('user.home-page.home-page-signed',
-         ['jobs' => Job::all(),
-          'costs' => Cost::all(),
-          'services'=>Service::all(),
-          'categories'=>CategoryBlog::all()
-         ]);
+        //
     }
 
     /**
@@ -45,7 +37,23 @@ class HomePageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $serviceId = $request->input('serviceId');
+        $userId = Auth::user()->id;
+
+        $favourite = Favouriteservice::where('user_id', '=', $userId)->where('service_id', '=', $serviceId)->get();
+        if ($favourite->count()==0) {
+            Favouriteservice::create([
+                'user_id' => $userId,
+                'service_id' => $serviceId
+            ]);
+        } else {
+            $favourite = Favouriteservice::where('user_id', '=', $userId)->where('service_id', '=', $serviceId)->delete();
+        }
+
+
+
+        return;
     }
 
     /**

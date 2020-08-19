@@ -21,17 +21,33 @@
             @endforeach
         </div>
         @endif
-        <form action="{{isset($categoryBlog) ? route('admin.categories.update', $categoryBlog->id ): route('admin.categories.store')}} " method="POST">
+        <form action="{{isset($categoryBlog) ? route('admin.categories.update', $categoryBlog->id ): route('admin.categories.store')}} " method="POST" enctype="multipart/form-data">
             @if(isset($categoryBlog))
             @method('PUT')
             @endif
             @csrf
             <div class="form-group">
-                <label for="category">Category Name:</label>
-                <input type="text" name="name" class="form-control" value="{{isset($categoryBlog) ? $categoryBlog->name : ''}}" class="@error('name') is-invalid @enderror" placeholder="Add a new category">
-                @error('name')
-                <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                <label for="category">Category Name English</label>
+                <input type="text" name="name_en" class="form-control" value="{{isset($categoryBlog) ? $categoryBlog->name_en : ''}}"  placeholder="Add a new category">
+
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category Name Arabic</label>
+                <input type="text" name="name_ar" class="form-control" value="{{isset($categoryBlog) ? $categoryBlog->name_ar : ''}}"  placeholder="Add a new category">
+            </div>
+
+            <div class="form-group">
+                @if(isset($categoryBlog))
+                <div>
+                    <img style="height:200px; width:400px" src="/storage/{{$categoryBlog->picture}}" alt="{{$categoryBlog->title_en}}">
+                </div>
+                @endif
+                <div class="input-group my-3">
+                    <div class="custom-file">
+                        <input type="file" name="picture">
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">

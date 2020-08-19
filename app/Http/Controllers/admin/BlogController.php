@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class blogs extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,17 +41,11 @@ class blogs extends Controller
      */
     public function store(BlogRequest $request)
     {
-
+        $data = $request->all();
         $picture = $request->picture->store('images', 'public');
-
-        Blog::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'content' => $request->content,
-            'cat_id' => $request->cat_id,
-            'user_id' => Auth::user()->id,
-            'picture' => $picture
-        ]);
+        $data['picture'] = $picture;
+        $data['user_id'] = Auth::user()->id;
+        Blog::create($data);
         session()->flash('success', 'Blog created successfully');
         return redirect(route('admin.blogs.index'));
     }
@@ -90,12 +84,14 @@ class blogs extends Controller
     {
 
         $data = $request->all();
+
         if ($request->hasFile('picture')) {
             $picture = $request->picture->store('images', 'public');
             Storage::disk('public')->delete($blog->picture);
             $data['picture'] = $picture;
         }
         $blog->update($data);
+
         session()->flash('success', 'post Updated successfully');
         return redirect(route('admin.blogs.index'));
     }

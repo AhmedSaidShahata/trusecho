@@ -101,7 +101,9 @@
                     </div>
                 </div>
                 @empty
-
+                <div class="alert alert-primary" role="alert" style="transform: scale(4);">
+                    No Jobs Yet
+                </div>
                 @endforelse
 
 
@@ -115,45 +117,25 @@
     <div class="best-services-section-signed__cards-info">
         <div class="swiper-container">
             <div class="swiper-wrapper">
+                @forelse($services as $service)
                 <div class="best-services-section-signed__card swiper-slide">
                     <div class="card-picture-box">
                         <span class="opportunity-type-label">Fully funded</span>
-                        <img src="img/card-picutre-1.png" alt="Picutre 1" class="card-picture">
+                        <img src="/storage/{{$service->picture}}" alt="Picutre 1" class="card-picture">
                     </div>
-                    <h1 class="best-services-section-signed__card-header">Study business at Yale</h1>
-                    <p class="best-services-section-signed__card-paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid perspiciatis aliquam, laboriosam inventore quisquam dolores placeat veniam hic mollitia?</p>
+                    <h1 class="best-services-section-signed__card-header">{{$service->title}}</h1>
+                    <p class="best-services-section-signed__card-paragraph">{{$service->description}}</p>
                     <div class="best-services-section-signed__card-rating-box">
                         <img src="img/star-rating.svg" alt="Rating" class="best-services-section-signed__card-rating">
                         <span class="rating-number">5</span>
-                        <a href="#" class="details-button">Details</a href="#">
+                        <a href="{{route('user.services.show',$service->id)}}" class="details-button">Details</a href="#">
                     </div>
                 </div>
-                <div class="best-services-section-signed__card swiper-slide">
-                    <div class="card-picture-box">
-                        <span class="opportunity-type-label">Fully funded</span>
-                        <img src="img/card-picutre-1.png" alt="Picutre 1" class="card-picture">
-                    </div>
-                    <h1 class="best-services-section-signed__card-header">Study business at Yale</h1>
-                    <p class="best-services-section-signed__card-paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid perspiciatis aliquam, laboriosam inventore quisquam dolores placeat veniam hic mollitia?</p>
-                    <div class="best-services-section-signed__card-rating-box">
-                        <img src="img/star-rating.svg" alt="Rating" class="best-services-section-signed__card-rating">
-                        <span class="rating-number">5</span>
-                        <a href="#" class="details-button">Details</a href="#">
-                    </div>
-                </div>
-                <div class="best-services-section-signed__card swiper-slide">
-                    <div class="card-picture-box">
-                        <span class="opportunity-type-label">Fully funded</span>
-                        <img src="img/card-picutre-1.png" alt="Picutre 1" class="card-picture">
-                    </div>
-                    <h1 class="best-services-section-signed__card-header">Study business at Yale</h1>
-                    <p class="best-services-section-signed__card-paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid perspiciatis aliquam, laboriosam inventore quisquam dolores placeat veniam hic mollitia?</p>
-                    <div class="best-services-section-signed__card-rating-box">
-                        <img src="img/star-rating.svg" alt="Rating" class="best-services-section-signed__card-rating">
-                        <span class="rating-number">5</span>
-                        <a href="#" class="details-button">Details</a href="#">
-                    </div>
-                </div>
+                @empty
+
+                @endforelse
+
+
             </div>
         </div>
     </div>
@@ -208,12 +190,16 @@
 <div class="blog-section">
     <h1 class="blog-section__header">Blogs</h1>
     <div class="blog-section__cards-info">
+
+
+
+        @forelse($categories as $category)
         <div class="blog-section__card">
             <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
+                <img src="{{asset('storage/'.$category->picture)}}" alt="blog pic" class="blog-section__pic">
             </div>
             <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
+                <h1 class="blog-card-content__header">{{$category->name_en}}</h1>
                 <div class="blog-card-content-info">
                     <p class="blog-card-content__subtitle">Comments:</p>
                     <p class="blog-card-content__subtitle-value">539</p>
@@ -223,144 +209,11 @@
                     <p class="blog-card-content__subtitle-value">539</p>
                 </div>
             </div>
-            <a href="#" class="blog-section__btn">visit</a>
+            <a href="{{route('user.categoryblogs.show',$category->id)}}" class="blog-section__btn">visit</a>
         </div>
-        <div class="blog-section__card">
-            <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
-            </div>
-            <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-            </div>
-            <a href="#" class="blog-section__btn">visit</a>
-        </div>
-        <div class="blog-section__card">
-            <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
-            </div>
-            <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-            </div>
-            <a href="#" class="blog-section__btn">visit</a>
-        </div>
-        <div class="blog-section__card">
-            <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
-            </div>
-            <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-            </div>
-            <a href="#" class="blog-section__btn">visit</a>
-        </div>
-        <div class="blog-section__card">
-            <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
-            </div>
-            <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-            </div>
-            <a href="#" class="blog-section__btn">visit</a>
-        </div>
-        <div class="blog-section__card">
-            <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
-            </div>
-            <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-            </div>
-            <a href="#" class="blog-section__btn">visit</a>
-        </div>
-        <div class="blog-section__card">
-            <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
-            </div>
-            <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-            </div>
-            <a href="#" class="blog-section__btn">visit</a>
-        </div>
-        <div class="blog-section__card">
-            <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
-            </div>
-            <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-            </div>
-            <a href="#" class="blog-section__btn">visit</a>
-        </div>
-        <div class="blog-section__card">
-            <div class="blog-section__pic-box">
-                <img src="img/blog-pic.png" alt="blog pic" class="blog-section__pic">
-            </div>
-            <div class="blog-card-content">
-                <h1 class="blog-card-content__header">Events and conferences</h1>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-                <div class="blog-card-content-info">
-                    <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
-                </div>
-            </div>
-            <a href="#" class="blog-section__btn">visit</a>
-        </div>
+        @empty
+        @endforelse
+
     </div>
     <a href="blogs.html" class="btn-view-more">View More</a>
 </div>

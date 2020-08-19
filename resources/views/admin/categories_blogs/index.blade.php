@@ -16,7 +16,9 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">title</th>
+            <th scope="col">Iamge</th>
+            <th scope="col">title English</th>
+            <th scope="col">title Arabic</th>
             <th scope="col">Add Date</th>
             <th scope="col">Update Date</th>
             <th scope="col">controls</th>
@@ -27,7 +29,9 @@
         @forelse($categories as $category)
         <tr>
             <th scope="row">{{$category->id}}</th>
-            <td>{{$category->name}}</td>
+            <td><img src="{{asset('storage/'.$category->picture)}}" alt="image blog" style="width:100px;height:100px"></td>
+            <td>{{$category->name_en}}</td>
+            <td>{{$category->name_ar}}</td>
             <td>{{$category->created_at}}</td>
             <td>{{$category->updated_at}}</td>
             <td class="d-flex">
