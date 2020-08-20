@@ -32,7 +32,12 @@
                     <p class="blogs-card-content__subtitle-value">539</p>
                 </div>
             </div>
-            <a href="blogs" class="blogs-results__btn">visit</a>
+            <a href="{{route('user.categoryblogs.show',$category->id)}}" class="blogs-results__btn">visit</a>
+        </div>
+        
+        @empty
+        <div class="alert alert-warning" role="alert">
+            No Blogs Yet
         </div>
         @endforelse
 

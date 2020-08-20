@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Ratejob;
+use App\Scholarshiprate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RatejobController extends Controller
+class ScholarshiprateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,13 +39,13 @@ class RatejobController extends Controller
     {
         $value_rate = $request->input('valueRate');
 
-        $job_id = $request->input('jobId');
+        $scholar_id = $request->input('scholarId');
 
         $user = Auth::user()->id;
 
-        $user_is_exist = Ratejob::where('user_id', '=', $user)->where('job_id', '=', $job_id)->get()->count();
+        $user_is_exist = Scholarshiprate::where('user_id', '=', $user)->where('scholarship_id', '=',   $scholar_id)->get()->count();
 
-        $rate = new Ratejob();
+        $rate = new Scholarshiprate();
 
         if ($user_is_exist == 0) {
 
@@ -53,16 +53,16 @@ class RatejobController extends Controller
 
             $rate->user_id = $user;
 
-            $rate->job_id = (int) $job_id;
+            $rate->scholarship_id = (int)$scholar_id;
 
             $rate->save();
         } else {
-            Ratejob::where(['user_id' => $user,'job_id' => $job_id])->update(array('value_rate' => $value_rate));
+            Scholarshiprate::where(['user_id' => $user,'scholarship_id' =>$scholar_id])->update(array('value_rate' => $value_rate));
         }
 
-        $count_rate_of_book = Ratejob::where('job_id', '=', $job_id)->get()->count();
+        $count_rate_of_book = Scholarshiprate::where('scholarship_id', '=',$scholar_id)->get()->count();
 
-        $sum_values_rate = Ratejob::where('job_id', '=', $job_id)->get()->avg('value_rate');
+        $sum_values_rate = Scholarshiprate::where('scholarship_id', '=',$scholar_id)->get()->avg('value_rate');
 
         // $total_rate = $sum_values_rate / $count_rate_of_book;
 
@@ -76,22 +76,22 @@ class RatejobController extends Controller
 
             for ($i = 1; $i <= $integer_total_rate; $i++) {
 
-                echo '<i  data-value="' . $i . '" class="fas fa-star fa-2x"></i>';
+                echo '<i  data-value="' . $i . '" class="fas rate-scholar fa-star fa-2x"></i>';
             }
 
             if ($is_desimal >= .3 and $is_desimal <= 8) {
 
-                echo '<i  data-value="' . $i . '" class="fas fa-star-half-alt fa-2x"></i>';
+                echo '<i  data-value="' . $i . '" class="fas rate-scholar fa-star-half-alt fa-2x"></i>';
 
                 for ($i =  $integer_total_rate + 2; $i <= 5; $i++) {
 
-                    echo '<i  data-value="' . $i . '" class="far fa-star fa-2x"></i>';
+                    echo '<i  data-value="' . $i . '" class="far rate-scholar fa-star fa-2x"></i>';
                 }
             } else {
 
                 for ($i =  $integer_total_rate + 1; $i <= 5; $i++) {
 
-                    echo '<i  data-value="' . $i . '" class="far fa-star fa-2x"></i>';
+                    echo '<i  data-value="' . $i . '" class="far rate-scholar fa-star fa-2x"></i>';
                 }
             }
 

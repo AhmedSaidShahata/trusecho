@@ -40,16 +40,10 @@ class ScholarshipController extends Controller
      */
     public function store(ScholarshipRequest $request)
     {
-
         $picture = $request->picture->store('images', 'public');
-
-        Scholarship::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'content' => $request->content,
-            'cost_id'=>$request->cost_id,
-            'picture' => $picture
-        ]);
+        $data=$request->all();
+        $data['picture']=$picture;
+        Scholarship::create($data);
         session()->flash('success', ' Scholarship created successfully');
         return redirect(route('admin.scholarships.index'));
     }

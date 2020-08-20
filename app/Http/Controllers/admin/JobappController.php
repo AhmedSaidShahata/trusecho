@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobapp;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class JobappController extends Controller
 {
@@ -16,7 +15,7 @@ class JobappController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.job-applications.index')->with('jobapps', Jobapp::all());
     }
 
     /**
@@ -37,42 +36,7 @@ class JobappController extends Controller
      */
     public function store(Request $request)
     {
-
-        // echo '<br>';
-
-        // //Display File Extension
-        // echo 'File Extension: '.$file->getClientOriginalExtension();
-        // echo '<br>';
-
-        // //Display File Real Path
-        // echo 'File Real Path: '.$file->getRealPath();
-        // echo '<br>';
-
-        // //Display File Size
-        // echo 'File Size: '.$file->getSize();
-        // echo '<br>';
-
-        // //Display File Mime Type
-        // echo 'File Mime Type: '.$file->getMimeType();
-
-        //Move Uploaded File
-        $file = $request->file('cv');
-        $cv =$file->getClientOriginalName();
-        $destinationPath = public_path().'/files';
-        $file->move($destinationPath,$file->getClientOriginalName());
-
-        Jobapp::create([
-            'fullname'=>$request->fullname,
-            'email'=>$request->email,
-            'message'=>$request->message,
-            'phone'=>$request->phone,
-            'cv'=>$cv,
-            'user_id'=>Auth::user()->id,
-            'job_id'=>$request->job_id
-        ]);
-
-        return view('user.jobs.job-apply');
-
+        //
     }
 
     /**
@@ -115,8 +79,10 @@ class JobappController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Jobapp $jobapp)
     {
-        //
+        $jobapp->delete();
+        session()->flash('success', 'job Application deleted successfully');
+        return redirect(route('admin.jobapps.index'));
     }
 }

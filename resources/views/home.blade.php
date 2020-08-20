@@ -130,6 +130,9 @@
                     </li>
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
                     <li class="list-group-item">
+                        <a href="{{route('admin.jobapps.index')}}"><i class="fas fa-gifts"></i> Job Applications</a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="{{route('admin.faqs.index')}}"><i class="fas fa-gifts"></i> Faqs</a>
                     </li>
                     <li class="list-group-item">

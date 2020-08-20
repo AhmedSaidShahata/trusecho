@@ -25,10 +25,21 @@ class ScholarshipRequest extends FormRequest
     {
         return [
 
-            'title' => 'required',
-            'description' => 'required',
-            'content' => 'required',
+            'title_en' => 'required',
+            'description_en' => 'required',
+            'content_en' => 'required',
+            'heading_details_en' => 'required',
+            'location_en' => 'required',
+            'requirments_en' => 'required',
+            'title_ar' => 'required',
+            'description_ar' => 'required',
+            'content_ar' => 'required',
+            'heading_details_ar' => 'required',
+            'location_ar' => 'required',
+            'requirments_ar' => 'required',
             'picture' => 'required',
+            'email' => 'required',
+            'deadline' => 'required',
             'cost_id' => 'required'
 
         ];

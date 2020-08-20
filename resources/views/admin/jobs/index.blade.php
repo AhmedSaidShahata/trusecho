@@ -1,6 +1,6 @@
 @extends('home')
 @section('content')
-<a href="http://127.0.0.1:8000/admin/jobs/create" class="mt-2 btn btn-primary form-control">Add job</a>
+<a href="{{route('admin.job.create')}}" class="mt-2 btn btn-primary form-control">Add job</a>
 <div style="overflow-x:auto ;">
     <table class="table table-dark">
 

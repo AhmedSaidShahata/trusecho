@@ -28,9 +28,13 @@
             @endif
             @csrf
             <div class="form-group">
-                <label for="Cost">Cost Name:</label>
-                <input type="text" name="name" class="form-control" value="{{isset($cost) ? $cost->name : ''}}"  placeholder="Add a new Cost">
+                <label for="Cost">Name Enghlish</label>
+                <input type="text" name="name_en" class="form-control" value="{{isset($cost) ? $cost->name_en : ''}}" placeholder="Add a new Cost">
+            </div>
 
+            <div class="form-group">
+                <label for="Cost">Name Arabic</label>
+                <input type="text" name="name_ar" class="form-control" value="{{isset($cost) ? $cost->name_ar : ''}}" placeholder="Add a new Cost">
             </div>
 
             <div class="form-group">

@@ -26,21 +26,94 @@
             @method('PUT')
 
             @endif
-
+            <!----------------------------------------- English ----------------------------------------->
+            <p class="text-center p-2" style="background:burlywood">Scholarship English </p>
             <div class="form-group">
-                <label for="category">scholarship title:</label>
-                <input type="text" name="title" class="form-control" value="{{isset($scholarship)?$scholarship->title:''}}" placeholder="Add a new scholarship">
+                <label for="category"> title </label>
+                <input type="text" name="title_en" class="form-control" value="{{isset($scholarship)?$scholarship->title_en:''}}" placeholder="Add a new scholarship">
             </div>
             <div class="form-group">
-                <label for="category">scholarship description</label>
-                <input type="text" name="description" class="form-control" value="{{isset($scholarship)?$scholarship->description:''}}" placeholder="Add a description">
+                <label for="category">description </label>
+                <input type="text" name="description_en" class="form-control" value="{{isset($scholarship)?$scholarship->description_en:''}}" placeholder="Add a description">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">content</label>
-                <!-- <textarea class="form-control" name="content" rows="3"></textarea> -->
+                <label for="category">heading Details </label>
+                <input type="text" name="heading_details_en" class="form-control" value="{{isset($scholarship)?$scholarship->heading_details_en:''}}" placeholder="Add a description">
+            </div>
+            <div class="form-group">
+                <label for="category">Location </label>
+                <input type="text" name="location_en" class="form-control" value="{{isset($scholarship)?$scholarship->location_en:''}}" placeholder="Add a description">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Requirments </label>
+                <textarea class="form-control" name="requirments_en" id="" cols="50" rows="10">{{isset($scholarship) ? $scholarship->requirments_en : ''}}</textarea>
+            </div>
 
-                <textarea class="form-control" name="content" id="" cols="50" rows="10">{{isset($scholarship) ? $scholarship->content : ''}}</textarea>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">content </label>
+                <textarea class="form-control" name="content_en" id="" cols="50" rows="10">{{isset($scholarship) ? $scholarship->content_en : ''}}</textarea>
+            </div>
 
+            <div class="input-group ">
+
+                <label>Cost</label>
+
+                <select class="form-control" name="cost_id">
+                    @foreach($costs as $cost)
+
+                    <option <?php if (isset($scholarship) and $cost->id == $scholarship->cost_id) echo 'selected' ?> value="{{$cost->id}}">{{$cost->name_en}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!----------------------------------------- Arabic ----------------------------------------->
+            <p class="text-center p-2" style="background:burlywood">Scholarship Arabic </p>
+            <div class="form-group">
+                <label for="category">title </label>
+                <input type="text" name="title_ar" class="form-control" value="{{isset($scholarship)?$scholarship->title_ar:''}}" placeholder="Add a new scholarship">
+            </div>
+            <div class="form-group">
+                <label for="category">description </label>
+                <input type="text" name="description_ar" class="form-control" value="{{isset($scholarship)?$scholarship->description_ar:''}}" placeholder="Add a description">
+            </div>
+            <div class="form-group">
+
+                <label for="exampleFormControlTextarea1">content </label>
+                <textarea class="form-control" name="content_ar" id="" cols="50" rows="10">{{isset($scholarship) ? $scholarship->content_ar : ''}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">heading Details </label>
+                <input type="text" name="heading_details_ar" class="form-control" value="{{isset($scholarship)?$scholarship->heading_details_ar:''}}" placeholder="Add a description">
+            </div>
+            <div class="form-group">
+                <label for="category">Location </label>
+                <input type="text" name="location_ar" class="form-control" value="{{isset($scholarship)?$scholarship->location_ar:''}}" placeholder="Add a description">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Requirments </label>
+                <textarea class="form-control" name="requirments_ar" id="" cols="50" rows="10">{{isset($scholarship) ? $scholarship->requirments_ar : ''}}</textarea>
+            </div>
+            <div class="input-group ">
+
+                <label>Cost</label>
+
+                <select class="form-control" name="cost_id">
+                    @foreach($costs as $cost)
+
+                    <option <?php if (isset($scholarship) and $cost->id == $scholarship->cost_id) echo 'selected' ?> value="{{$cost->id}}">{{$cost->name_ar}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Deadline </label>
+                <input type="date" name="deadline" class="form-control" value="{{isset($scholarship)?$scholarship->deadline:''}}" placeholder="Add a description">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Email </label>
+                <input type="text" name="email" class="form-control" value="{{isset($scholarship)?$scholarship->email:''}}" placeholder="Add a description">
+            </div>
+            <div class="form-group">
                 @if(isset($scholarship))
                 <div>
                     <img style="height:200px; width:400px" src="/storage/{{$scholarship->picture}}" alt="{{$scholarship->title}}">
@@ -51,19 +124,6 @@
                         <input type="file" name="picture">
                     </div>
                 </div>
-
-                <div class="input-group ">
-
-                    <label>Cost</label>
-
-                    <select class="form-control" name="cost_id">
-                        @foreach($costs as $cost)
-
-                        <option <?php if (isset($scholarship) and $cost->id == $scholarship->cost_id) echo 'selected' ?> value="{{$cost->id}}">{{$cost->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
             </div>
 
 

@@ -42,11 +42,15 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('faqs', 'FaqController');
     Route::resource('contacts', 'ContactController');
     Route::resource('blogs', 'BlogController');
+    Route::resource('jobapps', 'JobappController');
 });
 
 
 Route::namespace('user')->name('user.')->group(function () {
     Route::resource('users', 'UserController');
+    Route::resource('scholarships', 'ScholarshipController');
+    Route::resource('scholarshipcomments', 'ScholarshipcommentController');
+    Route::resource('scholarshiprates', 'ScholarshiprateController');
     Route::resource('contacts', 'ContactController');
     Route::resource('services', 'ServiceController');
     Route::resource('commentjobs', 'CommentjobController');
@@ -57,6 +61,8 @@ Route::namespace('user')->name('user.')->group(function () {
     Route::resource('favouritesers','FavouriteserController');
     Route::resource('homepages', 'HomePageController');
     Route::resource('categoryblogs', 'CategoryblogController');
+    Route::resource('blogs', 'BlogController');
+    Route::resource('blogcomments', 'BlogcommentController');
 });
 
 //======================================= login with facebook =====================================

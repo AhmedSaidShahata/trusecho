@@ -1,18 +1,18 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
 <div class="organization-cover-pic-box">
-    <img src="img/org-cover-pic.png" alt="org cover pic" class="organization-cover-pic" />
+    <img  src="{{asset('storage/'.$scholarship->picture) }}" alt="org cover pic" class="organization-cover-pic" style="height: 300px; width:100%" />
     <div class="organization-profile-info-box">
-        <div class="organization-profile-pic-box">
-            <img src="img/Cargomatic_(Company)_Logo.png" alt="Company Logo" class="organization-profile-pic" />
-        </div>
-        <div class="organization-info">
+        <!-- <div class="organization-profile-pic-box">
+            <img src="" alt="Company Logo" class="organization-profile-pic" />
+        </div> -->
+        <!-- <div class="organization-info">
             <h1 class="organization-name">CARGOMATIC INC.</h1>
             <div class="followers-box">
                 <p class="followers-title">followers:</p>
                 <p class="followers-value">956,384</p>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="org-job-section-info">
@@ -32,25 +32,25 @@
     </div>
     <div class="right-panel">
         <h1 class="right-panel__header">
-            {{$job->heading_details}}
+            {{$scholarship->heading_details_en}}
         </h1>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
                 <p class="right-panel__subtitle">Location:</p>
             </div>
-            <p class="right-panel__subtitle-value">{{$job->location}}</p>
+            <p class="right-panel__subtitle-value">{{$scholarship->location_en}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
                 <p class="right-panel__subtitle">Publishing Date:</p>
             </div>
-            <p class="right-panel__subtitle-value">{{$job->created_at}}</p>
+            <p class="right-panel__subtitle-value">{{$scholarship->created_at}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
                 <p class="right-panel__subtitle">Deadline:</p>
             </div>
-            <p class="right-panel__subtitle-value">{{$job->deadline}}</p>
+            <p class="right-panel__subtitle-value">{{$scholarship->deadline}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
@@ -62,27 +62,27 @@
             <div class="right-panel__subtitle-box">
                 <p class="right-panel__subtitle">Email:</p>
             </div>
-            <p class="right-panel__subtitle-value">{{$job->email}}</p>
+            <p class="right-panel__subtitle-value">{{$scholarship->email}}</p>
         </div>
         <p class="right-panel__description">
-            {{$job->content}}
+            {{$scholarship->content}}
         </p>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Rate the job:</p>
+                <p class="right-panel__subtitle">Rate the Scholarship:</p>
             </div>
             <div class="right-panel__subtitle-value">
-                {{!$count_rate_of_job=App\Ratejob::where('job_id', '=', $job->id)->get()->count()}}
+                {{!$count_rate_of_scholar=App\Scholarshiprate::where('scholarship_id', '=', $scholarship->id)->get()->count()}}
 
-                @if($count_rate_of_job ==0)
+                @if($count_rate_of_scholar ==0)
 
-                @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star rate-job fa-2x"></i>
+                @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far rate-scholar fa-star fa-2x rate-scholar"></i>
 
                     @endfor
 
                     @else
 
-                    {{!$sum_values_rate = App\Ratejob::where('job_id', '=', $job->id)->get()->avg('value_rate')}}
+                    {{!$sum_values_rate = App\Scholarshiprate::where('scholarship_id', '=', $scholarship->id)->get()->avg('value_rate')}}
 
                     {{!$decimal_total_rate = substr($sum_values_rate, 0, 3)}}
 
@@ -92,25 +92,25 @@
                         {{!$is_desimal = $decimal_total_rate - $integer_total_rate}}
                     </div>
 
-                    @for ($i = 1; $i <= $integer_total_rate; $i++) <i data-value="{{$i}}" class="fas fa-star fa-2x"></i>
+                    @for ($i = 1; $i <= $integer_total_rate; $i++) <i data-value="{{$i}}" class="fas rate-scholar fa-star fa-2x"></i>
 
                         @endfor
 
-                        @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
+                        @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas rate-scholar fa-star-half-alt fa-2x"></i>
 
-                            @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                            @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far rate-scholar fa-star fa-2x"></i>
                                 @endfor
 
                                 @else
 
-                                @for ($i = $integer_total_rate + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star fa-2x"></i>
+                                @for ($i = $integer_total_rate + 1; $i <= 5; $i++) <i data-value={{$i}} class="far rate-scholar fa-star fa-2x"></i>
 
                                     @endfor
 
 
                                     @endif
 
-                                    <div class="rate_div"> total rated is <span class="rate_numbers"> {{ $decimal_total_rate }}</span> from <span class="rate_numbers"> {{$count_rate_of_job }}</span> Users </div>
+                                    <div class="rate_div"> total rated is <span class="rate_numbers"> {{ $decimal_total_rate }}</span> from <span class="rate_numbers"> {{$count_rate_of_scholar }}</span> Users </div>
 
 
                                     @endif
@@ -119,11 +119,11 @@
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Job requirements:</p>
+                <p class="right-panel__subtitle">Scholarship requirements:</p>
             </div>
         </div>
         <ul class="right-panel__job-requirements-list">
-            <?php $requirments_exp = explode("-", $job->requirments) ?>
+            <?php $requirments_exp = explode("-", $scholarship->requirments_en) ?>
             @foreach($requirments_exp as $requirment)
             <li class="right-panel__job-requirements-item">
                 {{$requirment}}
@@ -138,8 +138,8 @@
                     <hr class="horizontal-line" />
                 </div>
                 <div class="job-comments__send-box">
-                    <textarea id="blog-comment" cols="30" rows="7" class="job-comments__content comment-job" placeholder="Please write your comments here..."></textarea>
-                    <a type="button" class="job-comments__send-icon add-comment" method="POST">
+                    <textarea id="blog-comment" cols="30" rows="7" class="job-comments__content comment-scholar" placeholder="Please write your comments here..."></textarea>
+                    <a type="button" class="job-comments__send-icon add-comment-scholar" method="POST">
                         <img src="{{asset('img/Send blue icon.png')}}" alt="send " class="send-icon" />
                     </a>
                 </div>
@@ -148,7 +148,7 @@
                     <span hidden class="commentor-id">{{ Auth::user()->id }}</span>
                     <span hidden class="commentor-name">{{ Auth::user()->name }}</span>
                     <span hidden class="commentor-image">{{Auth::user()->profile->picture}}</span>
-                    <span hidden class="job-id">{{$job->id}}</span>
+                    <span hidden class="scholar-id">{{$scholarship->id}}</span>
                     @endauth
                     <div class="user-job-comment">
                         <div class="user-job-pic-box">
@@ -176,20 +176,22 @@
                     </div>
                     <hr>
 
-                    @foreach($comment_jobs as $comment_job)
+
+                    @foreach($comment_scholarships as $comment_scholarship)
                     <div class="user-job-comment">
                         <div class="user-job-pic-box">
-                            <img src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-job-pic" />
+                            <img src="{{asset('storage/'.$comment_scholarship->user->profile->picture)}}" alt="user pic" class="user-job-pic" />
                         </div>
                         <div class="user-job-details">
-                            <h1 class="user-job-name">{{  $comment_job->user->name }}</h1>
+                            <h1 class="user-job-name">{{$comment_scholarship->user->name }}</h1>
                             <p class="user-job-comment-paragraph">
-                                {{$comment_job->body}}
+                                {{$comment_scholarship->body}}
                             </p>
                         </div>
                     </div>
                     <hr>
                     @endforeach
+
                     <hr />
                 </div>
             </div>
@@ -235,7 +237,7 @@
                 <label for="message" class="popup__label-style">Message</label>
                 <textarea id="message" name="message" rows="3" cols="60" class="input-message" placeholder="Your message ...."></textarea>
             </div>
-            <input type="hidden" value="{{$job->id}}" name="job_id">
+            <input type="hidden" value="{{$scholarship->id}}" name="job_id">
             <button class="input-btn" type="submit">Submit</button>
             </form>
         </div>

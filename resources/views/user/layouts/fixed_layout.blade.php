@@ -382,7 +382,7 @@
 
 
             //=========================================== Start Rate With Ajax===============================
-            $(document).on("click", ".fa-star", function() {
+            $(document).on("click", ".rate-job", function() {
 
                 let reference = $(this);
                 let valueRate = reference.data("value");
@@ -404,6 +404,74 @@
             })
 
 
+            //=========================================== Start Rate With Ajax===============================
+            $(document).on("click", ".rate-scholar", function() {
+
+                let reference = $(this);
+                let valueRate = reference.data("value");
+                let scholarId = $(".scholar-id").text();
+
+                $.ajax({
+                    url: "/scholarshiprates",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        valueRate: valueRate,
+                        scholarId:  scholarId
+                    },
+                    success: function(data) {
+                        reference.parent().html(data)
+                    }
+                })
+            })
+
+
+            //=========================================== Start Comment With Ajax ===============================
+
+
+            $(".add-comment-scholar").on("click", function() {
+                let comment = $(".comment-scholar");
+                let commentScholar = comment.val();
+                let commentorName = $(".commentor-name").text();
+                let commentorImage = $(".commentor-image").text();
+                let scholarId = $(".scholar-id").text();
+
+
+                $.ajax({
+                    url: "/scholarshipcomments",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                      commentScholar: commentScholar,
+                      scholarId:scholarId,
+
+                    },
+                    success: function(data) {
+                        comment.val('')
+
+                        $(".job-comments__reviews").append(`
+                        <div class="user-job-comment">
+                        <div class="user-job-pic-box">
+                            <img src=/storage/${commentorImage} alt="user pic" class="user-job-pic" />
+                        </div>
+                        <div class="user-job-details">
+                            <h1 class="user-job-name">${commentorName}</h1>
+                            <p class="user-job-comment-paragraph">
+                                ${commentScholar}
+                            </p>
+                        </div>
+                    </div>
+                    <hr />
+
+                `)
+
+                    }
+                })
+
+
+            })
 
             //=========================================== Start Comment With Ajax ===============================
 
@@ -438,6 +506,52 @@
                             <h1 class="user-job-name">${commentorName}</h1>
                             <p class="user-job-comment-paragraph">
                                 ${commentJob}
+                            </p>
+                        </div>
+                    </div>
+                    <hr />
+
+                `)
+
+                    }
+                })
+
+
+            })
+
+            //=========================================== Start Comment blog With Ajax ===============================
+
+
+            $(".add-comment-blog").on("click", function() {
+                let commentBlog = $(".comment-blog");
+                let commentBlogvalue = commentBlog.val();
+                let commentorBlogName = $(".commentor-blog-name").text();
+                let commentorBlogImage = $(".commentor-blog-image").text();
+                let blogId = $(".blog-id").text();
+
+
+                $.ajax({
+                    url: "/blogcomments",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        commentBlogvalue: commentBlogvalue,
+                        blogId: blogId,
+
+                    },
+                    success: function(data) {
+                        commentBlog.val('')
+
+                        $(".job-comments__reviews").append(`
+                        <div class="user-job-comment">
+                        <div class="user-job-pic-box">
+                            <img src=/storage/${commentorBlogImage} alt="user pic" class="user-job-pic" />
+                        </div>
+                        <div class="user-job-details">
+                            <h1 class="user-job-name">${commentorBlogName}</h1>
+                            <p class="user-job-comment-paragraph">
+                                ${commentBlogvalue}
                             </p>
                         </div>
                     </div>

@@ -6,6 +6,7 @@ use App\CategoryBlog;
 use App\Cost;
 use App\Http\Controllers\Controller;
 use App\Job;
+use App\Scholarship;
 use App\Service;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,9 @@ class HomePageController extends Controller
     {
 
         return view('user.home-page.home-page-signed',
-         ['jobs' => Job::all(),
+         [
+           'scholarships'=>Scholarship::all(),
+          'jobs' => Job::all(),
           'costs' => Cost::all(),
           'services'=>Service::all(),
           'categories'=>CategoryBlog::all()

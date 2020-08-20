@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Jobapp;
+use App\Scholarshipcomment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class JobappController extends Controller
+class ScholarshipcommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,42 +37,17 @@ class JobappController extends Controller
      */
     public function store(Request $request)
     {
+        $commentScholar = $request->input('commentScholar');
+        $scholarId = $request->input('scholarId');
+        $userId = Auth::user()->id;
 
-        // echo '<br>';
 
-        // //Display File Extension
-        // echo 'File Extension: '.$file->getClientOriginalExtension();
-        // echo '<br>';
-
-        // //Display File Real Path
-        // echo 'File Real Path: '.$file->getRealPath();
-        // echo '<br>';
-
-        // //Display File Size
-        // echo 'File Size: '.$file->getSize();
-        // echo '<br>';
-
-        // //Display File Mime Type
-        // echo 'File Mime Type: '.$file->getMimeType();
-
-        //Move Uploaded File
-        $file = $request->file('cv');
-        $cv =$file->getClientOriginalName();
-        $destinationPath = public_path().'/files';
-        $file->move($destinationPath,$file->getClientOriginalName());
-
-        Jobapp::create([
-            'fullname'=>$request->fullname,
-            'email'=>$request->email,
-            'message'=>$request->message,
-            'phone'=>$request->phone,
-            'cv'=>$cv,
-            'user_id'=>Auth::user()->id,
-            'job_id'=>$request->job_id
+        Scholarshipcomment::create([
+            'body'=>$commentScholar,
+            'user_id'=>$userId,
+            'scholarship_id'=>$scholarId
         ]);
-
-        return view('user.jobs.job-apply');
-
+        return;
     }
 
     /**

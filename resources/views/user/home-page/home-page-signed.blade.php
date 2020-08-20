@@ -5,70 +5,32 @@
     <div class="best-scolarships-section-signed__cards-info">
         <div class="swiper-container">
             <div class="swiper-wrapper">
+
+
+                @forelse($scholarships as $scholarship)
                 <div class="best-scolarships-section-signed__card swiper-slide">
                     <div class="card-picture-box">
-                        <span class="opportunity-type-label">Fully funded</span>
-                        <img src="img/card-picutre-1.png" alt="Picutre 1" class="card-picture">
+                        <span class="opportunity-type-label">{{$scholarship->cost->name_en}}</span>
+                        <img src="{{asset('storage/'.$scholarship->picture)}}" alt="Picutre 1" class="card-picture">
                     </div>
-                    <h1 class="best-scolarships-section-signed__card-header">Study business at Yale</h1>
-                    <p class="best-scolarships-section-signed__card-paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid perspiciatis aliquam, laboriosam inventore quisquam dolores placeat veniam hic mollitia?</p>
+                    <h1 class="best-scolarships-section-signed__card-header">{{$scholarship->title_en}}</h1>
+                    <p class="best-scolarships-section-signed__card-paragraph">{{$scholarship->description_en}}</p>
                     <div class="best-scolarships-section-signed__card-deadline-box">
                         <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-scolarships-section-signed__card-deadline">
                         <div class="deadline-number">
                             <h2 class="deadline-header">Hours:Days:Months</h2>
                             <h3 class="deadline-value">23:23:23</h3>
                         </div>
-                        <a href="#" class="details-button">Details</a href="#">
+                        <a href="{{route('user.scholarships.show',$scholarship->id)}}" class="details-button">Details</a href="#">
                     </div>
                 </div>
-                <div class="best-scolarships-section-signed__card swiper-slide">
-                    <div class="card-picture-box">
-                        <span class="opportunity-type-label">Fully funded</span>
-                        <img src="img/card-picutre-1.png" alt="Picutre 1" class="card-picture">
-                    </div>
-                    <h1 class="best-scolarships-section-signed__card-header">Study business at Yale</h1>
-                    <p class="best-scolarships-section-signed__card-paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid perspiciatis aliquam, laboriosam inventore quisquam dolores placeat veniam hic mollitia?</p>
-                    <div class="best-scolarships-section-signed__card-deadline-box">
-                        <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-scolarships-section-signed__card-deadline">
-                        <div class="deadline-number">
-                            <h2 class="deadline-header">Hours:Days:Months</h2>
-                            <h3 class="deadline-value">23:23:23</h3>
-                        </div>
-                        <a href="#" class="details-button">Details</a href="#">
-                    </div>
+                @empty
+                <div class="alert alert-primary" role="alert" style="transform: scale(4);">
+                    No Jobs Yet
                 </div>
-                <div class="best-scolarships-section-signed__card swiper-slide">
-                    <div class="card-picture-box">
-                        <span class="opportunity-type-label">Fully funded</span>
-                        <img src="img/card-picutre-1.png" alt="Picutre 1" class="card-picture">
-                    </div>
-                    <h1 class="best-scolarships-section-signed__card-header">Study business at Yale</h1>
-                    <p class="best-scolarships-section-signed__card-paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid perspiciatis aliquam, laboriosam inventore quisquam dolores placeat veniam hic mollitia?</p>
-                    <div class="best-scolarships-section-signed__card-deadline-box">
-                        <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-scolarships-section-signed__card-deadline">
-                        <div class="deadline-number">
-                            <h2 class="deadline-header">Hours:Days:Months</h2>
-                            <h3 class="deadline-value">23:23:23</h3>
-                        </div>
-                        <a href="#" class="details-button">Details</a href="#">
-                    </div>
-                </div>
-                <div class="best-scolarships-section-signed__card swiper-slide">
-                    <div class="card-picture-box">
-                        <span class="opportunity-type-label">Fully funded</span>
-                        <img src="img/card-picutre-1.png" alt="Picutre 1" class="card-picture">
-                    </div>
-                    <h1 class="best-scolarships-section-signed__card-header">Study business at Yale</h1>
-                    <p class="best-scolarships-section-signed__card-paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid perspiciatis aliquam, laboriosam inventore quisquam dolores placeat veniam hic mollitia?</p>
-                    <div class="best-scolarships-section-signed__card-deadline-box">
-                        <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-scolarships-section-signed__card-deadline">
-                        <div class="deadline-number">
-                            <h2 class="deadline-header">Hours:Days:Months</h2>
-                            <h3 class="deadline-value">23:23:23</h3>
-                        </div>
-                        <a href="#" class="details-button">Details</a href="#">
-                    </div>
-                </div>
+                @endforelse
+
+
             </div>
         </div>
     </div>

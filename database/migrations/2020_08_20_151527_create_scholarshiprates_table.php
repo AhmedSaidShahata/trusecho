@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPicture extends Migration
+class CreateScholarshipratesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddPicture extends Migration
      */
     public function up()
     {
-        Schema::table('scholarships', function (Blueprint $table) {
-            $table->string('picture');
+        Schema::create('scholarshiprates', function (Blueprint $table) {
+            $table->id();
+            $table->integer('value_rate');
+            $table->integer('user_id');
+            $table->integer('scholarship_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddPicture extends Migration
      */
     public function down()
     {
-        Schema::table('scholarships', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('scholarshiprates');
     }
 }
