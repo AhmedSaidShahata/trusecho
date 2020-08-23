@@ -40,7 +40,10 @@ class ScholarshipRequest extends FormRequest
             'picture' => 'required',
             'email' => 'required',
             'deadline' => 'required',
-            'cost_id' => 'required'
+            'cost_id' => 'required',
+            'type_id'=>'required',
+            'language_id'=>'required',
+            'specialize_id'=>'required',
 
         ];
     }

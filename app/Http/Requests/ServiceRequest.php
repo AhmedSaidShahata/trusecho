@@ -24,13 +24,18 @@ class ServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'picture'=>'required|image',
-            'price'=>'required',
-            'title_en'=>'required|max:190',
-            'description_en'=>'required|max:190',
-            'content_ar'=>'required',
-            'title_ar'=>'required|max:190',
-            'description_ar'=>'required|max:190',
+
+            'price' => 'required',
+            'title_en' => 'required|max:190',
+            'description_en' => 'required|max:190',
+            'content_ar' => 'required',
+            'title_ar' => 'required|max:190',
+            'description_ar' => 'required|max:190',
+            'cost_id' => 'required',
+            'type_id'=>'required',
+            'language_id'=>'required',
+            'specialize_id'=>'required',
+
 
         ];
     }

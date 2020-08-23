@@ -37,15 +37,16 @@ class BlogcommentController extends Controller
      */
     public function store(Request $request)
     {
+        $userId = Auth::user()->id;
         $commentblog = $request->input('commentBlogvalue');
         $blogId = $request->input('blogId');
-        $userId = Auth::user()->id;
+
 
 
         Blogcomment::create([
-            'body'=>$commentblog,
-            'user_id'=>$userId,
-            'blog_id'=>$blogId
+            'body' => $commentblog,
+            'user_id' => $userId,
+            'blog_id' => $blogId
         ]);
         return;
     }

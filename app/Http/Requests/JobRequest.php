@@ -24,16 +24,25 @@ class JobRequest extends FormRequest
     public function rules()
     {
         return [
-            'picture'=>'required|image',
-            'email'=>'required|email|max:190',
-            'title'=>'required|max:190',
-            'description'=>'required|max:190',
-            'content'=>'required',
-            'heading_details'=>'required',
-            'location'=>'required|max:190',
-            'deadline'=>'required|date',
-            'requirments'=>'required',
-            'cost_id'=>'required'
+            'title_en' => 'required',
+            'description_en' => 'required',
+            'content_en' => 'required',
+            'heading_details_en' => 'required',
+            'location_en' => 'required',
+            'requirments_en' => 'required',
+            'title_ar' => 'required',
+            'description_ar' => 'required',
+            'content_ar' => 'required',
+            'heading_details_ar' => 'required',
+            'location_ar' => 'required',
+            'requirments_ar' => 'required',
+            'email' => 'required',
+            'deadline' => 'required',
+            'cost_id' => 'required',
+            'type_id'=>'required',
+            'language_id'=>'required',
+            'specialize_id'=>'required',
+
 
         ];
     }

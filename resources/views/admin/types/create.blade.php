@@ -29,7 +29,13 @@
             @csrf
             <div class="form-group">
                 <label for="type">type Name:</label>
-                <input type="text" name="name" class="form-control" value="{{isset($type) ? $type->name : ''}}"  placeholder="Add a new type">
+                <input type="text" name="name_en" class="form-control" value="{{isset($type) ? $type->name_en : ''}}"  placeholder="Add a new type English">
+
+            </div>
+
+            <div class="form-group">
+                <label for="type">type Name:</label>
+                <input type="text" name="name_ar" class="form-control" value="{{isset($type) ? $type->name_ar : ''}}"  placeholder="Add a new type Arabic">
 
             </div>
 

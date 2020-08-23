@@ -81,7 +81,7 @@ class LoginController extends Controller
 
         }
 
-        return redirect('/');
+        return redirect('/homepages');
     }
 
 
@@ -119,7 +119,7 @@ class LoginController extends Controller
             Profile::create(['user_id'=>$user->id]);
 
         }
-        return redirect('/');
+        return redirect('/homepages');
     }
 
 

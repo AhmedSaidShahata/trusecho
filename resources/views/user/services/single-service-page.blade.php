@@ -13,15 +13,59 @@
             </p>
             <div class="service-summary__details-comments">
                 <h1 class="comments">No. of buyers:</h1>
-                <p class="comments__values">68756</p>
+                <p class="comments__values">0</p>
             </div>
             <div class="service-summary__details-views">
                 <h1 class="views">price:</h1>
                 <p class="views__values">{{$service->price}}</p>
+                <span hidden class="ser-id">{{$service->id}}</span>
             </div>
+
+
             <div class="service-summary__details-rate">
                 <h1 class="rate">Rate:</h1>
-                <img src="{{asset('img/star-rating.svg')}}" alt="star" class="rate-star" />
+                <div>
+                     {{!$count_rate_of_ser=App\Rateser::where('ser_id', '=', $service->id)->get()->count()}} @if($count_rate_of_ser==0) @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star rate-ser fa-2x"></i>
+
+                        @endfor
+
+                        @else
+
+                        {{!$sum_values_rate = App\Rateser::where('ser_id', '=', $service->id)->get()->avg('value_rate')}}
+
+                        {{!$decimal_total_rate = substr($sum_values_rate, 0, 3)}}
+
+                        {{!$integer_total_rate = substr($sum_values_rate, 0, 1)}}
+
+                        <div hidden>
+                            {{!$is_desimal = $decimal_total_rate - $integer_total_rate}}
+                        </div>
+
+                        @for ($i = 1; $i <= $integer_total_rate; $i++) <i data-value="{{$i}}" class="fas fa-star rate-ser fa-2x"></i>
+
+                            @endfor
+
+                            @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt rate-ser fa-2x"></i>
+
+                                @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star rate-ser fa-2x"></i>
+                                    @endfor
+
+                                    @else
+
+                                    @for ($i = $integer_total_rate + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star rate-ser fa-2x"></i>
+
+                                        @endfor
+
+
+                                        @endif
+
+
+
+
+                                        @endif
+
+                </div>
+
             </div>
         </div>
         <div class="service-summary__picutre-box">
@@ -39,7 +83,7 @@
     </div>
 </div>
 <div class="service-details">
-    <div class="service-details__content-box">
+    <div class="service-details__content-box" style="padding: 26px;">
         <h1 class="service-details__header">Content</h1>
         <p class="service-details__paragraph">
             {{$service->content_en}}

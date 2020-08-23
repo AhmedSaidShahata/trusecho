@@ -16,7 +16,8 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">title</th>
+            <th scope="col">Name English</th>
+            <th scope="col">Name Arabic</th>
             <th scope="col">Add Date</th>
             <th scope="col">Update Date</th>
             <th scope="col">controls</th>
@@ -27,7 +28,8 @@
         @forelse($types as $type)
         <tr>
             <th scope="row">{{$type->id}}</th>
-            <td>{{$type->name}}</td>
+            <td>{{$type->name_en}}</td>
+            <td>{{$type->name_ar}}</td>
             <td>{{$type->created_at}}</td>
             <td>{{$type->updated_at}}</td>
             <td class="d-flex">

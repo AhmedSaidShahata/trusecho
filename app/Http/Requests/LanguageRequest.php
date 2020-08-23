@@ -24,7 +24,8 @@ class LanguageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name_en' => 'required',
+            'name_ar' => 'required',
         ];
     }
 }

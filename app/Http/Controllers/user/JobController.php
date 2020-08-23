@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\user;
 
 use App\Commentjob;
+use App\Cost;
 use App\Http\Controllers\Controller;
 use App\Job;
+use App\Language;
+use App\specialization;
+use App\Type;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -16,7 +20,14 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.jobs.jobs',[
+            'jobs'=>Job::all(),
+            'costs'=>Cost::all(),
+            'types'=>Type::all(),
+            'specializations'=>specialization::all(),
+            'languages'=>Language::all()
+
+        ]);
     }
 
     /**
@@ -85,5 +96,18 @@ class JobController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $jobs= Job::where($request->all())->get();
+
+          return view('user.jobs.jobs',[
+            'jobs'=>$jobs,
+            'costs'=>Cost::all(),
+            'types'=>Type::all(),
+            'specializations'=>specialization::all(),
+            'languages'=>Language::all()
+          ]);
     }
 }

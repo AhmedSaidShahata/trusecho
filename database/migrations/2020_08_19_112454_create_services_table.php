@@ -23,6 +23,10 @@ class CreateServicesTable extends Migration
             $table->text('content_en');
             $table->string('picture');
             $table->float('price');
+            $table->integer('cost_id');
+            $table->integer('type_id');
+            $table->integer('specialize_id');
+            $table->integer('language_id');
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/admin', 'HomeController@index')->name('home');
 });
 
 
@@ -43,19 +43,25 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('contacts', 'ContactController');
     Route::resource('blogs', 'BlogController');
     Route::resource('jobapps', 'JobappController');
+    Route::resource('organizations', 'OrganizationController');
 });
 
 
 Route::namespace('user')->name('user.')->group(function () {
     Route::resource('users', 'UserController');
+    Route::resource('friends', 'FriendController');
+    Route::post('friendrequest', 'FriendController@friendrequest');
     Route::resource('scholarships', 'ScholarshipController');
     Route::resource('scholarshipcomments', 'ScholarshipcommentController');
+    Route::resource('appscholars', 'AppscholarController');
     Route::resource('scholarshiprates', 'ScholarshiprateController');
     Route::resource('contacts', 'ContactController');
     Route::resource('services', 'ServiceController');
+    Route::get('servicesearch', 'ServiceController@search')->name('servicesearch');
     Route::resource('commentjobs', 'CommentjobController');
     Route::resource('ratejobs', 'RatejobController');
     Route::resource('jobs', 'JobController');
+    Route::get('jobsearch', 'JobController@search')->name('jobsearch');
     Route::resource('jobapps', 'JobappController');
     Route::resource('faqs', 'FaqController');
     Route::resource('favouritesers','FavouriteserController');
@@ -63,6 +69,11 @@ Route::namespace('user')->name('user.')->group(function () {
     Route::resource('categoryblogs', 'CategoryblogController');
     Route::resource('blogs', 'BlogController');
     Route::resource('blogcomments', 'BlogcommentController');
+    Route::resource('organizations', 'OrganizationController');
+    Route::resource('followerorgs', 'FollowerorgController');
+    Route::resource('rateorgs', 'RateorgController');
+    Route::resource('ratesers', 'RateserController');
+    Route::resource('rateblogs', 'RateblogController');
 });
 
 //======================================= login with facebook =====================================

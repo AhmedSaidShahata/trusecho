@@ -20,7 +20,51 @@
             </div>
             <div class="blog-summary__details-rate">
                 <h1 class="rate">Rate:</h1>
-                <img src="img/star-rating.svg" alt="star" class="rate-star" />
+                <div  class="rate-total">
+                    {{!$count_rate_of_blog=App\Rateblog::where('blog_id', '=', $blog->id)->get()->count()}}
+
+                    @if($count_rate_of_blog ==0)
+
+                    @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+
+                        @endfor
+
+                        @else
+
+                        {{!$sum_values_rate = App\Rateblog::where('blog_id', '=', $blog->id)->get()->avg('value_rate')}}
+
+                        {{!$decimal_total_rate = substr($sum_values_rate, 0, 3)}}
+
+                        {{!$integer_total_rate = substr($sum_values_rate, 0, 1)}}
+
+                        <div hidden>
+                            {{!$is_desimal = $decimal_total_rate - $integer_total_rate}}
+                        </div>
+
+                        @for ($i = 1; $i <= $integer_total_rate; $i++) <i data-value="{{$i}}" class="fas fa-star fa-2x"></i>
+
+                            @endfor
+
+                            @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
+
+                                @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                                    @endfor
+
+                                    @else
+
+                                    @for ($i = $integer_total_rate + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star fa-2x"></i>
+
+                                        @endfor
+
+
+                                        @endif
+
+                                        <div class="rate_div"> total rated is <span class="rate_numbers"> {{ $decimal_total_rate }}</span> from <span class="rate_numbers"> {{$count_rate_of_blog }}</span> Users </div>
+
+
+                                        @endif
+                </div>
+
             </div>
         </div>
         <div class="blog-summary__picutre-box">
@@ -92,16 +136,32 @@
             <h1 class="blog-details__rating-header">Rate this topic</h1>
             <div class="blog-details__rating-stars-box">
                 <div class="rating">
-                    <input type="radio" name="rating" id="rating-5">
-                    <label for="rating-5"></label>
-                    <input type="radio" name="rating" id="rating-4">
-                    <label for="rating-4"></label>
-                    <input type="radio" name="rating" id="rating-3">
-                    <label for="rating-3"></label>
-                    <input type="radio" name="rating" id="rating-2">
-                    <label for="rating-2"></label>
-                    <input type="radio" name="rating" id="rating-1">
-                    <label for="rating-1"></label>
+                    <div class="rate_user" blog_id="{{$blog->id}}">
+
+                        {{!$rate_user=App\Rateblog::where('user_id', '=',Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}}
+
+                        @if($rate_user->count() ==0)
+
+                        @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star rate-blog fa-2x"></i>
+                            @endfor
+
+                            @else
+
+                            @foreach($rate_user as $r)
+                            {{$rate_val=$r->value_rate}}
+                            @endforeach
+
+                            @for ($i = 1; $i <= $rate_val; $i++) <i data-value="{{$i}}" class="fas fa-star rate-blog fa-2x"></i>
+
+                                @endfor
+
+                                @for ($i = $rate_val+1; $i <=5; $i++) <i data-value="{{$i}}" class="far fa-star rate-blog fa-2x"></i>
+
+                                    @endfor
+
+                                    @endif
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,7 +174,7 @@
 <span hidden class="blog-id">{{$blog->id}}</span>
 @endauth
 <div class="comments-section">
-    <div class="comments-section__content-box">
+    <div class="comments-section__content-box" style="padding: 38px;">
         <div class="comments-section__header">
             <span class="comments-section__word">Comments</span>
             <hr class="horizontal-line" />
@@ -151,6 +211,24 @@
                     </p>
                 </div>
             </div>
+            @foreach($comments as $comment)
+            <hr>
+            <div class="user-comment">
+                <div class="user-pic-box">
+                    <img src="{{asset('storage/'.$comment->user->profile->picture)}}" alt="user pic" class="user-job-pic" style="height:60px;width:60px" />
+                </div>
+                <div class="user-details">
+                    <h1 class="user-name">{{ $comment->user->name }}</h1>
+                    <p class="user-comment-paragraph">
+                        {{$comment->body}}
+                    </p>
+                </div>
+            </div>
+
+            @endforeach
+
+
+
 
         </div>
         <h1 class="related-topics__header">Related Topics</h1>

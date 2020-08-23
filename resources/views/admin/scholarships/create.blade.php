@@ -65,6 +65,35 @@
                     @endforeach
                 </select>
             </div>
+            <div class="input-group mt-2">
+                <label>Types</label>
+                <select class="form-control" name="type_id">
+                    @foreach($types as $type)
+
+                    <option <?php if (isset($scholarship) and $type->id == $scholarship->type_id) echo 'selected' ?> value="{{$type->id}}">{{$type->name_en}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="input-group mt-2">
+                <label>Specializations</label>
+                <select class="form-control" name="specialize_id">
+                    @foreach($specializations as $specialization)
+
+                    <option <?php if (isset($scholarship) and $specialization->id == $scholarship->specialization_id) echo 'selected' ?> value="{{$specialization->id}}">{{$specialization->name_en}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="input-group my-2">
+                <label>languages</label>
+                <select class="form-control" name="language_id">
+                    @foreach($languages as $language)
+
+                    <option <?php if (isset($scholarship) and $language->id == $scholarship->language_id) echo 'selected' ?> value="{{$language->id}}">{{$language->name_en}}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <!----------------------------------------- Arabic ----------------------------------------->
             <p class="text-center p-2" style="background:burlywood">Scholarship Arabic </p>
@@ -101,6 +130,37 @@
                     @foreach($costs as $cost)
 
                     <option <?php if (isset($scholarship) and $cost->id == $scholarship->cost_id) echo 'selected' ?> value="{{$cost->id}}">{{$cost->name_ar}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+
+            <div class="input-group mt-2">
+                <label>Types</label>
+                <select class="form-control" name="type_id">
+                    @foreach($types as $type)
+
+                    <option <?php if (isset($scholarship) and $type->id == $scholarship->type_id) echo 'selected' ?> value="{{$type->id}}">{{$type->name_ar}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="input-group mt-2">
+                <label>Specializations</label>
+                <select class="form-control" name="specialize_id">
+                    @foreach($specializations as $specialization)
+
+                    <option <?php if (isset($scholarship) and $specialization->id == $scholarship->specialization_id) echo 'selected' ?> value="{{$specialization->id}}">{{$specialization->name_ar}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="input-group my-2">
+                <label>languages</label>
+                <select class="form-control" name="language_id">
+                    @foreach($languages as $language)
+
+                    <option <?php if (isset($scholarship) and $language->id == $scholarship->language_id) echo 'selected' ?> value="{{$language->id}}">{{$language->name_ar}}</option>
                     @endforeach
                 </select>
             </div>

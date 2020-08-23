@@ -30,6 +30,9 @@ class CreateScholarshipsTable extends Migration
             $table->date('deadline');
             $table->string('email');
             $table->integer('cost_id');
+            $table->integer('type_id');
+            $table->integer('specialize_id');
+            $table->integer('language_id');
             $table->string('picture');
             $table->timestamps();
         });

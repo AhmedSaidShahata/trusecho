@@ -76,22 +76,22 @@ class RatejobController extends Controller
 
             for ($i = 1; $i <= $integer_total_rate; $i++) {
 
-                echo '<i  data-value="' . $i . '" class="fas fa-star fa-2x"></i>';
+                echo '<i  data-value="' . $i . '" class="fas fa-star  rate-job fa-2x"></i>';
             }
 
             if ($is_desimal >= .3 and $is_desimal <= 8) {
 
-                echo '<i  data-value="' . $i . '" class="fas fa-star-half-alt fa-2x"></i>';
+                echo '<i  data-value="' . $i . '" class="fas fa-star-half-alt  rate-job fa-2x"></i>';
 
                 for ($i =  $integer_total_rate + 2; $i <= 5; $i++) {
 
-                    echo '<i  data-value="' . $i . '" class="far fa-star fa-2x"></i>';
+                    echo '<i  data-value="' . $i . '" class="far fa-star  rate-job fa-2x"></i>';
                 }
             } else {
 
                 for ($i =  $integer_total_rate + 1; $i <= 5; $i++) {
 
-                    echo '<i  data-value="' . $i . '" class="far fa-star fa-2x"></i>';
+                    echo '<i  data-value="' . $i . '" class="far fa-star  rate-job fa-2x"></i>';
                 }
             }
 

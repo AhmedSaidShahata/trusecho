@@ -7338,7 +7338,7 @@ a:hover {
 }
 @keyframes animate_heart {
     0% {
-        transform: scale(.9);
+        transform: scale(0.9);
         font-size: 30px;
     }
 
@@ -7350,4 +7350,20 @@ a:hover {
     color: red;
     font-size: 15px;
     font-weight: bolder;
+}
+
+.input:disabled {
+    cursor: not-allowed;
+}
+
+.active-degree {
+    background-color: #152850;
+    color: white;
+}
+
+.custom-select > select {
+    display: block !important;
+    padding: 20px;
+    width: 100%;
+    cursor: pointer;
 }

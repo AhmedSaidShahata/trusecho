@@ -30,10 +30,15 @@
             @csrf
             <div class="form-group">
                 <label for="language">language Name:</label>
-                <input language="text" name="name" class="form-control" value="{{isset($language) ? $language->name : ''}}"  placeholder="Add a new language">
+                <input language="text" name="name_en" class="form-control" value="{{isset($language) ? $language->name_en : ''}}"  placeholder="Add a new language">
 
             </div>
 
+            <div class="form-group">
+                <label for="language">language Name:</label>
+                <input language="text" name="name_ar" class="form-control" value="{{isset($language) ? $language->name_ar : ''}}"  placeholder="Add a new language">
+
+            </div>
             <div class="form-group">
                 <input class="btn btn-success form-control" type="submit" value="{{isset($language) ?'update': 'Add'}}" />
             </div>

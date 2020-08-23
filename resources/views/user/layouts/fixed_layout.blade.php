@@ -26,24 +26,27 @@
         <div class="nav-bar">
             <ul class="nav-bar__list">
                 <li class="nav-bar__item">
-                    <a href="home-page.html" class="nav-bar__item-nav">Home</a>
+                    <a href="{{route('user.homepages.index')}}" class="nav-bar__item-nav">Home</a>
                 </li>
                 <li class="nav-bar__item">
                     <a href="my-network.html" class="nav-bar__item-nav">My network</a>
                 </li>
+                <li class="nav-bar__item">
+                    <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">My network</a>
+                </li>
                 <li class="nav-bar__item dropdown">
-                    <a href="jobs.html" class="nav-bar__item-nav dropbtn">Jobs</a>
+                    <a href="{{route('user.jobs.index')}}" class="nav-bar__item-nav dropbtn">Jobs</a>
                     <div class="dropdown-content">
-                        <a href="#">All Jobs</a>
+                        <!-- <a href="#">All Jobs</a>
                         <a href="#">Engineering</a>
                         <a href="#">Information Technology</a>
                         <a href="#">Media, TV, and Jounrals</a>
                         <a href="#">Future Jobs</a>
-                        <a href="#">Education Sector</a>
+                        <a href="#">Education Sector</a> -->
                     </div>
                 </li>
                 <li class="nav-bar__item dropdown">
-                    <a href="services.html" class="nav-bar__item-nav dropbtn">Services</a>
+                    <a href="{{route('user.services.index')}}" class="nav-bar__item-nav dropbtn">Services</a>
                     <div class="dropdown-content">
                         <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
@@ -51,7 +54,7 @@
                     </div>
                 </li>
                 <li class="nav-bar__item">
-                    <a href="organizations.html" class="nav-bar__item-nav">Organizations</a>
+                    <a href="{{route('user.organizations.index')}}" class="nav-bar__item-nav">Organizations</a>
                 </li>
                 <li class="nav-bar__item">
                     <a href="{{route('user.faqs.index')}}" class="nav-bar__item-nav">Faq</a>
@@ -104,6 +107,15 @@
                             <a href="#">Faisl just posted a blog</a>
                             <a href="#">Memo just added a job role</a>
                             <a href="#">Lily reacted to your post</a>
+                            {{!$friends_request=App\Friend::where(['friend_id'=> Auth::user()->id])->get()}}
+                            @forelse($friends_request as $friend_request )
+                            <a>
+                                   {{$user_request= $friend_request->user_id}}
+                                   {{App\User::where(['id'=>$user_request])->get()->first()->name}}
+                            </a>
+                            @empty
+                            nooooooooooooooooo
+                            @endforelse
                         </div>
                     </div>
                 </li>
@@ -381,6 +393,92 @@
 
 
 
+            //=========================================== Start add friend With Ajax===============================
+            $(document).on("click", ".add-friend", function() {
+
+                let reference = $(this);
+                let userId = reference.data("userid");
+
+                $.ajax({
+                    url: "/friendrequest",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        userId: userId,
+
+                    },
+                    success: function(data) {
+                        if (reference.text() == 'Add Friend') {
+                            reference.text('Friend Request Sent')
+
+                        } else {
+                            reference.text('Add Friend');
+
+                        }
+                    }
+                })
+            })
+
+
+            //============================================ Start follower Ajax======================
+
+
+            $(document).on("click", ".add-follower", function() {
+
+                let reference = $(this);
+
+                let followCount = $(".follow-count");
+                let followCountVal = parseInt(followCount.text())
+
+
+                let orgId = reference.data("orgid");
+
+                $.ajax({
+                    url: "/followerorgs",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        orgId: orgId,
+
+                    },
+                    success: function(data) {
+
+                        if (reference.text() == ' follow ') {
+                            reference.text(' following ')
+                            followCount.text(followCountVal += 1)
+                        } else {
+                            reference.text(' follow ');
+                            followCount.text(followCountVal -= 1)
+                        }
+
+                    }
+                })
+            })
+
+            //=========================================== Start Rate With Ajax===============================
+            $(document).on("click", ".rate-org", function() {
+
+                let reference = $(this);
+                let valueRate = reference.data("value");
+                let orgId = $(".org-id").text();
+
+                $.ajax({
+                    url: "/rateorgs",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        valueRate: valueRate,
+                        orgId: orgId
+                    },
+                    success: function(data) {
+                        reference.parent().html(data)
+                    }
+                })
+            })
+
             //=========================================== Start Rate With Ajax===============================
             $(document).on("click", ".rate-job", function() {
 
@@ -405,6 +503,29 @@
 
 
             //=========================================== Start Rate With Ajax===============================
+            $(document).on("click", ".rate-ser", function() {
+
+                let reference = $(this);
+                let valueRate = reference.data("value");
+                let serId = $(".ser-id").text();
+
+                $.ajax({
+                    url: "/ratesers",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        valueRate: valueRate,
+                        serId: serId
+                    },
+                    success: function(data) {
+                        reference.parent().html(data)
+                    }
+                })
+            })
+
+
+            //=========================================== Start Rate With Ajax===============================
             $(document).on("click", ".rate-scholar", function() {
 
                 let reference = $(this);
@@ -418,7 +539,7 @@
                     data: {
                         _token: "{{csrf_token()}}",
                         valueRate: valueRate,
-                        scholarId:  scholarId
+                        scholarId: scholarId
                     },
                     success: function(data) {
                         reference.parent().html(data)
@@ -427,7 +548,7 @@
             })
 
 
-            //=========================================== Start Comment With Ajax ===============================
+            //=========================================== Start Comment scholar With Ajax ===============================
 
 
             $(".add-comment-scholar").on("click", function() {
@@ -444,8 +565,8 @@
                     dataType: "text",
                     data: {
                         _token: "{{csrf_token()}}",
-                      commentScholar: commentScholar,
-                      scholarId:scholarId,
+                        commentScholar: commentScholar,
+                        scholarId: scholarId,
 
                     },
                     success: function(data) {
@@ -497,8 +618,10 @@
                     success: function(data) {
                         comment.val('')
 
+
                         $(".job-comments__reviews").append(`
-                        <div class="user-job-comment">
+                <hr/>
+                <div class="user-job-comment">
                         <div class="user-job-pic-box">
                             <img src=/storage/${commentorImage} alt="user pic" class="user-job-pic" />
                         </div>
@@ -509,7 +632,7 @@
                             </p>
                         </div>
                     </div>
-                    <hr />
+
 
                 `)
 
@@ -543,19 +666,21 @@
                     success: function(data) {
                         commentBlog.val('')
 
-                        $(".job-comments__reviews").append(`
-                        <div class="user-job-comment">
-                        <div class="user-job-pic-box">
-                            <img src=/storage/${commentorBlogImage} alt="user pic" class="user-job-pic" />
+
+                        $(".comments-section__reviews").append(`
+                        <hr/>
+                 <div class="user-comment">
+                        <div class="user-pic-box">
+                            <img src=/storage/${commentorBlogImage} alt="user pic" class="user-job-pic" style="width:60px;height:60px" />
                         </div>
-                        <div class="user-job-details">
-                            <h1 class="user-job-name">${commentorBlogName}</h1>
-                            <p class="user-job-comment-paragraph">
+                        <div class="user-details">
+                            <h1 class="user-name">${commentorBlogName}</h1>
+                            <p class="user-comment-paragraph">
                                 ${commentBlogvalue}
                             </p>
                         </div>
                     </div>
-                    <hr />
+
 
                 `)
 
@@ -570,7 +695,6 @@
 
                 let reference = $(this);
                 let serviceId = reference.data("serviceid");
-
 
 
                 $.ajax({
@@ -589,6 +713,36 @@
             })
 
         })
+
+        // scholarship application
+        $(".second-form ,.third-form").hide()
+
+        $(".hide-form1").on("click", function() {
+            $(".first-form").hide();
+            $(".second-form").show();
+            $("html,body").animate({
+                scrollTop: 0
+            }, 100)
+        })
+
+        $(".hide-form2").on("click", function() {
+            $(".second-form").hide();
+            $(".third-form").show();
+            $("html,body").animate({
+                scrollTop: 0
+            }, 100)
+        })
+
+        // Start Input
+
+        $(".degree").on("click", function() {
+            $(this).addClass("active-degree").siblings().removeClass("active-degree")
+            $("input[name='degree']").val($(this).text())
+            console.log($("input[name='degree']").val())
+        })
+        // $('.input-checkbox:checked').removeAttr("disabled")
+
+        $(".degree").css("cursor", "pointer")
     </script>
 
     <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>

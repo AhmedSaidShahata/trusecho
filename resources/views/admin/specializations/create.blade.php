@@ -29,8 +29,12 @@
             @csrf
             <div class="form-group">
                 <label for="specialization">specialization Name:</label>
-                <input type="text" name="name" class="form-control" value="{{isset($specialization) ? $specialization->name : ''}}"  placeholder="Add a new specialization">
+                <input type="text" name="name_en" class="form-control" value="{{isset($specialization) ? $specialization->name_en : ''}}" placeholder="Add a new specialization English">
 
+            </div>
+            <div class="form-group">
+                <label for="specialization">specialization Name:</label>
+                <input type="text" name="name_ar" class="form-control" value="{{isset($specialization) ? $specialization->name_ar : ''}}" placeholder="Add a new specialization Arabic">
             </div>
 
             <div class="form-group">

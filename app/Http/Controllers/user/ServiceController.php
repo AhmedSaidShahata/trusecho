@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Cost;
 use App\Http\Controllers\Controller;
+use App\Job;
+use App\Language;
 use App\Service;
+use App\specialization;
+use App\Type;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -15,9 +20,15 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
-    }
+        return view('user.services.services', [
+            'services' => Service::all(),
+            'costs' => Cost::all(),
+            'types' => Type::all(),
+            'specializations' => specialization::all(),
+            'languages' => Language::all()
 
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -47,7 +58,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        
+
         return view('user.services.single-service-page', ['service' => $service]);
     }
 
@@ -83,5 +94,17 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function search(Request $request)
+    {
+        $services = Service::where($request->all())->get();
+
+        return view('user.services.services', [
+            'services' => $services,
+            'costs' => Cost::all(),
+            'types' => Type::all(),
+            'specializations' => specialization::all(),
+            'languages' => Language::all()
+        ]);
     }
 }

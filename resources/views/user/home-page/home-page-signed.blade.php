@@ -26,7 +26,7 @@
                 </div>
                 @empty
                 <div class="alert alert-primary" role="alert" style="transform: scale(4);">
-                    No Jobs Yet
+                    No Scholarships Yet
                 </div>
                 @endforelse
 
@@ -51,8 +51,8 @@
                         </span>
                         <img src="/storage/{{$job->picture}}" alt="Picutre 1" class="card-picture" style="height: 162px;">
                     </div>
-                    <h1 class="best-jobs-section-signed__card-header">{{$job->title}}</h1>
-                    <p class="best-jobs-section-signed__card-paragraph">{{$job->description}}</p>
+                    <h1 class="best-jobs-section-signed__card-header">{{$job->title_en}}</h1>
+                    <p class="best-jobs-section-signed__card-paragraph">{{$job->description_en}}</p>
                     <div class="best-jobs-section-signed__card-deadline-box">
                         <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-jobs-section-signed__card-deadline">
                         <div class="deadline-number">
@@ -85,15 +85,58 @@
                         <span class="opportunity-type-label">Fully funded</span>
                         <img src="/storage/{{$service->picture}}" alt="Picutre 1" class="card-picture">
                     </div>
-                    <h1 class="best-services-section-signed__card-header">{{$service->title}}</h1>
-                    <p class="best-services-section-signed__card-paragraph">{{$service->description}}</p>
-                    <div class="best-services-section-signed__card-rating-box">
-                        <img src="img/star-rating.svg" alt="Rating" class="best-services-section-signed__card-rating">
-                        <span class="rating-number">5</span>
-                        <a href="{{route('user.services.show',$service->id)}}" class="details-button">Details</a href="#">
+                    <h1 class="best-services-section-signed__card-header">{{$service->title_en}}</h1>
+                    <p class="best-services-section-signed__card-paragraph">{{$service->description_en}}</p>
+                    <div class="best-services-section-signed__card-rating-box" style="padding-left: 25px;">
+
+                        {{!$count_rate_of_ser=App\Rateser::where('ser_id', '=', $service->id)->get()->count()}} @if($count_rate_of_ser==0) @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+
+                            @endfor
+
+                            @else
+
+                            {{!$sum_values_rate = App\Rateser::where('ser_id', '=', $service->id)->get()->avg('value_rate')}}
+
+                            {{!$decimal_total_rate = substr($sum_values_rate, 0, 3)}}
+
+                            {{!$integer_total_rate = substr($sum_values_rate, 0, 1)}}
+
+                            <div hidden>
+                                {{!$is_desimal = $decimal_total_rate - $integer_total_rate }}
+                            </div>
+
+                            @for ($i = 1; $i <= $integer_total_rate ; $i++) <i data-value="{{$i}}" class="fas fa-star fa-2x"></i>
+
+                                @endfor
+
+                                @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
+
+                                    @for ($i = $integer_total_rate  + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                                        @endfor
+
+                                        @else
+
+                                        @for ($i = $integer_total_rate  + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star fa-2x"></i>
+
+                                            @endfor
+
+
+                                            @endif
+
+
+
+
+                                            @endif
+
+
+                                            <span class="rating-number">{{$sum_values_rate ?? 0  }}</span>
+                                            <a href="{{route('user.services.show',$service->id)}}" class="details-button">Details</a href="#">
                     </div>
                 </div>
                 @empty
+                <div class="alert alert-primary" role="alert" style="transform: scale(4);">
+                    No services Yet
+                </div>
 
                 @endforelse
 
@@ -108,42 +151,27 @@
     <div class="best-organizations-section-signed__cards-info">
         <div class="swiper-container">
             <div class="swiper-wrapper">
+
+                @forelse($organizations as $organization)
+                {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $organization->id)->get()}};
+                {{!$followerCount = App\Followersorg::where('org_id', '=', $organization->id)->get()->count()}};
                 <div class="best-organizations-section-signed__card swiper-slide">
                     <div class="colored-container"></div>
-                    <div class="logo-box">
-                        <img src="img/Cargomatic_(Company)_Logo.png" alt="Logo" class="best-jobs-section__logo">
+                    <div class="logo-box" style="overflow: hidden;">
+                        <img src="{{asset('storage/'.$organization->picture_org) }}" alt="Logo" class="best-jobs-section__logo">
                     </div>
-                    <h1 class="best-organizations-section-signed__sub-header"> Cargomatic</h1>
-                    <p class="best-organizations-section-signed__followers"> 6,494,456 followers</p>
-                    <a href="#" class="best-organizations-section-signed__btn-follow">Follow</a>
+                    <h1 class="best-organizations-section-signed__sub-header"> <a href="{{route('user.organizations.show',$organization->id)}}">{{$organization->name_en}}</a></h1>
+                    <p class="best-organizations-section-signed__followers"><span class="follow-count" style="color: green;">{{$followerCount}}</span> follower</p>
+                    <a data-orgid="{{$organization->id}}" type="button" class="best-organizations-section-signed__btn-follow add-follower" style="cursor:pointer">@if($follower->count()>0) following @else follow @endif</a>
                 </div>
-                <div class="best-organizations-section-signed__card swiper-slide">
-                    <div class="colored-container"></div>
-                    <div class="logo-box">
-                        <img src="img/Cargomatic_(Company)_Logo.png" alt="Logo" class="best-jobs-section__logo">
-                    </div>
-                    <h1 class="best-organizations-section-signed__sub-header"> Cargomatic</h1>
-                    <p class="best-organizations-section-signed__followers"> 6,494,456 followers</p>
-                    <a href="#" class="best-organizations-section-signed__btn-follow">Follow</a>
+                @empty
+                <div class="alert alert-primary" role="alert" style="transform: scale(4);">
+                    No Organizations Yet
                 </div>
-                <div class="best-organizations-section-signed__card swiper-slide">
-                    <div class="colored-container"></div>
-                    <div class="logo-box">
-                        <img src="img/Cargomatic_(Company)_Logo.png" alt="Logo" class="best-jobs-section__logo">
-                    </div>
-                    <h1 class="best-organizations-section-signed__sub-header"> Cargomatic</h1>
-                    <p class="best-organizations-section-signed__followers"> 6,494,456 followers</p>
-                    <a href="#" class="best-organizations-section-signed__btn-follow">Follow</a>
-                </div>
-                <div class="best-organizations-section-signed__card swiper-slide">
-                    <div class="colored-container"></div>
-                    <div class="logo-box">
-                        <img src="img/Cargomatic_(Company)_Logo.png" alt="Logo" class="best-jobs-section__logo">
-                    </div>
-                    <h1 class="best-organizations-section-signed__sub-header"> Cargomatic</h1>
-                    <p class="best-organizations-section-signed__followers"> 6,494,456 followers</p>
-                    <a href="#" class="best-organizations-section-signed__btn-follow">Follow</a>
-                </div>
+
+                @endforelse
+
+
             </div>
         </div>
     </div>
@@ -164,16 +192,20 @@
                 <h1 class="blog-card-content__header">{{$category->name_en}}</h1>
                 <div class="blog-card-content-info">
                     <p class="blog-card-content__subtitle">Comments:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
+                    <p class="blog-card-content__subtitle-value">0</p>
                 </div>
                 <div class="blog-card-content-info">
                     <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">539</p>
+                    <p class="blog-card-content__subtitle-value">0</p>
                 </div>
             </div>
+
             <a href="{{route('user.categoryblogs.show',$category->id)}}" class="blog-section__btn">visit</a>
         </div>
         @empty
+        <div class="alert alert-primary" role="alert" style="transform: scale(4);">
+            No Blogs Yet
+        </div>
         @endforelse
 
     </div>

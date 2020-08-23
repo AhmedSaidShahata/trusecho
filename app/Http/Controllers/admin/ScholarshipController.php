@@ -5,7 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Cost;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ScholarshipRequest;
+use App\Language;
 use App\Scholarship;
+use App\specialization;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,7 +32,13 @@ class ScholarshipController extends Controller
      */
     public function create()
     {
-        return view('admin.scholarships.create')->with('costs',Cost::all());
+        return view('admin.scholarships.create', [
+            'costs' => Cost::all(),
+            'types' => Type::all(),
+            'specializations' => specialization::all(),
+            'languages' => Language::all()
+
+        ]);
     }
 
     /**
@@ -41,8 +50,8 @@ class ScholarshipController extends Controller
     public function store(ScholarshipRequest $request)
     {
         $picture = $request->picture->store('images', 'public');
-        $data=$request->all();
-        $data['picture']=$picture;
+        $data = $request->all();
+        $data['picture'] = $picture;
         Scholarship::create($data);
         session()->flash('success', ' Scholarship created successfully');
         return redirect(route('admin.scholarships.index'));
@@ -67,7 +76,16 @@ class ScholarshipController extends Controller
      */
     public function edit(Scholarship $scholarship)
     {
-        return view('admin.scholarships.create', ['scholarship' => $scholarship, 'costs' => Cost::all()]);
+        return view('admin.scholarships.create', [
+            'scholarship' => $scholarship,
+            'costs' => Cost::all(),
+            'types' => Type::all(),
+            'specializations' => specialization::all(),
+            'languages' => Language::all()
+
+
+
+        ]);
     }
 
     /**

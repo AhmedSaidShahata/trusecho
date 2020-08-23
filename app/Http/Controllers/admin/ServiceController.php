@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Cost;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRequest;
+use App\Language;
 use App\Service;
+use App\specialization;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +21,10 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('admin.services.index')->with('services', Service::all());
+        return view('admin.services.index',[
+            'services' => Service::all(),
+
+        ]);
     }
 
     /**
@@ -27,7 +34,12 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.services.create');
+        return view('admin.services.create',[
+            'costs' => Cost::all(),
+            'types' => Type::all(),
+            'specializations' => specialization::all(),
+            'languages' => Language::all()
+        ]);
     }
 
     /**
@@ -43,7 +55,7 @@ class ServiceController extends Controller
         $picture = $request->picture->store('images', 'public');
         $data['picture'] = $picture;
         Service::create($data);
-        session()->flash('success', ' service' . $request->name . 'created successfully ');
+        session()->flash('success', ' service ' . $request->name . ' created successfully ');
         return redirect(route('admin.services.index'));
     }
 
@@ -66,7 +78,13 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('admin.services.create',['service'=>$service]) ;
+        return view('admin.services.create',[
+            'service'=>$service,
+            'costs' => Cost::all(),
+            'types' => Type::all(),
+            'specializations' => specialization::all(),
+            'languages' => Language::all()
+            ]) ;
     }
 
     /**

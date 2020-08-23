@@ -16,7 +16,8 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">title</th>
+            <th scope="col">Name English</th>
+            <th scope="col">Name Arabic</th>
             <th scope="col">Add Date</th>
             <th scope="col">Update Date</th>
             <th scope="col">controls</th>
@@ -27,7 +28,8 @@
         @forelse($specializations as $specialization)
         <tr>
             <th scope="row">{{$specialization->id}}</th>
-            <td>{{$specialization->name}}</td>
+            <td>{{$specialization->name_en}}</td>
+            <td>{{$specialization->name_ar}}</td>
             <td>{{$specialization->created_at}}</td>
             <td>{{$specialization->updated_at}}</td>
             <td class="d-flex">

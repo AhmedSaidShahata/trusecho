@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </div>
-        <a href="#apply-for-job" class="orgs-job-apply-btn">Apply now</a>
+        <a href="{{route('user.appscholars.show',$scholarship->id)}}" class="orgs-job-apply-btn">Apply now</a>
     </div>
     <div class="right-panel">
         <h1 class="right-panel__header">

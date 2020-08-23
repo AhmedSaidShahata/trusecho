@@ -32,13 +32,13 @@
     </div>
     <div class="right-panel">
         <h1 class="right-panel__header">
-            {{$job->heading_details}}
+            {{$job->heading_details_en}}
         </h1>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
                 <p class="right-panel__subtitle">Location:</p>
             </div>
-            <p class="right-panel__subtitle-value">{{$job->location}}</p>
+            <p class="right-panel__subtitle-value">{{$job->location_en}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
@@ -56,7 +56,10 @@
             <div class="right-panel__subtitle-box">
                 <p class="right-panel__subtitle">No. of applications:</p>
             </div>
-            <p class="right-panel__subtitle-value">0</p>
+            <div hidden>{{!$application_count = App\Jobapp::where('job_id', '=', $job->id)->get()->count()}}</div>
+            <p class="right-panel__subtitle-value">
+                {{$application_count}}
+            </p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
@@ -92,18 +95,18 @@
                         {{!$is_desimal = $decimal_total_rate - $integer_total_rate}}
                     </div>
 
-                    @for ($i = 1; $i <= $integer_total_rate; $i++) <i data-value="{{$i}}" class="fas fa-star fa-2x"></i>
+                    @for ($i = 1; $i <= $integer_total_rate; $i++) <i data-value="{{$i}}" class="fas fa-star rate-job fa-2x"></i>
 
                         @endfor
 
-                        @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
+                        @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt rate-job fa-2x"></i>
 
-                            @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                            @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star rate-job fa-2x"></i>
                                 @endfor
 
                                 @else
 
-                                @for ($i = $integer_total_rate + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star fa-2x"></i>
+                                @for ($i = $integer_total_rate + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star rate-job fa-2x"></i>
 
                                     @endfor
 
@@ -123,7 +126,7 @@
             </div>
         </div>
         <ul class="right-panel__job-requirements-list">
-            <?php $requirments_exp = explode("-", $job->requirments) ?>
+            <?php $requirments_exp = explode("-", $job->requirments_en) ?>
             @foreach($requirments_exp as $requirment)
             <li class="right-panel__job-requirements-item">
                 {{$requirment}}
@@ -174,23 +177,24 @@
                             </p>
                         </div>
                     </div>
-                    <hr>
+
 
                     @foreach($comment_jobs as $comment_job)
+                    <hr>
                     <div class="user-job-comment">
                         <div class="user-job-pic-box">
                             <img src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-job-pic" />
                         </div>
                         <div class="user-job-details">
-                            <h1 class="user-job-name">{{  $comment_job->user->name }}</h1>
+                            <h1 class="user-job-name">{{ $comment_job->user->name }}</h1>
                             <p class="user-job-comment-paragraph">
                                 {{$comment_job->body}}
                             </p>
                         </div>
                     </div>
-                    <hr>
+
                     @endforeach
-                    <hr />
+
                 </div>
             </div>
         </div>

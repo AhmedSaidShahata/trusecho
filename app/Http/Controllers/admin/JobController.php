@@ -7,6 +7,9 @@ use App\Cost;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JobRequest;
 use App\Job;
+use App\Language;
+use App\specialization;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,7 +33,13 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.jobs.create')->with('costs',Cost::all());
+        return view('admin.jobs.create',[
+            'costs'=>Cost::all(),
+            'types'=>Type::all(),
+            'specializations'=>specialization::all(),
+            'languages'=>Language::all()
+
+        ]);
     }
 
     /**
@@ -41,21 +50,11 @@ class JobController extends Controller
      */
     public function store(JobRequest $request)
     {
+        $data=$request->all();
         $picture = $request->picture->store('images', 'public');
+        $data['picture']=$picture;
 
-        Job::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'content' => $request->content,
-            'picture' => $picture,
-            'location' => $request->location,
-            'email' => $request->email,
-            'deadline' => $request->deadline,
-            'heading_details' => $request->heading_details,
-            'requirments' => $request->requirments,
-            'cost_id'=>$request->cost_id
-
-        ]);
+        Job::create($data);
         session()->flash('success', ' Job' . $request->name . 'created successfully ');
         return redirect(route('admin.jobs.index'));
     }
@@ -66,9 +65,9 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Job $job)
     {
-        //
+        return view('admin.jobs.show', ['job' => $job]);
     }
 
     /**
@@ -79,7 +78,13 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        return view('admin.jobs.create', ['job' => $job,'costs'=>Cost::all()]);
+        return view('admin.jobs.create', [
+            'job' => $job,
+            'costs'=>Cost::all(),
+            'types'=>Type::all(),
+            'specializations'=>specialization::all(),
+            'languages'=>Language::all()
+            ]);
     }
 
 

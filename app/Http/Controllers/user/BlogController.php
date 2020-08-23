@@ -47,7 +47,8 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('user.blogs.single-post-blog',['blog'=>$blog]);
+        $comments = $blog->comment;
+        return view('user.blogs.single-post-blog',['blog'=>$blog , 'comments'=>$comments]);
     }
 
     /**
