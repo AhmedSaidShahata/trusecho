@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-    <a href="jobs-signed.html" class="btn-view-more">View More</a>
+    <a href="{{route('user.jobs.index')}}" class="btn-view-more">View More</a>
 </div>
 <div class="best-services-section-signed">
     <h1 class="best-services-section-signed__header">Best Services</h1>
@@ -111,12 +111,12 @@
 
                                 @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
 
-                                    @for ($i = $integer_total_rate  + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                                    @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
                                         @endfor
 
                                         @else
 
-                                        @for ($i = $integer_total_rate  + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star fa-2x"></i>
+                                        @for ($i = $integer_total_rate + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star fa-2x"></i>
 
                                             @endfor
 
@@ -144,7 +144,7 @@
             </div>
         </div>
     </div>
-    <a href="services-signed.html" class="btn-view-more">View More</a>
+    <a href="{{route('user.services.index')}}" class="btn-view-more">View More</a>
 </div>
 <div class="best-organizations-section-signed">
     <h1 class="best-organizations-section-signed__header">Best Organization</h1>
@@ -175,7 +175,7 @@
             </div>
         </div>
     </div>
-    <a href="organizations-signed.html" class="btn-view-more">View More</a>
+    <a href="{{route('user.organizations.index')}}" class="btn-view-more">View More</a>
 </div>
 <div class="blog-section">
     <h1 class="blog-section__header">Blogs</h1>
@@ -196,7 +196,7 @@
                 </div>
                 <div class="blog-card-content-info">
                     <p class="blog-card-content__subtitle">Participants:</p>
-                    <p class="blog-card-content__subtitle-value">0</p>
+                    <p class="blog-card-content__subtitle-value">1</p>
                 </div>
             </div>
 
@@ -209,6 +209,6 @@
         @endforelse
 
     </div>
-    <a href="blogs.html" class="btn-view-more">View More</a>
+    <a href="{{route('user.categoryblogs.index')}}" class="btn-view-more">View More</a>
 </div>
 @endsection

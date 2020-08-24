@@ -95,14 +95,14 @@ then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
 
 //SWIPER JS
-// var swiper = new Swiper('.swiper-container', {
-//   slidesPerView: 3,
-//   spaceBetween: 30,
-//   pagination: {
-//     el: '.swiper-pagination',
-//     clickable: true,
-//   },
-// });
+var swiper = new Swiper('.swiper-container', {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+});
 
 
 
@@ -115,12 +115,12 @@ document.addEventListener("click", closeAllSelect);
 //     step_size: 0.5,
 // }
 // $(".rating").rate(options);
-// var swiper = new Swiper('.swiper-container', {
-//     slidesPerView: 4,
-//     spaceBetween: 30,
-//     centeredSlides: true,
-//     pagination: {
-//       el: '.swiper-pagination',
-//       clickable: true,
-//     },
-//   });
+var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    centeredSlides: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });

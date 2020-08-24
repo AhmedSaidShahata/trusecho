@@ -92,7 +92,7 @@ class UserController extends Controller
 
 
         $profile->update($data);
-        return redirect(route('user.homepages.index'));
+        return redirect(route('user.users.edit',Auth::user()->id ));
     }
 
     /**

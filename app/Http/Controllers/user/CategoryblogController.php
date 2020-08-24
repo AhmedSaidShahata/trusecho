@@ -18,7 +18,7 @@ class CategoryblogController extends Controller
     public function index()
     {
 
-        return view('user.blogs.blogs')->with('categories', CategoryBlog::all());
+        return view('user.blogs.categories')->with('categories', CategoryBlog::all());
     }
 
     /**
@@ -50,7 +50,7 @@ class CategoryblogController extends Controller
      */
     public function show($id)
     {
-        $blogs = Blog::where('cat_id', '=', $id)->get();
+        $blogs = Blog::where('cat_id', '=', $id)->paginate(1);
         $category=CategoryBlog::find($id);
 
 
