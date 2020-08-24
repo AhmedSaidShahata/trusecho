@@ -75,6 +75,7 @@ Route::namespace('user')->name('user.')->group(function () {
     Route::resource('categoryblogs', 'CategoryblogController');
     Route::resource('blogs', 'BlogController');
     Route::resource('favblogs', 'FavblogController');
+    Route::resource('likeblogs', 'LikeblogController');
     Route::resource('blogcomments', 'BlogcommentController');
     Route::resource('organizations', 'OrganizationController');
     Route::resource('followerorgs', 'FollowerorgController');

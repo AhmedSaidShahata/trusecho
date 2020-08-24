@@ -86,13 +86,16 @@
         <p class="blog-details__paragraph">
             {{$blog->cotent_en}}
         </p>
+        {{!$like = App\Likeblog::where('user_id', '=', Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}};
         <div class="blog-details__buttons">
-            <button class="blog-details__buttons-like">
-                <img src="img/like-button.svg" alt="like icon" class="like-button" />
-                <span class="like-title">Like</span>
+
+            <button data-blogid="{{$blog->id}}" class=" blog-like {{$like->count()>0?'blue':''}}">
+                <span class="like-title  ">
+                    Like <i class="fas fa-thumbs-up"></i>
+                </span>
             </button>
             <button class="blog-details__buttons-share">
-                <img src="img/share-icon.svg" alt="share icon" class="share-button" />
+                <img src="{{asset('img/share-icon.svg')}}" alt="share icon" class="share-button" />
                 <span class="share-title">Share</span>
             </button>
         </div>

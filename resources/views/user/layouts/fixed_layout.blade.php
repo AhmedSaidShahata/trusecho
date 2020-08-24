@@ -408,7 +408,7 @@
 
                 let reference = $(this);
                 let value_rate = reference.data("value");
-                alert(value_rate);
+
                 let blog_id = reference.parent().attr('blog_id');
                 let rateOutPut = "";
 
@@ -744,7 +744,7 @@
             //=========================================== Start Comment blog With Ajax ===============================
 
             let countCommentsBlog = $(".user-comment").length
-            let comments__values =$(".comments__values")
+            let comments__values = $(".comments__values")
             comments__values.text(countCommentsBlog)
             $(".add-comment-blog").on("click", function() {
                 let commentBlog = $(".comment-blog");
@@ -753,7 +753,7 @@
                 let commentorBlogImage = $(".commentor-blog-image").text();
                 let blogId = $(".blog-id").text();
                 let countCommentsBlog = $(".user-comment").length
-                comments__values.text(countCommentsBlog+1)
+                comments__values.text(countCommentsBlog + 1)
 
                 $.ajax({
                     url: "/blogcomments",
@@ -817,6 +817,8 @@
         })
 
 
+
+
         //=========================================== Start favourite With Ajax ===============================
         $(document).on("click", ".add-fav-blog", function() {
 
@@ -839,6 +841,30 @@
             })
         })
 
+
+
+        //=========================================== Start favourite With Ajax ===============================
+        $(document).on("click", ".blog-like", function() {
+
+            let reference = $(this);
+            let blogId = reference.data("blogid");
+
+
+
+            $.ajax({
+                url: "/likeblogs",
+                type: "post",
+                dataType: "text",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    blogId: blogId,
+
+                },
+                success: function(data) {
+                    reference.toggleClass("blue")
+                }
+            })
+        })
 
 
         // scholarship application
