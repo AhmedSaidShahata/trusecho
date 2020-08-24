@@ -1,8 +1,10 @@
 <?php
 
+use App\Events\Chat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\verify_is_admin;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,7 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('contacts', 'ContactController');
     Route::resource('blogs', 'BlogController');
     Route::resource('jobapps', 'JobappController');
+    Route::resource('appscholarships', 'AppscholarshipController');
     Route::resource('organizations', 'OrganizationController');
 });
 
@@ -51,6 +54,9 @@ Route::namespace('user')->name('user.')->group(function () {
     Route::resource('users', 'UserController');
     Route::resource('friends', 'FriendController');
     Route::post('friendrequest', 'FriendController@friendrequest');
+    Route::get('myfriends', 'FriendController@myfriends')->name('myfriends');
+    Route::post('friendaccept', 'FriendController@friendaccept');
+    Route::post('frienddelete', 'FriendController@frienddelete');
     Route::resource('scholarships', 'ScholarshipController');
     Route::resource('scholarshipcomments', 'ScholarshipcommentController');
     Route::resource('appscholars', 'AppscholarController');
@@ -64,10 +70,11 @@ Route::namespace('user')->name('user.')->group(function () {
     Route::get('jobsearch', 'JobController@search')->name('jobsearch');
     Route::resource('jobapps', 'JobappController');
     Route::resource('faqs', 'FaqController');
-    Route::resource('favouritesers','FavouriteserController');
+    Route::resource('favouritesers', 'FavouriteserController');
     Route::resource('homepages', 'HomePageController');
     Route::resource('categoryblogs', 'CategoryblogController');
     Route::resource('blogs', 'BlogController');
+    Route::resource('favblogs', 'FavblogController');
     Route::resource('blogcomments', 'BlogcommentController');
     Route::resource('organizations', 'OrganizationController');
     Route::resource('followerorgs', 'FollowerorgController');
@@ -76,6 +83,16 @@ Route::namespace('user')->name('user.')->group(function () {
     Route::resource('rateblogs', 'RateblogController');
 });
 
+Route::middleware('auth')->get('sender/{id}', function (\app\User $id) {
+
+    event(new Chat('hellooooooo', $id->id));
+    return ['success'];
+});
+
+
+Route::middleware('auth')->get('recipent', function () {
+    return view('recipent');
+});
 //======================================= login with facebook =====================================
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider')->name('facebook.login');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');

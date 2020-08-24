@@ -20,8 +20,8 @@
             </div>
             <div class="blog-summary__details-rate">
                 <h1 class="rate">Rate:</h1>
-                <div  class="rate-total">
-                    {{!$count_rate_of_blog=App\Rateblog::where('blog_id', '=', $blog->id)->get()->count()}}
+                <div class="rate-total">
+                    <div hidden>{{!$count_rate_of_blog=App\Rateblog::where('blog_id', '=', $blog->id)->get()->count()}} </div>
 
                     @if($count_rate_of_blog ==0)
 
@@ -69,8 +69,10 @@
         </div>
         <div class="blog-summary__picutre-box">
             <div class="blog-summary__favourite">
+                {{!$favourite = App\Favblog::where('user_id', '=', Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}};
+
                 <div class="blog-summary__favourite-icon-box">
-                    <img src="img/heart-icon.svg" alt="heart icon" class="blog-summary__favourite-icon" />
+                    <i data-blogid="{{$blog->id}}" class="fas fa-heart fa-2x  add-fav-blog {{$favourite->count()>0?'red':''}}"></i>
                 </div>
                 <h1 class="blog-summary__favourite-word">add to Favourite</h1>
             </div>
@@ -137,6 +139,7 @@
             <div class="blog-details__rating-stars-box">
                 <div class="rating">
                     <div class="rate_user" blog_id="{{$blog->id}}">
+                        @auth
 
                         {{!$rate_user=App\Rateblog::where('user_id', '=',Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}}
 
@@ -148,7 +151,7 @@
                             @else
 
                             @foreach($rate_user as $r)
-                            {{$rate_val=$r->value_rate}}
+                            {{!$rate_val=$r->value_rate}}
                             @endforeach
 
                             @for ($i = 1; $i <= $rate_val; $i++) <i data-value="{{$i}}" class="fas fa-star rate-blog fa-2x"></i>
@@ -160,6 +163,7 @@
                                     @endfor
 
                                     @endif
+                                    @endauth
 
                     </div>
                 </div>

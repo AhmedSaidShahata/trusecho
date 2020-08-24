@@ -7367,3 +7367,25 @@ a:hover {
     width: 100%;
     cursor: pointer;
 }
+
+
+.accept{
+    background-color: mediumspringgreen;
+    color: white;
+    border: 0;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+
+}
+.delete{
+    background-color: red;
+    color: white;
+    border: 0;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+}
+

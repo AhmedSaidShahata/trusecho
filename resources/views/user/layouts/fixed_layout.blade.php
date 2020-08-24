@@ -29,10 +29,10 @@
                     <a href="{{route('user.homepages.index')}}" class="nav-bar__item-nav">Home</a>
                 </li>
                 <li class="nav-bar__item">
-                    <a href="my-network.html" class="nav-bar__item-nav">My network</a>
+                    <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">Users</a>
                 </li>
                 <li class="nav-bar__item">
-                    <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">My network</a>
+                    <a href="{{route('user.myfriends')}}" class="nav-bar__item-nav">My network</a>
                 </li>
                 <li class="nav-bar__item dropdown">
                     <a href="{{route('user.jobs.index')}}" class="nav-bar__item-nav dropbtn">Jobs</a>
@@ -48,17 +48,17 @@
                 <li class="nav-bar__item dropdown">
                     <a href="{{route('user.services.index')}}" class="nav-bar__item-nav dropbtn">Services</a>
                     <div class="dropdown-content">
-                        <a href="#">Link 1</a>
+                        <!-- <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a> -->
                     </div>
                 </li>
                 <li class="nav-bar__item">
                     <a href="{{route('user.organizations.index')}}" class="nav-bar__item-nav">Organizations</a>
                 </li>
-                <li class="nav-bar__item">
+                <!-- <li class="nav-bar__item">
                     <a href="{{route('user.faqs.index')}}" class="nav-bar__item-nav">Faq</a>
-                </li>
+                </li> -->
                 <li class="nav-bar__item dropdown">
                     <a href="organizations.html" class="nav-bar__item-nav dropbtn">Opportunities</a>
                     <div class="dropdown-content">
@@ -107,14 +107,26 @@
                             <a href="#">Faisl just posted a blog</a>
                             <a href="#">Memo just added a job role</a>
                             <a href="#">Lily reacted to your post</a>
-                            {{!$friends_request=App\Friend::where(['friend_id'=> Auth::user()->id])->get()}}
+                            {{!$friends_request=App\Friend::where(['friend_id'=> Auth::user()->id,'accept'=>0])->get()}}
+
                             @forelse($friends_request as $friend_request )
-                            <a>
-                                   {{$user_request= $friend_request->user_id}}
-                                   {{App\User::where(['id'=>$user_request])->get()->first()->name}}
-                            </a>
+                            {{!$user_request= $friend_request->user_id}}
+                            {{!$friend=App\User::where(['id'=>$user_request])->get()->first()}}
+                            {{!$friend_profile=App\Profile::where(['user_id'=>$user_request])->get()->first()}}
+                            <span class="friend_id" hidden>{{$user_request}}</span>
+                            <div class="requset-friend">
+                                <img src="{{asset('storage/'.$friend_profile->picture)}}" alt="friend image{{$friend->name}}" style="width: 60px; height:60px; float:left">
+
+                                <a href="{{route('user.friends.show',$user_request)}}" style="float: left;">
+                                    {{$friend->name}}
+                                </a>
+                                <a style="clear:both;">
+                                    <button class="accept">Accept</button>
+                                    <button class="delete">Delete</button>
+                                </a>
+                            </div>
                             @empty
-                            nooooooooooooooooo
+
                             @endforelse
                         </div>
                     </div>
@@ -389,7 +401,94 @@
     <!-- Swiper JS -->
 
     <script>
+        //=========================================== Start rate blog With Ajax===============================
         $(function() {
+
+            $(document).on("click", ".rate_user .fa-star", function() {
+
+                let reference = $(this);
+                let value_rate = reference.data("value");
+                alert(value_rate);
+                let blog_id = reference.parent().attr('blog_id');
+                let rateOutPut = "";
+
+
+                for (var i = 1; i <= value_rate; i++) {
+
+                    rateOutPut += `<i data-value="${i}" class="fas fa-star fa-2x"></i>`
+                }
+
+                for (var i = value_rate + 1; i <= 5; i++) {
+                    rateOutPut += `<i data-value="${i}" class="far fa-star fa-2x"></i>`
+                }
+
+                $(".rate_user").html(rateOutPut)
+
+
+                $.ajax({
+                    url: "/rateblogs",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        value_rate: value_rate,
+                        blog_id: blog_id
+                    },
+                    success: function(data) {
+
+                        $(".rate-total").fadeOut(500).fadeIn(500)
+                        setTimeout(() => {
+                            $(".rate-total").html(data)
+                        }, 500);
+
+
+                    }
+                })
+            })
+
+            //=========================================== Start add friend With Ajax===============================
+            $(document).on("click", ".accept", function() {
+
+                let reference = $(this);
+                let friendId = $(".friend_id").text();
+
+
+                $.ajax({
+                    url: "/friendaccept",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        friendId: friendId,
+
+                    },
+                    success: function(data) {
+                        reference.text('friends')
+                    }
+                })
+            })
+
+            //=========================================== Start add friend With Ajax===============================
+            $(document).on("click", ".delete", function() {
+
+                let reference = $(this);
+                let friendId = $(".friend_id").text();
+
+
+                $.ajax({
+                    url: "/frienddelete",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        friendId: friendId,
+
+                    },
+                    success: function(data) {
+                        reference.parents('.requset-friend').remove()
+                    }
+                })
+            })
 
 
 
@@ -713,6 +812,31 @@
             })
 
         })
+
+
+        //=========================================== Start favourite With Ajax ===============================
+        $(document).on("click", ".add-fav-blog", function() {
+
+            let reference = $(this);
+            let blogId = reference.data("blogid");
+
+
+            $.ajax({
+                url: "/favblogs",
+                type: "post",
+                dataType: "text",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    blogId: blogId,
+
+                },
+                success: function(data) {
+                    reference.toggleClass("red")
+                }
+            })
+        })
+
+
 
         // scholarship application
         $(".second-form ,.third-form").hide()

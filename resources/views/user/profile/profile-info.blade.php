@@ -8,7 +8,7 @@
                 <img src="{{asset('storage/'.$profile->picture)}}" alt="profile-pic" class="profile-info__left-box-profile-pic" />
                 <!-- <img src="img/country.png" alt="country" class="country-picture" /> -->
             </div>
-            {{!$friend_is_exist=App\Friend::where(['user_id'=> Auth::user()->id,'friend_id'=>$user->id])}}
+            {{!$friend_is_exist=App\Friend::where(['user_id'=> Auth::user()->id,'friend_id'=>$user->id])->orWhere(['user_id'=> $user->id,'friend_id'=>Auth::user()->id])}}
 
             @if($friend_is_exist->get()->count()==0)
             <button data-userid="{{$user->id}}" class="change-profile-pic-btn add-friend">Add Friend</button>

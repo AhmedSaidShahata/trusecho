@@ -18,10 +18,26 @@ class FriendController extends Controller
      */
     public function index()
     {
+
+        $users=User::where('id', '!=', Auth::user()->id)->get();
+
+
         return view('user.network.users', [
-            'users' => User::all()
+            'users' => $users
         ]);
     }
+
+
+    public function myfriends()
+    {
+        
+        $friends=Friend::where(['friend_id'=>Auth::user()->id,'accept'=>1])->get();
+
+        return view('user.network.users', [
+            'users' => $friends
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -111,6 +127,26 @@ class FriendController extends Controller
         } else {
             $friend_request->delete();
         }
+        return;
+    }
+
+    public function friendaccept(Request $request)
+    {
+
+        $user_id = Auth::user()->id;
+        $friend_id =(int) $request->input('friendId');
+
+
+       Friend::where(['user_id' => $friend_id,'friend_id' => $user_id])->update(array('accept' => 1));
+        return;
+    }
+
+    public function frienddelete(Request $request)
+    {
+
+        $user_id = Auth::user()->id;
+        $friend_id =(int) $request->input('friendId');
+        Friend::where(['user_id' => $friend_id,'friend_id' => $user_id])->delete();
         return;
     }
 }
