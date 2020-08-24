@@ -3,14 +3,13 @@
 <div class="blogs-section">
     <div class="blogs-section__info">
         <div class="blogs-section__info-content">
-            <h1 class="blogs-section__header">Events and acheivements</h1>
+            <h1 class="blogs-section__header">{{$category->name_en}}</h1>
             <p class="blogs-section__paragraph">
-                Check out the latest news about events
-                and conferences
+                Check out the latest news about {{$category->name_en}}
             </p>
         </div>
         <div class="blogs-section__illustration-box">
-            <img src="img/blogs-detailed.svg" alt="blogs" class="blogs-section__illustrations" />
+            <img src="{{asset('storage/'.$category->picture)}}" alt="blogs" class="blogs-section__illustrations"  style="width: 370px; height:280px; border:4px solid black" />
         </div>
     </div>
 </div>
@@ -40,7 +39,7 @@
         </div>
 
         @empty
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-primary d-flex align-items-center" role="alert" style="transform: scale(4);height:600px;justify-content: center;align-items: center;display: flex;">
             No Blogs Yet
         </div>
         @endforelse

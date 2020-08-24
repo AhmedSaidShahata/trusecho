@@ -240,57 +240,37 @@
         </div>
         <h1 class="related-topics__header">Related Topics</h1>
         <div class="related-topics__cards">
+
+            @forelse($related_blogs as $related_blog )
+
             <div class="blogs-detailed-results__card responsive">
                 <div class="blogs-detailed-results__pic-box">
-                    <img src="img/education.svg" alt="blogs pic" class="blogs-detailed-results__pic responsive-pic" />
+                    <img src="{{asset('storage/'.$related_blog->picture)}}" alt="blogs pic" class="blogs-detailed-results__pic responsive-pic" />
                 </div>
                 <div class="blogs-card-content">
-                    <h1 class="blogs-card-content__header">Events and conferences</h1>
+                    <h1 class="blogs-card-content__header">{{$related_blog->title_en}}</h1>
                     <div class="blogs-card-content-info">
                         <p class="blogs-card-content__subtitle">Comments:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
+                        <p class="blogs-card-content__subtitle-value">
+                            {{!$comments=App\Blogcomment::where(['blog_id'=>$related_blog->id]) }}
+                            {{$comments->get()->count()}}
+                        </p>
                     </div>
                     <div class="blogs-card-content-info">
                         <p class="blogs-card-content__subtitle">Participants:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
+                        <p class="blogs-card-content__subtitle-value">1</p>
                     </div>
                 </div>
-                <a href="#" class="blogs-detailed-results__btn">view</a>
+                <a href="{{route('user.blogs.show',$related_blog->id)}}" class="blogs-detailed-results__btn">view</a>
             </div>
-            <div class="blogs-detailed-results__card responsive">
-                <div class="blogs-detailed-results__pic-box">
-                    <img src="img/education.svg" alt="blogs pic" class="blogs-detailed-results__pic responsive-pic" />
-                </div>
-                <div class="blogs-card-content">
-                    <h1 class="blogs-card-content__header">Events and conferences</h1>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Comments:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
-                    </div>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Participants:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
-                    </div>
-                </div>
-                <a href="#" class="blogs-detailed-results__btn">view</a>
+
+            @empty
+            <div class="alert alert-primary d-flex align-items-center" role="alert" style="transform: scale(4);height:600px;justify-content: center;align-items: center;display: flex;">
+                No Related Blogs Yet
             </div>
-            <div class="blogs-detailed-results__card responsive">
-                <div class="blogs-detailed-results__pic-box">
-                    <img src="img/education.svg" alt="blogs pic" class="blogs-detailed-results__pic responsive-pic" />
-                </div>
-                <div class="blogs-card-content">
-                    <h1 class="blogs-card-content__header">Events and conferences</h1>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Comments:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
-                    </div>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Participants:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
-                    </div>
-                </div>
-                <a href="#" class="blogs-detailed-results__btn">view</a>
-            </div>
+            @endforelse
+
+
         </div>
     </div>
 </div>

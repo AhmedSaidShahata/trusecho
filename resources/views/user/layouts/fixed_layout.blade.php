@@ -28,11 +28,11 @@
                 <li class="nav-bar__item">
                     <a href="{{route('user.homepages.index')}}" class="nav-bar__item-nav">Home</a>
                 </li>
-                <li class="nav-bar__item">
+                <!-- <li class="nav-bar__item">
                     <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">Users</a>
-                </li>
+                </li> -->
                 <li class="nav-bar__item">
-                    <a href="{{route('user.myfriends')}}" class="nav-bar__item-nav">My network</a>
+                    <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">My network</a>
                 </li>
                 <li class="nav-bar__item dropdown">
                     <a href="{{route('user.jobs.index')}}" class="nav-bar__item-nav dropbtn">Jobs</a>
@@ -242,22 +242,22 @@
     <footer class="footer">
         <div class="footer__content-box">
             <div class="footer__left">
-                <img src="img/truescho-logo-new-version.png" alt="new logo" class="footer__left-logo">
+                <img src="{{asset('img/truescho-logo-new-version.png')}}" alt="new logo" class="footer__left-logo">
                 <div class="footer__left-social">
                     <a href="#" class=" footer__left-social-icon">
-                        <img src="img/facebook.png" alt="fb-icon" class="sm-icon">
+                        <img src="{{asset('img/facebook.png')}}" alt="fb-icon" class="sm-icon">
                     </a>
                     <a href="#" class="footer__left-social-icon">
-                        <img src="img/twitter.png" alt="twitter-icon" class="sm-icon">
+                        <img src="{{asset('img/twitter.png')}}" alt="twitter-icon" class="sm-icon">
                     </a>
                     <a href="#" class="footer__left-social-icon">
-                        <img src="img/instagram.png" alt="instgram-icon" class="sm-icon">
+                        <img src="{{asset('img/instagram.png')}}" alt="instgram-icon" class="sm-icon">
                     </a>
                     <a href="#" class="footer__left-social-icon">
-                        <img src="img/linkedin.png" alt="linkedin-icon" class="sm-icon">
+                        <img src="{{asset('img/linkedin.png')}}" alt="linkedin-icon" class="sm-icon">
                     </a>
                     <a href="#" class="footer__left-social-icon">
-                        <img src="img/telegram.png" alt="telegram-icon" class="sm-icon">
+                        <img src="{{asset('img/telegram.png')}}" alt="telegram-icon" class="sm-icon">
                     </a>
                 </div>
                 <p class="footer__left-copywrites">Copywrites &copy; reserved at Truescho</p>
@@ -386,10 +386,10 @@
                             get our app
                         </li>
                         <li>
-                            <img src="img/google-play-download-android-app-logo-png-transparent.png" alt="google play" class="app-store-pic">
+                            <img src="{{asset('img/google-play-download-android-app-logo-png-transparent.png')}}" alt="google play" class="app-store-pic">
                         </li>
                         <li>
-                            <img src="img/App Store.png" alt="App Store" class="google-play-pic">
+                            <img src="{{asset('img/App Store.png')}}" alt="App Store" class="google-play-pic">
                         </li>
                     </ul>
                 </div>

@@ -51,9 +51,13 @@ class CategoryblogController extends Controller
     public function show($id)
     {
         $blogs = Blog::where('cat_id', '=', $id)->get();
+        $category=CategoryBlog::find($id);
 
 
-        return view('user.blogs.blogs-detailes', ['blogs' => $blogs]);
+        return view('user.blogs.blogs-detailes', [
+            'blogs' => $blogs,
+            'category'=>$category
+            ]);
     }
 
     /**

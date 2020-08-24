@@ -65,11 +65,17 @@ class BlogController extends Controller
             'blog_id' => $blog->id
         ])->get()->count();
 
+        $related_blogs=Blog::where([
+            'cat_id'=>$blog->cat_id
+        ])->where('id','!=',$blog->id)->get();
+
+
 
         return view('user.blogs.single-post-blog', [
             'blog' => $blog,
             'comments' => $comments,
-            'views_count' => $viewsCount
+            'views_count' => $viewsCount,
+            'related_blogs'=>$related_blogs
         ]);
     }
 
