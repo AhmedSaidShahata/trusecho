@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Blog;
 use App\Http\Controllers\Controller;
+use App\Watchblog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -48,6 +49,8 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         $comments = $blog->comment;
+        $views= Watchblog::
+
         return view('user.blogs.single-post-blog',['blog'=>$blog , 'comments'=>$comments]);
     }
 

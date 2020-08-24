@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Blog;
+use App\Blogcomment;
 use App\CategoryBlog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class CategoryblogController extends Controller
      */
     public function index()
     {
+
         return view('user.blogs.blogs')->with('categories', CategoryBlog::all());
     }
 
@@ -49,6 +51,7 @@ class CategoryblogController extends Controller
     public function show($id)
     {
         $blogs = Blog::where('cat_id', '=', $id)->get();
+        
         return view('user.blogs.blogs-detailes', ['blogs' => $blogs]);
     }
 

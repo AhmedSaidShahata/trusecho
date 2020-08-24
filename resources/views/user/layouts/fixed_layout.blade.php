@@ -693,7 +693,7 @@
 
             })
 
-            //=========================================== Start Comment With Ajax ===============================
+            //=========================================== Start Comment job With Ajax ===============================
 
 
             $(".add-comment").on("click", function() {
@@ -743,14 +743,17 @@
 
             //=========================================== Start Comment blog With Ajax ===============================
 
-
+            let countCommentsBlog = $(".user-comment").length
+            let comments__values =$(".comments__values")
+            comments__values.text(countCommentsBlog)
             $(".add-comment-blog").on("click", function() {
                 let commentBlog = $(".comment-blog");
                 let commentBlogvalue = commentBlog.val();
                 let commentorBlogName = $(".commentor-blog-name").text();
                 let commentorBlogImage = $(".commentor-blog-image").text();
                 let blogId = $(".blog-id").text();
-
+                let countCommentsBlog = $(".user-comment").length
+                comments__values.text(countCommentsBlog+1)
 
                 $.ajax({
                     url: "/blogcomments",
