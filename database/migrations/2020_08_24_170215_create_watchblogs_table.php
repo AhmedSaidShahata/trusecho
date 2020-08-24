@@ -16,7 +16,7 @@ class CreateWatchblogsTable extends Migration
         Schema::create('watchblogs', function (Blueprint $table) {
             $table->id();
             $table->integer('blog_id');
-            $table->integer('watch')->default(0);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

@@ -12,11 +12,11 @@
             </p>
             <div class="blog-summary__details-comments">
                 <h1 class="comments">Comments:</h1>
-                <p class="comments__values">21021</p>
+                <p class="comments__values"></p>
             </div>
             <div class="blog-summary__details-views">
                 <h1 class="views">views:</h1>
-                <p class="views__values">21021</p>
+                <p class="views__values">{{$views_count}}</p>
             </div>
             <div class="blog-summary__details-rate">
                 <h1 class="rate">Rate:</h1>

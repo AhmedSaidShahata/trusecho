@@ -6,6 +6,7 @@ use App\Blog;
 use App\Http\Controllers\Controller;
 use App\Watchblog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -16,7 +17,6 @@ class BlogController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -48,10 +48,29 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
+        $user_id = Auth::user()->id;
         $comments = $blog->comment;
-        $views= Watchblog::
+        $views = Watchblog::where([
+            'user_id' => $user_id,
+            'blog_id' => $blog->id
+        ]);
 
-        return view('user.blogs.single-post-blog',['blog'=>$blog , 'comments'=>$comments]);
+        if ($views->count() == 0) {
+            Watchblog::create([
+                'user_id' => $user_id,
+                'blog_id' => $blog->id
+            ]);
+        }
+        $viewsCount = Watchblog::where([
+            'blog_id' => $blog->id
+        ])->get()->count();
+
+
+        return view('user.blogs.single-post-blog', [
+            'blog' => $blog,
+            'comments' => $comments,
+            'views_count' => $viewsCount
+        ]);
     }
 
     /**
