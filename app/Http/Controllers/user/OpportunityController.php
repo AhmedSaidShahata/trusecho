@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Blog;
-use App\Blogcomment;
-use App\CategoryBlog;
 use App\Http\Controllers\Controller;
+use App\Opportunity;
 use Illuminate\Http\Request;
 
-class CategoryblogController extends Controller
+class OpportunityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,9 @@ class CategoryblogController extends Controller
      */
     public function index()
     {
-
-        return view('user.blogs.categories')->with('categories', CategoryBlog::all());
+        return view('user.opportunities.opportunities',[
+            'opportunities'=>Opportunity::all()
+        ]);
     }
 
     /**
@@ -48,16 +47,10 @@ class CategoryblogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Opportunity $opportunity)
     {
-        $blogs = Blog::where('cat_id', '=', $id)->paginate(8);
-        $category=CategoryBlog::find($id);
-
-
-        return view('user.blogs.blogs-detailes', [
-            'blogs' => $blogs,
-            'category'=>$category
-            ]);
+        return view('user.opportunities.show',
+        ['opportunity' => $opportunity]);
     }
 
     /**

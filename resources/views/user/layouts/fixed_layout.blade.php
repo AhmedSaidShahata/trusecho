@@ -60,17 +60,14 @@
                     <a href="{{route('user.faqs.index')}}" class="nav-bar__item-nav">Faq</a>
                 </li> -->
                 <li class="nav-bar__item dropdown">
-                    <a href="organizations.html" class="nav-bar__item-nav dropbtn">Opportunities</a>
+                    <a href="{{route('user.opportunitys.index')}}" class="nav-bar__item-nav dropbtn">Opportunities</a>
                     <div class="dropdown-content">
-                        <a href="#">Bachelor scholarships</a>
-                        <a href="#">Masters scholarships</a>
-                        <a href="#">PHD scholarships</a>
-                        <a href="#">Exchange Programs</a>
-                        <a href="#">Job Offers</a>
-                        <a href="#">Internships</a>
-                        <a href="#">Volunteering Opportunities</a>
-                        <a href="#">Workshops</a>
-                        <a href="#">Courses</a>
+                        {{!$opportunities=App\Opportunity::all()}}
+                        @forelse($opportunities as $opportunity)
+                        <a href="{{route('user.opportunitys.show',$opportunity->id)}}">{{$opportunity->title_en}}</a>
+                        @empty
+
+                        @endforelse
                     </div>
                 </li>
 

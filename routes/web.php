@@ -47,6 +47,9 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('jobapps', 'JobappController');
     Route::resource('appscholarships', 'AppscholarshipController');
     Route::resource('organizations', 'OrganizationController');
+    Route::resource('opportunitys', 'OpportunityController');
+
+
 });
 
 
@@ -82,6 +85,7 @@ Route::namespace('user')->name('user.')->group(function () {
     Route::resource('rateorgs', 'RateorgController');
     Route::resource('ratesers', 'RateserController');
     Route::resource('rateblogs', 'RateblogController');
+    Route::resource('opportunitys', 'OpportunityController');
 });
 
 Route::middleware('auth')->get('sender/{id}', function (\app\User $id) {

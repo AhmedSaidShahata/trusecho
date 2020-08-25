@@ -112,6 +112,9 @@
                     <li class="list-group-item">
                         <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> Blogs</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.opportunitys.index')}}"><i class="far fa-clipboard"></i> Opportunities</a>
+                    </li>
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
 
                     <li class="list-group-item">

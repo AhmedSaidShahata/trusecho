@@ -71,7 +71,7 @@
         <div class="search-results__card">
             <div class="card-picture-box">
                 <span class="opportunity-type-label">{{$job->cost->name_en}}</span>
-                <img src="{{asset('img/card-picutre-1.png')}}" alt="Picutre 1" class="card-picture">
+                <img src="{{asset('storage/'.$job->picture)}}" alt="Picutre 1" class="card-picture">
             </div>
             <h1 class="search-results__card-header"></h1>
             <p class="search-results__card-paragraph">{{$job->title_en}}</p>
