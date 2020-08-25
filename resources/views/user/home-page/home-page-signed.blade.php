@@ -19,7 +19,18 @@
                         <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-scolarships-section-signed__card-deadline">
                         <div class="deadline-number">
                             <h2 class="deadline-header">Hours:Days:Months</h2>
-                            <h3 class="deadline-value">23:23:23</h3>
+                            <div hidden> {{!$created=$scholarship->created_at->format('Y-m-d')}}
+                            {{!$deadline=$scholarship->deadline}}
+                            {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
+                            {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
+                            {{!$different_days = $start_date->diffInDays($end_date)}}
+                            {{!$different_hours = $start_date->diffInHours($end_date)}}
+                            {{!$different_months = $start_date->diffInMonths($end_date)}}
+                           </div>
+
+                            <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
+
+
                         </div>
                         <a href="{{route('user.scholarships.show',$scholarship->id)}}" class="details-button">Details</a href="#">
                     </div>
@@ -57,7 +68,16 @@
                         <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-jobs-section-signed__card-deadline">
                         <div class="deadline-number">
                             <h2 class="deadline-header">Hours:Days:Months</h2>
-                            <h3 class="deadline-value">23:23:23</h3>
+                           <div hidden> {{!$created=$job->created_at->format('Y-m-d')}}
+                            {{!$deadline=$job->deadline}}
+                            {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
+                            {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
+                            {{!$different_days = $start_date->diffInDays($end_date)}}
+                            {{!$different_hours = $start_date->diffInHours($end_date)}}
+                            {{!$different_months = $start_date->diffInMonths($end_date)}}
+                           </div>
+
+                            <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
                         </div>
                         <a href="{{route('user.jobs.show',$job->id)}}" class="details-button">Details</a href="#">
                     </div>
