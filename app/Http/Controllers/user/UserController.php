@@ -92,6 +92,9 @@ class UserController extends Controller
 
 
         $profile->update($data);
+
+        session()->flash('success', 'profile Updated Successfully');
+
         return redirect(route('user.users.edit',Auth::user()->id ));
     }
 

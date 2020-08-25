@@ -134,7 +134,7 @@
 
                 <li class="nav-bar__item user-info dropdown">
                     <div class="user-pic-box">
-                        <img style="width:70px;height:70px;" src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-pic" />
+                        <img style="width:70px;height:70px;border-radius: 50%;" src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-pic" />
                     </div>
                     <div class="user-info__name dropbtn"> {{ Auth::user()->name }}</div>
                     <div class="dropdown-content u-absolute-top">
