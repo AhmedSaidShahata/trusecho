@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Bestjob;
+use App\Bestorganization;
+use App\Bestscholar;
+use App\Bestservice;
 use App\CategoryBlog;
 use App\Cost;
 use App\Friend;
 use App\Http\Controllers\Controller;
-use App\Job;
+
 use App\Organization;
-use App\Scholarship;
-use App\Service;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,12 +31,12 @@ class HomePageController extends Controller
 
         return view('user.home-page.home-page-signed',
          [
-           'scholarships'=>Scholarship::all(),
-          'jobs' => Job::all(),
+           'scholarships'=>Bestscholar::all(),
+          'jobs' => Bestjob::all(),
           'costs' => Cost::all(),
-          'services'=>Service::all(),
+          'services'=>Bestservice::all(),
           'categories'=>CategoryBlog::all(),
-          'organizations'=>Organization::all()
+          'organizations'=>Bestorganization::all()
          ]);
     }
 

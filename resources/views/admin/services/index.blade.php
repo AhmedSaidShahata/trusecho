@@ -37,7 +37,8 @@
                 <td>{{$service->price}}</td>
 
                 <td class="d-flex">
-
+                    <div hidden>{{!$best_service=App\Bestservice::where('service_id', '=',$service->id)->count()}}</div>
+                    <button data-serviceid="{{$service->id}}" class="best-service btn btn-primary"> {{$best_service > 0 ? 'UnBest' : 'Best'}} </button>
                     <a href="{{route('admin.services.edit',$service->id)}}" class="btn"><i class="far fa-edit"></i> </a>
                     <form method="POST" class="form-inline" action="{{route('admin.services.destroy',$service->id)}}">
                         @csrf

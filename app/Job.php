@@ -15,13 +15,13 @@ class Job extends Model
         return $this->hasMany(Commentjob::class);
     }
     public function specialize(){
-        return $this->hasMany(specialization::class);
+        return $this->belongsTo(specialization::class);
     }
     public function type(){
-        return $this->hasMany(Type::class);
+        return $this->belongsTo(Type::class);
     }
     public function language(){
-        return $this->hasMany(Language::class);
+        return $this->belongsTo(Language::class);
     }
     protected $fillable = [
         'title_ar', 'description_ar', 'content_ar','heading_details_ar','location_ar','requirments_ar',

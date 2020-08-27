@@ -48,7 +48,10 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::resource('appscholarships', 'AppscholarshipController');
     Route::resource('organizations', 'OrganizationController');
     Route::resource('opportunitys', 'OpportunityController');
-
+    Route::resource('bestscholars', 'BestscholarController');
+    Route::resource('bestjobs', 'BestjobController');
+    Route::resource('bestservices', 'BestserviceController');
+    Route::resource('bestorganizations', 'BestorganizationController');
 
 });
 

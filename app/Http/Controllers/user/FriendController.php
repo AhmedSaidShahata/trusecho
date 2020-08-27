@@ -19,7 +19,7 @@ class FriendController extends Controller
     public function index()
     {
 
-        $users=User::where('id', '!=', Auth::user()->id)->get();
+        $users=User::where('id', '!=', Auth::user()->id)->paginate(10);
 
 
         return view('user.network.users', [
@@ -30,7 +30,7 @@ class FriendController extends Controller
 
     public function myfriends()
     {
-        
+
         $friends=Friend::where(['friend_id'=>Auth::user()->id,'accept'=>1])->get();
 
         return view('user.network.users', [

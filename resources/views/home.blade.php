@@ -13,7 +13,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
 <body>
@@ -157,6 +157,116 @@
         </div>
 
     </section>
+
+    <script>
+        //=========================================== Start bestscholar  With Ajax ===============================
+        $(document).on("click", ".best-scholar", function() {
+
+            let reference = $(this);
+            let scholarId = reference.data("scholarid");
+
+            alert(scholarId);
+
+
+            $.ajax({
+                url: "/admin/bestscholars ",
+                type: "post",
+                dataType: "text",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    scholarId: scholarId,
+
+                },
+                success: function(data) {
+                    if (reference.text() == ' Best ') {
+                        reference.text(' Unbest ')
+
+                    } else {
+                        reference.text(' Best ');
+
+                    }
+                }
+            })
+        })
+        //=========================================== Start best jobs  With Ajax ===============================
+        $(document).on("click", ".best-job", function() {
+
+            let reference = $(this);
+            let jobId = reference.data("jobid");
+
+            $.ajax({
+                url: "/admin/bestjobs ",
+                type: "post",
+                dataType: "text",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    jobId: jobId,
+
+                },
+                success: function(data) {
+                    if (reference.text() == ' Best ') {
+                        reference.text(' Unbest ')
+
+                    } else {
+                        reference.text(' Best ');
+
+                    }
+                }
+            })
+        })
+        //=========================================== Start best jobs  With Ajax ===============================
+        $(document).on("click", ".best-service", function() {
+
+            let reference = $(this);
+            let serviceId = reference.data("serviceid");
+
+            $.ajax({
+                url: "/admin/bestservices ",
+                type: "post",
+                dataType: "text",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    serviceId: serviceId,
+
+                },
+                success: function(data) {
+                    if (reference.text() == ' Best ') {
+                        reference.text(' Unbest ')
+
+                    } else {
+                        reference.text(' Best ');
+
+                    }
+                }
+            })
+        })
+        //=========================================== Start best jobs  With Ajax ===============================
+        $(document).on("click", ".best-organization", function() {
+
+            let reference = $(this);
+            let organizationId = reference.data("organizationid");
+
+            $.ajax({
+                url: "/admin/bestorganizations ",
+                type: "post",
+                dataType: "text",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    organizationId: organizationId,
+
+                },
+                success: function(data) {
+                    if (reference.text() == ' Best ') {
+                        reference.text(' Unbest ')
+
+                    } else {
+                        reference.text(' Best ');
+
+                    }
+                }
+            })
+        })
+    </script>
 
 
 </body>

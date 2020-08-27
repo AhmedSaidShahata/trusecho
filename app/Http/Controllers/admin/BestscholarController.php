@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
+use App\Bestscholar;
 use App\Http\Controllers\Controller;
-use App\Opportunity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class OpportunityController extends Controller
+class BestscholarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,7 @@ class OpportunityController extends Controller
      */
     public function index()
     {
-        return view('user.opportunities.opportunities',[
-            'opportunities'=>Opportunity::paginate(10)
-        ]);
+        //
     }
 
     /**
@@ -27,7 +26,6 @@ class OpportunityController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -38,7 +36,17 @@ class OpportunityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $scholarId = $request->input('scholarId');
+
+        $best_scholar = Bestscholar::where('scholarship_id', '=',$scholarId);
+        if ($best_scholar->get()->count() == 0) {
+            Bestscholar::create([
+                'scholarship_id' =>$scholarId
+            ]);
+        } else {
+            $best_scholar->delete();
+        }
+        return;
     }
 
     /**
@@ -47,10 +55,9 @@ class OpportunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Opportunity $opportunity)
+    public function show($id)
     {
-        return view('user.opportunities.show',
-        ['opportunity' => $opportunity]);
+        //
     }
 
     /**

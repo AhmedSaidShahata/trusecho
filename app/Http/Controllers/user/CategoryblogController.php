@@ -50,7 +50,7 @@ class CategoryblogController extends Controller
      */
     public function show($id)
     {
-        $blogs = Blog::where('cat_id', '=', $id)->paginate(8);
+        $blogs = Blog::where('cat_id', '=', $id)->paginate(10);
         $category=CategoryBlog::find($id);
 
 

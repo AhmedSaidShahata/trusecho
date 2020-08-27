@@ -41,14 +41,14 @@ class FavouriteserController extends Controller
         $serviceId = $request->input('serviceId');
         $userId = Auth::user()->id;
 
-        $favourite = Favouriteservice::where('user_id', '=', $userId)->where('service_id', '=', $serviceId)->get();
-        if ($favourite->count()==0) {
+        $favourite = Favouriteservice::where('user_id', '=', $userId)->where('service_id', '=', $serviceId);
+        if ($favourite->get()->count()==0) {
             Favouriteservice::create([
                 'user_id' => $userId,
                 'service_id' => $serviceId
             ]);
         } else {
-            $favourite = Favouriteservice::where('user_id', '=', $userId)->where('service_id', '=', $serviceId)->delete();
+            $favourite ->delete();
         }
 
 

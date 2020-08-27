@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
+use App\Bestjob;
 use App\Http\Controllers\Controller;
-use App\Opportunity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class OpportunityController extends Controller
+class BestjobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,7 @@ class OpportunityController extends Controller
      */
     public function index()
     {
-        return view('user.opportunities.opportunities',[
-            'opportunities'=>Opportunity::paginate(10)
-        ]);
+        //
     }
 
     /**
@@ -38,7 +37,17 @@ class OpportunityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jobId = $request->input('jobId');
+
+        $best_job = Bestjob::where('job_id', '=', $jobId);
+        if ($best_job->get()->count() == 0) {
+            Bestjob::create([
+                'job_id' => $jobId
+            ]);
+        } else {
+            $best_job->delete();
+        }
+        return;
     }
 
     /**
@@ -47,10 +56,9 @@ class OpportunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Opportunity $opportunity)
+    public function show($id)
     {
-        return view('user.opportunities.show',
-        ['opportunity' => $opportunity]);
+        //
     }
 
     /**

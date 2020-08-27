@@ -66,6 +66,8 @@
                 <td>{{$job->deadline}}</td>
                 <td>{{$job->email}}</td>
                 <td class="d-flex">
+                <div hidden>{{!$best_job=App\Bestjob::where('job_id', '=',$job->id)->count()}}</div>
+                    <button data-jobid="{{$job->id}}" class="best-job btn btn-primary"> {{$best_job > 0 ? 'UnBest' : 'Best'}} </button>
                     <a href="{{route('admin.jobs.show',$job->id)}}" class="btn"> <i class="far fa-eye"></i></a>
                     <a href="{{route('admin.jobs.edit',$job->id)}}" class="btn"><i class="far fa-edit"></i> </a>
                     <form method="POST" class="form-inline" action="{{route('admin.jobs.destroy',$job->id)}}">

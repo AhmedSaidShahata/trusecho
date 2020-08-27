@@ -64,6 +64,8 @@
                 <td>{{$organization->created_at}}</td>
                 <td>{{$organization->updated_at}}</td>
                 <td class="d-flex">
+                    <div hidden>{{!$best_organization=App\Bestorganization::where('organization_id', '=',$organization->id)->count()}}</div>
+                    <button data-organizationid="{{$organization->id}}" class="best-organization btn btn-primary"> {{$best_organization > 0 ? 'UnBest' : 'Best'}} </button>
                     <a href="{{route('admin.organizations.show',$organization->id)}}" class="btn"> <i class="far fa-eye"></i></a>
 
                     <a href="{{route('admin.organizations.edit',$organization->id)}}" class="btn"><i class="far fa-edit"></i> </a>

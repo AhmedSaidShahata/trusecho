@@ -21,7 +21,7 @@ class JobController extends Controller
     public function index()
     {
         return view('user.jobs.jobs',[
-            'jobs'=>Job::all(),
+            'jobs'=>Job::paginate(10),
             'costs'=>Cost::all(),
             'types'=>Type::all(),
             'specializations'=>specialization::all(),

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
+use App\Bestorganization;
 use App\Http\Controllers\Controller;
-use App\Opportunity;
 use Illuminate\Http\Request;
 
-class OpportunityController extends Controller
+class BestorganizationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class OpportunityController extends Controller
      */
     public function index()
     {
-        return view('user.opportunities.opportunities',[
-            'opportunities'=>Opportunity::paginate(10)
-        ]);
+        //
     }
 
     /**
@@ -38,7 +36,17 @@ class OpportunityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $organizationId = $request->input('organizationId');
+
+        $best_organization = Bestorganization::where('organization_id', '=', $organizationId);
+        if ($best_organization->get()->count() == 0) {
+            Bestorganization::create([
+                'organization_id' => $organizationId
+            ]);
+        } else {
+            $best_organization->delete();
+        }
+        return;
     }
 
     /**
@@ -47,10 +55,9 @@ class OpportunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Opportunity $opportunity)
+    public function show($id)
     {
-        return view('user.opportunities.show',
-        ['opportunity' => $opportunity]);
+        //
     }
 
     /**

@@ -21,7 +21,7 @@ class ServiceController extends Controller
     public function index()
     {
         return view('user.services.services', [
-            'services' => Service::all(),
+            'services' => Service::paginate(10),
             'costs' => Cost::all(),
             'types' => Type::all(),
             'specializations' => specialization::all(),

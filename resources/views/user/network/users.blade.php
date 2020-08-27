@@ -29,7 +29,7 @@
 
         @forelse($users as $user)
 
-        <div class="friends-card u-margin-top-small">
+        <div class="friends-card u-margin-top-small" style="margin-bottom: 30px;">
             <div class="friends-card__user-details">
                 <img src="{{asset('storage/'.$user->profile->picture)}}" alt="friends picture" class="friends-card__picture" style="border: 1px solid black;width: 100px;border-radius: 50%;height: 100px;" />
                 <div class="user-info">
@@ -56,23 +56,6 @@
 
     </div>
 </div>
-<div class="pagination">
-    <div class="pagination__left-arrow-box"></div>
-    <a href="#"><img src="img/left-arrow.svg" alt="arrow" class="pagination__left-arrow" /></a>
-    <a href="#" class="pagination__prev">prev</a>
-    <ul class="pagination__list">
-        <li class="pagination__list-item">
-            <a href="#" class="selected">1</a>
-        </li>
-        <li class="pagination__list-item"><a href="#">2</a></li>
-        <li class="pagination__list-item"><a href="#">3</a></li>
-        <li class="pagination__list-item"><a href="#">4</a></li>
-        <li class="pagination__list-item"><a href="#">5</a></li>
-    </ul>
-    <a href="#" class="pagination__next">next</a>
-    <div class="pagination__right-arrow-box">
-        <a href="#"><img src="img/right-arrow.svg" alt="arrow" class="pagination__right-arrow" /></a>
-    </div>
-</div>
+{{$users->links()}}
 
 @endsection

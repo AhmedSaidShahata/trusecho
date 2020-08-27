@@ -6,33 +6,35 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
 
-
                 @forelse($scholarships as $scholarship)
+
+                {{!$best_scholar= App\Scholarship::find($scholarship->scholarship_id)}}
+
                 <div class="best-scolarships-section-signed__card swiper-slide">
                     <div class="card-picture-box">
-                        <span class="opportunity-type-label">{{$scholarship->cost->name_en}}</span>
-                        <img src="{{asset('storage/'.$scholarship->picture)}}" alt="Picutre 1" class="card-picture">
+                        <span class="opportunity-type-label">{{$best_scholar->cost->name_en}}</span>
+                        <img src="{{asset('storage/'.$best_scholar->picture)}}" alt="Picutre 1" class="card-picture">
                     </div>
-                    <h1 class="best-scolarships-section-signed__card-header">{{$scholarship->title_en}}</h1>
-                    <p class="best-scolarships-section-signed__card-paragraph">{{$scholarship->description_en}}</p>
+                    <h1 class="best-scolarships-section-signed__card-header">{{$best_scholar->title_en}}</h1>
+                    <p class="best-scolarships-section-signed__card-paragraph">{{$best_scholar->description_en}}</p>
                     <div class="best-scolarships-section-signed__card-deadline-box">
                         <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-scolarships-section-signed__card-deadline">
                         <div class="deadline-number">
                             <h2 class="deadline-header">Hours:Days:Months</h2>
-                            <div hidden> {{!$created=$scholarship->created_at->format('Y-m-d')}}
-                            {{!$deadline=$scholarship->deadline}}
-                            {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
-                            {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
-                            {{!$different_days = $start_date->diffInDays($end_date)}}
-                            {{!$different_hours = $start_date->diffInHours($end_date)}}
-                            {{!$different_months = $start_date->diffInMonths($end_date)}}
-                           </div>
+                            <div hidden> {{!$created=$best_scholar->created_at->format('Y-m-d')}}
+                                {{!$deadline=$best_scholar->deadline}}
+                                {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
+                                {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
+                                {{!$different_days = $start_date->diffInDays($end_date)}}
+                                {{!$different_hours = $start_date->diffInHours($end_date)}}
+                                {{!$different_months = $start_date->diffInMonths($end_date)}}
+                            </div>
 
                             <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
 
 
                         </div>
-                        <a href="{{route('user.scholarships.show',$scholarship->id)}}" class="details-button">Details</a href="#">
+                        <a href="{{route('user.scholarships.show',$best_scholar->id)}}" class="details-button">Details</a>
                     </div>
                 </div>
                 @empty
@@ -45,7 +47,7 @@
             </div>
         </div>
     </div>
-    <a href="opportunities-signed.html" class="btn-view-more">View More</a>
+    <a href="{{route('user.scholarships.index')}}" class="btn-view-more">View More</a>
 </div>
 <div class="best-jobs-section-signed">
     <h1 class="best-jobs-section-signed__header">Best Jobs</h1>
@@ -54,32 +56,33 @@
             <div class="swiper-wrapper">
 
                 @forelse($jobs as $job)
+                {{!$best_job= App\Job::find($job->job_id)}}
                 <div class="best-jobs-section-signed__card swiper-slide" style="overflow: hidden;">
                     <div class="card-picture-box">
                         <span class="opportunity-type-label">
-                            {{!$cost = app\Cost::find($job->cost_id)}}
+                            {{!$cost = app\Cost::find($best_job->cost_id)}}
                             {{$cost->name}}
                         </span>
-                        <img src="/storage/{{$job->picture}}" alt="Picutre 1" class="card-picture" style="height: 162px;">
+                        <img src="/storage/{{$best_job->picture}}" alt="Picutre 1" class="card-picture" style="height: 162px;">
                     </div>
-                    <h1 class="best-jobs-section-signed__card-header">{{$job->title_en}}</h1>
-                    <p class="best-jobs-section-signed__card-paragraph">{{$job->description_en}}</p>
+                    <h1 class="best-jobs-section-signed__card-header">{{$best_job->title_en}}</h1>
+                    <p class="best-jobs-section-signed__card-paragraph">{{$best_job->description_en}}</p>
                     <div class="best-jobs-section-signed__card-deadline-box">
                         <img src="img/Icon ionic-ios-timer.svg" alt="deadline" class="best-jobs-section-signed__card-deadline">
                         <div class="deadline-number">
                             <h2 class="deadline-header">Hours:Days:Months</h2>
-                           <div hidden> {{!$created=$job->created_at->format('Y-m-d')}}
-                            {{!$deadline=$job->deadline}}
-                            {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
-                            {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
-                            {{!$different_days = $start_date->diffInDays($end_date)}}
-                            {{!$different_hours = $start_date->diffInHours($end_date)}}
-                            {{!$different_months = $start_date->diffInMonths($end_date)}}
-                           </div>
+                            <div hidden> {{!$created=$best_job->created_at->format('Y-m-d')}}
+                                {{!$deadline=$best_job->deadline}}
+                                {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
+                                {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
+                                {{!$different_days = $start_date->diffInDays($end_date)}}
+                                {{!$different_hours = $start_date->diffInHours($end_date)}}
+                                {{!$different_months = $start_date->diffInMonths($end_date)}}
+                            </div>
 
                             <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
                         </div>
-                        <a href="{{route('user.jobs.show',$job->id)}}" class="details-button">Details</a href="#">
+                        <a href="{{route('user.jobs.show',$best_job->id)}}" class="details-button">Details</a href="#">
                     </div>
                 </div>
                 @empty
@@ -100,22 +103,23 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @forelse($services as $service)
+                {{!$best_service= App\Service::find($service->service_id)}}
                 <div class="best-services-section-signed__card swiper-slide">
                     <div class="card-picture-box">
                         <span class="opportunity-type-label">Fully funded</span>
-                        <img src="/storage/{{$service->picture}}" alt="Picutre 1" class="card-picture">
+                        <img src="/storage/{{$best_service->picture}}" alt="Picutre 1" class="card-picture">
                     </div>
-                    <h1 class="best-services-section-signed__card-header">{{$service->title_en}}</h1>
-                    <p class="best-services-section-signed__card-paragraph">{{$service->description_en}}</p>
+                    <h1 class="best-services-section-signed__card-header">{{$best_service->title_en}}</h1>
+                    <p class="best-services-section-signed__card-paragraph">{{$best_service->description_en}}</p>
                     <div class="best-services-section-signed__card-rating-box" style="padding-left: 25px;">
 
-                        {{!$count_rate_of_ser=App\Rateser::where('ser_id', '=', $service->id)->get()->count()}} @if($count_rate_of_ser==0) @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                        <div hidden> {{!$count_rate_of_ser=App\Rateser::where('ser_id', '=', $best_service->id)->get()->count()}}</div> @if($count_rate_of_ser==0) @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
 
                             @endfor
 
                             @else
 
-                            {{!$sum_values_rate = App\Rateser::where('ser_id', '=', $service->id)->get()->avg('value_rate')}}
+                            {{!$sum_values_rate = App\Rateser::where('ser_id', '=', $best_service->id)->get()->avg('value_rate')}}
 
                             {{!$decimal_total_rate = substr($sum_values_rate, 0, 3)}}
 
@@ -150,7 +154,7 @@
 
 
                                             <span class="rating-number">{{$sum_values_rate ?? 0  }}</span>
-                                            <a href="{{route('user.services.show',$service->id)}}" class="details-button">Details</a href="#">
+                                            <a href="{{route('user.services.show',$best_service->id)}}" class="details-button">Details</a href="#">
                     </div>
                 </div>
                 @empty
@@ -173,16 +177,17 @@
             <div class="swiper-wrapper">
 
                 @forelse($organizations as $organization)
-                {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $organization->id)->get()}};
-                {{!$followerCount = App\Followersorg::where('org_id', '=', $organization->id)->get()->count()}};
+                {{!$best_organization= App\Organization::find($organization->organization_id)}}
+                {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $best_organization->id)->get()}};
+                {{!$followerCount = App\Followersorg::where('org_id', '=', $best_organization->id)->get()->count()}};
                 <div class="best-organizations-section-signed__card swiper-slide">
                     <div class="colored-container"></div>
                     <div class="logo-box" style="overflow: hidden;">
-                        <img src="{{asset('storage/'.$organization->picture_org) }}" alt="Logo" class="best-jobs-section__logo">
+                        <img src="{{asset('storage/'.$best_organization->picture_org) }}" alt="Logo" class="best-jobs-section__logo">
                     </div>
-                    <h1 class="best-organizations-section-signed__sub-header"> <a href="{{route('user.organizations.show',$organization->id)}}">{{$organization->name_en}}</a></h1>
+                    <h1 class="best-organizations-section-signed__sub-header"> <a href="{{route('user.organizations.show',$best_organization->id)}}">{{$best_organization->name_en}}</a></h1>
                     <p class="best-organizations-section-signed__followers"><span class="follow-count" style="color: green;">{{$followerCount}}</span> follower</p>
-                    <a data-orgid="{{$organization->id}}" type="button" class="best-organizations-section-signed__btn-follow add-follower" style="cursor:pointer">@if($follower->count()>0) following @else follow @endif</a>
+                    <a data-orgid="{{$best_organization->id}}" type="button" class="best-organizations-section-signed__btn-follow add-follower" style="cursor:pointer">@if($follower->count()>0) following @else follow @endif</a>
                 </div>
                 @empty
                 <div class="alert alert-primary" role="alert" style="transform: scale(4);">

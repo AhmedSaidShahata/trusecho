@@ -26,6 +26,8 @@
         </div>
         @endforelse
 
+        {{$opportunities->links()}}
+
     </div>
 
 </div>

@@ -17,4 +17,9 @@ class Cost extends Model
     {
         return $this->hasMany(Job::class);
     }
+
+    public function service()
+    {
+        return $this->hasMany(Service::class);
+    }
 }

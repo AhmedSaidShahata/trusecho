@@ -16,7 +16,7 @@ class OrganizationController extends Controller
     public function index()
     {
         return view('user.organizations.organizations',[
-            'organizations'=>Organization::all()
+            'organizations'=>Organization::paginate(10)
         ]);
     }
 

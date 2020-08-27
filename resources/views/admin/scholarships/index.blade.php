@@ -47,7 +47,8 @@
                 <td>{{$scholarship->deadline}}</td>
                 <td>{{$scholarship->email}}</td>
                 <td class="d-flex">
-
+                    <div hidden>{{!$best_scholar=App\Bestscholar::where('scholarship_id', '=',$scholarship->id)->count()}}</div>
+                    <button data-scholarid="{{$scholarship->id}}" class="best-scholar btn btn-primary"> {{$best_scholar > 0 ? 'UnBest' : 'Best'}} </button>
                     <a href="{{route('admin.scholarships.edit',$scholarship->id)}}" class="btn"><i class="far fa-edit"></i> </a>
                     <form method="POST" class="form-inline" action="{{route('admin.scholarships.destroy',$scholarship->id)}}">
                         @csrf

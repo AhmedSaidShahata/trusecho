@@ -75,8 +75,8 @@
         @forelse($services as $service)
         <div class="search-results__card">
             <div class="card-picture-box">
-                <span class="opportunity-type-label">Fully funded</span>
-                <img src="img/card-picutre-1.png" alt="Picutre 1" class="card-picture" />
+                <span class="opportunity-type-label">{{$service->cost->name_en}}</span>
+                <img src="{{asset('storage/'.$service->picture)}}" alt="Picutre 1" class="card-picture" />
             </div>
             <h1 class="search-results__card-header">{{$service->title_en}}</h1>
             <p class="search-results__card-paragraph">
@@ -84,7 +84,7 @@
             </p>
             <div class="search-results__card-rating-box">
 
-                {{!$count_rate_of_ser=App\Rateser::where('ser_id', '=', $service->id)->get()->count()}} @if($count_rate_of_ser==0) @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                <div hidden> {{!$count_rate_of_ser=App\Rateser::where('ser_id', '=', $service->id)->get()->count()}}</div> @if($count_rate_of_ser==0) @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
 
                     @endfor
 
@@ -124,7 +124,7 @@
                                     @endif
 
                                     <span class="rating-number">{{$sum_values_rate ?? 0  }}</span>
-                                    <a href="single-service-page.html" class="details-button">Details</a>
+                                    <a href="{{route('user.services.show',$service->id)}}" class="details-button">Details</a>
             </div>
         </div>
         @empty
@@ -134,26 +134,7 @@
 
         @endforelse
 
-
-
     </div>
-    <div class="pagination">
-        <div class="pagination__left-arrow-box"></div>
-        <a href="#"><img src="img/left-arrow.svg" alt="arrow" class="pagination__left-arrow" /></a>
-        <a href="#" class="pagination__prev">prev</a>
-        <ul class="pagination__list">
-            <li class="pagination__list-item">
-                <a href="#" class="selected">1</a>
-            </li>
-            <li class="pagination__list-item"><a href="#">2</a></li>
-            <li class="pagination__list-item"><a href="#">3</a></li>
-            <li class="pagination__list-item"><a href="#">4</a></li>
-            <li class="pagination__list-item"><a href="#">5</a></li>
-        </ul>
-        <a href="#" class="pagination__next">next</a>
-        <div class="pagination__right-arrow-box">
-            <a href="#"><img src="img/right-arrow.svg" alt="arrow" class="pagination__right-arrow" /></a>
-        </div>
-    </div>
+    {{$services->links()}}
 </div>
 @endsection
