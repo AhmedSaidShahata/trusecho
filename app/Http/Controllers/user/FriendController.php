@@ -69,11 +69,11 @@ class FriendController extends Controller
     public function show($id)
     {
         $profile = Profile::where('user_id', '=', $id)->get()->first();
-        $user = User::find($id);
+        $friend = User::find($id);
 
 
         return view('user.profile.profile-info', [
-            'user' => $user,
+            'friend' => $friend,
             'profile' => $profile
         ]);
     }

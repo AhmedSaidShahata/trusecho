@@ -8,18 +8,47 @@
                 <img src="{{asset('storage/'.$profile->picture)}}" alt="profile-pic" class="profile-info__left-box-profile-pic" />
                 <!-- <img src="img/country.png" alt="country" class="country-picture" /> -->
             </div>
-            {{!$friend_is_exist=App\Friend::where(['user_id'=> Auth::user()->id,'friend_id'=>$user->id])->orWhere(['user_id'=> $user->id,'friend_id'=>Auth::user()->id])}}
 
-            @if($friend_is_exist->get()->count()==0)
-            <button data-userid="{{$user->id}}" class="change-profile-pic-btn add-friend">Add Friend</button>
+            {{!$friend_is_exist=App\Friend::where(['user_id'=> Auth::user()->id,'friend_id'=>$friend->id])}}
+            {{!$friend_request=App\Friend::where(['user_id'=> $friend->id,'friend_id'=>Auth::user()->id])}}
+
+            @if($friend_is_exist->get()->count()==0 && $friend_is_exist->get()->count()!=0 )
+            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Add Friend</button>
             @else
-                @if($friend_is_exist->get()->first()->accept==0)
-                <button data-userid="{{$user->id}}" class="change-profile-pic-btn add-friend">Friend Request Sent</button>
-                @else
-                <button data-userid="{{$user->id}}" class="change-profile-pic-btn add-friend">Friends</button>
-            @endif
+                @if(isset($friend_is_exist->get()->first()->accept))
+                    @if($friend_is_exist->get()->first()->accept==0)
+                        <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Friend Request Sent</button>
+                     @else
+                    <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Friends</button>
+                    @endif
+                @endif
 
             @endif
+
+
+
+
+            @if($friend_request->get()->count()==0  && $friend_is_exist->get()->count()==0)
+            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Add Friend</button>
+            @else
+                @if(isset($friend_request->get()->first()->accept))
+                    @if($friend_request->get()->first()->accept==0)
+                    <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Accept Request</button>
+                    @else
+                    <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Friends</button>
+                    @endif
+                 @endif
+
+            @endif
+
+
+
+
+
+
+
+
+
             <button class="change-profile-pic-btn btn-grn-color">
                 Contact Via whatsapp
             </button>
@@ -30,7 +59,7 @@
 
         <div class="profile-info__right-box">
             <div class="info-piece">
-                <h1 class="profile__header">{{$user->name}}</h1>
+                <h1 class="profile__header">{{$friend->name}}</h1>
                 <div class="hr"></div>
                 <h2 class="profile__subtitle">Masters</h2>
             </div>
