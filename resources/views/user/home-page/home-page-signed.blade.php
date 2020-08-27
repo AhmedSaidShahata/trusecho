@@ -178,16 +178,18 @@
 
                 @forelse($organizations as $organization)
                 {{!$best_organization= App\Organization::find($organization->organization_id)}}
+                @auth
                 {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $best_organization->id)->get()}};
                 {{!$followerCount = App\Followersorg::where('org_id', '=', $best_organization->id)->get()->count()}};
+                @endauth
                 <div class="best-organizations-section-signed__card swiper-slide">
                     <div class="colored-container"></div>
                     <div class="logo-box" style="overflow: hidden;">
                         <img src="{{asset('storage/'.$best_organization->picture_org) }}" alt="Logo" class="best-jobs-section__logo">
                     </div>
                     <h1 class="best-organizations-section-signed__sub-header"> <a href="{{route('user.organizations.show',$best_organization->id)}}">{{$best_organization->name_en}}</a></h1>
-                    <p class="best-organizations-section-signed__followers"><span class="follow-count" style="color: green;">{{$followerCount}}</span> follower</p>
-                    <a data-orgid="{{$best_organization->id}}" type="button" class="best-organizations-section-signed__btn-follow add-follower" style="cursor:pointer">@if($follower->count()>0) following @else follow @endif</a>
+                    @auth <p class="best-organizations-section-signed__followers"><span class="follow-count" style="color: green;">{{$followerCount}}</span> follower</p>
+                    <a data-orgid="{{$best_organization->id}}" type="button" class="best-organizations-section-signed__btn-follow add-follower" style="cursor:pointer">@if($follower->count()>0) following @else follow @endif</a>@endauth
                 </div>
                 @empty
                 <div class="alert alert-primary" role="alert" style="transform: scale(4);">
