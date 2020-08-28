@@ -31,9 +31,10 @@ class FriendController extends Controller
     public function myfriends()
     {
 
-        $friends=Friend::where(['friend_id'=>Auth::user()->id,'accept'=>1])->get();
+        $friends=Auth::user()->friends();
 
-        return view('user.network.users', [
+
+        return view('user.network.friends', [
             'users' => $friends
         ]);
     }

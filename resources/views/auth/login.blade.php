@@ -28,13 +28,14 @@
                 <input id="password" placeholder="Enter your password..." type="password" class="sign-up-box__input-field @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                 @error('password')
-                <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert" style="font-size:100%">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
 
-            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+            <input style="margin-top: 10px;" class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+           <span style="font-size:14px">remeber me</span>
 
             <button class="sign-up-box__input-submit-btn sign-inbtn" type="submit">Sign in</button>
 

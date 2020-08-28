@@ -103,11 +103,11 @@
                 <li class="nav-bar__item dropdown">
                     <div class="notification-icon-box">
                         <img src="{{asset('img/notification-icon.svg')}}" alt="notification" class="notification-icon" />
-                        <span class="notification-number">3</span>
+                        <!-- <span class="notification-number">3</span> -->
                         <div class="dropdown-content">
-                            <a href="#">Faisl just posted a blog</a>
+                            <!-- <a href="#">Faisl just posted a blog</a>
                             <a href="#">Memo just added a job role</a>
-                            <a href="#">Lily reacted to your post</a>
+                            <a href="#">Lily reacted to your post</a> -->
                             {{!$friends_request=App\Friend::where(['friend_id'=> Auth::user()->id,'accept'=>0])->get()}}
 
                             @forelse($friends_request as $friend_request )

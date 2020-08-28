@@ -17,7 +17,7 @@
     <div class="my-network-section-info__options u-margin-top-small">
         <ul class="options__list">
             <li class="options__items">
-                <a href="{{route('user.myfriends')}}" class="options__item selected">Your friends</a>
+                <a href="{{route('user.friends.index')}}" class="options__item selected">All Users</a>
             </li>
             <li class="options__items">
                 <a class="options__item not-selected">Organizations you follow</a>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="friends-card__buttons">
-                <a href="#" class="friends-card__message-btn">Message</a>
+                <a   href="{{route('chat.show',$user->id)}}" class="friends-card__message-btn">Message</a>
                 <a href="{{route('user.friends.show',$user->id)}}" class="friends-card__visit-btn">Visit</a>
             </div>
         </div>
@@ -56,6 +56,6 @@
 
     </div>
 </div>
-{{$users->links()}}
+
 
 @endsection
