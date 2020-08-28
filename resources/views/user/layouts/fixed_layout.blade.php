@@ -4,6 +4,8 @@
 <html lang="en">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="userId" content="{{Auth::check() ? Auth::user()->id : 'null' }}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Truescho - Shape Your Dreams</title>
@@ -17,7 +19,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }} " defer></script>
 
 </head>
 
@@ -89,12 +91,11 @@
                 @else
                 <li class="nav-bar__item dropdown">
                     <div class="messages-icon-box">
-                        <img src="{{asset('img/messages-icon.svg')}}" alt="messages" class="messages-icon" />
-                        <span class="messages-number">3</span>
+                        <a href="/chat"> <img src="{{asset('img/messages-icon.svg')}}" alt="messages" class="messages-icon" /> </a>
+
+                        <!-- <span class="messages-number">3</span> -->
                         <div class="dropdown-content">
-                            <a href="messages.html">Message from Mostafa</a>
-                            <a href="messages.html">Message from Mahmoud</a>
-                            <a href="messages.html">Message from Memo</a>
+
                         </div>
                     </div>
                 </li>
@@ -121,8 +122,8 @@
                                     {{$friend->name}}
                                 </a>
                                 <a style="clear:both;">
-                                    <button class="accept">Accept</button>
-                                    <button class="delete">Delete</button>
+                                    <button data-friend="{{$friend->id}}" class="accept">Accept</button>
+                                    <button data-friend="{{$friend->id}}" class="delete">Delete</button>
                                 </a>
                             </div>
                             @empty
@@ -168,8 +169,8 @@
             <ul class="responsive-nav-icons__list">
                 <li class="responsive-nav-icons__list-item">
                     <div class="messages-icon-box">
-                        <img src="{{asset('img/messages-icon.svg')}}" alt="messages" class="messages-icon" />
-                        <span class="messages-number">1</span>
+                        <a href="/chat"> <img src="{{asset('img/messages-icon.svg')}}" alt="messages" class="messages-icon" /> </a>
+                        <!-- <span class="messages-number">1</span> -->
                     </div>
                 </li>
                 <li class="responsive-nav-icons__list-item">
@@ -238,7 +239,13 @@
             </div>
         </nav>
     </div>
-    @yield('content')
+
+    <div id="app">
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+
     <footer class="footer">
         <div class="footer__content-box">
             <div class="footer__left">
@@ -450,7 +457,7 @@
             $(document).on("click", ".accept", function() {
 
                 let reference = $(this);
-                let friendId = $(".friend_id").text();
+                let friendId = reference.data('friend')
 
 
                 $.ajax({
@@ -472,7 +479,7 @@
             $(document).on("click", ".delete", function() {
 
                 let reference = $(this);
-                let friendId = $(".friend_id").text();
+                let friendId = reference.data('friend')
 
 
                 $.ajax({
@@ -814,88 +821,89 @@
                 })
             })
 
-        })
 
 
 
 
-        //=========================================== Start favourite With Ajax ===============================
-        $(document).on("click", ".add-fav-blog", function() {
 
-            let reference = $(this);
-            let blogId = reference.data("blogid");
+            //=========================================== Start favourite With Ajax ===============================
+            $(document).on("click", ".add-fav-blog", function() {
+
+                let reference = $(this);
+                let blogId = reference.data("blogid");
 
 
-            $.ajax({
-                url: "/favblogs",
-                type: "post",
-                dataType: "text",
-                data: {
-                    _token: "{{csrf_token()}}",
-                    blogId: blogId,
+                $.ajax({
+                    url: "/favblogs",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        blogId: blogId,
 
-                },
-                success: function(data) {
-                    reference.toggleClass("red")
-                }
+                    },
+                    success: function(data) {
+                        reference.toggleClass("red")
+                    }
+                })
             })
-        })
 
 
 
-        //=========================================== Start favourite With Ajax ===============================
-        $(document).on("click", ".blog-like", function() {
+            //=========================================== Start favourite With Ajax ===============================
+            $(document).on("click", ".blog-like", function() {
 
-            let reference = $(this);
-            let blogId = reference.data("blogid");
+                let reference = $(this);
+                let blogId = reference.data("blogid");
 
 
 
-            $.ajax({
-                url: "/likeblogs",
-                type: "post",
-                dataType: "text",
-                data: {
-                    _token: "{{csrf_token()}}",
-                    blogId: blogId,
+                $.ajax({
+                    url: "/likeblogs",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        blogId: blogId,
 
-                },
-                success: function(data) {
-                    reference.toggleClass("blue")
-                }
+                    },
+                    success: function(data) {
+                        reference.toggleClass("blue")
+                    }
+                })
             })
+
+
+            // scholarship application
+            $(".second-form ,.third-form").hide()
+
+            $(".hide-form1").on("click", function() {
+                $(".first-form").hide();
+                $(".second-form").show();
+                $("html,body").animate({
+                    scrollTop: 0
+                }, 100)
+            })
+
+            $(".hide-form2").on("click", function() {
+                $(".second-form").hide();
+                $(".third-form").show();
+                $("html,body").animate({
+                    scrollTop: 0
+                }, 100)
+            })
+
+            // Start Input
+
+            $(".degree").on("click", function() {
+                $(this).addClass("active-degree").siblings().removeClass("active-degree")
+                $("input[name='degree']").val($(this).text())
+                console.log($("input[name='degree']").val())
+            })
+            // $('.input-checkbox:checked').removeAttr("disabled")
+
+            $(".degree").css("cursor", "pointer")
         })
-
-
-        // scholarship application
-        $(".second-form ,.third-form").hide()
-
-        $(".hide-form1").on("click", function() {
-            $(".first-form").hide();
-            $(".second-form").show();
-            $("html,body").animate({
-                scrollTop: 0
-            }, 100)
-        })
-
-        $(".hide-form2").on("click", function() {
-            $(".second-form").hide();
-            $(".third-form").show();
-            $("html,body").animate({
-                scrollTop: 0
-            }, 100)
-        })
-
-        // Start Input
-
-        $(".degree").on("click", function() {
-            $(this).addClass("active-degree").siblings().removeClass("active-degree")
-            $("input[name='degree']").val($(this).text())
-            console.log($("input[name='degree']").val())
-        })
-        // $('.input-checkbox:checked').removeAttr("disabled")
-
-        $(".degree").css("cursor", "pointer")
     </script>
 
 

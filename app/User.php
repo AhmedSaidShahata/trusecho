@@ -46,11 +46,19 @@ class User extends Authenticatable
         return $this->hasMany(Commentjob::class);
     }
 
-
     public function blog(){
         return $this->hasMany(Blog::class);
     }
     public function profile(){
         return $this->hasOne(Profile::class);
+    }
+    public function friendofMine(){
+        return $this->belongsToMany('App\User','friends','user_id','friend_id' );
+    }
+    public function friendof(){
+        return $this->belongsToMany('App\User','friends','friend_id','user_id' );
+    }
+    public function friends(){
+        return $this->friendofMine->merge($this->friendOf);
     }
 }

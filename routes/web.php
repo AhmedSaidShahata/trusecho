@@ -91,16 +91,15 @@ Route::namespace('user')->name('user.')->group(function () {
     Route::resource('opportunitys', 'OpportunityController');
 });
 
-Route::middleware('auth')->get('sender/{id}', function (\app\User $id) {
 
-    event(new Chat('hellooooooo', $id->id));
-    return ['success'];
-});
+//======================================= Chatting =====================================
+
+Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
+Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
+Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
+Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
 
 
-Route::middleware('auth')->get('recipent', function () {
-    return view('recipent');
-});
 //======================================= login with facebook =====================================
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider')->name('facebook.login');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');

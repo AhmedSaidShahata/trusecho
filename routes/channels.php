@@ -17,6 +17,10 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('chat-private.{id}', function () {
-    return true ;
+
+Broadcast::channel('Chat.{user_id}.{friend_id}', function ($user, $user_id, $friend_id) {
+    return true;
+});
+Broadcast::channel('Online', function ($user) {
+    return $user ;
 });

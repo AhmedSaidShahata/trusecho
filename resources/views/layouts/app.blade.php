@@ -9,18 +9,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta name="userId" content="{{Auth::check() ? Auth::user()->id : 'null' }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('css/style.css') }}" ></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="/css/font-style.css" />
     <!-- POPPINS FONT -->
