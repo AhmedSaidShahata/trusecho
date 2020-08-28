@@ -33,7 +33,7 @@
             @else
                 @if(isset($friend_request->get()->first()->accept))
                     @if($friend_request->get()->first()->accept==0)
-                    <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Accept Request</button>
+                    <button data-friend="{{$friend->id}}" class="change-profile-pic-btn accept">Accept Request</button>
                     @else
                     <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Friends</button>
                     @endif

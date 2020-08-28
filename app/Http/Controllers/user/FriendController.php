@@ -116,18 +116,33 @@ class FriendController extends Controller
 
         $user_id = Auth::user()->id;
         $friend_id = $request->input('userId');
-        $friend_request = Friend::where('user_id', '=', $user_id)->where('friend_id', '=', $friend_id);
-        if ($friend_request->get()->count() == 0) {
-
-            Friend::create([
-                'user_id' => $user_id,
-                'friend_id' => $friend_id,
-                'accept' => 0
-            ]);
-        } else {
-            $friend_request->delete();
+        $friend_request = Friend::where(['user_id'=> $user_id,'friend_id'=>$friend_id]);
+        $friend_request2 = Friend::where(['user_id'=> $friend_id,'friend_id'=>$user_id]);
+        if($friend_request->get()->first()){
+            if($friend_request->get()->count()==0){
+                Friend::create([
+                    'user_id'=>$user_id,
+                    'friend_id'=>$friend_id,
+                    'accept'=>0
+                ]);
+            }
+            else{
+                $friend_request->delete();
+            }
         }
-        return;
+        else{
+            if($friend_request2->get()->count()==0){
+                Friend::create([
+                    'user_id'=>$user_id,
+                    'friend_id'=>$friend_id,
+                    'accept'=>0
+                ]);
+            }
+            else{
+                $friend_request2->delete();
+            }
+        }
+
     }
 
     public function friendaccept(Request $request)

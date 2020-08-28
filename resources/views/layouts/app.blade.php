@@ -9,11 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name="userId" content="{{Auth::check() ? Auth::user()->id : 'null' }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('css/style.css') }}" ></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,15 +20,13 @@
     <!-- Styles -->
 
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="/css/font-style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <!-- POPPINS FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <!-- SWIPER JS CSS STYLE -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
-    <!-- AOS CSS STYLESHEET -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
 </head>
 
