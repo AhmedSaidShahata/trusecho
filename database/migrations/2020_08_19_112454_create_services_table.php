@@ -15,18 +15,14 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('title_ar');
-            $table->string('description_ar');
-            $table->text('content_ar');
-            $table->string('title_en');
-            $table->string('description_en');
-            $table->text('content_en');
-            $table->string('picture');
+            $table->string('lang');
+            $table->string('title');
+            $table->string('description');
+            $table->text('content');
+            $table->text('picture');
             $table->float('price');
-            $table->integer('cost_id');
-            $table->integer('type_id');
-            $table->integer('specialize_id');
-            $table->integer('language_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('specialization_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

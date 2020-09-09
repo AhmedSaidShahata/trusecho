@@ -1,6 +1,17 @@
 @extends('home')
 @section('content')
-<a href="{{route('admin.jobs.create')}}" class="mt-2 btn btn-primary form-control">Add job</a>
+
+
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+@if(session()->has('success_ar') OR session()->has('success_en') )
+<div class="alert alert-success">
+    {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+</div>
+@endif
+
+
+<a href="{{route('admin.jobs.create')}}" class="mt-2 btn btn-primary form-control">{{__('messages.add_job')}}</a>
 <div style="overflow-x:auto ;">
     <table class="table table-dark">
 
@@ -8,23 +19,21 @@
 
 
             <tr>
-                <th scope="col">id</th>
-                <th scope="cpl">image</th>
-                <th scope="col">Title English</th>
-                <th scope="col">Description English</th>
-                <th scope="col">Content English</th>
-                <th scope="col">heading details English</th>
-                <th scope="col">location English</th>
-                <th scope="col">requirments English</th>
-                <th scope="col">Title Arabic</th>
-                <th scope="col">Description Arabic</th>
-                <th scope="col">Content Arabic</th>
-                <th scope="col">heading details Arabic</th>
-                <th scope="col">location Arabic</th>
-                <th scope="col">requirments Arabic</th>
-                <th scope="col">Deadline</th>
-                <th scope="col">Email</th>
-                <th>Controls</th>
+                <th scope="col">{{__('messages.serial')}}</th>
+                <th scope="col">{{__('messages.picture')}}</th>
+                <th scope="col">{{__('messages.title')}}</th>
+                <th scope="col">{{__('messages.description')}}</th>
+                <th scope="col">{{__('messages.salary')}}</th>
+                <th scope="col">{{__('messages.company')}}</th>
+                <th scope="col">{{__('messages.picture_company')}}</th>
+                <th scope="col">{{__('messages.location')}}</th>
+                <th scope="col">{{__('messages.requirments')}}</th>
+                <th scope="col">{{__('messages.deadline')}}</th>
+                <th scope="col">{{__('messages.email')}}</th>
+                <th scope="col">{{__('messages.creator')}}</th>
+                <th scope="col">{{__('messages.type')}}</th>
+                <th scope="col">{{__('messages.specialization')}}</th>
+                <th>{{__('messages.controls')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -32,42 +41,30 @@
             <tr>
                 <th scope="row">{{$job->id}}</th>
                 <td><img src="{{asset('storage/'.$job->picture)}}" alt="image job" style="width:100px;height:100px"></td>
-                <td>{{$job->title_en}}</td>
+                <td>{{$job->title}}</td>
                 <td>
-                    {{ substr($job->description_en,0,20) }}....
+                    {{ substr($job->description,0,20) }}
+                </td>
+                <td>{{$job->salary}}</td>
+                <td>{{$job->company}}</td>
+                <td>{{$job->picture_company}}</td>
+
+                <td>
+                    {{ substr($job->location,0,20) }}
                 </td>
                 <td>
-                    {{ substr($job->content_en,0,20) }}....
+                    {{ substr($job->requirments,0,20) }}
                 </td>
-                <td>
-                    {{ substr($job->heading_details_en,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($job->location_en,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($job->requirments_en,0,20) }}....
-                </td>
-                <td>{{$job->title_ar}}</td>
-                <td>
-                    {{ substr($job->description_ar,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($job->content_ar,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($job->heading_details_ar,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($job->location_ar,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($job->requirments_ar,0,20) }}....
+
                 <td>{{$job->deadline}}</td>
                 <td>{{$job->email}}</td>
+                <td>{{$job->user->name}}</td>
+                <td>{{$job->type->name}}</td>
+                <td>{{$job->specialization->name}}</td>
+
                 <td class="d-flex">
-                <div hidden>{{!$best_job=App\Bestjob::where('job_id', '=',$job->id)->count()}}</div>
-                    <button data-jobid="{{$job->id}}" class="best-job btn btn-primary"> {{$best_job > 0 ? 'UnBest' : 'Best'}} </button>
+                    <div hidden>{{!$best_job=App\Bestjob::where('job_id', '=',$job->id)->count()}}</div>
+                    <input {{$best_job > 0 ? 'checked' : ''}} type="checkbox" data-jobid="{{$job->id}}" class="best-job btn btn-primary">
                     <a href="{{route('admin.jobs.show',$job->id)}}" class="btn"> <i class="far fa-eye"></i></a>
                     <a href="{{route('admin.jobs.edit',$job->id)}}" class="btn"><i class="far fa-edit"></i> </a>
                     <form method="POST" class="form-inline" action="{{route('admin.jobs.destroy',$job->id)}}">
@@ -80,7 +77,7 @@
             </tr>
             @empty
             <div class="alert alert-primary" role="alert">
-                No jobs Yet
+                {{__('messages.no_jobs')}}
             </div>
             @endforelse
         </tbody>

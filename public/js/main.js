@@ -95,9 +95,18 @@ then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
 
 //SWIPER JS
+// var swiper = new Swiper('.swiper-container', {
+//   slidesPerView: 3,
+//   spaceBetween: 30,
+//   pagination: {
+//     el: '.swiper-pagination',
+//     clickable: true,
+//   },
+// });
 var swiper = new Swiper('.swiper-container', {
-  slidesPerView: 3,
+  slidesPerView: 4,
   spaceBetween: 30,
+  centeredSlides: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
@@ -105,22 +114,12 @@ var swiper = new Swiper('.swiper-container', {
 });
 
 
-
 //RATING
-// $(".rating").rate();
+$(".rating").rate();
 
-// //or for example
-// var options = {
-//     max_value: 6,
-//     step_size: 0.5,
-// }
-// $(".rating").rate(options);
-var swiper = new Swiper('.swiper-container', {
-    slidesPerView: 4,
-    spaceBetween: 30,
-    centeredSlides: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-  });
+//or for example
+var options = {
+    max_value: 6,
+    step_size: 0.5,
+}
+$(".rating").rate(options);

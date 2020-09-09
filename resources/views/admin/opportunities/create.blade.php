@@ -1,11 +1,11 @@
 @extends('home')
 @section('content')
 
-
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 <div class="card">
 
     <div class="card-header">
-        <h2>{{isset($opportunity)?'Edit opportunity':'Add opportunity'}}</h2>
+        <h2>{{isset($opportunity)? __('messages.edit_opp') : __('messages.add_opp') }}</h2>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -26,74 +26,59 @@
             @method('PUT')
 
             @endif
-            <!----------------------------------------- English ----------------------------------------->
-            <p class="text-center p-2" style="background:burlywood">opportunity English </p>
+            <div class="input-group my-4">
+                <label>{{__('messages.specializations')}}</label>
+                <select class="form-control" name="specialization_id">
+                    @foreach($specializations as $specialization)
+
+                    <option <?php if (isset($job) and $specialization->id == $job->specialization_id) echo 'selected' ?> value="{{$specialization->id}}">
+                        {{$specialization->name }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <input type="hidden" name="lang" value="{{$lang}}">
+            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+
+
+
             <div class="form-group">
-                <label for="category"> title </label>
-                <input type="text" name="title_en" class="form-control" value="{{isset($opportunity)?$opportunity->title_en:''}}" placeholder="Add a new opportunity">
+                <label for="category"> {{__('messages.title')}}</label>
+                <input type="text" name="title" class="form-control" value="{{isset($opportunity)?$opportunity->title:''}}">
             </div>
             <div class="form-group">
-                <label for="category">description </label>
-                <input type="text" name="description_en" class="form-control" value="{{isset($opportunity)?$opportunity->description_en:''}}" placeholder="Add a description">
+                <label for="category">{{__('messages.description')}}</label>
+                <input type="text" name="description" class="form-control" value="{{isset($opportunity)?$opportunity->description:''}}">
             </div>
             <div class="form-group">
-                <label for="category">heading Details </label>
-                <input type="text" name="heading_details_en" class="form-control" value="{{isset($opportunity)?$opportunity->heading_details_en:''}}" placeholder="Add a description">
-            </div>
-            <div class="form-group">
-                <label for="category">Location </label>
-                <input type="text" name="location_en" class="form-control" value="{{isset($opportunity)?$opportunity->location_en:''}}" placeholder="Add a description">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Requirments </label>
-                <textarea class="form-control" name="requirments_en" id="" cols="50" rows="10">{{isset($opportunity) ? $opportunity->requirments_en : ''}}</textarea>
+                <label for="category">{{__('messages.company')}}</label>
+                <input type="text" name="company" class="form-control" value="{{isset($opportunity)?$opportunity->company:''}}">
             </div>
 
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">content </label>
-                <textarea class="form-control" name="content_en" id="" cols="50" rows="10">{{isset($opportunity) ? $opportunity->content_en : ''}}</textarea>
-            </div>
-
-
-            <!----------------------------------------- Arabic ----------------------------------------->
-            <p class="text-center p-2" style="background:burlywood">opportunity Arabic </p>
-            <div class="form-group">
-                <label for="category">title </label>
-                <input type="text" name="title_ar" class="form-control" value="{{isset($opportunity)?$opportunity->title_ar:''}}" placeholder="Add a new opportunity">
-            </div>
-            <div class="form-group">
-                <label for="category">description </label>
-                <input type="text" name="description_ar" class="form-control" value="{{isset($opportunity)?$opportunity->description_ar:''}}" placeholder="Add a description">
+                <label for="category">{{__('messages.location')}}</label>
+                <input type="text" name="location" class="form-control" value="{{isset($opportunity)?$opportunity->location:''}}">
             </div>
 
             <div class="form-group">
-                <label for="category">heading Details </label>
-                <input type="text" name="heading_details_ar" class="form-control" value="{{isset($opportunity)?$opportunity->heading_details_ar:''}}" placeholder="Add a description">
+                <label>{{__('messages.requirments')}} </label>
+                <textarea class="form-control" name="requirments" id="" cols="50" rows="10">{{isset($opportunity) ? $opportunity->requirments : ''}}</textarea>
             </div>
-            <div class="form-group">
-                <label for="category">Location </label>
-                <input type="text" name="location_ar" class="form-control" value="{{isset($opportunity)?$opportunity->location_ar:''}}" placeholder="Add a description">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Requirments </label>
-                <textarea class="form-control" name="requirments_ar" id="" cols="50" rows="10">{{isset($opportunity) ? $opportunity->requirments_ar : ''}}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">content </label>
-                <textarea class="form-control" name="content_ar" id="" cols="50" rows="10">{{isset($opportunity) ? $opportunity->content_ar : ''}}</textarea>
-            </div>
-        
-            <!----------------------------------------- Other ----------------------------------------->
-
-            <p class="text-center p-2" style="background:burlywood">Other</p>
 
             <div class="form-group">
-                <label for="category">Deadline </label>
+                <label>{{__('messages.content')}}</label>
+                <textarea class="form-control" name="content" id="" cols="50" rows="10">{{isset($opportunity) ? $opportunity->content : ''}}</textarea>
+            </div>
+
+
+            <div class="form-group">
+                <label for="category">{{__('messages.deadline')}}</label>
                 <input type="date" name="deadline" class="form-control" value="{{isset($opportunity)?$opportunity->deadline:''}}" placeholder="Add a description">
             </div>
 
             <div class="form-group">
-                <label for="category">Email </label>
+                <label for="category">{{__('messages.email')}}</label>
                 <input type="text" name="email" class="form-control" value="{{isset($opportunity)?$opportunity->email:''}}" placeholder="Add Email">
             </div>
             <div class="form-group">
@@ -103,6 +88,7 @@
                 </div>
                 @endif
                 <div class="input-group my-3">
+                    <label for="">{{__('messages.picture')}}</label>
                     <div class="custom-file">
                         <input type="file" name="picture">
                     </div>
@@ -112,7 +98,7 @@
 
 
             <div class="form-group">
-                <input class="btn btn-success form-control" type="submit" value="{{isset($opportunity)?'Update':'Puplish'}}" />
+                <input class="btn btn-success form-control" type="submit" value="{{isset($opportunity)? __('messages.update') : __('messages.publish') }}" />
             </div>
         </form>
     </div>

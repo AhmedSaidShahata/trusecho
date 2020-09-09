@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bestjob extends Model
 {
     protected $fillable = [
-        'job_id',
+        'job_id','lang'
     ];
 }

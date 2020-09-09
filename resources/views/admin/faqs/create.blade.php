@@ -1,12 +1,12 @@
 @extends('home')
 
 @section('content')
-
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 <div class="card">
 
     <div class="card-header">
-        <h2>{{isset($faq) ? 'Update Your faq' : 'Add a New faq'}}</h2>
+        <h2>{{isset($faq) ? __('messages.edit_q')  : __('messages.add_q') }}</h2>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -27,19 +27,22 @@
             @method('PUT')
             @endif
             @csrf
+
+
+            <input type="hidden" name="lang" value="{{$lang}}">
+
             <div class="form-group">
-                <label for="faq">Qurestion</label>
-                <input type="text" name="question" class="form-control" value="{{isset($faq) ? $faq->question : ''}}" placeholder="Add a new faq">
+                <label for="faq">{{__('messages.question')}}</label>
+                <input type="text" name="question" class="form-control" value="{{isset($faq) ? $faq->question : '' }} ">
 
             </div>
             <div class="form-group">
-                <label for="faq">Answer</label>
-
-                <textarea class="form-control" name="answer" id="" cols="50" rows="10">{{isset($faq) ? $faq->answer : ''}}</textarea>
+                <label for="faq">{{__('messages.answer')}}
+                </label> <textarea class="form-control" name="answer" id="" cols="50" rows="10">{{isset($faq) ? $faq->answer: ''}}</textarea>
             </div>
 
             <div class="form-group">
-                <input class="btn btn-success form-control" type="submit" value="{{isset($faq) ?'update': 'Add'}}" />
+                <input class="btn btn-success form-control" type="submit" value="{{ isset($faq) ? __('messages.update') : __('messages.publish') }}" />
             </div>
         </form>
     </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SpecializationRequest;
 use App\specialization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class SpecializationController extends Controller
 {
@@ -17,7 +18,8 @@ class SpecializationController extends Controller
 
     public function index()
     {
-        return view('admin.specializations.index')->with('specializations', specialization::all());
+        $specializations =specialization::where('lang',App::getLocale())->get();
+        return view('admin.specializations.index')->with('specializations',$specializations );
     }
 
     /**
@@ -39,7 +41,8 @@ class SpecializationController extends Controller
     public function store(SpecializationRequest $request)
     {
         specialization::create($request->all());
-        session()->flash('success', 'Success Adding specialization ' . $request->name);
+        session()->flash('success_en', 'Success Add specialization');
+        session()->flash('success_ar', 'تم اضافة التخصص بنجاح');
         return redirect(route('admin.specializations.index'));
     }
 
@@ -63,7 +66,6 @@ class SpecializationController extends Controller
      */
     public function edit(specialization $specialization)
     {
-
         return view('admin.specializations.create')->with('specialization', $specialization);
     }
 
@@ -78,7 +80,8 @@ class SpecializationController extends Controller
     {
         $specialization->update($request->all());
         $specialization->save();
-        session()->flash('success', 'Success Updating specialization to ' . $request->name);
+        session()->flash('success_en', 'Success Updated specialization');
+        session()->flash('success_ar', 'تم تعديل التخصص بنجاح');
         return redirect(route('admin.specializations.index'));
     }
 
@@ -91,7 +94,8 @@ class SpecializationController extends Controller
     public function destroy(specialization $specialization)
     {
         $specialization->delete();
-        session()->flash('success', 'Success Deleting specialization ');
+        session()->flash('success', 'Success Deleted Specialization ');
+        session()->flash('success', 'تم حذف التخصص بنجاح ');
         return redirect(route('admin.specializations.index'));
     }
 }

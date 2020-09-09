@@ -23,31 +23,15 @@ class OrganizationRequest extends FormRequest
      */
     public function rules()
     {
-        // $table->string('country_ar');
-        // $table->string('country_en');
-        // $table->string('name_ar');
-        // $table->string('name_en');
-        // $table->text('about_ar');
-        // $table->text('about_en');
-        // $table->text('description_ar');
-        // $table->text('description_en');
-        // $table->string('whatsapp');
-        // $table->string('picture_org');
-        // $table->string('picture_cover');
-        // $table->string('website');
-        // $table->string('email');
         return [
-            'country_ar' => 'required',
-            'country_en' => 'required',
-            'name_ar' => 'required',
-            'name_en' => 'required',
-            'about_ar' => 'required',
-            'about_en' => 'required',
-            'description_ar' => 'required',
-            'description_en' => 'required',
+            'country' => 'required',
+            'name' => 'required',
+            'about' => 'required',
+            'description' => 'required',
             'whatsapp' => 'required',
             'website' => 'required',
             'email' => 'required',
+            'user_id' => 'required',
 
         ];
     }

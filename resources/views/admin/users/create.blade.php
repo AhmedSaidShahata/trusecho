@@ -5,7 +5,7 @@
 <div class="card">
 
     <div class="card-header">
-        <h2>{{isset($User)?'Edit User':'Add User'}}</h2>
+        <h2>{{isset($user) ? __('messages.edit_user') : __('messages.add_user')  }}</h2>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -28,23 +28,23 @@
             @endif
 
             <div class="form-group">
-                <label>User Name:</label>
-                <input type="text" name="name" class="form-control" value="{{isset($user)?$user->name:''}}" placeholder="User Name">
+                <label>{{__('messages.user_name')}}</label>
+                <input type="text" name="name" class="form-control" value="{{isset($user)?$user->name:''}}" placeholder="">
             </div>
             <div class="form-group">
-                <label>Email</label>
-                <input type="text" name="email" class="form-control" value="{{isset($user)?$user->email:''}}" placeholder="Enter Email....... ">
+                <label>{{__('messages.email')}}</label>
+                <input type="text" name="email" class="form-control" value="{{isset($user)?$user->email:''}}" placeholder="">
             </div>
             <div class="form-group">
-                <label>role</label>
-                <input type="text" name="role" class="form-control" value="{{isset($user)?$user->role:''}}" placeholder="Enter Role....... ">
+                <label>{{__('messages.role')}}</label>
+                <input type="text" name="role" class="form-control" value="{{isset($user)?$user->role:''}}" placeholder=" ">
             </div>
             <div class="form-group">
-                <label>Password</label>
-                <input type="Password" name="password" class="form-control" value="" placeholder="Enter Password....... ">
+                <label>{{__('messages.password')}}</label>
+                <input type="Password" name="password" class="form-control" value="" placeholder="">
             </div>
             <div class="form-group">
-                <input class="btn btn-success form-control" type="submit" value="{{isset($user)?'Update':'Puplish'}}" />
+                <input class="btn btn-success form-control" type="submit" value="{{isset($user)? __('messages.update') : __('messages.publish') }}" />
             </div>
         </form>
     </div>

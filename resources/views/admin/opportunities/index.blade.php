@@ -1,6 +1,17 @@
 @extends('home')
 @section('content')
-<a href="{{route('admin.opportunitys.create')}}" class="mt-2 btn btn-primary form-control">Add opportunity</a>
+
+
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+@if(session()->has('success_ar') OR session()->has('success_en') )
+<div class="alert alert-success">
+    {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+</div>
+@endif
+<a href="{{route('admin.opportunitys.create')}}" class="mt-2 btn btn-primary form-control">
+    {{__('messages.add_opp')}}
+</a>
 <div style="overflow-x:auto ;">
     <table class="table table-dark">
 
@@ -8,23 +19,17 @@
 
 
             <tr>
-                <th scope="col">id</th>
-                <th scope="cpl">image</th>
-                <th scope="col">Title English</th>
-                <th scope="col">Description English</th>
-                <th scope="col">Content English</th>
-                <th scope="col">heading details English</th>
-                <th scope="col">location English</th>
-                <th scope="col">requirments English</th>
-                <th scope="col">Title Arabic</th>
-                <th scope="col">Description Arabic</th>
-                <th scope="col">Content Arabic</th>
-                <th scope="col">heading details Arabic</th>
-                <th scope="col">location Arabic</th>
-                <th scope="col">requirments Arabic</th>
-                <th scope="col">Deadline</th>
-                <th scope="col">Email</th>
-                <th>Controls</th>
+                <th scope="col">{{__('messages.serial')}}</th>
+                <th scope="col">{{__('messages.picture')}}</th>
+                <th scope="col">{{__('messages.title')}}</th>
+                <th scope="col">{{__('messages.description')}}</th>
+                <th scope="col">{{__('messages.content')}}</th>
+                <th scope="col">{{__('messages.location')}}</th>
+                <th scope="col">{{__('messages.company')}}</th>
+                <th scope="col">{{__('messages.requirments')}}</th>
+                <th scope="col">{{__('messages.deadline')}}</th>
+                <th scope="col">{{__('messages.email')}}</th>
+                <th>{{__('messages.controls')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -32,37 +37,24 @@
             <tr>
                 <th scope="row">{{$opportunity->id}}</th>
                 <td><img src="{{asset('storage/'.$opportunity->picture)}}" alt="image opportunity" style="width:100px;height:100px"></td>
-                <td>{{$opportunity->title_en}}</td>
+                <td>{{$opportunity->title}}</td>
                 <td>
-                    {{ substr($opportunity->description_en,0,20) }}....
+                    {{ substr($opportunity->description,0,20) }}
                 </td>
                 <td>
-                    {{ substr($opportunity->content_en,0,20) }}....
+                    {{ substr($opportunity->content,0,20) }}
+                </td>
+
+                <td>
+                    {{ substr($opportunity->location,0,20) }}
                 </td>
                 <td>
-                    {{ substr($opportunity->heading_details_en,0,20) }}....
+                    {{ substr($opportunity->company,0,20) }}
                 </td>
                 <td>
-                    {{ substr($opportunity->location_en,0,20) }}....
+                    {{ substr($opportunity->requirments,0,20) }}
                 </td>
-                <td>
-                    {{ substr($opportunity->requirments_en,0,20) }}....
-                </td>
-                <td>{{$opportunity->title_ar}}</td>
-                <td>
-                    {{ substr($opportunity->description_ar,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($opportunity->content_ar,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($opportunity->heading_details_ar,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($opportunity->location_ar,0,20) }}....
-                </td>
-                <td>
-                    {{ substr($opportunity->requirments_ar,0,20) }}....
+
                 <td>{{$opportunity->deadline}}</td>
                 <td>{{$opportunity->email}}</td>
                 <td class="d-flex">
@@ -78,7 +70,7 @@
             </tr>
             @empty
             <div class="alert alert-primary" role="alert">
-                No opportunitys Yet
+                {{__('messages.no_opportunities')}}
             </div>
             @endforelse
         </tbody>

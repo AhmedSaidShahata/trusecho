@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Opportunity;
+use App\specialization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class OpportunityController extends Controller
@@ -16,9 +18,11 @@ class OpportunityController extends Controller
      */
     public function index()
     {
+        $opportunities = Opportunity::where('lang',App::getLocale())->get();
 
         return view('admin.opportunities.index',[
-            'opportunities'=>Opportunity::all()
+            'opportunities'=> $opportunities,
+
         ]);
     }
 
@@ -29,7 +33,10 @@ class OpportunityController extends Controller
      */
     public function create()
     {
-        return view('admin.opportunities.create');
+        $specializations=specialization::where('lang',App::getLocale())->get();
+        return view('admin.opportunities.create',[
+            'specializations'=>$specializations
+        ]);
     }
 
     /**
@@ -45,8 +52,9 @@ class OpportunityController extends Controller
         $data['picture']=$picture;
 
         Opportunity::create($data);
-        session()->flash('success', ' Opportunity' . $request->name . 'created successfully ');
-        return redirect(route('admin.jobs.index'));
+        session()->flash('success_en', ' Opportunity Created successfully ');
+        session()->flash('success_ar', ' تم اضافة الفرصة بنجاح ');
+        return redirect(route('admin.opportunitys.index'));
     }
 
     /**
@@ -68,8 +76,10 @@ class OpportunityController extends Controller
      */
     public function edit(Opportunity $opportunity)
     {
+        $specializations=specialization::where('lang',App::getLocale())->get();
         return view('admin.opportunities.create', [
-            'opportunity' => $opportunity
+            'opportunity' => $opportunity,
+            'specializations'=>$specializations
 
             ]);
     }
@@ -90,7 +100,8 @@ class OpportunityController extends Controller
             $data['picture'] = $picture;
         }
         $opportunity->update($data);
-        session()->flash('success', 'opportunity Updated successfully');
+        session()->flash('success_en', ' Opportunity Updated successfully ');
+        session()->flash('success_ar', ' تم تعديل الفرصة بنجاح ');
         return redirect(route('admin.opportunitys.index'));
     }
 
@@ -103,7 +114,8 @@ class OpportunityController extends Controller
     public function destroy( Opportunity $opportunity)
     {
         $opportunity->delete();
-        session()->flash('success', 'Opportunity deleted successfully');
+        session()->flash('success_en', ' Opportunity Deleted successfully ');
+        session()->flash('success_ar', ' تم حذف الفرصة بنجاح ');
         return redirect(route('admin.opportunitys.index'));
     }
 }

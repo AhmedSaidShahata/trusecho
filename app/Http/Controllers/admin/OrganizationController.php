@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrganizationRequest;
 use App\Organization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class OrganizationController extends Controller
@@ -17,7 +18,8 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        return view('admin.organizations.index')->with('organizations', Organization::all());
+        $organization=Organization::where('lang',App::getLocale())->get() ;
+        return view('admin.organizations.index')->with('organizations', $organization);
     }
 
     /**
@@ -44,7 +46,8 @@ class OrganizationController extends Controller
         $data['picture_org'] = $picture_org;
         $data['picture_cover'] = $picture_cover;
         Organization::create($data);
-        session()->flash('success', ' Organization created successfully');
+        session()->flash('success_en', ' Organization created successfully');
+        session()->flash('success_ar', ' تم اضافة المنظمة بنجاح');
         return redirect(route('admin.organizations.index'));
     }
 
@@ -91,7 +94,8 @@ class OrganizationController extends Controller
             $data['picture_cover'] = $picture_cover;
         }
         $organization->update($data);
-        session()->flash('success', 'organization Updated successfully');
+        session()->flash('success_en', 'organization Updated successfully');
+        session()->flash('success_ar', 'تم تعديل المنظمة بنجاح');
         return redirect(route('admin.organizations.index'));
     }
 
@@ -104,7 +108,8 @@ class OrganizationController extends Controller
     public function destroy(Organization $organization)
     {
         $organization->delete();
-        session()->flash('success', 'Success Deleting organization');
-        return redirect(route('admin.organization.index'));
+        session()->flash('success_en', 'organization deleted successfully');
+        session()->flash('success_ar', 'تم حذف المنظمة بنجاح');
+        return redirect(route('admin.organizations.index'));
     }
 }

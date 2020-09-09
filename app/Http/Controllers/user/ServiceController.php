@@ -10,6 +10,7 @@ use App\Service;
 use App\specialization;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class ServiceController extends Controller
 {
@@ -21,12 +22,8 @@ class ServiceController extends Controller
     public function index()
     {
         return view('user.services.services', [
-            'services' => Service::paginate(10),
-            'costs' => Cost::all(),
-            'types' => Type::all(),
-            'specializations' => specialization::all(),
-            'languages' => Language::all()
-
+            'services' => Service::where('lang',App::getLocale())->paginate(10),
+            'specializations' => specialization::where('lang',App::getLocale()),
         ]);
     }
     /**
@@ -101,10 +98,9 @@ class ServiceController extends Controller
 
         return view('user.services.services', [
             'services' => $services,
-            'costs' => Cost::all(),
-            'types' => Type::all(),
+
             'specializations' => specialization::all(),
-            'languages' => Language::all()
+
         ]);
     }
 }

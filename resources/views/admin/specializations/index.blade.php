@@ -3,33 +3,35 @@
 @section('content')
 
 
-<a href="{{route('admin.specializations.create')}}" class="mt-2 btn btn-primary form-control">Add specialization</a>
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+@if(session()->has('success_ar') OR session()->has('success_en') )
+<div class="alert alert-success">
+    {{$lang== 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
 
-@if(session()->has('success'))
-<div class="alert alert-success">{{session()->get('success')}}</div>
+</div>
 @endif
 
 
+<a href="{{route('admin.specializations.create')}}" class="mt-2 btn btn-primary form-control">
+    {{__('messages.add_specialize')}}
+</a>
 
 
 <table class="table table-dark">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name English</th>
-            <th scope="col">Name Arabic</th>
-            <th scope="col">Add Date</th>
-            <th scope="col">Update Date</th>
-            <th scope="col">controls</th>
-
+            <th scope="col">{{__('messages.serial')}}</th>
+            <th scope="col">{{__('messages.name')}}</th>
+            <th scope="col">{{__('messages.add_date')}}</th>
+            <th scope="col">{{__('messages.update_date')}}</th>
+            <th scope="col">{{__('messages.controls')}}</th>
         </tr>
     </thead>
     <tbody>
         @forelse($specializations as $specialization)
         <tr>
             <th scope="row">{{$specialization->id}}</th>
-            <td>{{$specialization->name_en}}</td>
-            <td>{{$specialization->name_ar}}</td>
+            <td>{{$specialization->name}}</td>
             <td>{{$specialization->created_at}}</td>
             <td>{{$specialization->updated_at}}</td>
             <td class="d-flex">
@@ -44,7 +46,7 @@
         </tr>
         @empty
         <div class="alert alert-danger">
-            No specializations Yet
+            {{__('messages.no_specialize')}}
         </div>
 
         @endforelse

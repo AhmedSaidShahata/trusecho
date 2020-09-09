@@ -20,41 +20,41 @@
         <div class="org-job-section-info__options">
             <ul class="options__list">
                 <li class="options__items">
-                    <a href="#" class="options__item">contact the company</a>
+                    <a href="#" class="options__item">{{__('messages.contact_company')}}</a>
                 </li>
                 <hr />
                 <li class="options__items">
-                    <a href="#" class="options__item">Report a problem</a>
+                    <a href="#" class="options__item">{{__('messages.report')}}</a>
                 </li>
             </ul>
         </div>
-        <a href="#apply-for-job" class="orgs-job-apply-btn">Apply now</a>
+        <a href="#apply-for-job" class="orgs-job-apply-btn">{{__('messages.apply_now')}}</a>
     </div>
     <div class="right-panel">
         <h1 class="right-panel__header">
-            {{$opportunity->heading_details_en}}
+            {{$opportunity->heading_details}}
         </h1>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Location:</p>
+                <p class="right-panel__subtitle">{{__('messages.location')}}:</p>
             </div>
-            <p class="right-panel__subtitle-value">{{$opportunity->location_en}}</p>
+            <p class="right-panel__subtitle-value">{{$opportunity->location}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Publishing Date:</p>
+                <p class="right-panel__subtitle">{{__('messages.publish_date')}}:</p>
             </div>
             <p class="right-panel__subtitle-value">{{$opportunity->created_at}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Deadline:</p>
+                <p class="right-panel__subtitle">{{__('messages.deadline')}}:</p>
             </div>
             <p class="right-panel__subtitle-value">{{$opportunity->deadline}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">No. of applications:</p>
+                <p class="right-panel__subtitle">{{__('messages.number_app')}}:</p>
             </div>
             <div hidden>{{!$application_count = App\Jobapp::where('job_id', '=', $opportunity->id)->get()->count()}}</div>
             <p class="right-panel__subtitle-value">
@@ -63,7 +63,7 @@
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Email:</p>
+                <p class="right-panel__subtitle">{{__('messages.email')}}:</p>
             </div>
             <p class="right-panel__subtitle-value">{{$opportunity->email}}</p>
         </div>
@@ -72,17 +72,17 @@
         </p>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Rate the job:</p>
+                <p class="right-panel__subtitle">{{__('messages.rate_opportunity')}}</p>
             </div>
 
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Job requirements:</p>
+                <p class="right-panel__subtitle">{{__('messages.requirments')}}:</p>
             </div>
         </div>
         <ul class="right-panel__job-requirements-list">
-            <?php $requirments_exp = explode("-", $opportunity->requirments_en) ?>
+            <?php $requirments_exp = explode("-", $opportunity->requirments) ?>
             @foreach($requirments_exp as $requirment)
             <li class="right-panel__job-requirements-item">
                 {{$requirment}}
@@ -93,7 +93,7 @@
         <div class="job-comments">
             <div class="job-comments__content-box">
                 <div class="job-comments__header">
-                    <span class="job-comments__word">Comments</span>
+                    <span class="job-comments__word">{{__('messages.comments')}}</span>
                     <hr class="horizontal-line" />
                 </div>
                 <div class="job-comments__send-box">
@@ -145,7 +145,7 @@
 <div class="popup" id="apply-for-job">
     <div class="popup__content">
         <div class="popup__left">
-            <h1 class="popup__header">Applying for a job</h1>
+            <h1 class="popup__header">{{__('messages.apply_now')}}</h1>
             <div class="header__underline"></div>
             <form action="{{route('user.jobapps.store')}}" method="post" enctype="multipart/form-data">
                 @csrf

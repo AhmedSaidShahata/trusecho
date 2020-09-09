@@ -11,12 +11,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="/css/admin/{{LaravelLocalization::getCurrentLocale()}}-style.css" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
 <body>
+
+    <span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
+    <span hidden class="my_lang">{{'/'.LaravelLocalization::getCurrentLocale()}}</span>
+
     <!-- <div class="popup ">
         <div class="row justify-content-center align-items-center w-100">
             <div class="text-center features col-md-3">
@@ -45,12 +50,84 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a>
+        <a class="navbar-brand" href="#"><i class="fas fa-tachometer-alt"></i> {{__('messages.admin_dash')}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul style="list-style: none; font-size:20px;" class="parent-ul ">
+                {{!$lang=LaravelLocalization::getCurrentLocale()}}
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                <li class="{{ $localeCode == $lang ? 'hidden' : '' }}" style="margin: 13px 15px 0px 14px; text-transform: uppercase;">
+
+                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        {{ $localeCode }}
+                    </a>
+                </li>
+                @endforeach
+                <ul class="d-lg-none responsive_control d-xs-block list-group">
+                    <li class="list-group-item">
+                        <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i>{{__('messages.users')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.organizations.index')}}"><i class="fas fa-users"></i> {{__('messages.organizations')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.newsorgs.index')}}"><i class="fas fa-users"></i> {{__('messages.news')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.services.index')}}"><i class="fas fa-gifts"></i> {{__('messages.services')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.scholarships.index')}}"><i class="fas fa-gifts"></i> {{__('messages.scholarships')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.jobs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.jobs')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> {{__('messages.blogs')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.opportunitys.index')}}"><i class="far fa-clipboard"></i> {{__('messages.opportunities')}}</a>
+                    </li>
+                    <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> {{__('messages.categories')}}</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> {{__('messages.costs')}}</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.types.index')}}"><i class="fas fa-gifts"></i> {{__('messages.types')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> {{__('messages.specializations')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.languages.index')}}"><i class="fas fa-gifts"></i> {{__('messages.languages')}}</a>
+                    </li>
+                    <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.jobapps.index')}}"><i class="fas fa-gifts"></i> {{__('messages.job_app')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.appscholarships.index')}}"><i class="fas fa-gifts"></i> {{__('messages.scholar_app')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.faqs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.faqs')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i> {{__('messages.contacts')}}</a>
+                    </li>
+
+
+            </ul>
+
 
         </div>
         <ul class="navbar-nav ml-auto">
@@ -92,65 +169,68 @@
 
     <section class="admin-body">
         <div class="row">
-            <div class="col-md-3 pr-0 side-bar">
+            <div class="col-lg-3  d-none  d-lg-block pr-0 side-bar">
                 <ul class=" list-group">
                     <li class="list-group-item">
-                        <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i> Users</a>
+                        <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i>{{__('messages.users')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.organizations.index')}}"><i class="fas fa-users"></i> Organizations</a>
+                        <a href="{{route('admin.organizations.index')}}"><i class="fas fa-users"></i> {{__('messages.organizations')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.services.index')}}"><i class="fas fa-gifts"></i> Services</a>
+                        <a href="{{route('admin.newsorgs.index')}}"><i class="fas fa-users"></i> {{__('messages.news')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.scholarships.index')}}"><i class="fas fa-gifts"></i> Scholarships</a>
+                        <a href="{{route('admin.services.index')}}"><i class="fas fa-gifts"></i> {{__('messages.services')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.jobs.index')}}"><i class="fas fa-gifts"></i> jobs</a>
+                        <a href="{{route('admin.scholarships.index')}}"><i class="fas fa-gifts"></i> {{__('messages.scholarships')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> Blogs</a>
+                        <a href="{{route('admin.jobs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.jobs')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.opportunitys.index')}}"><i class="far fa-clipboard"></i> Opportunities</a>
-                    </li>
-                    <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
-
-                    <li class="list-group-item">
-                        <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> Categories</a>
-                    </li>
-
-                    <li class="list-group-item">
-                        <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> Costs</a>
-                    </li>
-
-                    <li class="list-group-item">
-                        <a href="{{route('admin.types.index')}}"><i class="fas fa-gifts"></i> Types</a>
+                        <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> {{__('messages.blogs')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> Specializations</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="{{route('admin.languages.index')}}"><i class="fas fa-gifts"></i> languages</a>
+                        <a href="{{route('admin.opportunitys.index')}}"><i class="far fa-clipboard"></i> {{__('messages.opportunities')}}</a>
                     </li>
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
+
                     <li class="list-group-item">
-                        <a href="{{route('admin.jobapps.index')}}"><i class="fas fa-gifts"></i> Job Applications</a>
+                        <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> {{__('messages.categories')}}</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> {{__('messages.costs')}}</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.types.index')}}"><i class="fas fa-gifts"></i> {{__('messages.types')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.appscholarships.index')}}"><i class="fas fa-gifts"></i> Scholarship Applications</a>
+                        <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> {{__('messages.specializations')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.faqs.index')}}"><i class="fas fa-gifts"></i> Faqs</a>
+                        <a href="{{route('admin.languages.index')}}"><i class="fas fa-gifts"></i> {{__('messages.languages')}}</a>
+                    </li>
+                    <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.jobapps.index')}}"><i class="fas fa-gifts"></i> {{__('messages.job_app')}}</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i> Contacts</a>
+                        <a href="{{route('admin.appscholarships.index')}}"><i class="fas fa-gifts"></i> {{__('messages.scholar_app')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.faqs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.faqs')}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i> {{__('messages.contacts')}}</a>
                     </li>
 
                 </ul>
             </div>
-            <div class="col-md-9 ">
+            <div class="contain col-lg-9 ">
                 @yield('content')
 
             </div>
@@ -159,111 +239,114 @@
     </section>
 
     <script>
-        //=========================================== Start bestscholar  With Ajax ===============================
-        $(document).on("click", ".best-scholar", function() {
-
-            let reference = $(this);
-            let scholarId = reference.data("scholarid");
-
-            alert(scholarId);
+        $(function() {
 
 
-            $.ajax({
-                url: "/admin/bestscholars ",
-                type: "post",
-                dataType: "text",
-                data: {
-                    _token: "{{csrf_token()}}",
-                    scholarId: scholarId,
+            let myLang = $(".my_lang").text()
+            //=========================================== Start bestscholar  With Ajax ===============================
+            $(document).on("click", ".best-scholar", function() {
 
-                },
-                success: function(data) {
-                    if (reference.text() == ' Best ') {
-                        reference.text(' Unbest ')
+                let reference = $(this);
+                let scholarId = reference.data("scholarid");
 
-                    } else {
-                        reference.text(' Best ');
 
+                $.ajax({
+                    url:myLang+"/admin/bestscholars ",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        scholarId: scholarId,
+
+                    },
+                    success: function(data) {
+                        if (reference.text() == ' Best ') {
+                            reference.text(' Unbest ')
+
+                        } else {
+                            reference.text(' Best ');
+
+                        }
                     }
-                }
+                })
             })
-        })
-        //=========================================== Start best jobs  With Ajax ===============================
-        $(document).on("click", ".best-job", function() {
+            //=========================================== Start best jobs  With Ajax ===============================
+            $(document).on("click", ".best-job", function() {
 
-            let reference = $(this);
-            let jobId = reference.data("jobid");
+                let reference = $(this);
+                let jobId = reference.data("jobid");
 
-            $.ajax({
-                url: "/admin/bestjobs ",
-                type: "post",
-                dataType: "text",
-                data: {
-                    _token: "{{csrf_token()}}",
-                    jobId: jobId,
+                $.ajax({
+                    url:myLang+"/admin/bestjobs ",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        jobId: jobId,
 
-                },
-                success: function(data) {
-                    if (reference.text() == ' Best ') {
-                        reference.text(' Unbest ')
+                    },
+                    success: function(data) {
+                        if (reference.text() == ' Best ') {
+                            reference.text(' Unbest ')
 
-                    } else {
-                        reference.text(' Best ');
+                        } else {
+                            reference.text(' Best ');
 
+                        }
                     }
-                }
+                })
             })
-        })
-        //=========================================== Start best jobs  With Ajax ===============================
-        $(document).on("click", ".best-service", function() {
+            //=========================================== Start best jobs  With Ajax ===============================
+            $(document).on("click", ".best-service", function() {
 
-            let reference = $(this);
-            let serviceId = reference.data("serviceid");
+                let reference = $(this);
+                let serviceId = reference.data("serviceid");
 
-            $.ajax({
-                url: "/admin/bestservices ",
-                type: "post",
-                dataType: "text",
-                data: {
-                    _token: "{{csrf_token()}}",
-                    serviceId: serviceId,
+                $.ajax({
+                    url:myLang+"/admin/bestservices ",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        serviceId: serviceId,
 
-                },
-                success: function(data) {
-                    if (reference.text() == ' Best ') {
-                        reference.text(' Unbest ')
+                    },
+                    success: function(data) {
+                        if (reference.text() == ' Best ') {
+                            reference.text(' Unbest ')
 
-                    } else {
-                        reference.text(' Best ');
+                        } else {
+                            reference.text(' Best ');
 
+                        }
                     }
-                }
+                })
             })
-        })
-        //=========================================== Start best jobs  With Ajax ===============================
-        $(document).on("click", ".best-organization", function() {
+            //=========================================== Start best jobs  With Ajax ===============================
+            $(document).on("click", ".best-organization", function() {
 
-            let reference = $(this);
-            let organizationId = reference.data("organizationid");
+                let reference = $(this);
+                let organizationId = reference.data("organizationid");
 
-            $.ajax({
-                url: "/admin/bestorganizations ",
-                type: "post",
-                dataType: "text",
-                data: {
-                    _token: "{{csrf_token()}}",
-                    organizationId: organizationId,
+                $.ajax({
+                    url:myLang+"/admin/bestorganizations ",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        organizationId: organizationId,
 
-                },
-                success: function(data) {
-                    if (reference.text() == ' Best ') {
-                        reference.text(' Unbest ')
+                    },
+                    success: function(data) {
+                        if (reference.text() == ' Best ') {
+                            reference.text(' Unbest ')
 
-                    } else {
-                        reference.text(' Best ');
+                        } else {
+                            reference.text(' Best ');
 
+                        }
                     }
-                }
+                })
             })
         })
     </script>

@@ -4,66 +4,36 @@
 
 
 <div class="search-section">
-    <h1 class="search-section__header">Services</h1>
+    <h1 class="search-section__header">{{__('messages.services')}}</h1>
     <div class="search-section__info">
         <form action="{{ route('user.servicesearch')}}" class="landing-section__info-selections">
-            <div class="selection-div u-margin-right-medium">
-                <label for="cars" class="landing-section__info-selections-label">Cost</label>
-                <div class="custom-select">
-                    <select name="cost_id" id="cost">
-                        <option disabled selected value="">costs</option>
-                        @foreach($costs as $cost)
-                        <option <?php if (isset($_GET['cost_id']) and $cost->id == $_GET['cost_id']) echo 'selected' ?> value="{{$cost->id}}">{{$cost->name_en}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+
+
 
             <div class="selection-div u-margin-right-medium">
-                <label for="type" class="landing-section__info-selections-label">Type</label>
-                <div class="custom-select">
-                    <select name="type_id" id="type" class="select-for-label">
-                        <option disabled selected value="">types</option>
-                        @foreach($types as $type)
-                        <option <?php if (isset($_GET['type_id']) and $type->id == $_GET['type_id']) echo 'selected' ?> value="{{$type->id}}">{{$type->name_en}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="selection-div u-margin-right-medium">
-                <label for="speicialization" class="landing-section__info-selections-label">speicialization</label>
+                <label for="speicialization" class="landing-section__info-selections-label">{{__('messages.specializations')}}</label>
                 <div class="custom-select">
                     <select name="specialize_id" id="speicialization">
-                        <option disabled selected value="">speicializations</option>
+                        <option disabled selected value="">{{__('messages.specializations')}}</option>
                         @foreach($specializations as $specialization)
-                        <option <?php if (isset($_GET['specialize_id']) and $specialization->id == $_GET['specialize_id']) echo 'selected' ?> value="{{$specialization->id}}">{{$specialization->name_en}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="selection-div">
-                <label for="language" class="landing-section__info-selections-label">Langauge</label>
-                <div class="custom-select">
-                    <select name="language_id" id="language">
-                        <option disabled selected value="">languages</option>
-                        @foreach($languages as $language)
-                        <option <?php if (isset($_GET['language_id']) and $language->id == $_GET['language_id']) echo 'selected' ?> value="{{$language->id}}">{{$language->name_en}}</option>
+                        <option <?php if (isset($_GET['specialize_id']) and $specialization->id == $_GET['specialize_id']) echo 'selected' ?> value="{{$specialization->id}}">{{$specialization->name}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
 
+
             <div class="search-section__illustration-box">
-                <img src="img/jobs-illustration.svg" alt="jobs" class="search-section__illustrations">
+                <img src="{{asset('img/jobs-illustration.svg')}}" alt="jobs" class="search-section__illustrations">
             </div>
     </div>
     <div class="landing-section__info-buttons-section ">
         <button class="landing-section__info-buttons" type="submit">
-            <img src="img/Search icon.svg" alt="Search icon" class="search-icon">
-            <p>search</p>
+            <img src="{{asset('img/Search icon.svg')}}" alt="Search icon" class="search-icon">
+            <p>{{__('messages.search')}}</p>
         </button>
 
-        <a href="{{route('user.services.index')}}" class="landing-section__info-buttons">RESET</a>
+        <a href="{{route('user.services.index')}}" class="landing-section__info-buttons">{{__('messages.reset')}}</a>
     </div>
     </form>
 </div>
@@ -75,12 +45,12 @@
         @forelse($services as $service)
         <div class="search-results__card">
             <div class="card-picture-box">
-                <span class="opportunity-type-label">{{$service->cost->name_en}}</span>
+                <span class="opportunity-type-label">{{$service->specialization->name}}</span>
                 <img src="{{asset('storage/'.$service->picture)}}" alt="Picutre 1" class="card-picture" />
             </div>
-            <h1 class="search-results__card-header">{{$service->title_en}}</h1>
+            <h1 class="search-results__card-header">{{$service->title}}</h1>
             <p class="search-results__card-paragraph">
-                {{$service->description_en}}
+                {{$service->description}}
             </p>
             <div class="search-results__card-rating-box">
 

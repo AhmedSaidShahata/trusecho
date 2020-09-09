@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageRequest;
 use App\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class LanguageController extends Controller
 {
@@ -16,7 +17,8 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        return view('admin.languages.index')->with('languages', language::all());
+        $language=Language::where('lang',App::getLocale())->get();
+        return view('admin.languages.index')->with('languages');
     }
 
     /**
@@ -38,7 +40,8 @@ class LanguageController extends Controller
     public function store(LanguageRequest $request)
     {
         Language::create($request->all());
-        session()->flash('success', 'Success Adding language ' . $request->name);
+        session()->flash('success', 'Success Added language');
+        session()->flash('success', 'تم اضافة اللغة بنجاح');
         return redirect(route('admin.languages.index'));
     }
 
@@ -76,7 +79,8 @@ class LanguageController extends Controller
     {
         $language->update($request->all());
         $language->save();
-        session()->flash('success', 'Success Updating language to ' . $request->name);
+        session()->flash('success', 'Success updated language');
+        session()->flash('success', 'تم تعديل اللغة بنجاح');
         return redirect(route('admin.languages.index'));
     }
 
@@ -89,7 +93,8 @@ class LanguageController extends Controller
     public function destroy(Language $language)
     {
         $language->delete();
-        session()->flash('success', 'Success Deleting language ');
+        session()->flash('success', 'Success Added language');
+        session()->flash('success', 'تم حذف اللغة بنجاح');
         return redirect(route('admin.languages.index'));
     }
 }

@@ -6,6 +6,7 @@ use App\Faq;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FaqRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class FaqController extends Controller
 {
@@ -16,7 +17,9 @@ class FaqController extends Controller
      */
     public function index()
     {
-        return view('admin.faqs.index')->with('faqs', Faq::all());
+        $faqs = Faq::where('lang', App::getLocale())->get();
+
+        return view('admin.faqs.index')->with('faqs', $faqs);
     }
 
     /**
@@ -39,7 +42,8 @@ class FaqController extends Controller
     {
 
         faq::create($request->all());
-        session()->flash('success', 'Success Adding faq ' . $request->name);
+        session()->flash('success_en', 'Success Added Question ');
+        session()->flash('success_ar', 'تم اضافة السؤال بنجاح ');
         return redirect(route('admin.faqs.index'));
     }
 
@@ -76,7 +80,8 @@ class FaqController extends Controller
     {
         $faq->update($request->all());
         $faq->save();
-        session()->flash('success', 'Success Updating faq to ' . $request->name);
+        session()->flash('success_en', 'Success Updated Question ');
+        session()->flash('success_ar', 'تم تعديل السؤال بنجاح ');
         return redirect(route('admin.faqs.index'));
     }
 
@@ -89,7 +94,8 @@ class FaqController extends Controller
     public function destroy(Faq $faq)
     {
         $faq->delete();
-        session()->flash('success', 'Success Deleting faq ' );
+        session()->flash('success_en', 'Success Deleted Question ');
+        session()->flash('success_ar', 'تم حذف السؤال بنجاح ');
         return redirect(route('admin.faqs.index'));
     }
 }

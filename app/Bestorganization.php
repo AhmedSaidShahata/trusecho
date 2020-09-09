@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bestorganization extends Model
 {
     protected $fillable = [
-        'organization_id',
+        'organization_id','lang'
     ];
 }

@@ -1,5 +1,6 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
+{{!$lang='_'.LaravelLocalization::getCurrentLocale()}}
 <div class="organization-cover-pic-box">
     <img src="{{asset('storage/'.$organization->picture_cover)}}" alt="org cover pic" class="organization-cover-pic" style="height:376px; width:100%" />
     <div class="organization-profile-info-box">
@@ -7,83 +8,90 @@
             <img src="{{asset('storage/'.$organization->picture_org)}}" alt="Company Logo" class="organization-profile-pic" style="height:200px;width:200px" />
         </div>
         <div class="organization-info">
-            <h1 class="organization-name">{{$organization->name_en}}</h1>
+            <h1 class="organization-name">{{$organization->name }}</h1>
             <div class="followers-box">
-                <p class="followers-title">followers:</p>
-                <p class="followers-value">0</p>
+                <p class="followers-title">{{__('messages.followers')}}:</p>
+                <div hidden> {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $organization->id)->get()}}
+                    {{!$followerCount = App\Followersorg::where('org_id', '=', $organization->id)->get()->count()}}
+
+                </div>
+                <p class="followers-value">{{$followerCount}}</p>
             </div>
         </div>
     </div>
 </div>
-<div class="org-job-section-info">
+<div class="org-job-section-info" style="margin-bottom: 26px;">
     <div class="left-panel">
         <div class="org-job-section-info__options">
             <ul class="options__list">
                 <li class="options__items">
-                    <a href="#" class="options__item">About</a>
+                    <a href="#" class="options__item">{{__('messages.about')}}</a>
                 </li>
                 <hr />
                 <li class="options__items">
-                    <a href="organization-page-news.html" class="options__item">News</a>
+                    <a href="{{route('user.newsorgs.show',$organization->id)}}" class="options__item">{{__('messages.news')}}</a>
                 </li>
             </ul>
         </div>
         <div class="org-job-section-info__options u-margin-top-small">
             <ul class="options__list">
                 <li class="options__items">
-                    <a href="#" class="options__item">contact us</a>
+                    <a href="#" class="options__item">{{__('messages.contact_us')}}</a>
                 </li>
                 <hr />
                 <li class="options__items">
-                    <a href="#" class="options__item">Call us</a>
+                    <a href="#" class="options__item">{{__('messages.call_us')}}</a>
                 </li>
                 <li class="options__items">
-                    <a href="#" class="options__item">Report a problem</a>
+                    <a href="#" class="options__item">{{__('messages.report')}}</a>
                 </li>
             </ul>
         </div>
         <a href="#" class="orgs-job-whatsapp-btn">
             <img src="{{asset('img/Icon awesome-whatsapp.svg')}}" alt="Whatsapp" class="contact-icon">
-            Contact via Whatsap
+            {{__('messages.contact_whats')}}
+
         </a>
         <a href="#" class="orgs-job-email-btn">
             <img src="{{asset('img/Icon material-email.svg')}}" alt="email" class="contact-icon">
-            Contact via email
+            {{__('messages.contact_email')}}
+
+
         </a>
     </div>
     <div class="right-panel">
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">country:</p>
+                <p class="right-panel__subtitle">{{__('messages.country')}}:</p>
             </div>
-            <p class="right-panel__subtitle-value"> {{$organization->country_en}}</p>
+            <p class="right-panel__subtitle-value"> {{$organization->country }}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Followers:</p>
+                <p class="right-panel__subtitle">{{__('messages.followers')}}:</p>
             </div>
-            <p class="right-panel__subtitle-value">0</p>
+            <p class="right-panel__subtitle-value">{{$followerCount}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">website:</p>
+                <p class="right-panel__subtitle">{{__('messages.website')}}:</p>
             </div>
             <p class="right-panel__subtitle-value"><a href="{{$organization->website}}">{{$organization->website}}</a></p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Email:</p>
+                <p class="right-panel__subtitle">{{__('messages.email')}}:</p>
             </div>
             <p class="right-panel__subtitle-value"> {{$organization->email}}</p>
         </div>
-        <p class="right-panel__subtitle u-margin-top-small">description:</p>
+        <p class="right-panel__subtitle u-margin-top-small">{{__('messages.description')}}:</p>
         <p class="right-panel__description">
-            {{$organization->description_en}}
+            {{$organization->description }}
 
         </p>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle u-width-fix">Rate the organization:</p>
+                <p class="right-panel__subtitle u-width-fix">{{__('messages.rate_org')}}:</p>
                 <span hidden class="org-id">{{$organization->id}}</span>
             </div>
             <div class="right-panel__subtitle-value">

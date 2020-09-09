@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Bestjob;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class BestjobController extends Controller
@@ -42,6 +43,7 @@ class BestjobController extends Controller
         $best_job = Bestjob::where('job_id', '=', $jobId);
         if ($best_job->get()->count() == 0) {
             Bestjob::create([
+                'lang'=>App::getLocale(),
                 'job_id' => $jobId
             ]);
         } else {

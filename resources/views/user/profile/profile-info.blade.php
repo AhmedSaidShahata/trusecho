@@ -13,13 +13,13 @@
             {{!$friend_request=App\Friend::where(['user_id'=> $friend->id,'friend_id'=>Auth::user()->id])}}
 
             @if($friend_is_exist->get()->count()==0 && $friend_is_exist->get()->count()!=0 )
-            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Add Friend</button>
+            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">{{__('messages.add_friend')}}</button>
             @else
             @if(isset($friend_is_exist->get()->first()->accept))
             @if($friend_is_exist->get()->first()->accept==0)
-            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Friend Request Sent</button>
+            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">{{__('messages.friend_req)}}</button>
             @else
-            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Friends</button>
+            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">{{__('messages.friends')}}</button>
             @endif
             @endif
 
@@ -29,13 +29,13 @@
 
 
             @if($friend_request->get()->count()==0 && $friend_is_exist->get()->count()==0)
-            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Add Friend</button>
+            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">{{__('messages.add_friend')}}</button>
             @else
             @if(isset($friend_request->get()->first()->accept))
             @if($friend_request->get()->first()->accept==0)
-            <button data-friend="{{$friend->id}}" class="change-profile-pic-btn accept">Accept Request</button>
+            <button data-friend="{{$friend->id}}" class="change-profile-pic-btn accept">{{__('messages.accept_req')}}</button>
             @else
-            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">Friends</button>
+            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">{{__('messages.friends')}}</button>
             @endif
             @endif
 
@@ -44,7 +44,7 @@
 
 
             <button class="change-profile-pic-btn btn-grn-color">
-                Contact Via whatsapp
+            {{__('messages.whats')}}
                 <p>
                     ( {{$friend->whatsapp?? 'unavailable'}})
                 </p>
@@ -52,7 +52,7 @@
             <form action="mailto:{{$friend->email}}">
                 <button class="change-profile-pic-btn btn-prp-color">
 
-                    contact via email
+                {{__('messages.email')}}
                     <p>
                         {{$friend->email?? 'unavailable'}}
                     </p>
@@ -67,41 +67,41 @@
                 <h2 class="profile__subtitle">{{$friend->profile->job}}</h2>
             </div>
             <div class="info-piece">
-                <h1 class="profile__header">Summary</h1>
+                <h1 class="profile__header">{{__('messages.summary')}}</h1>
                 <div class="hr"></div>
                 <h2 class="profile__subtitle">{{$friend->profile->personal_desc}}</h2>
             </div>
             <div class="extra-info-container">
                 <div class="extra-info-container__left-box">
                     <div class="info-piece">
-                        <h1 class="profile__header">Phone Number</h1>
+                        <h1 class="profile__header">{{__('messages.phone_number')}}</h1>
                         <div class="hr"></div>
                         <h2 class="profile__subtitle">{{$friend->profile->phone}}</h2>
                     </div>
                     <div class="info-piece">
-                        <h1 class="profile__header">Address</h1>
+                        <h1 class="profile__header">{{__('messages.address')}}</h1>
                         <div class="hr"></div>
                         <h2 class="profile__subtitle">{{$friend->profile->address}}</h2>
                     </div>
                     <div class="info-piece">
-                        <h1 class="profile__header">Gender</h1>
+                        <h1 class="profile__header">{{__('messages.gender')}}</h1>
                         <div class="hr"></div>
                         <h2 class="profile__subtitle">{{$friend->profile->gender}}</h2>
                     </div>
                 </div>
                 <div class="extra-info-container__right-box">
                     <div class="info-piece">
-                        <h1 class="profile__header">Date of birth</h1>
+                        <h1 class="profile__header">   {{__('messages.db_birth')}}</h1>
                         <div class="hr"></div>
                         <h2 class="profile__subtitle">{{$friend->profile->date_of_birth}}</h2>
                     </div>
                     <div class="info-piece">
-                        <h1 class="profile__header">Specialization</h1>
+                        <h1 class="profile__header">{{__('messages.specialize')}}</h1>
                         <div class="hr"></div>
                         <h2 class="profile__subtitle">{{$friend->profile->specialization}}</h2>
                     </div>
                     <div class="info-piece">
-                        <h1 class="profile__header">Job</h1>
+                        <h1 class="profile__header">{{__('messages.job')}}</h1>
                         <div class="hr"></div>
                         <h2 class="profile__subtitle">{{$friend->profile->job}}</h2>
                     </div>

@@ -7,6 +7,7 @@ use App\Blogcomment;
 use App\CategoryBlog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class CategoryblogController extends Controller
 {
@@ -17,8 +18,8 @@ class CategoryblogController extends Controller
      */
     public function index()
     {
-
-        return view('user.blogs.categories')->with('categories', CategoryBlog::all());
+        $categories=CategoryBlog::where('lang',App::getLocale())->get();
+        return view('user.blogs.categories')->with('categories',$categories );
     }
 
     /**
@@ -50,8 +51,10 @@ class CategoryblogController extends Controller
      */
     public function show($id)
     {
-        $blogs = Blog::where('cat_id', '=', $id)->paginate(10);
+        $blogs = Blog::where('category_blog_id', '=', $id)->paginate(10);
         $category=CategoryBlog::find($id);
+
+
 
 
         return view('user.blogs.blogs-detailes', [

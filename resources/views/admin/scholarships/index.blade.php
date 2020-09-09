@@ -1,30 +1,33 @@
 @extends('home')
 @section('content')
-<a href="{{route('admin.scholarships.create')}}" class="mt-2 btn btn-primary form-control">Add ScholarShip</a>
+
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+@if(session()->has('success_ar') OR session()->has('success_en') )
+<div class="alert alert-success">
+    {{$lang== 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+</div>
+@endif
+
+<a href="{{route('admin.scholarships.create')}}" class="mt-2 btn btn-primary form-control">{{__('messages.add_scholar')}}</a>
 <div style="overflow-x:auto ;">
     <table class="table table-dark">
-
         <thead>
-
-
             <tr>
-                <th scope="col">id</th>
-                <th scope="cpl">image</th>
-                <th scope="col">Title English</th>
-                <th scope="col">Description English</th>
-                <th scope="col">Content English</th>
-                <th scope="col">heading details English</th>
-                <th scope="col">location English</th>
-                <th scope="col">requirments English</th>
-                <th scope="col">Title Arabic</th>
-                <th scope="col">Description Arabic</th>
-                <th scope="col">Content Arabic</th>
-                <th scope="col">heading details Arabic</th>
-                <th scope="col">location Arabic</th>
-                <th scope="col">requirments Arabic</th>
-                <th scope="col">Deadline</th>
-                <th scope="col">Email</th>
-                <th>Controls</th>
+                <th scope="col">{{__('messages.serial')}}</th>
+                <th scope="col">{{__('messages.picture')}}</th>
+                <th scope="col">{{__('messages.title')}}</th>
+                <th scope="col">{{__('messages.description')}}</th>
+                <th scope="col">{{__('messages.content')}}</th>
+                <th scope="col">{{__('messages.location')}}</th>
+                <th scope="col">{{__('messages.requirments')}}</th>
+                <th scope="col">{{__('messages.deadline')}}</th>
+                <th scope="col">{{__('messages.email')}}</th>
+                <th scope="col">{{__('messages.creator')}}</th>
+                <th scope="col">{{__('messages.specialization')}}</th>
+                <th scope="col">{{__('messages.type')}}</th>
+                <th scope="col">{{__('messages.cost')}}</th>
+                <th>{{__('messages.controls')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -32,23 +35,20 @@
             <tr>
                 <th scope="row">{{$scholarship->id}}</th>
                 <td><img src="{{asset('storage/'.$scholarship->picture)}}" alt="image scholarship" style="width:100px;height:100px"></td>
-                <td>{{$scholarship->title_en}}</td>
-                <td>{{$scholarship->description_en}}</td>
-                <td>{{$scholarship->content_en}}</td>
-                <td>{{$scholarship->heading_details_en}}</td>
-                <td>{{$scholarship->location_en}}</td>
-                <td>{{$scholarship->requirments_en}}</td>
-                <td>{{$scholarship->title_ar}}</td>
-                <td>{{$scholarship->description_ar}}</td>
-                <td>{{$scholarship->content_ar}}</td>
-                <td>{{$scholarship->heading_details_ar}}</td>
-                <td>{{$scholarship->location_ar}}</td>
-                <td>{{$scholarship->requirments_ar}}</td>
+                <td>{{$scholarship->title}}</td>
+                <td>{{$scholarship->description}}</td>
+                <td>{{$scholarship->content}}</td>
+                <td>{{$scholarship->location}}</td>
+                <td>{{$scholarship->requirments}}</td>
                 <td>{{$scholarship->deadline}}</td>
                 <td>{{$scholarship->email}}</td>
+                <td>{{$scholarship->user->name}}</td>
+                <td>{{$scholarship->specialization->name}}</td>
+                <td>{{$scholarship->type->name}}</td>
+                <td>{{$scholarship->cost->name}}</td>
                 <td class="d-flex">
                     <div hidden>{{!$best_scholar=App\Bestscholar::where('scholarship_id', '=',$scholarship->id)->count()}}</div>
-                    <button data-scholarid="{{$scholarship->id}}" class="best-scholar btn btn-primary"> {{$best_scholar > 0 ? 'UnBest' : 'Best'}} </button>
+                    <input {{$best_scholar > 0 ? 'checked' : ''}} type="checkbox" data-scholarid="{{$scholarship->id}}" class="best-scholar btn btn-primary">
                     <a href="{{route('admin.scholarships.edit',$scholarship->id)}}" class="btn"><i class="far fa-edit"></i> </a>
                     <form method="POST" class="form-inline" action="{{route('admin.scholarships.destroy',$scholarship->id)}}">
                         @csrf
@@ -60,7 +60,7 @@
             </tr>
             @empty
             <div class="alert alert-primary" role="alert">
-                No scholarships Yet
+                {{__('messages.no_scholar')}}
             </div>
             @endforelse
         </tbody>

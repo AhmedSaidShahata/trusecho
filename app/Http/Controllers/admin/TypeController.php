@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TypeRequest;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class TypeController extends Controller
 {
@@ -16,7 +17,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.types.index')->with('types', Type::all());
+        $types=Type::where('lang',App::getLocale())->get();
+        return view('admin.types.index')->with('types',$types);
     }
 
     /**
@@ -38,7 +40,8 @@ class TypeController extends Controller
     public function store(TypeRequest $request)
     {
         Type::create($request->all());
-        session()->flash('success', 'Success Adding Type ' . $request->name);
+        session()->flash('success_en', 'Success Added Type');
+        session()->flash('success_ar', 'تم اضافة النوع بنجاح' );
         return redirect(route('admin.types.index'));
     }
 
@@ -76,7 +79,8 @@ class TypeController extends Controller
     {
         $type->update($request->all());
         $type->save();
-        session()->flash('success', 'Success Updating Type to ' . $request->name);
+        session()->flash('success_en', 'Success Updated Type');
+        session()->flash('success_ar', 'تم تعديل  النوع بنجاح' );
         return redirect(route('admin.types.index'));
     }
 
@@ -89,7 +93,8 @@ class TypeController extends Controller
     public function destroy(Type $type)
     {
         $type->delete();
-        session()->flash('success', 'Success Deleting Type ');
+        session()->flash('success_en', 'Success Deleted Type');
+        session()->flash('success_ar', 'تم حذف النوع بنجاح' );
         return redirect(route('admin.types.index'));
     }
 }

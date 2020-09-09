@@ -2,96 +2,82 @@
 
 @section('content')
 
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 <div class="card">
 
     <div class="card-header">
-        <h2>job {{$job->title_en}} / {{$job->title_ar}} </h2>
+        <h2>{{$job->title }} </h2>
     </div>
     <div class="card-body">
         <ul class="list-group">
 
-            <!----------------------------------------- Arabic----------------------------------------->
-            <p class="text-center p-2" style="background:burlywood">job English </p>
             <li class="list-group-item">
-                Description
+                {{__('messages.description')}}
             </li>
             <li class="list-group-item">
-                {{$job->description_en}}
-            </li>
-
-
-            <li class="list-group-item">
-                Content
-            </li>
-            <li class="list-group-item">
-                {{$job->content_en}}
-            </li>
-
-
-            <li class="list-group-item">
-                Heading Details
-            </li>
-            <li class="list-group-item">
-                {{$job->heading_details_en}}
-            </li>
-
-
-            <li class="list-group-item">
-                location
-            </li>
-            <li class="list-group-item">
-                {{$job->location_en}}
-            </li>
-
-
-
-            <li class="list-group-item">
-                requirments
-            </li>
-            <li class="list-group-item">
-                {{$job->requirments_en}}
-            </li>
-            <!----------------------------------------- English ----------------------------------------->
-            <p class="text-center p-2 mt-4" style="background:burlywood">job Arabic </p>
-
-            <li class="list-group-item">
-                Description
-            </li>
-            <li class="list-group-item">
-                {{$job->description_ar}}
-            </li>
-            <li class="list-group-item">
-                Content
-            </li>
-            <li class="list-group-item">
-                {{$job->content_ar}}
+                {{$job->description}}
             </li>
 
             <li class="list-group-item">
-                Heading Details
+                {{__('messages.content')}}
             </li>
             <li class="list-group-item">
-                {{$job->heading_details_ar}}
+                {{$job->content}}
             </li>
 
             <li class="list-group-item">
-                location
+                {{__('messages.head_det')}}
+            </li>
+            <li class="list-group-item">
+                {{$job->heading_details}}
+            </li>
+
+            <li class="list-group-item">
+                {{__('messages.location')}}
+            </li>
+            <li class="list-group-item">
+                {{$job->location}}
+            </li>
+
+            <li class="list-group-item">
+                {{__('messages.requirments')}}
+            </li>
+            <li class="list-group-item">
+                {{$job->requirments}}
+            </li>
+
+            <li class="list-group-item">
+                {{__('messages.salary')}}
+            </li>
+            <li class="list-group-item">
+                {{$job->salary}}
+            </li>
+
+            <li class="list-group-item">
+                {{__('messages.company_name')}}
+            </li>
+            <li class="list-group-item">
+                {{$job->company}}
+            </li>
+
+            <li class="list-group-item">
+                {{__('messages.location')}}
             </li>
             <li class="list-group-item">
                 {{$job->location_ar}}
             </li>
 
             <li class="list-group-item">
-                requirments
+                {{__('messages.requirments')}}
             </li>
             <li class="list-group-item">
                 {{$job->requirments_ar}}
             </li>
-            <p class="text-center p-2 mt-4" style="background:burlywood">Other </p>
+            <p class="text-center p-2 mt-4" style="background:burlywood">{{__('messages.other_inf')}}</p>
 
             <li class="list-group-item">
-                Email
+                {{__('messages.email')}}
             </li>
             <li class="list-group-item">
                 {{$job->email}}
@@ -99,7 +85,7 @@
 
 
             <li class="list-group-item">
-                Deadline
+                {{__('messages.deadline')}}
             </li>
             <li class="list-group-item">
                 {{$job->deadline}}
@@ -113,7 +99,7 @@
 
 
         </ul>
-        <a href="{{route('admin.jobs.index')}}" class="form-control btn btn-primary">Back</a>
+        <a href="{{route('admin.jobs.index')}}" class="form-control btn btn-primary">{{__('messages.back')}}</a>
     </div>
 </div>
 

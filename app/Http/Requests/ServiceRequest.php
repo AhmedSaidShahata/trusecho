@@ -26,15 +26,10 @@ class ServiceRequest extends FormRequest
         return [
 
             'price' => 'required',
-            'title_en' => 'required|max:190',
-            'description_en' => 'required|max:190',
-            'content_ar' => 'required',
-            'title_ar' => 'required|max:190',
-            'description_ar' => 'required|max:190',
-            'cost_id' => 'required',
-            'type_id'=>'required',
-            'language_id'=>'required',
-            'specialize_id'=>'required',
+            'title' => 'required|max:190',
+            'description' => 'required|max:190',
+            'content' => 'required',
+            'specialization_id'=>'required'
 
 
         ];

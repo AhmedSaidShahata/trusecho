@@ -6,6 +6,7 @@ use App\CategoryBlog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryBlogController extends Controller
@@ -17,7 +18,8 @@ class CategoryBlogController extends Controller
      */
     public function index()
     {
-        return view('admin.categories_blogs.index')->with('categories', CategoryBlog::all());
+        $categories=CategoryBlog::where('lang',App::getLocale())->get();
+        return view('admin.categories_blogs.index')->with('categories',$categories);
     }
 
     /**
@@ -44,7 +46,10 @@ class CategoryBlogController extends Controller
         $data['picture'] = $picture;
         CategoryBlog::create($data);
 
-        session()->flash('success', 'Success Add Category ' . $request->name);
+        session()->flash('success_en', 'Success Add Category ');
+
+        session()->flash('success_ar', 'تم اضافة القسم بنجاح ');
+
         return redirect(route('admin.categories.index'));
     }
 
@@ -94,7 +99,10 @@ class CategoryBlogController extends Controller
 
         $categoryBlog->save();
 
-        session()->flash('success', 'Success Updated Category ');
+
+        session()->flash('success_en', 'Success Updated Category ');
+
+        session()->flash('success_ar', 'تم تعديل القسم بنجاح ');
 
         return redirect(route('admin.categories.index'));
     }
@@ -109,7 +117,9 @@ class CategoryBlogController extends Controller
     {
         $categoryBlog = CategoryBlog::find($id);
         $categoryBlog->delete();
-        session()->flash('success', 'Success Delete Category ');
+        session()->flash('success_en', 'Success Deleted Category ');
+
+        session()->flash('success_ar', 'تم حذف القسم بنجاح ');
         return redirect(route('admin.categories.index'));
     }
 }

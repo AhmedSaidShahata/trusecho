@@ -25,16 +25,16 @@
                 <h1 class="blogs-card-content__header">$category->name_en</h1>
                 <div class="blogs-card-content-info">
                     <p class="blogs-card-content__subtitle">Comments:</p>
-                    <p class="blogs-card-content__subtitle-value">539</p>
+                    <p class="blogs-card-content__subtitle-value">0</p>
                 </div>
                 <div class="blogs-card-content-info">
                     <p class="blogs-card-content__subtitle">Participants:</p>
-                    <p class="blogs-card-content__subtitle-value">539</p>
+                    <p class="blogs-card-content__subtitle-value">1</p>
                 </div>
             </div>
-            <a href="{{route('user.categoryblogs.show',$category->id)}}" class="blogs-results__btn">visit</a>
+            <a href="{{route('user.categoryblogs.show',$category->id)}}" class="blogs-results__btn">{{__('messages.visit')}}</a>
         </div>
-        
+
         @empty
         <div class="alert alert-warning" role="alert">
             No Blogs Yet

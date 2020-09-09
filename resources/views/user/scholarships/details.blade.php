@@ -1,5 +1,6 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
+{{!$lang='_'.LaravelLocalization::getCurrentLocale()}}
 <div class="organization-cover-pic-box">
     <img  src="{{asset('storage/'.$scholarship->picture) }}" alt="org cover pic" class="organization-cover-pic" style="height: 300px; width:100%" />
     <div class="organization-profile-info-box">
@@ -20,47 +21,47 @@
         <div class="org-job-section-info__options">
             <ul class="options__list">
                 <li class="options__items">
-                    <a href="#" class="options__item">contact the company</a>
+                    <a href="#" class="options__item">{{__('messages.contact_company')}}</a>
                 </li>
                 <hr />
                 <li class="options__items">
-                    <a href="#" class="options__item">Report a problem</a>
+                    <a href="#" class="options__item">{{__('messages.report')}}</a>
                 </li>
             </ul>
         </div>
-        <a href="{{route('user.appscholars.show',$scholarship->id)}}" class="orgs-job-apply-btn">Apply now</a>
+        <a href="{{route('user.appscholars.show',$scholarship->id)}}" class="orgs-job-apply-btn">{{__('messages.apply_now')}}</a>
     </div>
     <div class="right-panel">
         <h1 class="right-panel__header">
-            {{$scholarship->heading_details_en}}
+            {{$scholarship->{'heading_details'.$lang} }}
         </h1>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Location:</p>
+                <p class="right-panel__subtitle">{{__('messages.location')}}:</p>
             </div>
-            <p class="right-panel__subtitle-value">{{$scholarship->location_en}}</p>
+            <p class="right-panel__subtitle-value">{{$scholarship->{'location'.$lang} }}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Publishing Date:</p>
+                <p class="right-panel__subtitle">{{__('messages.publish_date')}}:</p>
             </div>
             <p class="right-panel__subtitle-value">{{$scholarship->created_at}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Deadline:</p>
+                <p class="right-panel__subtitle">{{__('messages.deadline')}}:</p>
             </div>
             <p class="right-panel__subtitle-value">{{$scholarship->deadline}}</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">No. of applications:</p>
+                <p class="right-panel__subtitle">{{__('messages.number_app')}}:</p>
             </div>
             <p class="right-panel__subtitle-value">0</p>
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Email:</p>
+                <p class="right-panel__subtitle">{{__('messages.email')}}:</p>
             </div>
             <p class="right-panel__subtitle-value">{{$scholarship->email}}</p>
         </div>
@@ -69,10 +70,10 @@
         </p>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Rate the Scholarship:</p>
+                <p class="right-panel__subtitle">{{__('messages.rate_scholar')}}:</p>
             </div>
             <div class="right-panel__subtitle-value">
-                {{!$count_rate_of_scholar=App\Scholarshiprate::where('scholarship_id', '=', $scholarship->id)->get()->count()}}
+               <div hidden> {{!$count_rate_of_scholar=App\Scholarshiprate::where('scholarship_id', '=', $scholarship->id)->get()->count()}}</div>
 
                 @if($count_rate_of_scholar ==0)
 
@@ -119,11 +120,11 @@
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">Scholarship requirements:</p>
+                <p class="right-panel__subtitle">{{__('messages.scholar_require')}}:</p>
             </div>
         </div>
         <ul class="right-panel__job-requirements-list">
-            <?php $requirments_exp = explode("-", $scholarship->requirments_en) ?>
+            <?php $requirments_exp = explode("-", $scholarship->{'requirements'.$lang}) ?>
             @foreach($requirments_exp as $requirment)
             <li class="right-panel__job-requirements-item">
                 {{$requirment}}
@@ -134,11 +135,11 @@
         <div class="job-comments">
             <div class="job-comments__content-box">
                 <div class="job-comments__header">
-                    <span class="job-comments__word">Comments</span>
+                    <span class="job-comments__word">{{__('messages.comments')}}</span>
                     <hr class="horizontal-line" />
                 </div>
                 <div class="job-comments__send-box">
-                    <textarea id="blog-comment" cols="30" rows="7" class="job-comments__content comment-scholar" placeholder="Please write your comments here..."></textarea>
+                    <textarea id="blog-comment" cols="30" rows="7" class="job-comments__content comment-scholar" placeholder="{{__('messages.placeholder_comment_scholar')}}"></textarea>
                     <a type="button" class="job-comments__send-icon add-comment-scholar" method="POST">
                         <img src="{{asset('img/Send blue icon.png')}}" alt="send " class="send-icon" />
                     </a>
@@ -198,49 +199,5 @@
         </div>
     </div>
 </div>
-<div class="popup" id="apply-for-job">
-    <div class="popup__content">
-        <div class="popup__left">
-            <h1 class="popup__header">Applying for a job</h1>
-            <div class="header__underline"></div>
-            <form action="{{route('user.jobapps.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <!-- class="add-cv-input" -->
-                <input type="file" id="" name="cv" placeholder="none" />
-                <!-- <div class="add-cv">
-                    <div class="add-cv__title-box">
-                        <img src="img/adding icon.svg" alt="add icon" class="add-cv-icon" />
-                        <h3 class="add-cv__title">add a cv</h3>
-                    </div>
-                </div> -->
 
-                <div class="applying-for-job-illustration-box">
-                    <img src="{{asset('img/applying-for-a-job.svg')}}" alt="apply for job" class="applying-for-job-illustration" />
-                </div>
-        </div>
-        <div class="popup__right">
-            <a href="#tours_section" class="popup__closing">×</a>
-
-            <div class="input">
-                <label for="fullname" class="popup__label-style">Full Name</label>
-                <input type="text" id="fullname" name="fullname" class="popup__input-style" placeholder="Full Name..." />
-            </div>
-            <div class="input">
-                <label for="email" class="popup__label-style">Email</label>
-                <input type="email" id="email" name="email" class="popup__input-style" placeholder="Email..." />
-            </div>
-            <div class="input">
-                <label for="phone" class="popup__label-style">Phone Number</label>
-                <input type="text" id="phone-number" name="phone" class="popup__input-style" placeholder="Phone Number..." />
-            </div>
-            <div class="input">
-                <label for="message" class="popup__label-style">Message</label>
-                <textarea id="message" name="message" rows="3" cols="60" class="input-message" placeholder="Your message ...."></textarea>
-            </div>
-            <input type="hidden" value="{{$scholarship->id}}" name="job_id">
-            <button class="input-btn" type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
-</div>
 @endsection

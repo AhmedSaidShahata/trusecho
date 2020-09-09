@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Bestservice;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class BestserviceController extends Controller
 {
@@ -42,6 +43,7 @@ class BestserviceController extends Controller
         $best_service = Bestservice::where('service_id', '=',$serviceId);
         if ($best_service->get()->count() == 0) {
             Bestservice::create([
+                'lang'=>App::getLocale(),
                 'service_id' =>$serviceId
             ]);
         } else {

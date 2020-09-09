@@ -1,10 +1,17 @@
 @extends('home')
 @section('content')
 
-@if(session()->has('success'))
-<div class="alert alert-success">{{session()->get('success')}}</div>
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+@if(session()->has('success_ar') OR session()->has('success_en') )
+<div class="alert alert-success">
+    {{$lang== 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+</div>
 @endif
-<a href="{{route('admin.organizations.create')}}" class="mt-2 btn btn-primary form-control">Add organization</a>
+
+
+
+<a href="{{route('admin.organizations.create')}}" class="mt-2 btn btn-primary form-control">{{__('messages.add_org')}}</a>
 <div style="overflow-x:auto ;">
     <table class="table table-dark">
 
@@ -13,22 +20,17 @@
 
             <tr>
                 <th scope="col">id</th>
-                <th scope="cpl">Name English</th>
-                <th scope="col">Name Arabic</th>
-                <th scope="cpl">Picture Organization</th>
-                <th scope="cpl">Picture Cover</th>
-                <th scope="cpl">Website</th>
-                <th scope="cpl">Email</th>
-                <th scope="col">Country English</th>
-                <th scope="col">Counrty Arabic</th>
-                <th scope="col">Description English</th>
-                <th scope="col">Description Arabic</th>
-                <th scope="col">About English</th>
-                <th scope="col">About Arabic</th>
-                <th scope="col">Whatsapp Number</th>
-                <th scope="col">Add Date</th>
-                <th scope="col">Update Date</th>
-                <th scope="col">controls</th>
+                <th scope="cpl">{{__('messages.name')}}</th>
+                <th scope="cpl">{{__('messages.pic_org')}}</th>
+                <th scope="cpl">{{__('messages.pic_cover')}}</th>
+                <th scope="cpl">{{__('messages.website')}}</th>
+                <th scope="cpl">{{__('messages.email')}}</th>
+                <th scope="col">{{__('messages.country')}}</th>
+                <th scope="col">{{__('messages.description')}}</th>
+                <th scope="col">{{__('messages.whatsapp_num')}}</th>
+                <th scope="col">{{__('messages.add_date')}}</th>
+                <th scope="col">{{__('messages.update_date')}}</th>
+                <th scope="col">{{__('messages.controls')}}</th>
 
             </tr>
         </thead>
@@ -36,36 +38,22 @@
             @forelse($organizations as $organization )
             <tr>
                 <th scope="row">{{$organization->id}}</th>
-                <th scope="row">{{$organization->name_en}}</th>
-                <th scope="row">{{$organization->name_ar}}</th>
+                <th scope="row">{{$organization->name}}</th>
                 <td><img src="{{asset('storage/'.$organization->picture_org)}}" alt="image organization" style="width:100px;height:100px"></td>
                 <td><img src="{{asset('storage/'.$organization->picture_cover)}}" alt="image organization" style="width:100px;height:100px"></td>
                 <td>{{$organization->website}}</td>
                 <td>{{$organization->email}}</td>
-                <td>{{$organization->country_en}}</td>
-                <td>{{$organization->country_ar}}</td>
+                <td>{{$organization->country}}</td>
                 <td>
-
-                    {{ substr($organization->description_en,0,20) }}....
+                    {{ substr($organization->description,0,20) }}
                 </td>
-                <td>
 
-                    {{ substr($organization->description_ar,0,20) }}....
-                </td>
-                <td>
-
-                    {{ substr($organization->description_en,0,20) }}....
-                </td>
-                <td>
-
-                    {{ substr($organization->description_ar,0,20) }}....
-                </td>
                 <td>{{$organization->whatsapp}}</td>
                 <td>{{$organization->created_at}}</td>
                 <td>{{$organization->updated_at}}</td>
                 <td class="d-flex">
                     <div hidden>{{!$best_organization=App\Bestorganization::where('organization_id', '=',$organization->id)->count()}}</div>
-                    <button data-organizationid="{{$organization->id}}" class="best-organization btn btn-primary"> {{$best_organization > 0 ? 'UnBest' : 'Best'}} </button>
+                    <input {{$best_organization > 0 ? 'checked' : ''}} type="checkbox" data-organizationid="{{$organization->id}}" class="best-organization btn btn-primary">
                     <a href="{{route('admin.organizations.show',$organization->id)}}" class="btn"> <i class="far fa-eye"></i></a>
 
                     <a href="{{route('admin.organizations.edit',$organization->id)}}" class="btn"><i class="far fa-edit"></i> </a>
@@ -79,7 +67,7 @@
             </tr>
             @empty
             <div class="alert alert-primary" role="alert">
-                No organizations Yet
+                {{__('messages.no_org')}}
             </div>
             @endforelse
         </tbody>

@@ -15,6 +15,7 @@ class CreateBestscholarsTable extends Migration
     {
         Schema::create('bestscholars', function (Blueprint $table) {
             $table->id();
+            $table->string('lang');
             $table->foreignId('scholarship_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

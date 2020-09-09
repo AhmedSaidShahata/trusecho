@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Opportunity extends Model
 {
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     protected $fillable = [
-        'title_ar', 'description_ar', 'content_ar','heading_details_ar','location_ar','requirments_ar',
-        'title_en', 'description_en', 'content_en','heading_details_en','location_en','requirments_en',
-        'deadline','email','picture'
+        'title', 'description', 'content','heading_details','location','requirments',
+        'deadline','email','picture','user_id','lang','specialization_id','company'
     ];
 }

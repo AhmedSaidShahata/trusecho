@@ -6,9 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
+    public function newsorg(){
+        return $this->hasMany(Newsorg::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     protected $fillable = [
-        'name_en', 'name_ar', 'picture_org', 'picture_cover', 'country_en', 'country_ar', 'about_en',
-        'about_ar','description_en','description_ar','whatsapp', 'email',  'website'
+         'name', 'picture_org', 'picture_cover', 'country', 'about',
+        'description','whatsapp', 'email',  'website','user_id','lang'
+
 
     ];
 }

@@ -14,25 +14,24 @@ class Service extends Model
     {
         return $this->hasMany(Commentjob::class);
     }
-    public function specialize()
+    public function specialization()
     {
         return $this->belongsTo(specialization::class);
     }
-    public function type()
+
+    public function user()
     {
-        return $this->belongsTo(Type::class);
+        return $this->belongsTo(User::class);
     }
-    public function language()
-    {
-        return $this->belongsTo(Language::class);
-    }
+
+
     public function favourite()
     {
         return $this->hasOne(Favouriteservice::class);
     }
     protected $fillable = [
-        'title_en', 'description_en', 'content_en', 'title_ar',
-        'description_ar', 'content_ar', 'picture', 'price',
-        'cost_id', 'type_id', 'specialize_id', 'language_id'
+        'title', 'description', 'content',
+        'picture', 'price', 'user_id', 'lang',
+        'specialization_id'
     ];
 }

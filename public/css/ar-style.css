@@ -1,0 +1,714 @@
+body {
+  font-family: "Cairo", sans-serif;
+}
+
+.navigation {
+  direction: rtl;
+}
+.navigation__logo-box {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.nav-bar__item-nav {
+  font-family: "Cairo", sans-serif;
+}
+
+.dropdown-content a {
+  font-family: "Cairo", sans-serif;
+}
+
+.navigation .nav-bar__item:last-child {
+  margin-right: 5.9rem;
+}
+#menu {
+  right: -25px;
+}
+
+.apply-container-bg {
+  direction: rtl;
+}
+.continue-btn {
+  z-index: 999;
+}
+.apply-content-box {
+  width: 100%;
+  justify-content: normal;
+}
+.upload-file {
+  width: 25%;
+}
+.input {
+  margin-left: 5rem;
+}
+.footer {
+  direction: rtl;
+}
+
+.footer__left-social-icon {
+  margin-right: 2rem;
+}
+
+#truscho-3 {
+  width: 50%;
+}
+
+#upload-truescho-3 {
+  margin-right: 0;
+}
+.blogs-section__info {
+  direction: rtl;
+}
+.blogs-section__illustration-box {
+  margin-left: 0;
+  margin-right: auto;
+}
+.pagination {
+  direction: rtl;
+}
+.blogs-card-content {
+  direction: rtl;
+}
+.blogs-detailed-results__card .blogs-card-content__subtitle {
+  margin-left: auto;
+  margin-right: 0;
+}
+.contact-us-section {
+  direction: rtl;
+}
+
+.contact-us-section__illustration {
+  width: 30%;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.contact-us-form__container {
+  direction: rtl;
+}
+
+.contact-us-form__container-right .contact-us-social-media-icon:last-child {
+  margin-right: 3rem;
+}
+.contact-us-form__container-right {
+  min-height: 94rem;
+}
+
+.faq-section__illustration {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.faq-section__info {
+  direction: rtl;
+}
+
+.accordion-section .accordion .tab-label {
+  direction: rtl;
+}
+
+.accordion-section .accordion input:checked ~ .tab-content {
+  direction: rtl;
+}
+
+.organization-profile-info-box {
+  left: 0;
+  right: 15%;
+  direction: rtl;
+}
+
+.org-job-section-info {
+  direction: rtl;
+}
+
+.org-job-section-info .right-panel {
+  margin-right: 10rem;
+  margin-left: 0;
+  direction: rtl;
+}
+
+.org-job-section-info .right-panel__subtitle-box {
+  margin-left: 28rem;
+  margin-right: 0;
+}
+.job-comments__send-icon {
+  transform: rotateY(180deg);
+}
+.popup__right {
+  direction: rtl;
+}
+
+.search-results__card {
+  direction: rtl;
+}
+
+.search-results__card-header {
+  margin-right: 3rem;
+  margin-left: 0;
+}
+
+.search-results__card-paragraph {
+  margin-top: 2rem;
+  margin-left: 3rem;
+  padding-right: 3rem;
+}
+
+.best-jobs-section__card-deadline {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.search-results__card .deadline-number {
+  margin-right: auto;
+}
+
+.messages {
+  direction: rtl;
+}
+
+.messages__left {
+  direction: rtl;
+}
+
+.messages__right {
+  direction: rtl;
+}
+
+.messages__left .chat-rect-img {
+  width: 13%;
+  margin-right: 0;
+  margin-left: 2rem;
+}
+
+.my-network-section {
+  direction: rtl;
+}
+.my-network-section__illustration-box {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.my-network-section-info {
+  direction: rtl;
+}
+
+.my-network-section-info .friends-card .user-info {
+  margin-left: 0;
+  margin-right: 2.6rem;
+}
+
+.my-network-section-info .friends-card__message-btn {
+  margin-right: 0;
+  margin-left: 5rem;
+}
+
+.contact-icon {
+  margin-right: 0;
+  margin-left: 3rem;
+}
+
+.posts-section {
+  margin-left: 0;
+  margin-right: 20rem;
+}
+
+.post .post-user-info__details {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+.post .post-control-name {
+  margin-right: 2rem;
+  margin-left: 0;
+}
+
+.post .post-comment-pic-box {
+  margin-right: 0;
+  margin-left: 4rem;
+}
+
+.search-form {
+  direction: rtl;
+}
+
+.search-btn {
+  margin-left: 0;
+  margin-right: 4rem;
+}
+
+.pnf {
+  direction: rtl;
+}
+
+.profile-info {
+  direction: rtl;
+}
+
+.profile-info__left-box {
+  margin-right: 0;
+  margin-left: 10rem;
+}
+
+.profile-info__middle-box {
+  margin-right: 0;
+  margin-left: 8rem;
+}
+
+.search-results__card-rating {
+  margin-left: 0;
+  margin-right: 3rem;
+}
+
+.fluid-containter .sign-up-box {
+  direction: rtl;
+}
+
+.fluid-containter .sign-up-box__input {
+  margin-right: 0;
+}
+
+.fluid-containter .sign-up-box .input-width-fix {
+  width: 60%;
+  margin-right: 0 !important;
+  margin-left: 10rem !important;
+}
+
+.fluid-containter .sign-up-box__form {
+  min-height: 65rem;
+  flex-wrap: wrap;
+}
+
+.blog-summary {
+  direction: rtl;
+}
+
+.blog-summary__details-comments .comments {
+  margin-right: 0;
+  margin-left: 3rem;
+}
+.blog-summary__details-views .views {
+  margin-right: 0;
+  margin-left: 3rem;
+}
+
+.blog-summary__details-rate .rate {
+  margin-right: 0;
+  margin-left: 3rem;
+}
+
+.blog-summary__favourite-word {
+  margin-right: 2rem;
+  margin-left: 0;
+}
+
+.post-details__content-box {
+  direction: rtl;
+}
+
+.comments-section__content-box {
+    direction: rtl;
+}
+
+.comments-section__word {
+    margin-right: 0;
+    margin-left: 2rem;
+}
+
+.send-icon {
+    transform: rotateY(180deg);
+}
+
+.comments-section .user-pic-box {
+    margin-right: 0;
+    margin-left: 4rem;
+}
+
+.blog-details__content-box {
+    direction: rtl;
+}
+.blog-details__buttons-like {
+    margin-right: 0;
+    margin-left: 2rem;
+}
+.blog-details__buttons .like-title {
+    font-family: inherit;
+    color: #FFFFFF;
+    margin-left: 0;
+    margin-right: 3rem;
+    font-family: "Cairo", sans-serif;
+}
+
+.blog-details__buttons .share-title {
+    margin-left: 0;
+    margin-right: 3rem;
+    font-family: "Cairo", sans-serif;
+}
+
+.blog-details__social-media .social-media:last-child {
+    margin-right: 4rem;
+}
+
+.blog-details__rating {
+    margin-top: 7rem;
+}
+
+.popup__content {
+   direction: rtl;
+}
+
+.service-summary {
+    direction: rtl;
+}
+
+.service-summary__details-comments .comments {
+    margin-right: 0;
+    margin-left: 3rem;
+}
+
+.service-summary__details-views .views {
+    margin-right: 0;
+    margin-left: 3rem;
+}
+.service-summary__details-rate .rate {
+    margin-right: 0;
+    margin-left: 3rem;
+}
+.service-summary__favourite-word {
+    margin-left: 0;
+    margin-right: 2rem;
+}
+
+.service-details__content-box {
+    direction: rtl;
+}
+
+.service .fav-icon, .service .share-icon {
+    margin-right: 0;
+    margin-left: 3rem;
+}
+
+.service .small-inputs {
+    width: 16rem;
+}
+
+
+.testmonials-card-description {
+        direction: rtl;
+}
+
+.testmonials-card-name {
+    font-size: 2.3rem;
+}
+
+.testmonials-card-rating-number {
+    font-size: 2rem;
+}
+
+.testmonials-card-description {
+    font-size: 1.6rem;
+}
+
+.thanks-for-applying__content-box {
+   direction: rtl;
+}
+
+.timeline {
+    direction: rtl;
+}
+
+.best-scolarships-section-signed {
+    direction: rtl;
+}
+
+.best-scolarships-section-signed__header {
+    margin-left: 0;
+    margin-right: 15rem;
+    margin-top: 10rem;
+}
+
+.best-scolarships-section-signed__card-deadline {
+    margin-left: 0;
+    margin-right: 3rem;
+}
+
+.best-scolarships-section-signed__card .deadline-number {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.best-jobs-section-signed {
+    direction: rtl;
+}
+
+.best-jobs-section-signed__header {
+    margin-left: 0;
+    margin-right: 15rem;
+}
+
+.best-scolarships-section-signed__card-header {
+    margin-left: 0;
+    margin-right: 3rem;
+}
+
+.best-scolarships-section-signed__card-paragraph {
+    padding-right: 3rem;
+}
+
+.best-jobs-section-signed__card-header {
+    margin-left: 0;
+    margin-right: 3rem;
+}
+
+.best-jobs-section-signed__card-paragraph {
+    padding-right: 3rem;
+}
+
+.best-jobs-section-signed__card .deadline-number {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.best-jobs-section-signed__card-deadline {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.best-services-section-signed {
+    direction: rtl;
+}
+
+.best-services-section-signed__header {
+    margin-left: 0;
+    margin-right: 15rem;
+}
+
+.best-services-section-signed__card .details-button {
+    margin-left: 3rem;
+}
+
+.best-services-section-signed__card-rating {
+    margin-right: 1rem;
+}
+
+.best-services-section-signed__card-header {
+    margin-right: 3rem;
+}
+
+.best-services-section-signed__card-paragraph {
+    padding-right: 3rem;
+
+}
+
+.best-organizations-section-signed {
+    direction: rtl;
+}
+
+.best-organizations-section-signed__header {
+    margin-left: 0;
+    margin-right: 15rem;
+}
+
+.blog-section {
+    direction: rtl;
+}
+
+.blog-section__header {
+    margin-left: 0;
+    margin-right: 15rem;
+}
+
+.blog-section .blog-section__pic-box {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.blog-card-content {
+    margin-right: 3rem;
+    width: 100%;
+}
+
+.blog-section__card .blog-card-content__subtitle {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.blog-section__btn {
+    right: 73%;
+    bottom: 1.7rem;
+}
+
+.newsletter-section {
+ direction: rtl;
+ }
+
+ .newsletter-section .subscription-input__email-button {
+  padding: 2.4rem 4.3rem;
+}
+
+.newsletter-section .subscription-input__email {
+  direction: ltr;
+}
+
+.testmonials-section__card-description {
+  direction: rtl;
+}
+
+.testmonials-section {
+  direction: rtl;
+}
+
+.subscriptions-section__content-box .subscriptions-card__description {
+  direction: rtl;
+  text-align: right;
+}
+
+.best-organizations-section {
+  direction: rtl;
+}
+
+.best-services-section {
+  direction: rtl;
+}
+
+.best-services-section__card-paragraph {
+  padding-right: 3rem;
+}
+
+.best-services-section__card-header {
+  margin-left: 0;
+  margin-right: 3rem;
+}
+
+.best-services-section__card-rating {
+  margin-left: 0;
+  margin-right: 3rem;
+}
+
+.best-services-section__card .details-button {
+  margin: 0 3rem;
+}
+
+.best-jobs-section {
+  direction: rtl;
+}
+
+.best-jobs-section__card-header {
+  margin-left: 0;
+  margin-right: 3rem;
+}
+
+.best-jobs-section__card-paragraph {
+  padding-right: 3rem;
+}
+
+.best-jobs-section__card .deadline-number {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.best-scolarships-section {
+  direction: rtl;
+}
+
+.best-scolarships-section__card-header {
+  margin-left: 0;
+  margin-right: 3rem;
+}
+
+.best-scolarships-section__card-paragraph {
+  padding-right: 3rem;
+}
+
+.best-scolarships-section__card-deadline {
+  margin-left: 0;
+  margin-right: 3rem;
+}
+
+.world-wide-section {
+  direction: rtl;
+}
+
+.landing-section__info-selections .selection-div {
+ align-items: flex-end;
+}
+
+.landing-section__info-examples-option {
+  width: 18rem;
+}
+
+/* MEDIA QEURIES */
+@media only screen and (max-width: 1024px) {
+  .responsive-nav-icons__list {
+    margin-right: 20rem;
+  }
+  .navigation__logo-box {
+    display: none;
+  }
+  .upload-file {
+    width: 100%;
+    margin-right: 0;
+  }
+  #truscho-3 {
+    width: 100%;
+  }
+  .org-job-section-info .right-panel {
+    margin-right: 0;
+  }
+  .posts-section {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .profile-info__left-box {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .profile-info__middle-box {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .profile-info__right-box {
+    margin-top: 10rem;
+  }
+  .fluid-containter .sign-up-box .input-width-fix {
+    width: 100%;
+  }
+
+  #sign-up-2 {
+    direction: rtl;
+    padding-top: 30rem;
+  }
+  .fluid-containter .sign-up-box__form {
+    min-height: 130rem;
+  }
+  .btn-width-fix {
+    width: 100% !important;
+  }
+  .service .small-inputs {
+    width: 100%;
+}
+.service .small-inputs:not(:last-child) {
+    margin-bottom: 2rem;
+}
+.best-scolarships-section-signed__header {
+ margin-right: 5rem;
+}
+.best-jobs-section-signed__header {
+    margin-right: 5rem;
+}
+.best-services-section-signed__header {
+    margin-right: 5rem;
+}
+.best-organizations-section-signed__header {
+    margin-right: 5rem;
+}
+.blog-section__header {
+    margin-right: 5rem;
+}
+.newsletter-section .subscription-input__email-button {
+  padding: 2.7rem 4.3rem;
+}
+.newsletter-section .subscription-input__paragraph {
+  padding-right: 2rem;
+  padding-left: 5rem;
+}
+}

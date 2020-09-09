@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bestservice extends Model
 {
     protected $fillable = [
-        'service_id',
+        'service_id','lang'
     ];
 }

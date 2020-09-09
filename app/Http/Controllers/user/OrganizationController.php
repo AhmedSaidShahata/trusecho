@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Organization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class OrganizationController extends Controller
 {
@@ -16,7 +17,7 @@ class OrganizationController extends Controller
     public function index()
     {
         return view('user.organizations.organizations',[
-            'organizations'=>Organization::paginate(10)
+            'organizations'=>Organization::where('lang',App::getLocale())->paginate(10)
         ]);
     }
 

@@ -15,6 +15,7 @@ class CreateBestorganizationsTable extends Migration
     {
         Schema::create('bestorganizations', function (Blueprint $table) {
             $table->id();
+            $table->string('lang');
             $table->foreignId('organization_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

@@ -16,188 +16,8 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    <div class="navigation" id="navbar">
-      <div class="navigation__logo-box">
-        <img src="img/2.png" alt="Logo" class="nav-bar__logo" />
-      </div>
-      <div class="nav-bar">
-        <ul class="nav-bar__list">
-          <li class="nav-bar__item">
-            <a href="home-page.html" class="nav-bar__item-nav">Home</a>
-          </li>
-          <li class="nav-bar__item dropdown">
-            <a href="jobs.html" class="nav-bar__item-nav dropbtn">Jobs</a>
-            <div class="dropdown-content">
-              <a href="#">All Jobs</a>
-              <a href="#">Engineering</a>
-              <a href="#">Information Technology</a>
-              <a href="#">Media, TV, and Jounrals</a>
-              <a href="#">Future Jobs</a>
-              <a href="#">Education Sector</a>
-            </div>
-          </li>
-          <li class="nav-bar__item dropdown">
-            <a href="services.html" class="nav-bar__item-nav dropbtn"
-              >Services</a
-            >
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </li>
-          <li class="nav-bar__item">
-            <a href="organizations.html" class="nav-bar__item-nav"
-              >Organizations</a
-            >
-          </li>
-          <li class="nav-bar__item dropdown">
-            <a href="opportunities.html" class="nav-bar__item-nav dropbtn"
-              >Opportunities</a
-            >
-            <div class="dropdown-content">
-              <a href="#">Bachelor scholarships</a>
-              <a href="#">Masters scholarships</a>
-              <a href="#">PHD scholarships</a>
-              <a href="#">Exchange Programs</a>
-              <a href="#">Job Offers</a>
-              <a href="#">Internships</a>
-              <a href="#">Volunteering Opportunities</a>
-              <a href="#">Workshops</a>
-              <a href="#">Courses</a>
-            </div>
-          </li>
-          <li class="nav-bar__item">
-            <a href="sign-up-1.html" class="nav-bar__item-nav nav-btn">Sign up</a>
-          </li>
-          <li class="nav-bar__item">
-            <a href="sign-in.html" class="nav-bar__item-nav">Log in</a>
-          </li>
-        </ul>
-      </div>
-      <!-- Burger Side bar -->
-      <nav role="responsive-navigation">
-        <div id="menuToggle">
-          <!--
-    A fake / hidden checkbox is used as click reciever,
-    so you can use the :checked selector on it.
-    -->
-          <input type="checkbox" />
 
-          <!--
-    Some spans to act as a hamburger.
-    
-    They are acting like a real hamburger,
-    not that McDonalds stuff.
-    -->
-          <span></span>
-          <span></span>
-          <span></span>
-
-          <!--
-    Too bad the menu has to be inside of the button
-    but hey, it's pure CSS magic.
-    -->
-          <ul id="menu">
-            <a href="home-page.html"><li>Home</li></a>
-            <a href="organizations.html" class="head-sub-menu-item"><li>Organizations</li>  </a>
-              <div class="extra-selection">
-                <ul class="sub-menu">
-                  <li class="sub-item">Item 1</li>
-                  <li class="sub-item">Item 2</li>
-                  <li class="sub-item">Item 3</li>
-                </ul>
-              </div>
-            <a href="jobs.html"><li>Jobs</li></a>
-            <a href="opportunities.html"><li>Opportunities</li></a>
-            <a href="services.html"><li>Services</li></a>
-            <a href="sign-in.html"><li>Log In</li></a>
-            <a href="sign-up-1.html"><li>Sign Up</li></a>
-            
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div class="landing-section">
-      <div class="landing-section__info">
-        <h1 class="landing-section__info-header">
-          Search for the best Opportunities
-        </h1>
-        <form action="#" class="landing-section__info-selections">
-          <div class="selection-div">
-            <label for="cars" class="landing-section__info-selections-label"
-              >Cost</label
-            >
-            <div class="custom-select">
-              <select name="cost" id="cost">
-                <option value="Fully Funded">Fully Funded</option>
-                <option value="Partialy Funded">Partialy Funded</option>
-              </select>
-            </div>
-          </div>
-          <div class="selection-div">
-            <label for="type" class="landing-section__info-selections-label"
-              >Type</label
-            >
-            <div class="custom-select">
-              <select name="type" id="type" class="select-for-label">
-                <option value="Fully Funded">Fully Funded</option>
-                <option value="Partialy Funded">Partialy Funded</option>
-              </select>
-            </div>
-          </div>
-          <div class="selection-div">
-            <label
-              for="speicialization"
-              class="landing-section__info-selections-label"
-              >speicialization</label
-            >
-            <div class="custom-select">
-              <select name="speicialization" id="speicialization">
-                <option value="Fully Funded">Fully Funded</option>
-                <option value="Partialy Funded">Partialy Funded</option>
-              </select>
-            </div>
-          </div>
-          <div class="selection-div">
-            <label for="language" class="landing-section__info-selections-label"
-              >Langauge</label
-            >
-            <div class="custom-select">
-              <select name="language" id="language">
-                <option value="Fully Funded">Fully Funded</option>
-                <option value="Partialy Funded">Partialy Funded</option>
-              </select>
-            </div>
-          </div>
-        </form>
-        <div class="landing-section__info-examples">
-            <div class="landing-section__info-examples-option">
-                <p class="text-sample">Faisl Uni</p>
-                <img src="img/X.svg" alt="X" class="close-symbol">
-            </div>
-            <div class="landing-section__info-examples-option">
-                <p class="text-sample">Faisl Uni</p>
-                <img src="img/X.svg" alt="X" class="close-symbol">
-            </div>
-            <div class="landing-section__info-examples-option">
-                <p class="text-sample">Faisl Uni</p>
-                <img src="img/X.svg" alt="X" class="close-symbol">
-            </div>
-            <div class="landing-section__info-examples-option">
-                <p class="text-sample">Faisl Uni</p>
-                <img src="img/X.svg" alt="X" class="close-symbol">
-            </div>
-        </div>
-        <div class="landing-section__info-buttons-section">
-            <button class="landing-section__info-buttons">
-                <img src="img/Search icon.svg" alt="Search icon" class="search-icon">
-                <p>search</p>
-            </button>
-            <button class="landing-section__info-buttons">RESET</button>
-        </div>
-      </div>
-    </div>
+  
     <div class="world-wide-section">
         <div class="world-wide-section_info">
             <h1 class="world-wide-section_info-header" data-aos="fade-right" data-aos-delay="300">Worldwide Opportunities for Youth</h1>
@@ -224,7 +44,7 @@
           <h1 class="options-section__header">Your future career is here</h1>
             <p class="options-section__paragraph">there are tons of open vacancies you may find and it can flourish your future</p>
         </div>
-        <div class="options-section__card" data-aos="fade-up" data-aos-delay="400"> 
+        <div class="options-section__card" data-aos="fade-up" data-aos-delay="400">
           <div class="options-section__card-icon-box">
             <img src="img/services-icon.svg" alt="Services icon" class="options-section__card-icon">
           </div>
@@ -242,7 +62,7 @@
           and shape your path</p>
         </div>
       </div>
-      
+
     </div>
     <div class="best-scolarships-section">
       <h1 class="best-scolarships-section__header">Best scholarships</h1>
@@ -899,7 +719,7 @@
           </div>
           <div class="footer__right-info">
             <ul class="footer__right-info-list">
-              <li class="footer__right-info-list-item"> 
+              <li class="footer__right-info-list-item">
                 get our app
               </li>
               <li>

@@ -3,7 +3,9 @@ body {
 
     background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
         url(https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: repeat-y;
+    background-position: bottom;
 }
 /* * {
     position: relative;
@@ -67,7 +69,7 @@ body {
 }
 .admin-body .side-bar {
     background-color: #191b1c;
-    height: 170vh;
+    height: 439vh;
 }
 .admin-body .side-bar ul li {
     background-color: transparent;
@@ -84,10 +86,10 @@ body {
 .fa-trash-alt {
     color: red;
 }
-.fa-eye{
+.fa-eye {
     color: white;
 }
-.bg-red{
+.bg-red {
     background-color: rgb(238, 168, 168);
 }
 
@@ -105,10 +107,22 @@ label {
     font-size: 18px;
     margin-right: 10px;
 }
-.col-md-9 {
-    padding:31px 38px 43px 30px ;
+.contain {
+     padding: 31px 39px 50px 30px;
     position: relative;
-    animation: moving .7s ease;
+    animation: moving 0.5s ease;
+}
+
+.card {
+    /* margin-top: 13px;
+    margin-right: 13px; */
+}
+.list-group-item {
+    direction: ltr;
+}
+.list-group-item a {
+    text-transform: uppercase !important;
+    font-size: 16px;
 }
 
 .card img {
@@ -139,4 +153,32 @@ label {
     100% {
         transform: scale(1);
     }
+}
+
+.hidden {
+    display: none;
+}
+
+.alert {
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    margin-top: 8px;
+
+    width: 18px;
+    height: 18px;
+}
+
+.parent-ul {
+    padding: 0;
+    direction: rtl;
+}
+
+.responsive_control {
+    padding: 0;
+}
+
+.navbar-brand {
+    margin: 0 10px;
 }

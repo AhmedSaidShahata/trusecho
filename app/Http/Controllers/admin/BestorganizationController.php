@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Bestorganization;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class BestorganizationController extends Controller
 {
@@ -41,6 +42,7 @@ class BestorganizationController extends Controller
         $best_organization = Bestorganization::where('organization_id', '=', $organizationId);
         if ($best_organization->get()->count() == 0) {
             Bestorganization::create([
+                'lang'=>App::getLocale(),
                 'organization_id' => $organizationId
             ]);
         } else {

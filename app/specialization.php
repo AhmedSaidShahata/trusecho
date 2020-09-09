@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class specialization extends Model
 {
-    protected $fillable = ['name_en', 'name_ar'];
+    protected $fillable = ['name','lang'];
 
     public function scholarship()
     {

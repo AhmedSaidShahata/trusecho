@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Faq;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class FaqController extends Controller
 {
@@ -15,7 +16,9 @@ class FaqController extends Controller
      */
     public function index()
     {
-        return view('user.faqs.FAQ')->with('faqs', Faq::all());
+        $faqs = Faq::where('lang', App::getLocale())->get();
+
+        return view('user.faqs.FAQ')->with('faqs', $faqs);
     }
 
     /**

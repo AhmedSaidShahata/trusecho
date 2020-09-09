@@ -24,8 +24,7 @@ class SpecializationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_en'=>'required',
-            'name_ar'=>'required',
+            'name'=>'required'
         ];
     }
 }

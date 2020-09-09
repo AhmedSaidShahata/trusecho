@@ -18,7 +18,7 @@ class CreateContactsTable extends Migration
             $table->string('fullname');
             $table->string('email');
             $table->text('message');
-            $table->enum('watch',['Seen','Not Seen'])->default('Not Seen');
+            $table->enum('seen',['No','Yes'])->default('No');
             $table->timestamps();
         });
     }

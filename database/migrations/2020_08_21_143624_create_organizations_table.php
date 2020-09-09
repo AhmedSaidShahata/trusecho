@@ -9,24 +9,22 @@ class CreateOrganizationsTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return voidnde
      */
     public function up()
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
-            $table->string('country_ar');
-            $table->string('country_en');
-            $table->string('name_ar');
-            $table->string('name_en');
-            $table->text('about_ar');
-            $table->text('about_en');
-            $table->text('description_ar');
-            $table->text('description_en');
+            $table->string('lang');
+            $table->string('country');
+            $table->string('name');
+            $table->text('about');
+            $table->text('description');
             $table->string('whatsapp');
             $table->string('picture_org');
             $table->string('picture_cover');
             $table->string('website');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('email');
             $table->timestamps();
         });

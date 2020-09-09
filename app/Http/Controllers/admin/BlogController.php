@@ -7,6 +7,7 @@ use App\CategoryBlog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +20,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('admin.blogs.index')->with('blogs', Blog::all());
+        $blogs = Blog::where('lang', App::getLocale())->get();
+        return view('admin.blogs.index')->with('blogs', $blogs);
     }
 
     /**
@@ -29,8 +31,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-
-        return view('admin.blogs.create')->with('categories', CategoryBlog::all());
+        $categories = CategoryBlog::where('lang', App::getLocale())->get();
+        return view('admin.blogs.create')->with('categories', $categories);
     }
 
     /**
@@ -46,7 +48,8 @@ class BlogController extends Controller
         $data['picture'] = $picture;
         $data['user_id'] = Auth::user()->id;
         Blog::create($data);
-        session()->flash('success', 'Blog created successfully');
+        session()->flash('success_en', 'Blog created successfully');
+        session()->flash('success_ar', 'تم اضافة المقال بنجاح');
         return redirect(route('admin.blogs.index'));
     }
 
@@ -56,9 +59,11 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Blog $blog)
     {
-        //
+        return view('admin.blogs.show',[
+            'blog'=>$blog
+        ]);
     }
 
     /**
@@ -69,8 +74,9 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
+        $categories = CategoryBlog::where('lang', App::getLocale())->get();
 
-        return view('admin.blogs.create', ['blog' => $blog, 'categories' => CategoryBlog::all()]);
+        return view('admin.blogs.create', ['blog' => $blog, 'categories' =>$categories]);
     }
 
     /**
@@ -92,7 +98,8 @@ class BlogController extends Controller
         }
         $blog->update($data);
 
-        session()->flash('success', 'post Updated successfully');
+        session()->flash('success_en', 'Blog Updated successfully');
+        session()->flash('success_ar', 'تم تعديل المقال بنجاح');
         return redirect(route('admin.blogs.index'));
     }
 
@@ -105,7 +112,8 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         $blog->delete();
-        session()->flash('success', 'blog deleted successfully');
+        session()->flash('success_en', 'Blog Deleted successfully');
+        session()->flash('success_ar', 'تم حذف المقال بنجاح');
         return redirect(route('admin.blogs.index'));
     }
 }

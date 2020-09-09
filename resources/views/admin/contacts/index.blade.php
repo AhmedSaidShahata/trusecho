@@ -3,7 +3,7 @@
 @section('content')
 
 
-<a href="{{route('admin.contacts.create')}}" class="mt-2 btn btn-primary form-control">Add contact</a>
+
 
 @if(session()->has('success'))
 <div class="alert alert-success">{{session()->get('success')}}</div>
@@ -15,24 +15,24 @@
 <table class="table table-dark">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Full Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Message</th>
-            <th scope="col">Watch</th>
-            <th scope="col">Recieved Date</th>
-            <th scope="col">controls</th>
+            <th scope="col">{{__('messages.serial')}}</th>
+            <th scope="col">{{__('messages.full_name')}}</th>
+            <th scope="col">{{__('messages.email')}}</th>
+            <th scope="col">{{__('messages.message')}}</th>
+            <th scope="col">{{__('messages.watch')}}</th>
+            <th scope="col">{{__('messages.rec_date')}}</th>
+            <th scope="col">{{__('messages.controls')}}</th>
 
         </tr>
     </thead>
     <tbody>
         @forelse($contacts as $contact)
-        <tr class="{{$contact->watch=='Not Seen' ? 'bg-red':''}}">
+        <tr class="{{$contact->seen=='No' ? 'bg-red':''}}">
             <th scope="row">{{$contact->id}}</th>
             <td>{{$contact->fullname}}</td>
             <td>{{$contact->email}}</td>
             <td>{{$contact->message}}</td>
-            <td>{{$contact->watch}}</td>
+            <td>{{$contact->seen=='Yes' ? __('messages.watched') : __('messages.not_watched') }}</td>
             <td>{{$contact->created_at}}</td>
 
             <td class="d-flex">
@@ -47,7 +47,7 @@
         </tr>
         @empty
         <div class="alert alert-danger">
-            No contacts Yet
+        {{__('messages.no_messages')}}
         </div>
 
         @endforelse

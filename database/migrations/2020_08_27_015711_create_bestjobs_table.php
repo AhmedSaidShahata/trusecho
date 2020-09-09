@@ -15,6 +15,7 @@ class CreateBestjobsTable extends Migration
     {
         Schema::create('bestjobs', function (Blueprint $table) {
             $table->id();
+            $table->string('lang');
             $table->foreignId('job_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

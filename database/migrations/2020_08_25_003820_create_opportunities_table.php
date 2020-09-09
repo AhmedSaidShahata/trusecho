@@ -15,19 +15,16 @@ class CreateOpportunitiesTable extends Migration
     {
         Schema::create('opportunities', function (Blueprint $table) {
             $table->id();
-            $table->string('title_en');
-            $table->string('description_en');
-            $table->text('content_en');
-            $table->text('heading_details_en');
-            $table->string('location_en');
-            $table->text('requirments_en');
-            $table->string('title_ar');
-            $table->string('description_ar');
-            $table->text('content_ar');
-            $table->text('heading_details_ar');
-            $table->string('location_ar');
-            $table->text('requirments_ar');
+            $table->string('lang');
+            $table->string('title');
+            $table->string('description');
+            $table->text('content');
+            $table->string('company');
+            $table->string('location');
+            $table->text('requirments');
             $table->date('deadline');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('specialization_id')->constrained()->onDelete('cascade');
             $table->string('email');
             $table->string('picture');
             $table->timestamps();

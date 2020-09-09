@@ -52,7 +52,7 @@ class ContactController extends Controller
     public function show(Contact $contact)
 
     {
-        $contact->watch = 'Seen';
+        $contact->seen = 'Yes';
         $contact->save();
 
         return view('admin.contacts.show')->with('contact', $contact);

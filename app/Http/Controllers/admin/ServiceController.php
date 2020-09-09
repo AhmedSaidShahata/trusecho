@@ -10,6 +10,7 @@ use App\Service;
 use App\specialization;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
@@ -21,8 +22,9 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('admin.services.index',[
-            'services' => Service::all(),
+        $services = Service::where('lang', App::getLocale())->get();
+        return view('admin.services.index', [
+            'services' => $services,
 
         ]);
     }
@@ -34,11 +36,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.services.create',[
-            'costs' => Cost::all(),
-            'types' => Type::all(),
-            'specializations' => specialization::all(),
-            'languages' => Language::all()
+        $specializations = specialization::where('lang', App::getLocale())->get();
+        return view('admin.services.create', [
+            'specializations' => $specializations,
         ]);
     }
 
@@ -55,7 +55,8 @@ class ServiceController extends Controller
         $picture = $request->picture->store('images', 'public');
         $data['picture'] = $picture;
         Service::create($data);
-        session()->flash('success', ' service ' . $request->name . ' created successfully ');
+        session()->flash('success_en', ' Service Created Successfully ');
+        session()->flash('success_ar', ' تم اضافة الخدمة بنجاح ');
         return redirect(route('admin.services.index'));
     }
 
@@ -78,13 +79,13 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('admin.services.create',[
-            'service'=>$service,
-            'costs' => Cost::all(),
-            'types' => Type::all(),
-            'specializations' => specialization::all(),
-            'languages' => Language::all()
-            ]) ;
+
+        $specializations = specialization::where('lang', App::getLocale())->get();
+
+        return view('admin.services.create', [
+            'service' => $service,
+            'specializations' => $specializations,
+        ]);
     }
 
     /**
@@ -104,7 +105,8 @@ class ServiceController extends Controller
             $data['picture'] = $picture;
         }
         $service->update($data);
-        session()->flash('success', 'service Updated successfully');
+        session()->flash('success_en', ' Service Updated Successfully ');
+        session()->flash('success_ar', ' تم تعديل الخدمة بنجاح ');
         return redirect(route('admin.services.index'));
     }
 
@@ -117,7 +119,8 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $service->delete();
-        session()->flash('success', 'service deleted successfully');
+        session()->flash('success_en', ' Service Deleted Successfully ');
+        session()->flash('success_ar', ' تم حذف الخدمة بنجاح ');
         return redirect(route('admin.services.index'));
     }
 }

@@ -2,11 +2,12 @@
 
 @section('content')
 
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 <div class="card">
 
     <div class="card-header">
-        <h2>{{isset($categoryBlog) ?'update your category'.$categoryBlog->name : 'Add a new Category'}}</h2>
+        <h2>{{isset($categoryBlog) ? __('messages.edit_cat') :  __('messages.add_cat') }}</h2>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -26,32 +27,31 @@
             @method('PUT')
             @endif
             @csrf
-            <div class="form-group">
-                <label for="category">Category Name English</label>
-                <input type="text" name="name_en" class="form-control" value="{{isset($categoryBlog) ? $categoryBlog->name_en : ''}}"  placeholder="Add a new category">
 
-            </div>
+            <input type="hidden" value="{{$lang}}" name="lang">
 
             <div class="form-group">
-                <label for="category">Category Name Arabic</label>
-                <input type="text" name="name_ar" class="form-control" value="{{isset($categoryBlog) ? $categoryBlog->name_ar : ''}}"  placeholder="Add a new category">
+                <label for="category">{{__('messages.name')}}</label>
+                <input type="text" name="name" class="form-control" value="{{isset($categoryBlog) ? $categoryBlog->name : ''}}" >
+
             </div>
 
             <div class="form-group">
                 @if(isset($categoryBlog))
                 <div>
-                    <img style="height:200px; width:400px" src="/storage/{{$categoryBlog->picture}}" alt="{{$categoryBlog->title_en}}">
+                    <img style="height:200px; width:400px" src="/storage/{{$categoryBlog->picture}}" alt="{{$categoryBlog->name}}">
                 </div>
                 @endif
                 <div class="input-group my-3">
                     <div class="custom-file">
+                    {{__('messages.picture')}}
                         <input type="file" name="picture">
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <input class="btn btn-success form-control" type="submit" value="{{isset($categoryBlog) ?'update': 'Add'}}" />
+                <input class="btn btn-success form-control" type="submit" value="{{isset($categoryBlog) ?  __('messages.update')  :  __('messages.publish') }}" />
             </div>
         </form>
     </div>

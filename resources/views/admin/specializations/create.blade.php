@@ -2,11 +2,11 @@
 
 @section('content')
 
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 <div class="card">
-
     <div class="card-header">
-        <h2>{{isset($specialization) ? 'Update Your specialization' : 'Add a New specialization'}}</h2>
+        <h2>{{isset($specialization) ? __('messages.edit_specialize') : __('messages.add_specialize') }}</h2>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -27,18 +27,16 @@
             @method('PUT')
             @endif
             @csrf
-            <div class="form-group">
-                <label for="specialization">specialization Name:</label>
-                <input type="text" name="name_en" class="form-control" value="{{isset($specialization) ? $specialization->name_en : ''}}" placeholder="Add a new specialization English">
 
-            </div>
+            <input type="hidden" name="lang" value="{{$lang}}">
+
             <div class="form-group">
-                <label for="specialization">specialization Name:</label>
-                <input type="text" name="name_ar" class="form-control" value="{{isset($specialization) ? $specialization->name_ar : ''}}" placeholder="Add a new specialization Arabic">
+                <label for="specialization">{{__('messages.name')}}</label>
+                <input type="text" required name="name" class="form-control" value="{{isset($specialization) ? $specialization->name : ''}}" >
             </div>
 
             <div class="form-group">
-                <input class="btn btn-success form-control" type="submit" value="{{isset($specialization) ?'update': 'Add'}}" />
+                <input class="btn btn-success form-control" type="submit" value="{{isset($specialization) ?__('messages.update'): __('messages.publish') }}" />
             </div>
         </form>
     </div>

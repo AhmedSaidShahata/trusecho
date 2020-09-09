@@ -24,8 +24,8 @@ class CostRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_ar' => 'required',
-            'name_en' => 'required',
+            'name' => 'required',
+
         ];
     }
 }

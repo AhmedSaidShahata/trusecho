@@ -1,12 +1,12 @@
 @extends('home')
 
 @section('content')
-
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 <div class="card">
 
     <div class="card-header">
-        <h2>{{isset($type) ? 'Update Your type' : 'Add a New type'}}</h2>
+        <h2>{{isset($type) ? __('messages.edit_type') : __('messages.add_type')}}</h2>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -27,20 +27,17 @@
             @method('PUT')
             @endif
             @csrf
-            <div class="form-group">
-                <label for="type">type Name:</label>
-                <input type="text" name="name_en" class="form-control" value="{{isset($type) ? $type->name_en : ''}}"  placeholder="Add a new type English">
 
+            <input type="hidden" name="lang" value="{{$lang}}">
+
+            <div class="form-group">
+                <label for="type">{{__('messages.name')}}</label>
+                <input type="text" required name="name" class="form-control" value="{{isset($type) ? $type->name : ''}}">
             </div>
 
-            <div class="form-group">
-                <label for="type">type Name:</label>
-                <input type="text" name="name_ar" class="form-control" value="{{isset($type) ? $type->name_ar : ''}}"  placeholder="Add a new type Arabic">
-
-            </div>
 
             <div class="form-group">
-                <input class="btn btn-success form-control" type="submit" value="{{isset($type) ?'update': 'Add'}}" />
+                <input class="btn btn-success form-control" type="submit" value="{{isset($type) ? __('messages.update') : __('messages.publish') }}" />
             </div>
         </form>
     </div>

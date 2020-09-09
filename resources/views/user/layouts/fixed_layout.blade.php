@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Truescho - Shape Your Dreams</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
+    <link rel="stylesheet" href="/css/{{LaravelLocalization::getCurrentLocale()}}-style.css" />
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
     <!-- POPPINS FONT -->
@@ -19,11 +21,14 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5f52b54ca2d54400112ddf54&product=inline-share-buttons"></script>
 
 
 </head>
 
 <body>
+    <span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
+    <span hidden class="my_lang">{{'/'.LaravelLocalization::getCurrentLocale()}}</span>
     <div class="navigation" id="navbar">
         <div class="navigation__logo-box">
             <img src="{{asset('img/2.png')}}" alt="Logo" class="nav-bar__logo" />
@@ -31,16 +36,18 @@
         <div class="nav-bar">
             <ul class="nav-bar__list">
                 <li class="nav-bar__item">
-                    <a href="{{route('user.homepages.index')}}" class="nav-bar__item-nav">Home</a>
+                    <a href="{{route('user.homepages.index')}}" class="nav-bar__item-nav">{{__('messages.home')}}</a>
                 </li>
                 <!-- <li class="nav-bar__item">
                     <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">Users</a>
                 </li> -->
+                @auth
                 <li class="nav-bar__item">
-                    <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">My network</a>
+                    <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">{{__('messages.network')}}</a>
                 </li>
+                @endauth
                 <li class="nav-bar__item dropdown">
-                    <a href="{{route('user.jobs.index')}}" class="nav-bar__item-nav dropbtn">Jobs</a>
+                    <a href="{{route('user.jobs.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.jobs')}}</a>
                     <div class="dropdown-content">
                         <!-- <a href="#">All Jobs</a>
                         <a href="#">Engineering</a>
@@ -51,7 +58,7 @@
                     </div>
                 </li>
                 <li class="nav-bar__item dropdown">
-                    <a href="{{route('user.services.index')}}" class="nav-bar__item-nav dropbtn">Services</a>
+                    <a href="{{route('user.services.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.services')}}</a>
                     <div class="dropdown-content">
                         <!-- <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
@@ -59,13 +66,13 @@
                     </div>
                 </li>
                 <li class="nav-bar__item">
-                    <a href="{{route('user.organizations.index')}}" class="nav-bar__item-nav">Organizations</a>
+                    <a href="{{route('user.organizations.index')}}" class="nav-bar__item-nav">{{__('messages.organizations')}}</a>
                 </li>
                 <!-- <li class="nav-bar__item">
                     <a href="{{route('user.faqs.index')}}" class="nav-bar__item-nav">Faq</a>
                 </li> -->
                 <li class="nav-bar__item dropdown">
-                    <a href="{{route('user.opportunitys.index')}}" class="nav-bar__item-nav dropbtn">Opportunities</a>
+                    <a href="{{route('user.opportunitys.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.opportunities')}}</a>
                     <div class="dropdown-content">
                         {{!$opportunities=App\Opportunity::all()}}
                         @forelse($opportunities as $opportunity)
@@ -82,11 +89,11 @@
 
                 @if (Route::has('register'))
                 <li class="nav-bar__item ">
-                    <a class="nav-bar__item-nav nav-btn" href="{{ route('register') }}">Sign Up</a>
+                    <a class="nav-bar__item-nav nav-btn" href="{{ route('register') }}">{{ __('messages.sign_up') }}</a>
                 </li>
                 @endif
                 <li class="nav-bar__item ">
-                    <a class="nav-bar__item-nav" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-bar__item-nav" href="{{ route('login') }} ">{{ __('messages.login') }}</a>
                 </li>
                 @else
                 <li class="nav-bar__item dropdown">
@@ -122,8 +129,8 @@
                                     {{$friend->name}}
                                 </a>
                                 <a style="clear:both;">
-                                    <button data-friend="{{$friend->id}}" class="accept">Accept</button>
-                                    <button data-friend="{{$friend->id}}" class="delete">Delete</button>
+                                    <button data-friend="{{$friend->id}}" class="accept">{{ __('messages.accept') }}</button>
+                                    <button data-friend="{{$friend->id}}" class="delete">{{ __('messages.delete') }}</button>
                                 </a>
                             </div>
                             @empty
@@ -139,17 +146,15 @@
                     </div>
                     <div class="user-info__name dropbtn"> {{ Auth::user()->name }}</div>
                     <div class="dropdown-content u-absolute-top">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
+
                         <a class="dropdown-item" href="{{route('user.users.edit',  Auth::user()->id )}}">
-                            Profile
+                            {{__('messages.profile')}}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('messages.log_out') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -161,10 +166,23 @@
                         @endguest
 
                 <li class="nav-bar__item">
-                    <a href="#" class="nav-bar__item-nav">Ar</a>
+                    <ul style="list-style: none; font-size:20px;">
+                        {{!$lang=LaravelLocalization::getCurrentLocale()}}
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        <li class="{{ $localeCode == $lang ? 'hidden' : '' }}">
+
+                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                {{ $localeCode }}
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
                 </li>
             </ul>
         </div>
+
+
+        @auth
         <div class="responsive-nav-icons">
             <ul class="responsive-nav-icons__list">
                 <li class="responsive-nav-icons__list-item">
@@ -176,16 +194,18 @@
                 <li class="responsive-nav-icons__list-item">
                     <div class="notification-icon-box">
                         <img src="{{asset('img/notification-icon.svg')}}" alt="notification" class="notification-icon" />
-                        <span class="notification-number">3</span>
+                        <!-- <span class="notification-number"></span> -->
                     </div>
                 </li>
                 <li class="responsive-nav-icons__list-item">
                     <div class="user-pic-box">
-                        <a href="profile.html"><img src="{{asset('img/user-pic.png')}}" alt="user pic" class="user-pic" /></a>
+                        <a href="{{route('user.users.edit',  Auth::user()->id )}}"><img src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-pic" style="width:70px;height:70px;border-radius: 50%;" /></a>
                     </div>
                 </li>
             </ul>
         </div>
+
+        @endauth
         <!-- Burger Side bar -->
         <nav role="responsive-navigation">
             <div id="menuToggle">
@@ -209,31 +229,44 @@
   Too bad the menu has to be inside of the button
   but hey, it's pure CSS magic.
   -->
+
+
+
+
+
                 <ul id="menu">
-                    <a href="home-page-signed.html">
-                        <li>Home</li>
+
+                    <a href="{{route('user.homepages.index')}}">
+                        <li>{{__('messages.home')}}</li>
                     </a>
-                    <a href="my-network-org.html">
-                        <li>My network</li>
+                    @auth
+                    <a href="{{route('user.friends.index')}}">
+                        <li>{{__('messages.network')}}</li>
                     </a>
-                    <a href="organizations-signed.html">
-                        <li>Organizations</li>
+                    @endauth
+                    <a href="{{route('user.organizations.index')}}">
+                        <li>{{__('messages.organizations')}}</li>
                     </a>
-                    <a href="jobs-signed.html">
-                        <li>Jobs</li>
+                    <a href="{{route('user.jobs.index')}}">
+                        <li>{{__('messages.jobs')}}</li>
                     </a>
                     <a href="opportunities-signed.html">
-                        <li>Opportunities</li>
+                        <li>{{__('messages.opportunities')}}</li>
                     </a>
-                    <a href="services-signed.html">
-                        <li>Services</li>
+                    <a href="{{route('user.services.index')}}">
+                        <li>{{__('messages.services')}}</li>
                     </a>
-                    <a href="profile.html">
-                        <li>Profile</li>
+                    @auth
+                    <a href="{{route('user.users.edit',  Auth::user()->id )}}">
+                        <li>{{__('messages.profile')}}</li>
                     </a>
-                    <a href="home-page.html">
-                        <li>Log out</li>
+
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <li> {{ __('messages.log_out') }} </li>
                     </a>
+                    @endauth
+
 
                 </ul>
             </div>
@@ -241,7 +274,7 @@
     </div>
 
     <div id="app">
-        <main class="py-4">
+        <main class="py-5" >
             @yield('content')
         </main>
     </div>
@@ -267,19 +300,19 @@
                         <img src="{{asset('img/telegram.png')}}" alt="telegram-icon" class="sm-icon">
                     </a>
                 </div>
-                <p class="footer__left-copywrites">Copywrites &copy; reserved at Truescho</p>
+                <p class="footer__left-copywrites">{{__('messages.copyright')}}</p>
             </div>
             <div class="footer__right">
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#">About the company</a>
+                            <a href="#">{{__('messages.about_company')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Important links</a>
+                            <a href="#">{{__('messages.important_links')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Frequently asked questions</a>
+                            <a href="#">{{__('messages.asked_question')}}</a>
                         </li>
                         <li class="footer__right-info-list-item"><a href="{{route('user.contacts.index')}}">Contact us</a></li>
                     </ul>
@@ -287,110 +320,75 @@
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#">Latest Posts</a>
+                            <a href="#">{{__('messages.latest_posts')}}
+                                <</a> </li> <li class="footer__right-info-list-item">
+                                    <a href="#">{{__('messages.add_exp')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Add an experience</a>
+                            <a href="#">{{__('messages.promot_post')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Add a promoted post</a>
+                            <a href="#">{{__('messages.volunter')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Volunteer</a>
-                        </li>
-                        <li class="footer__right-info-list-item">
-                            <a href="#">Favourties</a>
+                            <a href="#">{{__('messages.fav')}}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#">Terms and conitions</a>
+                            <a href="#">{{__('messages.terms')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Posting policy</a>
+                            <a href="#">{{__('messages.policy')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Blogs</a>
+                            <a href="#">{{__('messages.blogs')}}</a>
                         </li>
-                        <li class="footer__right-info-list-item"><a href="#">Privacy</a></li>
+                        <li class="footer__right-info-list-item"><a href="#">{{__('messages.privacy')}}</a></li>
                     </ul>
                 </div>
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#">About the company</a>
+                            <a href="#">{{__('messages.about_company')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Important links</a>
+                            <a href="#">{{__('messages.important_links')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">Frequently asked questions</a>
+                            <a href="#"> {{__('messages.asked_question')}}</a>
                         </li>
-                        <li class="footer__right-info-list-item"><a href="#">Contact us</a></li>
+                        <li class="footer__right-info-list-item"><a href="#"> {{__('messages.contact_us')}}</a></li>
                     </ul>
                 </div>
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#" class="footer__title">All Jobs</a>
+                            <a href="#" class="footer__title"> {{__('messages.all_jobs')}}</a>
                         </li>
-                        <li class="footer__right-info-list-item sub-item">
+                        <!-- <li class="footer__right-info-list-item sub-item">
                             <a href="#">Engineering</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Information Technology</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Media, tv, and journals</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Future Jobs</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Education Sector</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Managment, business, and accounting</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">professional and techincal sector</a>
-                        </li>
+                        </li> -->
+
                     </ul>
                 </div>
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#" class="footer__title">Scholarships</a>
+                            <a href="#" class="footer__title"> {{__('messages.scholarships')}}</a>
                         </li>
-                        <li class="footer__right-info-list-item sub-item">
+                        <!-- <li class="footer__right-info-list-item sub-item">
                             <a href="#">Bachelor Scholarships</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Masters Scholarships</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">PHD Scholarships</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Job offers</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Internships</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Volunteering Opportunities</a>
-                        </li>
-                        <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Workshops Or Courses</a>
-                        </li>
+                        </li> -->
+
                     </ul>
                 </div>
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            get our app
+                            {{__('messages.get_app')}}
                         </li>
                         <li>
                             <img src="{{asset('img/google-play-download-android-app-logo-png-transparent.png')}}" alt="google play" class="app-store-pic">
@@ -405,12 +403,146 @@
     </footer>
     <!-- DESIGN IN JS -->
 
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
 
-    <script src="{{ asset('js/app.js') }} " ></script>
+    <script src="{{ asset('js/app.js') }} "></script>
+
 
     <script>
-        //=========================================== Start rate blog With Ajax===============================
         $(function() {
+
+
+            //=========================================== Start Comment scholar With Ajax ===============================
+
+
+            $(".add-comment-news").on("click", function() {
+                let comment = $(this).parent().siblings('input');
+                let commentNews = comment.val();
+                let commentorName = $(".commentor-name").text();
+                let commentorImage = $(".commentor-image").text();
+                let newsId = $(this).data('newsid')
+
+                let commentContainer = $(this).parents(".post").children(".comments-container")
+
+
+                $.ajax({
+                    url: myLang + "/newscomments",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        commentNews: commentNews,
+                        newsId: newsId,
+
+                    },
+                    success: function(data) {
+                        comment.val('')
+
+                        commentContainer.append(`
+
+                        <div class="post-comment">
+                <div class="post-comment-pic-box">
+                    <img src="{{asset('/storage/${commentorImage}')}}" alt="user pic" class="post-comment-pic" />
+                </div>
+                <div class="post-comment-details">
+                    <h1 class="post-comment-name">${commentorName}</h1>
+                    <p class="post-comment-paragraph">
+                       ${commentNews}
+                    </p>
+                </div>
+              </div>
+
+
+                `)
+
+                    }
+                })
+
+
+            })
+
+
+            //=========================================== Start favourite With Ajax ===============================
+            $(document).on("click", ".add-fav-scholar", function() {
+
+                let reference = $(this);
+                let scholarId = reference.data("scholarid");
+
+
+                $.ajax({
+                    url: myLang + "/favscholars",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        scholarId: scholarId,
+
+                    },
+                    success: function(data) {
+                        reference.toggleClass("red")
+                    }
+                })
+            })
+
+
+
+
+            //=========================================== Start like News With Ajax ===============================
+            $(document).on("click", ".like-news", function() {
+
+                let reference = $(this);
+                let newsId = reference.data("newsid");
+
+
+
+                $.ajax({
+                    url: myLang + "/newslike",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        newsId: newsId,
+
+                    },
+                    success: function(data) {
+                        reference.toggleClass("blue")
+                    }
+                })
+            })
+
+            //=========================================== Start like scholar With Ajax ===============================
+            $(document).on("click", ".like_scholar", function() {
+
+                let reference = $(this);
+                let scholarId = reference.data("scholarid");
+
+
+
+                $.ajax({
+                    url: myLang + "/likescholars",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        scholarId: scholarId,
+
+                    },
+                    success: function(data) {
+                        reference.toggleClass("blue")
+                    }
+                })
+            })
+
+
+
+
+            let lang = $(".lang").text()
+            let myLang = $(".my_lang").text()
+
+            localStorage.setItem('lang', lang)
+
+
+            //=========================================== Start rate blog With Ajax===============================
 
             $(document).on("click", ".rate_user .fa-star", function() {
 
@@ -434,7 +566,7 @@
 
 
                 $.ajax({
-                    url: "/rateblogs",
+                    url: myLang + "/rateblogs",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -462,7 +594,7 @@
 
 
                 $.ajax({
-                    url: "/friendaccept",
+                    url: myLang + "/friendaccept",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -484,7 +616,7 @@
 
 
                 $.ajax({
-                    url: "/frienddelete",
+                    url: myLang + "/frienddelete",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -507,7 +639,7 @@
                 let userId = reference.data("userid");
 
                 $.ajax({
-                    url: "/friendrequest",
+                    url: myLang + "/friendrequest",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -542,7 +674,7 @@
                 let orgId = reference.data("orgid");
 
                 $.ajax({
-                    url: "/followerorgs",
+                    url: myLang + "/followerorgs",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -552,10 +684,18 @@
                     },
                     success: function(data) {
 
+
                         if (reference.text() == ' follow ') {
                             reference.text(' following ')
                             followCount.text(followCountVal += 1)
-                        } else {
+                        }else if(reference.text() == ' متابعة '){
+                            reference.text(' تتابعه ')
+                            followCount.text(followCountVal += 1)
+                        }else if(reference.text() == ' تتابعه '){
+
+                            reference.text(' متابعة ')
+                            followCount.text(followCountVal -= 1)
+                        }else {
                             reference.text(' follow ');
                             followCount.text(followCountVal -= 1)
                         }
@@ -572,7 +712,7 @@
                 let orgId = $(".org-id").text();
 
                 $.ajax({
-                    url: "/rateorgs",
+                    url: myLang + "/rateorgs",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -594,7 +734,7 @@
                 let jobId = $(".job-id").text();
 
                 $.ajax({
-                    url: "/ratejobs",
+                    url: myLang + "/ratejobs",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -617,7 +757,7 @@
                 let serId = $(".ser-id").text();
 
                 $.ajax({
-                    url: "/ratesers",
+                    url: myLang + "/ratesers",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -633,14 +773,29 @@
 
 
             //=========================================== Start Rate With Ajax===============================
-            $(document).on("click", ".rate-scholar", function() {
+            $(document).on("click", ".rate_user-scholar .fa-star", function() {
 
                 let reference = $(this);
                 let valueRate = reference.data("value");
                 let scholarId = $(".scholar-id").text();
 
+
+                let rateOutPut = "";
+
+
+                for (var i = 1; i <= valueRate; i++) {
+
+                    rateOutPut += `<i data-value="${i}" class="fas fa-star fa-2x"></i>`
+                }
+
+                for (var i = valueRate + 1; i <= 5; i++) {
+                    rateOutPut += `<i data-value="${i}" class="far fa-star fa-2x"></i>`
+                }
+
+                $(".rate_user-scholar").html(rateOutPut)
+
                 $.ajax({
-                    url: "/scholarshiprates",
+                    url: myLang + "/scholarshiprates",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -649,7 +804,8 @@
                         scholarId: scholarId
                     },
                     success: function(data) {
-                        reference.parent().html(data)
+
+                        $(".rate-total-scholar").html(data)
                     }
                 })
             })
@@ -667,7 +823,7 @@
 
 
                 $.ajax({
-                    url: "/scholarshipcomments",
+                    url: myLang + "/scholarshipcomments",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -679,15 +835,15 @@
                     success: function(data) {
                         comment.val('')
 
-                        $(".job-comments__reviews").append(`
-                        <div class="user-job-comment">
-                        <div class="user-job-pic-box">
-                            <img src=/storage/${commentorImage} alt="user pic" class="user-job-pic" />
+                        $(".comments-section__reviews-scholar").append(`
+                        <div class="user-comment">
+                        <div class="user-pic-box">
+                            <img src=/storage/${commentorImage} alt="user pic" class="user-job-pic" style="width:60px;height:60px" />
                         </div>
-                        <div class="user-job-details">
-                            <h1 class="user-job-name">${commentorName}</h1>
-                            <p class="user-job-comment-paragraph">
-                                ${commentScholar}
+                        <div class="user-details">
+                            <h1 class="user-name">${commentorName}</h1>
+                            <p class="user-comment-paragraph">
+                                ${commentScholar }
                             </p>
                         </div>
                     </div>
@@ -713,7 +869,7 @@
 
 
                 $.ajax({
-                    url: "/commentjobs",
+                    url: myLang + "/commentjobs",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -764,7 +920,7 @@
                 comments__values.text(countCommentsBlog + 1)
 
                 $.ajax({
-                    url: "/blogcomments",
+                    url: myLang + "/blogcomments",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -808,7 +964,7 @@
 
 
                 $.ajax({
-                    url: "/favouritesers",
+                    url: myLang + "/favouritesers",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -835,7 +991,7 @@
 
 
                 $.ajax({
-                    url: "/favblogs",
+                    url: myLang + "/favblogs",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -860,7 +1016,7 @@
 
 
                 $.ajax({
-                    url: "/likeblogs",
+                    url: myLang + "/likeblogs",
                     type: "post",
                     dataType: "text",
                     data: {

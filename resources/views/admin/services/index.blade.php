@@ -1,26 +1,29 @@
 @extends('home')
 @section('content')
 
-@if(session()->has('success'))
-<div class="alert alert-success">{{session()->get('success')}}</div>
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+@if(session()->has('success_ar') OR session()->has('success_en') )
+<div class="alert alert-success">
+    {{$lang== 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+</div>
 @endif
+
+<a href="{{route('admin.services.create')}}" class="mt-2 btn btn-primary form-control">{{__('messages.add_service')}}</a>
+
 <div style="overflow-x:auto ;">
     <table class="table table-dark">
-        <a href="{{route('admin.services.create')}}" class="mt-2 btn btn-primary form-control">Add service</a>
         <thead>
-
-
             <tr>
-                <th scope="col">id</th>
-                <th scope="cpl">image</th>
-                <th scope="col">Title English</th>
-                <th scope="col">Description English</th>
-                <th scope="col">Content English </th>
-                <th scope="col">Title Arabic</th>
-                <th scope="col">Description Arabic</th>
-                <th scope="col">Content Arabic</th>
-                <th scope="col">Price</th>
-                <th>Controls</th>
+                <th scope="col">{{__('messages.serial')}}</th>
+                <th scope="cpl">{{__('messages.picture')}}</th>
+                <th scope="col">{{__('messages.title')}}</th>
+                <th scope="col">{{__('messages.description')}}</th>
+                <th scope="col">{{__('messages.content')}}</th>
+                <th scope="col">{{__('messages.specialization')}}</th>
+                <th scope="col">{{__('messages.creator')}}</th>
+                <th scope="col">{{__('messages.price')}}</th>
+                <th>{{__('messages.controls')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -28,17 +31,16 @@
             <tr>
                 <th scope="row">{{$service->id}}</th>
                 <td><img src="{{asset('storage/'.$service->picture)}}" alt="image service" style="width:100px;height:100px"></td>
-                <td>{{$service->title_en}}</td>
-                <td>{{$service->description_en}}</td>
-                <td>{{$service->content_en}}</td>
-                <td>{{$service->title_ar}}</td>
-                <td>{{$service->description_ar}}</td>
-                <td>{{$service->content_ar}}</td>
+                <td>{{$service->title}}</td>
+                <td>{{$service->description}}</td>
+                <td>{{$service->content}}</td>
+                <td>{{$service->specialization->name}}</td>
+                <td>{{$service->user->name}}</td>
                 <td>{{$service->price}}</td>
 
                 <td class="d-flex">
                     <div hidden>{{!$best_service=App\Bestservice::where('service_id', '=',$service->id)->count()}}</div>
-                    <button data-serviceid="{{$service->id}}" class="best-service btn btn-primary"> {{$best_service > 0 ? 'UnBest' : 'Best'}} </button>
+                    <input {{$best_service > 0 ? 'checked' : '' }} type="checkbox" data-serviceid="{{$service->id}}" class="best-service btn btn-primary">
                     <a href="{{route('admin.services.edit',$service->id)}}" class="btn"><i class="far fa-edit"></i> </a>
                     <form method="POST" class="form-inline" action="{{route('admin.services.destroy',$service->id)}}">
                         @csrf
@@ -50,7 +52,7 @@
             </tr>
             @empty
             <div class="alert alert-primary" role="alert">
-                No services Yet
+                {{__('messages.no_services')}}
             </div>
             @endforelse
         </tbody>

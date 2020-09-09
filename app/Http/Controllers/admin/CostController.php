@@ -6,6 +6,7 @@ use App\Cost;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class CostController extends Controller
 {
@@ -16,7 +17,8 @@ class CostController extends Controller
      */
     public function index()
     {
-        return view('admin.costs.index')->with('costs', Cost::all());
+        $costs=Cost::where('lang',App::getLocale())->get();
+        return view('admin.costs.index')->with('costs',$costs);
     }
 
     /**
@@ -39,7 +41,8 @@ class CostController extends Controller
     {
 
         Cost::create($request->all());
-        session()->flash('success', 'Success Adding Cost ' . $request->name);
+        session()->flash('success_en', 'Success Added Cost ');
+        session()->flash('success_ar', 'تم اضافة التكلفة بنجاح');
         return redirect(route('admin.costs.index'));
     }
 
@@ -76,7 +79,8 @@ class CostController extends Controller
     {
         $cost->update($request->all());
         $cost->save();
-        session()->flash('success', 'Success Updating Cost to ' . $request->name);
+        session()->flash('success_en', 'Success Updated Cost ');
+        session()->flash('success_ar', 'تم تعديل التكلفة بنجاح');
         return redirect(route('admin.costs.index'));
     }
 
@@ -89,7 +93,8 @@ class CostController extends Controller
     public function destroy(Cost $cost)
     {
         $cost->delete();
-        session()->flash('success', 'Success Deleting Cost ' );
+        session()->flash('success_en', 'Success Deleted Cost ');
+        session()->flash('success_ar', 'تم حذف التكلفة بنجاح');
         return redirect(route('admin.costs.index'));
     }
 }

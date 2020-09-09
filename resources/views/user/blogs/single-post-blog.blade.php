@@ -1,25 +1,27 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
+<span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
 <div class="blog-summary">
     <div class="blog-summary__info">
         <div class="blog-summary__details">
-            <h1 class="blog-summary__details-header">{{$blog->title_en}}</h1>
+            <h1 class="blog-summary__details-header">{{$blog->title }}</h1>
+
             <p class="blog-summary__details-brief">
-                {{$blog->description_en}}
+                {{$blog->description }}
             </p>
             <p class="blog-summary__details-quick-summary">
-                {{$blog->content_en}}
+                {{$blog->content }}
             </p>
             <div class="blog-summary__details-comments">
-                <h1 class="comments">Comments:</h1>
+                <h1 class="comments">{{__('messages.comments')}}:</h1>
                 <p class="comments__values"></p>
             </div>
             <div class="blog-summary__details-views">
-                <h1 class="views">views:</h1>
+                <h1 class="views">{{__('messages.views')}}:</h1>
                 <p class="views__values">{{$views_count}}</p>
             </div>
             <div class="blog-summary__details-rate">
-                <h1 class="rate">Rate:</h1>
+                <h1 class="rate">{{__('messages.rate')}}:</h1>
                 <div class="rate-total">
                     <div hidden>{{!$count_rate_of_blog=App\Rateblog::where('blog_id', '=', $blog->id)->get()->count()}} </div>
 
@@ -67,78 +69,77 @@
 
             </div>
         </div>
-        <div class="blog-summary__picutre-box">
+        <div class="blog-summary__picutre-box" style="padding: 0 60px;">
             <div class="blog-summary__favourite">
-                {{!$favourite = App\Favblog::where('user_id', '=', Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}};
+                {{!$favourite = App\Favblog::where('user_id', '=', Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}}
 
                 <div class="blog-summary__favourite-icon-box">
                     <i data-blogid="{{$blog->id}}" class="fas fa-heart fa-2x  add-fav-blog {{$favourite->count()>0?'red':''}}"></i>
                 </div>
-                <h1 class="blog-summary__favourite-word">add to Favourite</h1>
+                <h1 class="blog-summary__favourite-word">{{__('messages.add_fav')}}</h1>
             </div>
             <img src="{{asset('storage/'.$blog->picture)}}" alt="single post pic" class="blog-summary__picture" style="width:582px;height:490px;border-radius:20px" />
         </div>
     </div>
 </div>
 <div class="blog-details">
-    <div class="blog-details__content-box">
-        <h1 class="blog-details__header">Description</h1>
+    <div class="blog-details__content-box" style="padding:0 30px">
+        <h1 class="blog-details__header">{{__('messages.description')}}</h1>
         <p class="blog-details__paragraph">
-            {{$blog->cotent_en}}
+            {{$blog->content }}
         </p>
-        {{!$like = App\Likeblog::where('user_id', '=', Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}};
+        {{!$like = App\Likeblog::where('user_id', '=', Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}}
         <div class="blog-details__buttons">
 
             <button data-blogid="{{$blog->id}}" class=" blog-like {{$like->count()>0?'blue':''}}">
                 <span class="like-title  ">
-                    Like <i class="fas fa-thumbs-up"></i>
+                    {{__('messages.like')}} <i class="fas fa-thumbs-up"></i>
                 </span>
             </button>
-            <button class="blog-details__buttons-share">
-                <img src="{{asset('img/share-icon.svg')}}" alt="share icon" class="share-button" />
-                <span class="share-title">Share</span>
-            </button>
+
+            <div class="sharethis-inline-share-buttons" style="padding:10px 30px"></div>
+
         </div>
         <div class="blog-details__social-media">
             <div class="social-media">
                 <div class="social-media__logo-box">
-                    <img src="img/facebook.png" alt="facebook" class="social-media__logo" />
+                    <img src="{{asset('img/facebook.png')}}" alt="facebook" class="social-media__logo" />
                 </div>
                 <span class="social-media__number">+1,001,564</span>
             </div>
             <div class="social-media">
                 <div class="social-media__logo-box">
-                    <img src="img/instagram.png" alt="instagram" class="social-media__logo" />
+                    <img src="{{asset('img/instagram.png')}}" alt="instagram" class="social-media__logo" />
                 </div>
                 <span class="social-media__number">+1,001,564</span>
             </div>
             <div class="social-media">
                 <div class="social-media__logo-box">
-                    <img src="img/telegram.png" alt="telegram" class="social-media__logo" />
+                    <img src="{{asset('img/telegram.png')}}" alt="telegram" class="social-media__logo" />
                 </div>
                 <span class="social-media__number">+1,001,564</span>
             </div>
             <div class="social-media">
                 <div class="social-media__logo-box">
-                    <img src="img/twitter.png" alt="twitter" class="social-media__logo" />
+                    <img src="{{asset('img/twitter.png')}}" alt="twitter" class="social-media__logo" />
                 </div>
                 <span class="social-media__number">+1,001,564</span>
             </div>
             <div class="social-media">
                 <div class="social-media__logo-box">
-                    <img src="img/linkedin.png" alt="linkedin" class="social-media__logo" />
+                    <img src="{{asset('img/linkedin.png')}}" alt="linkedin" class="social-media__logo" />
                 </div>
                 <span class="social-media__number">+1,001,564</span>
             </div>
             <div class="social-media">
                 <div class="social-media__logo-box">
-                    <img src="img/Truescho logo-edit.png" alt="truescho" class="social-media__logo" />
+                    <img src="{{asset('img/Truescho logo-edit.png')}}" alt="truescho" class="social-media__logo" />
                 </div>
                 <span class="social-media__number">+1,001,564</span>
             </div>
         </div>
         <div class="blog-details__rating">
-            <h1 class="blog-details__rating-header">Rate this topic</h1>
+            <h1 class="blog-details__rating-header">{{__('messages.rate_blog')}}</h1>
             <div class="blog-details__rating-stars-box">
                 <div class="rating">
                     <div class="rate_user" blog_id="{{$blog->id}}">
@@ -183,7 +184,7 @@
 <div class="comments-section">
     <div class="comments-section__content-box" style="padding: 38px;">
         <div class="comments-section__header">
-            <span class="comments-section__word">Comments</span>
+            <span class="comments-section__word">{{__('messages.comments')}}</span>
             <hr class="horizontal-line" />
         </div>
         <div class="comments-section__send-box">
@@ -195,29 +196,7 @@
         <div class="comments-section__reviews">
 
 
-            <div class="user-comment">
-                <div class="user-pic-box">
-                    <img src="{{asset('img/user-comment-pic.png')}}" alt="user pic" class="user-pic" />
-                </div>
-                <div class="user-details">
-                    <h1 class="user-name">Taylor Adams</h1>
-                    <p class="user-comment-paragraph">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste
-                        in beatae praesentium dolores porro, nobis labore ut omnis, nam
-                        temporibus neque inventore culpa dolore reiciendis molestias
-                        optio libero? Velit debitis eligendi necessitatibus enim ratione
-                        cupiditate, veritatis facere? Sapiente iure quos tempora quasi
-                        quo fugit suscipit consequuntur qui neque dolorem voluptate
-                        temporibus, fugiat provident corporis delectus. Explicabo magnam
-                        culpa amet modi facere exercitationem deleniti fugit ab minima
-                        reiciendis numquam rerum officiis, nemo dolorem natus ipsa!
-                        Repudiandae, veniam? Eligendi molestias debitis culpa iure
-                        harum, esse id qui fuga reiciendis nobis dolorem repellat
-                        perspiciatis neque amet vero itaque odit ipsum dolores eveniet
-                        accusamus.
-                    </p>
-                </div>
-            </div>
+
             @foreach($comments as $comment)
             <hr>
             <div class="user-comment">
@@ -238,7 +217,7 @@
 
 
         </div>
-        <h1 class="related-topics__header">Related Topics</h1>
+        <h1 class="related-topics__header">{{__('messages.related_topic')}}</h1>
         <div class="related-topics__cards">
 
             @forelse($related_blogs as $related_blog )
@@ -248,31 +227,42 @@
                     <img src="{{asset('storage/'.$related_blog->picture)}}" alt="blogs pic" class="blogs-detailed-results__pic responsive-pic" />
                 </div>
                 <div class="blogs-card-content">
-                    <h1 class="blogs-card-content__header">{{$related_blog->title_en}}</h1>
+                    <h1 class="blogs-card-content__header">{{$related_blog->title }}</h1>
                     <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Comments:</p>
+                        <p class="blogs-card-content__subtitle">{{__('messages.comments')}}:</p>
                         <p class="blogs-card-content__subtitle-value">
                             {{!$comments=App\Blogcomment::where(['blog_id'=>$related_blog->id]) }}
                             {{$comments->get()->count()}}
                         </p>
                     </div>
                     <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Participants:</p>
+                        <p class="blogs-card-content__subtitle">{{__('messages.participants')}}:</p>
                         <p class="blogs-card-content__subtitle-value">1</p>
                     </div>
                 </div>
-                <a href="{{route('user.blogs.show',$related_blog->id)}}" class="blogs-detailed-results__btn">view</a>
+                <a href="{{route('user.blogs.show',$related_blog->id)}}" class="blogs-detailed-results__btn">{{__('messages.visit')}}</a>
             </div>
 
             @empty
-            <div class="alert alert-primary d-flex align-items-center" role="alert" style="transform: scale(4);height:600px;justify-content: center;align-items: center;display: flex;">
-                No Related Blogs Yet
+
+            <div  role="alert" style="transform: scale(3);height:300px;justify-content: center;align-items: center;display: flex; width:100%">
+               <p>{{__('messages.no_related_blogs')}}</p>
             </div>
+
+
+
             @endforelse
+
+
+
 
 
         </div>
     </div>
 </div>
+
+
+
+
 
 @endsection

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model
 {
-    protected $fillable = ['name_en', 'name_ar'];
-    
+    protected $fillable = ['name'];
+
     public function scholarship()
     {
         return $this->hasMany(Scholarship::class);

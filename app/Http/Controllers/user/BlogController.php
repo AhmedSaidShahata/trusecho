@@ -66,7 +66,7 @@ class BlogController extends Controller
         ])->get()->count();
 
         $related_blogs=Blog::where([
-            'cat_id'=>$blog->cat_id
+            'category_blog_id'=>$blog->category_blog_id
         ])->where('id','!=',$blog->id)->get();
 
 

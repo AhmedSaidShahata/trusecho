@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cost extends Model
 {
-    protected $fillable = ['name_ar','name_en'];
+    protected $fillable = ['name','lang'];
 
     public function scholarship()
     {

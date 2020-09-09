@@ -15,6 +15,7 @@ use App\Organization;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class HomePageController extends Controller
@@ -31,12 +32,12 @@ class HomePageController extends Controller
 
         return view('user.home-page.home-page-signed',
          [
-           'scholarships'=>Bestscholar::all(),
-          'jobs' => Bestjob::all(),
-          'costs' => Cost::all(),
-          'services'=>Bestservice::all(),
-          'categories'=>CategoryBlog::all(),
-          'organizations'=>Bestorganization::all()
+           'scholarships'=>Bestscholar::where('lang',App::getLocale())->get(),
+          'jobs' => Bestjob::where('lang',App::getLocale())->get(),
+          'costs' => Cost::where('lang',App::getLocale())->get(),
+          'services'=>Bestservice::where('lang',App::getLocale())->get(),
+          'categories'=>CategoryBlog::where('lang',App::getLocale())->get(),
+          'organizations'=>Bestorganization::where('lang',App::getLocale())->get()
          ]);
     }
 

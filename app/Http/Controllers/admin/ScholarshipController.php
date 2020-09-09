@@ -10,6 +10,7 @@ use App\Scholarship;
 use App\specialization;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class ScholarshipController extends Controller
@@ -21,8 +22,9 @@ class ScholarshipController extends Controller
      */
     public function index()
     {
+        $scholarships = Scholarship::where('lang', App::getLocale())->get();
 
-        return view('admin.scholarships.index')->with('scholarships', Scholarship::all());
+        return view('admin.scholarships.index')->with('scholarships', $scholarships);
     }
 
     /**
@@ -32,11 +34,13 @@ class ScholarshipController extends Controller
      */
     public function create()
     {
+        $costs = Cost::where('lang', App::getLocale())->get();
+        $types = Type::where('lang', App::getLocale())->get();
+        $specializations = specialization::where('lang', App::getLocale())->get();
         return view('admin.scholarships.create', [
-            'costs' => Cost::all(),
-            'types' => Type::all(),
-            'specializations' => specialization::all(),
-            'languages' => Language::all()
+            'costs' => $costs,
+            'types' => $types,
+            'specializations' => $specializations,
 
         ]);
     }
@@ -53,7 +57,8 @@ class ScholarshipController extends Controller
         $data = $request->all();
         $data['picture'] = $picture;
         Scholarship::create($data);
-        session()->flash('success', ' Scholarship created successfully');
+        session()->flash('success_en', ' Scholarship created successfully');
+        session()->flash('success_ar', ' تم اضافة المنحة بنجاح');
         return redirect(route('admin.scholarships.index'));
     }
 
@@ -76,14 +81,17 @@ class ScholarshipController extends Controller
      */
     public function edit(Scholarship $scholarship)
     {
+
+
+        $costs = Cost::where('lang', App::getLocale())->get();
+        $types = Type::where('lang', App::getLocale())->get();
+        $specializations = specialization::where('lang', App::getLocale())->get();
+
         return view('admin.scholarships.create', [
             'scholarship' => $scholarship,
-            'costs' => Cost::all(),
-            'types' => Type::all(),
-            'specializations' => specialization::all(),
-            'languages' => Language::all()
-
-
+            'costs' => $costs,
+            'types' => $types,
+            'specializations' =>$specializations,
 
         ]);
     }
@@ -104,7 +112,8 @@ class ScholarshipController extends Controller
             $data['picture'] = $picture;
         }
         $scholarship->update($data);
-        session()->flash('success', '$scholarship Updated successfully');
+        session()->flash('success_en', ' Scholarship Updated successfully');
+        session()->flash('success_ar', ' تم تعديل المنحة بنجاح');
         return redirect(route('admin.scholarships.index'));
     }
 
@@ -117,7 +126,8 @@ class ScholarshipController extends Controller
     public function destroy(Scholarship $scholarship)
     {
         $scholarship->delete();
-        session()->flash('success', 'blog deleted successfully');
+        session()->flash('success_en', ' Scholarship Deleted successfully');
+        session()->flash('success_ar', ' تم حذف المنحة بنجاح');
         return redirect(route('admin.scholarships.index'));
     }
 }

@@ -1,0 +1,34 @@
+html {
+    direction: rtl;
+}
+
+.admin-body .side-bar ul li a {
+    float: right;
+}
+
+table th,
+table td,
+label {
+    text-align: right;
+}
+
+.parent-ul {
+    padding: 0;
+    direction: ltr;
+    text-align: right;
+}
+.responsive_control {
+}
+
+.responsive_control li a {
+    float: right;
+}
+
+.list-group-item {
+    direction: rtl;
+}
+.card {
+
+    margin-right: 0;
+    margin-left: 13px;
+}

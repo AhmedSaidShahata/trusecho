@@ -1,11 +1,13 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
+{{__('messages.participants')}}
+<span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
 <div class="blogs-section">
     <div class="blogs-section__info">
         <div class="blogs-section__info-content">
-            <h1 class="blogs-section__header">{{$category->name_en}}</h1>
+            <h1 class="blogs-section__header">{{$category->name }}</h1>
             <p class="blogs-section__paragraph">
-                Check out the latest news about {{$category->name_en}}
+            {{__('messages.latest_news')}} {{$category->name }}
             </p>
         </div>
         <div class="blogs-section__illustration-box">
@@ -22,25 +24,25 @@
                 <img src="{{asset('storage/'.$blog->picture)}}" alt="blogs pic" class="blogs-detailed-results__pic" />
             </div>
             <div class="blogs-card-content">
-                <h1 class="blogs-card-content__header">{{$blog->title_en}}</h1>
+                <h1 class="blogs-card-content__header">{{$blog->title }}</h1>
                 <div class="blogs-card-content-info">
-                    <p class="blogs-card-content__subtitle">Comments:</p>
+                    <p class="blogs-card-content__subtitle">{{__('messages.comments')}}:</p>
                     <p class="blogs-card-content__subtitle-value">
                    {{!$comments=App\Blogcomment::where(['blog_id'=>$blog->id]) }}
                    {{$comments->get()->count()}}
                     </p>
                 </div>
                 <div class="blogs-card-content-info">
-                    <p class="blogs-card-content__subtitle">Participants:</p>
+                    <p class="blogs-card-content__subtitle">{{__('messages.participants')}}:</p>
                     <p class="blogs-card-content__subtitle-value">1</p>
                 </div>
             </div>
-            <a href="{{route('user.blogs.show',$blog->id)}}" class="blogs-detailed-results__btn">view</a>
+            <a href="{{route('user.blogs.show',$blog->id)}}" class="blogs-detailed-results__btn">{{__('messages.visit')}}</a>
         </div>
 
         @empty
         <div class="alert alert-primary d-flex align-items-center" role="alert" style="transform: scale(4);height:600px;justify-content: center;align-items: center;display: flex;">
-            No Blogs Yet
+        {{__('messages.no_blogs')}}
         </div>
 
         @endforelse

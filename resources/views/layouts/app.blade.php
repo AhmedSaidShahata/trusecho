@@ -24,6 +24,7 @@
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="/css/font-style.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/{{LaravelLocalization::getCurrentLocale()}}-style.css" />
     <!-- POPPINS FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <!-- SWIPER JS CSS STYLE -->

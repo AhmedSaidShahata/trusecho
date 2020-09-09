@@ -15,15 +15,13 @@ class CreateBlogsTable extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('title_en');
-            $table->string('description_en');
-            $table->text('content_en');
-            $table->string('title_ar');
-            $table->string('description_ar');
-            $table->string('picture');
-            $table->text('content_ar');
+            $table->string('lang');
+            $table->string('title');
+            $table->string('description');
+            $table->text('content');
+            $table->foreignId('category_blog_id')->constrained()->onDelete('cascade');
+            $table->text('picture');
             $table->integer('user_id');
-            $table->integer('cat_id');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Bestscholar;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class BestscholarController extends Controller
@@ -41,6 +42,7 @@ class BestscholarController extends Controller
         $best_scholar = Bestscholar::where('scholarship_id', '=',$scholarId);
         if ($best_scholar->get()->count() == 0) {
             Bestscholar::create([
+                'lang'=>App::getLocale(),
                 'scholarship_id' =>$scholarId
             ]);
         } else {

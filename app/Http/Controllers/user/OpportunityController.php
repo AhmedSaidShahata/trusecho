@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Opportunity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class OpportunityController extends Controller
 {
@@ -16,7 +17,7 @@ class OpportunityController extends Controller
     public function index()
     {
         return view('user.opportunities.opportunities',[
-            'opportunities'=>Opportunity::paginate(10)
+            'opportunities'=>Opportunity::where('lang',App::getLocale())->paginate(10)
         ]);
     }
 

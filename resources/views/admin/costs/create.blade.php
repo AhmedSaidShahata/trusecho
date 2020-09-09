@@ -1,12 +1,12 @@
 @extends('home')
 
 @section('content')
-
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 <div class="card">
 
     <div class="card-header">
-        <h2>{{isset($cost) ? 'Update Your Cost' : 'Add a New Cost'}}</h2>
+        <h2>{{isset($cost) ?  __('messages.edit_cost') : __('messages.add_cost') }}</h2>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -27,18 +27,18 @@
             @method('PUT')
             @endif
             @csrf
-            <div class="form-group">
-                <label for="Cost">Name Enghlish</label>
-                <input type="text" name="name_en" class="form-control" value="{{isset($cost) ? $cost->name_en : ''}}" placeholder="Add a new Cost">
-            </div>
+
+            <input type="hidden" name="lang" value="{{$lang}}">
 
             <div class="form-group">
-                <label for="Cost">Name Arabic</label>
-                <input type="text" name="name_ar" class="form-control" value="{{isset($cost) ? $cost->name_ar : ''}}" placeholder="Add a new Cost">
+                <label for="Cost">{{__('messages.name')}} </label>
+                <input type="text" name="name" class="form-control" value="{{isset($cost) ? $cost->name : ''}}">
             </div>
 
+
+
             <div class="form-group">
-                <input class="btn btn-success form-control" type="submit" value="{{isset($cost) ?'update': 'Add'}}" />
+                <input class="btn btn-success form-control" type="submit" value="{{isset($cost) ? __('messages.update') : __('messages.publish') }}" />
             </div>
         </form>
     </div>

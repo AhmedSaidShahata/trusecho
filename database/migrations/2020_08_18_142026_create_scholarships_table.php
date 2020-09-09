@@ -15,24 +15,19 @@ class CreateScholarshipsTable extends Migration
     {
         Schema::create('scholarships', function (Blueprint $table) {
             $table->id();
-            $table->string('title_en');
-            $table->string('description_en');
-            $table->text('content_en');
-            $table->text('requirments_en');
-            $table->string('location_en');
-            $table->text('heading_details_en');
-            $table->string('title_ar');
-            $table->string('description_ar');
-            $table->text('content_ar');
-            $table->text('heading_details_ar');
-            $table->text('requirments_ar');
-            $table->string('location_ar');
+            $table->string('lang');
+            $table->string('title');
+            $table->string('description');
+            $table->text('content');
+            $table->text('requirments');
+            $table->string('location');
+            $table->string('company');
             $table->date('deadline');
             $table->string('email');
-            $table->integer('cost_id');
-            $table->integer('type_id');
-            $table->integer('specialize_id');
-            $table->integer('language_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('type_id')->constrained()->onDelete('cascade');
+            $table->foreignId('cost_id')->constrained()->onDelete('cascade');
+            $table->foreignId('specialization_id')->constrained()->onDelete('cascade');
             $table->string('picture');
             $table->timestamps();
         });

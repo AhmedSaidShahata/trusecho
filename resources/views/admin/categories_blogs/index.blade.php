@@ -3,25 +3,27 @@
 @section('content')
 
 
-<a href="{{route('admin.categories.create')}}" class="mt-2 btn btn-primary form-control">Add Category</a>
 
-@if(session()->has('success'))
-    <div class="alert alert-success">{{session()->get('success')}}</div>
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+@if(session()->has('success_ar') OR session()->has('success_en') )
+<div class="alert alert-success">
+    {{$lang== 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+</div>
 @endif
 
 
-
+<a href="{{route('admin.categories.create')}}" class="mt-2 btn btn-primary form-control">{{__('messages.add_cat')}}</a>
 
 <table class="table table-dark">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Iamge</th>
-            <th scope="col">title English</th>
-            <th scope="col">title Arabic</th>
-            <th scope="col">Add Date</th>
-            <th scope="col">Update Date</th>
-            <th scope="col">controls</th>
+            <th scope="col">{{__('messages.serial')}}</th>
+            <th scope="col">{{__('messages.picture')}}</th>
+            <th scope="col">{{__('messages.name')}}</th>
+            <th scope="col">{{__('messages.add_date')}}</th>
+            <th scope="col">{{__('messages.update_date')}}</th>
+            <th scope="col">{{__('messages.controls')}}</th>
 
         </tr>
     </thead>
@@ -30,8 +32,7 @@
         <tr>
             <th scope="row">{{$category->id}}</th>
             <td><img src="{{asset('storage/'.$category->picture)}}" alt="image blog" style="width:100px;height:100px"></td>
-            <td>{{$category->name_en}}</td>
-            <td>{{$category->name_ar}}</td>
+            <td>{{$category->name}}</td>
             <td>{{$category->created_at}}</td>
             <td>{{$category->updated_at}}</td>
             <td class="d-flex">
@@ -46,7 +47,7 @@
         </tr>
         @empty
         <div class="alert alert-danger">
-            No Categories Yet
+        {{__('messages.no_cat')}}
         </div>
 
         @endforelse

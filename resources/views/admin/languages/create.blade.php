@@ -2,11 +2,12 @@
 
 @section('content')
 
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 <div class="card">
 
     <div class="card-header">
-        <h2>{{isset($language) ? 'Update Your language' : 'Add a New language'}}</h2>
+        <h2>{{isset($language) ? __('messages.edit_lang') : __('messages.add_lang') }}</h2>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -27,20 +28,17 @@
             @if(isset($language))
             @method('PUT')
             @endif
-            @csrf
+            @
+            <input type="hidden" value="{{$lang}}" name="lang">
             <div class="form-group">
-                <label for="language">language Name:</label>
-                <input language="text" name="name_en" class="form-control" value="{{isset($language) ? $language->name_en : ''}}"  placeholder="Add a new language">
+                <label for="language">{{__('messages.name')}}</label>
+                <input required language="text" name="name" class="form-control" value="{{isset($language) ? $language->name : ''}}"  >
 
             </div>
 
-            <div class="form-group">
-                <label for="language">language Name:</label>
-                <input language="text" name="name_ar" class="form-control" value="{{isset($language) ? $language->name_ar : ''}}"  placeholder="Add a new language">
 
-            </div>
             <div class="form-group">
-                <input class="btn btn-success form-control" type="submit" value="{{isset($language) ?'update': 'Add'}}" />
+                <input class="btn btn-success form-control" type="submit" value="{{isset($language) ? __('messages.update') : __('messages.publish') }}" />
             </div>
         </form>
     </div>

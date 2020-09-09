@@ -3,9 +3,9 @@
 <div class="my-network-section">
     <div class="my-network-section__info">
         <div class="my-network-section__info-content">
-            <h1 class="my-network-section__header">Manage your network</h1>
+            <h1 class="my-network-section__header">{{__('messages.manage_net')}}</h1>
             <p class="my-network-section__paragraph">
-                Manage the organizations you follow as well as your friends
+            {{__('messages.manage_text')}}
             </p>
         </div>
         <div class="my-network-section__illustration-box">
@@ -17,10 +17,10 @@
     <div class="my-network-section-info__options u-margin-top-small">
         <ul class="options__list">
             <li class="options__items">
-                <a href="{{route('user.myfriends')}}" class="options__item selected">Your friends</a>
+                <a href="{{route('user.myfriends')}}" class="options__item selected">{{__('messages.your_friends')}}</a>
             </li>
             <li class="options__items">
-                <a class="options__item not-selected">Organizations you follow</a>
+                <a class="options__item not-selected">{{__('messages.follow_org')}}</a>
             </li>
         </ul>
     </div>
@@ -38,8 +38,8 @@
                 </div>
             </div>
             <div class="friends-card__buttons">
-                <a href="#" class="friends-card__message-btn">Message</a>
-                <a href="{{route('user.friends.show',$user->id)}}" class="friends-card__visit-btn">Visit</a>
+                <a href="#" class="friends-card__message-btn">{{__('messages.message_user')}}</a>
+                <a href="{{route('user.friends.show',$user->id)}}" class="friends-card__visit-btn">{{__('messages.visit')}}</a>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
         @empty
 
         <div class="alert alert-primary d-flex align-items-center" role="alert" style="transform: scale(4);height:600px;justify-content: center;align-items: center;display: flex;">
-            No Friends Yet
+        {{__('messages.no_users')}}
         </div>
 
 

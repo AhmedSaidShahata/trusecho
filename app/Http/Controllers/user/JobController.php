@@ -10,6 +10,7 @@ use App\Language;
 use App\specialization;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class JobController extends Controller
 {
@@ -20,12 +21,12 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('user.jobs.jobs',[
-            'jobs'=>Job::paginate(10),
-            'costs'=>Cost::all(),
-            'types'=>Type::all(),
-            'specializations'=>specialization::all(),
-            'languages'=>Language::all()
+        return view('user.jobs.jobs', [
+            'jobs' => Job::paginate(10),
+            'costs' => Cost::where('lang', App::getLocale()),
+            'types' => Type::where('lang', App::getLocale()),
+            'specializations' => specialization::where('lang', App::getLocale()),
+
 
         ]);
     }
@@ -48,7 +49,17 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+        $picture = $request->picture->store('images', 'public');
+        $data['picture'] = $picture;
+        // $picture_company = $request->picture_company->store('images', 'public');
+        // $data['picture_company'] = $picture_company;
+
+        Job::create($data);
+        session()->flash('success_en', ' Job created successfully ');
+        session()->flash('success_ar', ' تم اضافة الوظيفة بنجاح ');
+        return redirect(route('user.jobs.index'));
     }
 
     /**
@@ -100,14 +111,14 @@ class JobController extends Controller
 
     public function search(Request $request)
     {
-        $jobs= Job::where($request->all())->get();
+        $jobs = Job::where($request->all())->paginate(10);
 
-          return view('user.jobs.jobs',[
-            'jobs'=>$jobs,
-            'costs'=>Cost::all(),
-            'types'=>Type::all(),
-            'specializations'=>specialization::all(),
-            'languages'=>Language::all()
-          ]);
+        return view('user.jobs.jobs', [
+            'jobs' => $jobs,
+            'costs' => Cost::where('lang', App::getLocale()),
+            'types' => Type::where('lang', App::getLocale()),
+            'specializations' => specialization::where('lang', App::getLocale())
+
+        ]);
     }
 }
