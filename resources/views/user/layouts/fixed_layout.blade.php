@@ -667,7 +667,7 @@
 
                 let reference = $(this);
 
-                let followCount = $(".follow-count");
+                let followCount = $(this).siblings(".best-organizations-section-signed__followers").children(".follow-count")
                 let followCountVal = parseInt(followCount.text())
 
 

@@ -67,11 +67,11 @@
         @forelse($jobs as $job )
         <div class="search-results__card">
             <div class="card-picture-box">
-                <span class="opportunity-type-label">{{$best_job->title}}</span>
+                <span class="opportunity-type-label">{{$job->title}}</span>
                 <img src="{{asset('storage/'.$job->picture)}}" alt="Picutre 1" class="card-picture">
             </div>
-            <h1 class="search-results__card-header">{{__('messages.salary')}} {{$best_job->salary}} $</h1>
-            <p class="search-results__card-paragraph">{{$best_job->description}}</p>
+            <h1 class="search-results__card-header">{{__('messages.salary')}} {{$job->salary}} $</h1>
+            <p class="search-results__card-paragraph">{{$job->description}}</p>
             <div class="best-jobs-section__card-deadline-box">
                 <img src="{{asset('img/Icon ionic-ios-timer.svg')}}" alt="deadline" class="best-jobs-section__card-deadline">
                 <div class="deadline-number">
@@ -133,7 +133,7 @@
                         <img src="{{asset('img/applying-for-a-job.svg')}}" alt="apply for job" class="applying-for-job-illustration" />
                     </div>
                 </div>
-                <div class="popup__right">
+                <div class="popup__right" style="position: relative;">
                     <a href="#tours_section" class="popup__closing">×</a>
 
                     <div class="input">
@@ -143,6 +143,10 @@
                     <div class="input">
                         <label for="email" class="popup__label-style">{{__('messages.the_company')}}</label>
                         <input type="text" id="company" name="company" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
+                    </div>
+                    <div class="input">
+                        <label for="fullname" class="popup__label-style">{{__('messages.job_slary')}}</label>
+                        <input type="text" id="title" name="salary" class="popup__input-style" placeholder="{{__('messages.full_name')}}..." />
                     </div>
 
                     <div class="input">

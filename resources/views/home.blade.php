@@ -108,9 +108,7 @@
                     <li class="list-group-item">
                         <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> {{__('messages.specializations')}}</a>
                     </li>
-                    <li class="list-group-item">
-                        <a href="{{route('admin.languages.index')}}"><i class="fas fa-gifts"></i> {{__('messages.languages')}}</a>
-                    </li>
+
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
                     <li class="list-group-item">
                         <a href="{{route('admin.jobapps.index')}}"><i class="fas fa-gifts"></i> {{__('messages.job_app')}}</a>
@@ -211,9 +209,7 @@
                     <li class="list-group-item">
                         <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> {{__('messages.specializations')}}</a>
                     </li>
-                    <li class="list-group-item">
-                        <a href="{{route('admin.languages.index')}}"><i class="fas fa-gifts"></i> {{__('messages.languages')}}</a>
-                    </li>
+
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
                     <li class="list-group-item">
                         <a href="{{route('admin.jobapps.index')}}"><i class="fas fa-gifts"></i> {{__('messages.job_app')}}</a>

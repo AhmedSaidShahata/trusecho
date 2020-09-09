@@ -26,6 +26,7 @@
                 <th scope="cpl">{{__('messages.website')}}</th>
                 <th scope="cpl">{{__('messages.email')}}</th>
                 <th scope="col">{{__('messages.country')}}</th>
+                <th scope="col">{{__('messages.location')}}</th>
                 <th scope="col">{{__('messages.description')}}</th>
                 <th scope="col">{{__('messages.whatsapp_num')}}</th>
                 <th scope="col">{{__('messages.add_date')}}</th>
@@ -44,6 +45,7 @@
                 <td>{{$organization->website}}</td>
                 <td>{{$organization->email}}</td>
                 <td>{{$organization->country}}</td>
+                <td>{{$organization->location}}</td>
                 <td>
                     {{ substr($organization->description,0,20) }}
                 </td>

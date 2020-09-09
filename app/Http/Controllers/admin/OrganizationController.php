@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrganizationRequest;
 use App\Organization;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,9 @@ class OrganizationController extends Controller
     public function index()
     {
         $organization=Organization::where('lang',App::getLocale())->get() ;
-        return view('admin.organizations.index')->with('organizations', $organization);
+        return view('admin.organizations.index')->with([
+            'organizations'=> $organization
+            ]);
     }
 
     /**
@@ -29,7 +32,9 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        return view('admin.organizations.create');
+        return view('admin.organizations.create',[
+            'types'=>Type::where('lang',App::getLocale())->get()
+        ]);
     }
 
     /**
@@ -70,7 +75,10 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
-        return view('admin.organizations.create', ['organization' => $organization]);
+        return view('admin.organizations.create', [
+            'organization' => $organization,
+            'types'=>Type::where('lang',App::getLocale())->get()
+            ]);
     }
 
     /**

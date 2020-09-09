@@ -449,8 +449,11 @@ return [
     'job_name' => 'Job Name',
     'the_company' => 'The Company',
     'short_desc' => 'Short Description For The Job',
-    'the_contact' => 'Contact'
-
+    'the_contact' => 'Contact',
+    'org_name'=>'Organization Name',
+    'org_type'=>'Type',
+    'picture_org'=>'Organization Picture',
+    ''
 
 
 

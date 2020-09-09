@@ -1,5 +1,6 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 <div class="search-section">
     <h1 class="search-section__header">{{__('messages.organizations')}}</h1>
     <!-- <div class="search-section__info">
@@ -64,6 +65,10 @@
         </div> -->
 </div>
 <div class="search-results">
+    <a href="#apply-for-job" class="my-btn">
+        <i class="fas fa-plus"></i>
+        {{__('messages.add_org')}}
+    </a>
     <div class="search-results__content-box">
         @forelse($organizations as $organization)
         {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $organization->id)->get()}};
@@ -94,24 +99,27 @@
 
 
 
+    <div class="popup" id="apply-for-job" style="overflow: auto;">
+    <div>
+        <form action="{{route('user.organizations.store')}}" method="post" enctype="multipart/form-data">
 
+                <div class="popup__content" style="padding-top: 380px;">
+                    <div class="popup__left">
+                        <h1 class="popup__header">{{__('messages.add_org')}}</h1>
+                        <div class="header__underline"></div>
 
-    <div class="popup" id="apply-for-job">
-        <form action="{{route('user.jobs.store')}}" method="post" enctype="multipart/form-data">
-            <div class="popup__content">
-                <div class="popup__left">
-                    <h1 class="popup__header">{{__('messages.apply_job')}}</h1>
-                    <div class="header__underline"></div>
+                        @csrf
 
-                    @csrf
+                        <input required type="hidden" name="lang" value="{{$lang}}">
 
-                    <input type="hidden" name="lang" value="{{$lang}}">
+                        <input required type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <!-- class="add-cv-input" -->
+                        <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
+                        <input required type="file" id="" name="picture_org" />
 
-                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                    <!-- class="add-cv-input" -->
-                    <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
-                    <input type="file" id="" name="picture" />
-                    <!-- <div class="add-cv">
+                        <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture_org')}}</h3>
+                        <input required type="file" id="" name="picture_cover" />
+                        <!-- <div class="add-cv">
 
                     <div class="add-cv__title-box">
                         <img src="{{asset('img/adding icon.svg')}}" alt="add icon" class="add-cv-icon" />
@@ -119,41 +127,62 @@
                     </div>
                 </div> -->
 
-                    <div class="applying-for-job-illustration-box">
-                        <img src="{{asset('img/applying-for-a-job.svg')}}" alt="apply for job" class="applying-for-job-illustration" />
+                        <div class="applying-for-job-illustration-box">
+                            <img src="{{asset('img/applying-for-a-job.svg')}}" alt="apply for job" class="applying-for-job-illustration" />
+                        </div>
+                    </div>
+                    <div class="popup__right" style="position: relative;">
+                        <a href="#tours_section" class="popup__closing">×</a>
+
+                        <div class="input">
+                            <label class="popup__label-style">{{__('messages.org_name')}}</label>
+                            <input required type="text" name="name" class="popup__input-style" />
+                        </div>
+                        <div class="input">
+                            <label class="popup__label-style">{{__('messages.org_type')}}</label>
+                            <input required type="text" name="type" class="popup__input-style" />
+                        </div>
+
+                        <div class="input">
+                            <label class="popup__label-style">{{__('messages.country')}}</label>
+                            <input required type="text" name="country" class="popup__input-style" />
+                        </div>
+
+                        <div class="input">
+                            <label class="popup__label-style">{{__('messages.location')}}</label>
+                            <input required type="text" name="location" class="popup__input-style" />
+                        </div>
+
+                        <div class="input">
+                            <label class="popup__label-style">{{__('messages.about')}}</label>
+                            <input required type="text" name="about" class="popup__input-style" />
+                        </div>
+                        <div class="input">
+                            <label class="popup__label-style">{{__('messages.website')}}</label>
+                            <input required type="text" name="website" class="popup__input-style" />
+                        </div>
+                        <div class="input">
+                            <label class="popup__label-style">{{__('messages.whatsapp_num')}}</label>
+                            <input required type="text" name="whatsapp" class="popup__input-style" />
+                        </div>
+
+                        <div class="input">
+                            <label class="popup__label-style">{{__('messages.email')}}</label>
+                            <input required type="email" name="email" class="popup__input-style" />
+                        </div>
+
+                        <div class="input">
+                            <label for="message" class="popup__label-style">{{__('messages.short_desc')}}</label>
+                            <textarea id="message" name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
+                        </div>
+
+                        <input required class="input-btn" type="submit" value="{{__('messages.submit')}}">
+
                     </div>
                 </div>
-                <div class="popup__right">
-                    <a href="#tours_section" class="popup__closing">×</a>
 
-                    <div class="input">
-                        <label for="fullname" class="popup__label-style">{{__('messages.job_name')}}</label>
-                        <input type="text" id="title" name="title" class="popup__input-style" placeholder="{{__('messages.full_name')}}..." />
-                    </div>
-                    <div class="input">
-                        <label for="email" class="popup__label-style">{{__('messages.the_company')}}</label>
-                        <input type="text" id="company" name="company" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
-                    </div>
-
-                    <div class="input">
-                        <label for="message" class="popup__label-style">{{__('messages.short_desc')}}</label>
-                        <textarea id="message" name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
-                    </div>
-                    <div class="input">
-                        <label for="email" class="popup__label-style">{{__('messages.deadline')}}</label>
-                        <input type="date" id="email" name="deadline" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
-                    </div>
-                    <div class="input">
-                        <label for="email" class="popup__label-style">{{__('messages.the_contact')}}</label>
-                        <input type="email" id="email" name="email" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
-                    </div>
-
-
-                    <input class="input-btn" type="submit" value="{{__('messages.submit')}}">
-
-                </div>
-            </div>
         </form>
+        </div>
     </div>
 </div>
 @endsection

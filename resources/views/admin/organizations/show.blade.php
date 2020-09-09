@@ -32,7 +32,12 @@
             <li class="list-group-item">
                 {{$organization->description}}
             </li>
-
+            <li class="list-group-item">
+                {{__('messages.country')}}
+            </li>
+            <li class="list-group-item">
+                {{$organization->country}}
+            </li>
 
             <li class="list-group-item">
                 {{__('messages.about')}}

@@ -15,7 +15,7 @@ class Organization extends Model
     }
     protected $fillable = [
          'name', 'picture_org', 'picture_cover', 'country', 'about',
-        'description','whatsapp', 'email',  'website','user_id','lang'
+        'description','whatsapp', 'email',  'website','user_id','lang','location','type_id'
 
 
     ];

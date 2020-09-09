@@ -32,6 +32,8 @@ class OrganizationRequest extends FormRequest
             'website' => 'required',
             'email' => 'required',
             'user_id' => 'required',
+            'location' => 'required',
+            'type_id'=>'required'
 
         ];
     }

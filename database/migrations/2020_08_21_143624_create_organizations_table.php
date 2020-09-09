@@ -26,6 +26,8 @@ class CreateOrganizationsTable extends Migration
             $table->string('website');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('email');
+            $table->string('location');
+            $table->integer('type_id');
             $table->timestamps();
         });
     }

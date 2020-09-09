@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Organization;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -16,8 +17,8 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        return view('user.organizations.organizations',[
-            'organizations'=>Organization::where('lang',App::getLocale())->paginate(10)
+        return view('user.organizations.organizations', [
+            'organizations' => Organization::where('lang', App::getLocale())->paginate(10)
         ]);
     }
 
@@ -39,7 +40,21 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->except('type');
+        $type =  Type::create([
+            'name' => $request->type,
+            'lang'=>$request->lang
+        ]);
 
+        $picture_org = $request->picture_org->store('images', 'public');
+        $picture_cover = $request->picture_cover->store('images', 'public');
+        $data['picture_org'] = $picture_org;
+        $data['picture_cover'] = $picture_cover;
+        $data['type_id'] = $type->id;
+        Organization::create($data);
+        session()->flash('success_en', ' Organization created successfully');
+        session()->flash('success_ar', ' تم اضافة المنظمة بنجاح');
+        return redirect(route('user.organizations.index'));
     }
 
     /**
@@ -51,7 +66,7 @@ class OrganizationController extends Controller
     public function show(Organization $organization)
     {
         //
-        return view('user.organizations.show')->with('organization',$organization);
+        return view('user.organizations.show')->with('organization', $organization);
     }
 
     /**

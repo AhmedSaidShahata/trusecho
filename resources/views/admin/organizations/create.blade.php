@@ -30,6 +30,16 @@
 
             @endif
 
+            <div class="input-group mt-4">
+                <label>{{__('messages.types')}}</label>
+                <select class="form-control" name="type_id">
+                    @foreach($types as $type)
+
+                    <option <?php if (isset($organization) and $type->id == $organization->type_id) echo 'selected' ?> value="{{$type->id}}">{{$type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <input type="hidden" value="{{Auth::user()->id}}" name="user_id" />
 
@@ -42,6 +52,11 @@
             <div class="form-group">
                 <label>{{__('messages.country')}}</label>
                 <input type="text" name="country" class="form-control" value="{{isset($organization)?$organization->country:''}}">
+            </div>
+
+            <div class="form-group">
+                <label>{{__('messages.location')}}</label>
+                <input type="text" name="location" class="form-control" value="{{isset($organization)?$organization->location:''}}">
             </div>
 
             <div class="form-group">
