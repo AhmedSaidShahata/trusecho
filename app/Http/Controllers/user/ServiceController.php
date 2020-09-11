@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Cost;
 use App\Http\Controllers\Controller;
-use App\Job;
-use App\Language;
 use App\Service;
-use App\specialization;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -22,8 +18,8 @@ class ServiceController extends Controller
     public function index()
     {
         return view('user.services.services', [
-            'services' => Service::where('lang',App::getLocale())->paginate(10),
-            'specializations' => specialization::where('lang',App::getLocale()),
+            'services' => Service::where('lang', App::getLocale())->paginate(10),
+            'types' => Type::where('lang', App::getLocale())->get(),
         ]);
     }
     /**
@@ -44,7 +40,32 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->except('type');
+
+        $check_type = Type::where([
+            'name' => $request->type,
+            'lang' => $request->lang
+
+        ]);
+
+        if ($check_type->get()->count() == 0) {
+
+            $type =  Type::create([
+                'name' => $request->type,
+                'lang' => $request->lang,
+            ]);
+        } else {
+            $type = $check_type->get()->first();
+        }
+
+        $picture = $request->picture->store('images', 'public');
+        $data['picture'] = $picture;
+        $data['type_id'] = $type->id;
+        Service::create($data);
+        session()->flash('success_en', ' Service Created successfully');
+        session()->flash('success_ar', ' تم اضافة الخدمة بنجاح');
+        return redirect(route('user.services.index'));
     }
 
     /**
@@ -98,8 +119,7 @@ class ServiceController extends Controller
 
         return view('user.services.services', [
             'services' => $services,
-
-            'specializations' => specialization::all(),
+            'types' => Type::where('lang', App::getLocale())->get(),
 
         ]);
     }

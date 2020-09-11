@@ -20,7 +20,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::where('lang', App::getLocale())->get();
+        $blogs = Blog::where([
+            'lang'=> App::getLocale(),
+            'status'=>1
+            ])->get();
         return view('admin.blogs.index')->with('blogs', $blogs);
     }
 
@@ -31,7 +34,10 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = CategoryBlog::where('lang', App::getLocale())->get();
+        $categories = CategoryBlog::where([
+            'lang'=> App::getLocale(),
+            'status'=>1
+        ])->get();
         return view('admin.blogs.create')->with('categories', $categories);
     }
 
@@ -74,7 +80,10 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        $categories = CategoryBlog::where('lang', App::getLocale())->get();
+        $categories =CategoryBlog::where([
+            'lang'=> App::getLocale(),
+            'status'=>1
+        ])->get();
 
         return view('admin.blogs.create', ['blog' => $blog, 'categories' =>$categories]);
     }
@@ -115,5 +124,28 @@ class BlogController extends Controller
         session()->flash('success_en', 'Blog Deleted successfully');
         session()->flash('success_ar', 'تم حذف المقال بنجاح');
         return redirect(route('admin.blogs.index'));
+    }
+
+    public function request()
+    {
+        $blogs = Blog::where([
+            'lang'=> App::getLocale(),
+            'status'=>0
+            ])->paginate(10);
+        return view('admin.blogs_requests.index')->with('blogs', $blogs);
+    }
+
+    public function accept(Request $request)
+    {
+
+        $blogId = $request->input('blogId');
+        $blog = Blog::where('id',$blogId)->get()->first();
+        $blog->status=1;
+        $blog->save();
+
+        $cat_id = $blog->category_blog_id;
+        $category = CategoryBlog::where('id',$cat_id)->get()->first();
+        $category->status=1;
+        $category->save();
     }
 }

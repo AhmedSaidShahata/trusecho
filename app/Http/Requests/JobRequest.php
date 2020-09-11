@@ -27,12 +27,13 @@ class JobRequest extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'company'=>'required',
+            'salary'=>'required',
             'location' => 'required',
             'requirments' => 'required',
             'company' => 'required',
             'email' => 'required',
             'deadline' => 'required',
-            'type_id' => 'required',
+            'contact'=>'required',
             'specialization_id' => 'required',
 
 

@@ -124,7 +124,7 @@
                     </li>
 
 
-            </ul>
+                </ul>
 
 
         </div>
@@ -211,6 +211,10 @@
                     </li>
 
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.blogs.request')}}"><i class="fas fa-gifts"></i> {{__('messages.blog_requests')}}</a>
+                    </li>
                     <li class="list-group-item">
                         <a href="{{route('admin.jobapps.index')}}"><i class="fas fa-gifts"></i> {{__('messages.job_app')}}</a>
                     </li>
@@ -238,6 +242,43 @@
         $(function() {
 
 
+
+
+
+            //=========================================== Start best jobs  With Ajax ===============================
+            $(document).on("click", ".accept-blog", function() {
+
+                let reference = $(this);
+                let blogId = reference.data("blogid");
+
+                // if ($("table tbody").children().length == 0) {
+                //     reference.parents("tbody").html(`
+                //     <div  class="alert alert-primary" role="alert">
+                //          {{__('messages.no_blogs')}}
+                //     </div>
+                //     `)
+                // }
+
+                $.ajax({
+                    url: myLang + "/admin/blogs_accept",
+                    type: "post",
+                    dataType: "text",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        blogId: blogId,
+
+                    },
+                    success: function(data) {
+                        reference.parents('tr').hide
+                        (500)
+                    }
+                })
+            })
+
+
+
+
+
             let myLang = $(".my_lang").text()
             //=========================================== Start bestscholar  With Ajax ===============================
             $(document).on("click", ".best-scholar", function() {
@@ -247,7 +288,7 @@
 
 
                 $.ajax({
-                    url:myLang+"/admin/bestscholars ",
+                    url: myLang + "/admin/bestscholars ",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -273,7 +314,7 @@
                 let jobId = reference.data("jobid");
 
                 $.ajax({
-                    url:myLang+"/admin/bestjobs ",
+                    url: myLang + "/admin/bestjobs ",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -299,7 +340,7 @@
                 let serviceId = reference.data("serviceid");
 
                 $.ajax({
-                    url:myLang+"/admin/bestservices ",
+                    url: myLang + "/admin/bestservices ",
                     type: "post",
                     dataType: "text",
                     data: {
@@ -325,7 +366,7 @@
                 let organizationId = reference.data("organizationid");
 
                 $.ajax({
-                    url:myLang+"/admin/bestorganizations ",
+                    url: myLang + "/admin/bestorganizations ",
                     type: "post",
                     dataType: "text",
                     data: {

@@ -19,8 +19,9 @@
                 <th scope="cpl">{{__('messages.picture')}}</th>
                 <th scope="col">{{__('messages.title')}}</th>
                 <th scope="col">{{__('messages.description')}}</th>
-                <th scope="col">{{__('messages.content')}}</th>
-                <th scope="col">{{__('messages.specialization')}}</th>
+                <th scope="col">{{__('messages.instruction_buyer')}}</th>
+                <th scope="col">{{__('messages.deliver_time')}}</th>
+                <th scope="col">{{__('messages.type')}}</th>
                 <th scope="col">{{__('messages.creator')}}</th>
                 <th scope="col">{{__('messages.price')}}</th>
                 <th>{{__('messages.controls')}}</th>
@@ -34,7 +35,8 @@
                 <td>{{$service->title}}</td>
                 <td>{{$service->description}}</td>
                 <td>{{$service->content}}</td>
-                <td>{{$service->specialization->name}}</td>
+                <td>{{$service->delivery_time}}</td>
+                <td>{{$service->type->name}}</td>
                 <td>{{$service->user->name}}</td>
                 <td>{{$service->price}}</td>
 

@@ -14,9 +14,9 @@ class Service extends Model
     {
         return $this->hasMany(Commentjob::class);
     }
-    public function specialization()
+    public function type()
     {
-        return $this->belongsTo(specialization::class);
+        return $this->belongsTo(type::class);
     }
 
     public function user()
@@ -32,6 +32,6 @@ class Service extends Model
     protected $fillable = [
         'title', 'description', 'content',
         'picture', 'price', 'user_id', 'lang',
-        'specialization_id'
+        'type_id','delivery_time'
     ];
 }

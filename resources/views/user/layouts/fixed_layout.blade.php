@@ -110,6 +110,25 @@
                 <li class="nav-bar__item dropdown">
                     <div class="notification-icon-box">
                         <img src="{{asset('img/notification-icon.svg')}}" alt="notification" class="notification-icon" />
+                        <span class="notification-number">{{count(auth()->user()->unreadNotifications)}}</span>
+                        <div class="dropdown-content">
+                            @foreach(auth()->user()->notifications as $note)
+
+
+                            <a href="" class="{{$note->read_at == null ? 'unread' : ''}}">
+                                {!! $note->data['data'] !!}
+                                <?php $note->markAsRead() ?>
+                            </a>
+
+
+                            @endforeach
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-bar__item dropdown">
+                    <div class="notification-icon-box">
+                        <i class="fas fa-user-friends fa-2x"></i>
                         <!-- <span class="notification-number">3</span> -->
                         <div class="dropdown-content">
                             <!-- <a href="#">Faisl just posted a blog</a>
@@ -274,7 +293,7 @@
     </div>
 
     <div id="app">
-        <main class="py-5" >
+        <main class="py-5">
             @yield('content')
         </main>
     </div>
@@ -688,14 +707,14 @@
                         if (reference.text() == ' follow ') {
                             reference.text(' following ')
                             followCount.text(followCountVal += 1)
-                        }else if(reference.text() == ' متابعة '){
+                        } else if (reference.text() == ' متابعة ') {
                             reference.text(' تتابعه ')
                             followCount.text(followCountVal += 1)
-                        }else if(reference.text() == ' تتابعه '){
+                        } else if (reference.text() == ' تتابعه ') {
 
                             reference.text(' متابعة ')
                             followCount.text(followCountVal -= 1)
-                        }else {
+                        } else {
                             reference.text(' follow ');
                             followCount.text(followCountVal -= 1)
                         }

@@ -457,7 +457,24 @@ return [
     'job_name' => 'اسم الوظيفة ',
     'the_company' => 'اسم الشركة',
     'short_desc' => 'اكتب وصف لهذه الوظيفة',
-    'the_contact' => 'التواصل'
+    'the_contact' => 'التواصل',
+
+    'blog_title'=>'عنوان المقال',
+    'blog_cat'=>'نوع المقال',
+    'simple_desc'=>'وصف قصير',
+    'picture_blog'=>'صورة المقال',
+    'picture_cat'=>'صورة القسم',
+    'submit_for_review'=>'نشر للمراجعة',
+
+
+    'service_name'=>'اسم الخدمة',
+    'service_type'=>'نوع الخدمة',
+    'deliver_time'=>'الوقت المتوقع للحصول على الخدمة',
+    'service_description'=>'وصف للخدمة',
+    'instruction_buyer'=>'تعليمات للمشترى',
+    'contact'=>'رقم التواصل ',
+    'blog_requests'=>'مقالات المستخدمين'
+
 
 
 

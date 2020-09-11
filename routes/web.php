@@ -65,6 +65,8 @@ Route::group([
         Route::resource('bestjobs', 'BestjobController');
         Route::resource('bestservices', 'BestserviceController');
         Route::resource('bestorganizations', 'BestorganizationController');
+        Route::get('blogs_request', 'BlogController@request')->name('blogs.request');
+        Route::post('blogs_accept', 'BlogController@accept');
     });
 
 

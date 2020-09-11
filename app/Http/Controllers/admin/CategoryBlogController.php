@@ -18,7 +18,10 @@ class CategoryBlogController extends Controller
      */
     public function index()
     {
-        $categories=CategoryBlog::where('lang',App::getLocale())->get();
+        $categories=CategoryBlog::where([
+            'lang'=> App::getLocale(),
+            'status'=>1
+        ])->paginate(10);
         return view('admin.categories_blogs.index')->with('categories',$categories);
     }
 

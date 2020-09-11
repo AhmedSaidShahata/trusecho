@@ -17,12 +17,13 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('lang');
             $table->string('title');
+            $table->date('delivery_time');
             $table->string('description');
             $table->text('content');
             $table->text('picture');
             $table->float('price');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('specialization_id')->constrained()->onDelete('cascade');
+            $table->foreignId('type_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

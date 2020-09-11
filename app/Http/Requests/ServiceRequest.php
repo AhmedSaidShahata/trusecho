@@ -29,7 +29,8 @@ class ServiceRequest extends FormRequest
             'title' => 'required|max:190',
             'description' => 'required|max:190',
             'content' => 'required',
-            'specialization_id'=>'required'
+            'type_id'=>'required',
+            'delivery_time'
 
 
         ];

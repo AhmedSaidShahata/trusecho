@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\user;
 
 use App\Blog;
+use App\CategoryBlog;
 use App\Http\Controllers\Controller;
+use App\Notifications\addPost;
+use App\User;
 use App\Watchblog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class BlogController extends Controller
 {
@@ -37,7 +41,41 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('category', 'picture_category');
+        $picture_category = $request->picture_category->store('images', 'public');
+
+
+        $check_category = CategoryBlog::where([
+            'lang' => $request->lang,
+            'name' => $request->category
+        ]);
+
+        if ($check_category->get()->count() == 0) {
+
+            $category =  CategoryBlog::create([
+                'name' => $request->category,
+                'lang' => $request->lang,
+                'status' => $request->status,
+                'picture' => $picture_category
+
+            ]);
+        } else {
+            $category = $check_category->get()->first();
+        }
+
+
+        $picture = $request->picture->store('images', 'public');
+        $data['picture'] = $picture;
+        $data['category_blog_id'] = $category->id;
+        $blog  = Blog::create($data);
+
+        $user = User::all();
+
+        Notification::send($user, new addPost($blog));
+
+        session()->flash('success_en', 'Blog created successfully and admin will admin review blog first before show');
+        session()->flash('success_ar', 'تم اضافة المقال بنجاح ولكن سيتم مراجعته من المدير اولا قبل ان يتم عرضه');
+        return redirect(route('user.categoryblogs.index'));
     }
 
     /**
@@ -65,9 +103,9 @@ class BlogController extends Controller
             'blog_id' => $blog->id
         ])->get()->count();
 
-        $related_blogs=Blog::where([
-            'category_blog_id'=>$blog->category_blog_id
-        ])->where('id','!=',$blog->id)->get();
+        $related_blogs = Blog::where([
+            'category_blog_id' => $blog->category_blog_id
+        ])->where('id', '!=', $blog->id)->get();
 
 
 
@@ -75,7 +113,7 @@ class BlogController extends Controller
             'blog' => $blog,
             'comments' => $comments,
             'views_count' => $viewsCount,
-            'related_blogs'=>$related_blogs
+            'related_blogs' => $related_blogs
         ]);
     }
 

@@ -33,7 +33,7 @@ class Job extends Model
     protected $fillable = [
         'title', 'description', 'location', 'requirments',
         'salary', 'company', 'deadline', 'email', 'picture',
-        'type_id', 'specialization_id', 'user_id', 'lang',
+        'contact', 'specialization_id', 'user_id', 'lang',
         'picture_company'
     ];
 }

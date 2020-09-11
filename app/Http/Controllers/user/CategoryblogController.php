@@ -18,7 +18,10 @@ class CategoryblogController extends Controller
      */
     public function index()
     {
-        $categories=CategoryBlog::where('lang',App::getLocale())->get();
+        $categories=CategoryBlog::where([
+            'lang'=>App::getLocale(),
+            'status'=>1
+            ])->paginate(10);
         return view('user.blogs.categories')->with('categories',$categories );
     }
 
@@ -51,7 +54,11 @@ class CategoryblogController extends Controller
      */
     public function show($id)
     {
-        $blogs = Blog::where('category_blog_id', '=', $id)->paginate(10);
+        $blogs = Blog::where([
+            'category_blog_id' => $id,
+            'status'=>1,
+            'lang'=>App::getLocale()
+            ])->paginate(10);
         $category=CategoryBlog::find($id);
 
 

@@ -21,17 +21,17 @@
             <tr>
                 <th scope="col">{{__('messages.serial')}}</th>
                 <th scope="col">{{__('messages.picture')}}</th>
+                <th scope="col">{{__('messages.picture_company')}}</th>
                 <th scope="col">{{__('messages.title')}}</th>
                 <th scope="col">{{__('messages.description')}}</th>
                 <th scope="col">{{__('messages.salary')}}</th>
                 <th scope="col">{{__('messages.company')}}</th>
-                <th scope="col">{{__('messages.picture_company')}}</th>
                 <th scope="col">{{__('messages.location')}}</th>
                 <th scope="col">{{__('messages.requirments')}}</th>
                 <th scope="col">{{__('messages.deadline')}}</th>
                 <th scope="col">{{__('messages.email')}}</th>
+                <th scope="col">{{__('messages.contact')}}</th>
                 <th scope="col">{{__('messages.creator')}}</th>
-                <th scope="col">{{__('messages.type')}}</th>
                 <th scope="col">{{__('messages.specialization')}}</th>
                 <th>{{__('messages.controls')}}</th>
             </tr>
@@ -41,13 +41,14 @@
             <tr>
                 <th scope="row">{{$job->id}}</th>
                 <td><img src="{{asset('storage/'.$job->picture)}}" alt="image job" style="width:100px;height:100px"></td>
+                <td><img src="{{asset('storage/'.$job->picture_company)}}" alt="image job" style="width:100px;height:100px"></td>
                 <td>{{$job->title}}</td>
                 <td>
                     {{ substr($job->description,0,20) }}
                 </td>
                 <td>{{$job->salary}}</td>
                 <td>{{$job->company}}</td>
-                <td>{{$job->picture_company}}</td>
+
 
                 <td>
                     {{ substr($job->location,0,20) }}
@@ -58,8 +59,8 @@
 
                 <td>{{$job->deadline}}</td>
                 <td>{{$job->email}}</td>
+                <td>{{$job->contact}}</td>
                 <td>{{$job->user->name}}</td>
-                <td>{{$job->type->name}}</td>
                 <td>{{$job->specialization->name}}</td>
 
                 <td class="d-flex">

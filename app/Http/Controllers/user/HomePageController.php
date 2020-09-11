@@ -36,7 +36,10 @@ class HomePageController extends Controller
           'jobs' => Bestjob::where('lang',App::getLocale())->get(),
           'costs' => Cost::where('lang',App::getLocale())->get(),
           'services'=>Bestservice::where('lang',App::getLocale())->get(),
-          'categories'=>CategoryBlog::where('lang',App::getLocale())->get(),
+          'categories'=>CategoryBlog::where([
+              'lang'=>App::getLocale(),
+              'status'=>1
+              ])->get(),
           'organizations'=>Bestorganization::where('lang',App::getLocale())->get()
          ]);
     }

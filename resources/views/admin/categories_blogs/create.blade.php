@@ -29,6 +29,7 @@
             @csrf
 
             <input type="hidden" value="{{$lang}}" name="lang">
+            <input type="hidden" value="1" name="status">
 
             <div class="form-group">
                 <label for="category">{{__('messages.name')}}</label>

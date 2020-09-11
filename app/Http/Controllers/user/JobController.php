@@ -23,11 +23,7 @@ class JobController extends Controller
     {
         return view('user.jobs.jobs', [
             'jobs' => Job::paginate(10),
-            'costs' => Cost::where('lang', App::getLocale()),
-            'types' => Type::where('lang', App::getLocale()),
             'specializations' => specialization::where('lang', App::getLocale()),
-
-
         ]);
     }
 
@@ -50,11 +46,30 @@ class JobController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
+        $data = $request->except('specialization');
         $picture = $request->picture->store('images', 'public');
         $data['picture'] = $picture;
-        // $picture_company = $request->picture_company->store('images', 'public');
-        // $data['picture_company'] = $picture_company;
+        $picture_company = $request->picture_company->store('images', 'public');
+        $data['picture_company'] = $picture_company;
+
+        $check_specialization = specialization::where([
+            'lang' => $request->lang,
+            'name' => $request->specialization
+        ]);
+
+        if ($check_specialization->get()->count() == 0) {
+
+            $specialization =  specialization::create([
+                'name' => $request->specialization,
+                'lang' => $request->lang,
+
+            ]);
+        } else {
+            $specialization = $check_specialization->get()->first();
+        }
+
+        $data['specialization_id'] = $specialization->id;
+
 
         Job::create($data);
         session()->flash('success_en', ' Job created successfully ');

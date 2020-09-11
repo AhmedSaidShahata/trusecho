@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRequest;
 use App\Language;
 use App\Service;
-use App\specialization;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -36,9 +35,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $specializations = specialization::where('lang', App::getLocale())->get();
+        $types = Type::where('lang', App::getLocale())->get();
         return view('admin.services.create', [
-            'specializations' => $specializations,
+            'types' => $types,
         ]);
     }
 
@@ -80,11 +79,11 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
 
-        $specializations = specialization::where('lang', App::getLocale())->get();
+        $types = Type::where('lang', App::getLocale())->get();
 
         return view('admin.services.create', [
             'service' => $service,
-            'specializations' => $specializations,
+            'types' => $types,
         ]);
     }
 

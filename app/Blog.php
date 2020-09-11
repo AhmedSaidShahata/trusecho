@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     protected $fillable = [
-        'title', 'description','content','lang','category_blog_id','user_id','picture'
+        'title', 'description','content','lang','category_blog_id','user_id','picture','status'
     ];
     public function category(){
         return $this->belongsTo(CategoryBlog::class);

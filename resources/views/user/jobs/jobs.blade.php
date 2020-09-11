@@ -5,29 +5,8 @@
     <h1 class="search-section__header">{{__('messages.jobs')}}</h1>
     <div class="search-section__info">
         <form action="{{ route('user.jobsearch')}}" class="landing-section__info-selections">
-            <div class="selection-div u-margin-right-medium">
-                <label for="cars" class="landing-section__info-selections-label">{{__('messages.costs')}}</label>
-                <div class="custom-select">
-                    <select name="cost_id" id="cost">
-                        <option disabled selected value="">{{__('messages.costs')}}</option>
-                        @foreach($costs as $cost)
-                        <option <?php if (isset($_GET['cost_id']) and $cost->id == $_GET['cost_id']) echo 'selected' ?> value="{{$cost->id}}">{{$cost->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
 
-            <div class="selection-div u-margin-right-medium">
-                <label for="type" class="landing-section__info-selections-label">{{__('messages.types')}}</label>
-                <div class="custom-select">
-                    <select name="type_id" id="type" class="select-for-label">
-                        <option disabled selected value="">{{__('messages.types')}}</option>
-                        @foreach($types as $type)
-                        <option <?php if (isset($_GET['type_id']) and $type->id == $_GET['type_id']) echo 'selected' ?> value="{{$type->id}}">{{$type->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+
             <div class="selection-div u-margin-right-medium">
                 <label for="speicialization" class="landing-section__info-selections-label">{{__('messages.specializations')}}</label>
                 <div class="custom-select">
@@ -101,26 +80,23 @@
 
 
 
-
-
-
-
-
-    <div class="popup" id="apply-for-job">
+    <div class="popup" id="apply-for-job" style="overflow: auto;">
         <form action="{{route('user.jobs.store')}}" method="post" enctype="multipart/form-data">
-            <div class="popup__content">
+            <div class="popup__content" style="padding-top: 520px;">
                 <div class="popup__left">
-                    <h1 class="popup__header">{{__('messages.apply_job')}}</h1>
+                    <h1 class="popup__header">{{__('messages.add_job')}}</h1>
                     <div class="header__underline"></div>
 
                     @csrf
 
-                    <input type="hidden" name="lang" value="{{$lang}}">
+                    <input required type="hidden" name="lang" value="{{$lang}}">
 
-                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                    <input required type="hidden" name="user_id" value="{{Auth::user()->id}}">
                     <!-- class="add-cv-input" -->
                     <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
-                    <input type="file" id="" name="picture" />
+                    <input required  type="file" name="picture" />
+                    <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture_company')}}</h3>
+                    <input required type="file" name="picture_company" />
                     <!-- <div class="add-cv">
 
                     <div class="add-cv__title-box">
@@ -138,32 +114,49 @@
 
                     <div class="input">
                         <label for="fullname" class="popup__label-style">{{__('messages.job_name')}}</label>
-                        <input type="text" id="title" name="title" class="popup__input-style" placeholder="{{__('messages.full_name')}}..." />
+                        <input required type="text"  name="title" class="popup__input-style" />
                     </div>
                     <div class="input">
                         <label for="email" class="popup__label-style">{{__('messages.the_company')}}</label>
-                        <input type="text" id="company" name="company" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
+                        <input required type="text" id="company" name="company" class="popup__input-style" />
                     </div>
                     <div class="input">
-                        <label for="fullname" class="popup__label-style">{{__('messages.job_slary')}}</label>
-                        <input type="text" id="title" name="salary" class="popup__input-style" placeholder="{{__('messages.full_name')}}..." />
+                        <label for="fullname" class="popup__label-style">{{__('messages.salary')}}</label>
+                        <input required type="number"  name="salary" class="popup__input-style" />
+                    </div>
+
+                    <div class="input">
+                        <label for="fullname" class="popup__label-style">{{__('messages.specializations')}}</label>
+                        <input required type="text"  name="specialization" class="popup__input-style" />
+                    </div>
+                    <div class="input">
+                        <label for="email" class="popup__label-style">{{__('messages.deadline')}}</label>
+                        <input required type="date"  name="deadline" class="popup__input-style"  />
+                    </div>
+                    <div class="input">
+                        <label for="email" class="popup__label-style">{{__('messages.location')}}</label>
+                        <input required type="text"  name="location" class="popup__input-style"  />
+                    </div>
+                    <div class="input">
+                        <label for="email" class="popup__label-style">{{__('messages.the_contact')}}</label>
+                        <input required type="text"  name="contact" class="popup__input-style"  />
+                    </div>
+                    <div class="input">
+                        <label for="email" class="popup__label-style">{{__('messages.email')}}</label>
+                        <input required type="text"  name="email" class="popup__input-style"  />
+                    </div>
+
+                    <div class="input">
+                        <label for="message" class="popup__label-style">{{__('messages.requirments')}}</label>
+                        <textarea name="requirments" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                     </div>
 
                     <div class="input">
                         <label for="message" class="popup__label-style">{{__('messages.short_desc')}}</label>
-                        <textarea id="message" name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
-                    </div>
-                    <div class="input">
-                        <label for="email" class="popup__label-style">{{__('messages.deadline')}}</label>
-                        <input type="date" id="email" name="deadline" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
-                    </div>
-                    <div class="input">
-                        <label for="email" class="popup__label-style">{{__('messages.the_contact')}}</label>
-                        <input type="email" id="email" name="email" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
+                        <textarea name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                     </div>
 
-
-                    <input class="input-btn" type="submit" value="{{__('messages.submit')}}">
+                    <input required class="input-btn" type="submit" value="{{__('messages.submit')}}">
 
                 </div>
             </div>

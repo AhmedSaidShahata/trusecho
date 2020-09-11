@@ -22,6 +22,7 @@ class CreateBlogsTable extends Migration
             $table->foreignId('category_blog_id')->constrained()->onDelete('cascade');
             $table->text('picture');
             $table->integer('user_id');
+            $table->integer('status');
             $table->timestamps();
         });
     }

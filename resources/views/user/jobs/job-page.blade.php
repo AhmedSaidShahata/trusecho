@@ -4,10 +4,10 @@
 <div class="organization-cover-pic-box">
     <img src="{{asset('storage/'.$job->picture)}}" alt="org cover pic" class="organization-cover-pic" style="height:376px; width:100%" />
     <div class="organization-profile-info-box">
-        <div class="organization-profile-pic-box" style="overflow: hidden;" >
+        <div class="organization-profile-pic-box" style="overflow: hidden;">
             <img src="{{asset('storage/'.$job->picture_company)}}" alt="Company Logo" class="organization-profile-pic" style="height:200px;width:200px" />
         </div>
-         <div class="organization-info">
+        <div class="organization-info">
             <h1 class="organization-name">{{$job->company}}</h1>
             <div class="followers-box">
                 <!-- <p class="followers-title">followers:</p>
@@ -186,15 +186,16 @@
     </div>
 </div>
 <div class="popup" id="apply-for-job">
-    <div class="popup__content">
-        <div class="popup__left">
-            <h1 class="popup__header">{{__('messages.apply_job')}}</h1>
-            <div class="header__underline"></div>
-            <form action="{{route('user.jobapps.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('user.jobapps.store')}}" method="post" enctype="multipart/form-data">
+        <div class="popup__content">
+            <div class="popup__left">
+                <h1 class="popup__header">{{__('messages.apply_job')}}</h1>
+                <div class="header__underline"></div>
+
                 @csrf
                 <!-- class="add-cv-input" -->
                 <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.add_cv')}}</h3>
-                <input type="file" id="" name="cv" />
+                <input required type="file" id="" name="cv" />
                 <!-- <div class="add-cv">
 
                     <div class="add-cv__title-box">
@@ -206,30 +207,31 @@
                 <div class="applying-for-job-illustration-box">
                     <img src="{{asset('img/applying-for-a-job.svg')}}" alt="apply for job" class="applying-for-job-illustration" />
                 </div>
-        </div>
-        <div class="popup__right">
-            <a href="#tours_section" class="popup__closing">×</a>
+            </div>
+            <div class="popup__right">
+                <a href="#tours_section" class="popup__closing">×</a>
 
-            <div class="input">
-                <label for="fullname" class="popup__label-style">{{__('messages.full_name')}}</label>
-                <input type="text" id="fullname" name="fullname" class="popup__input-style" placeholder="{{__('messages.full_name')}}..." />
+                <div class="input">
+                    <label for="fullname" class="popup__label-style">{{__('messages.full_name')}}</label>
+                    <input required type="text" id="fullname" name="fullname" class="popup__input-style" placeholder="{{__('messages.full_name')}}..." />
+                </div>
+                <div class="input">
+                    <label for="email" class="popup__label-style">{{__('messages.email')}}</label>
+                    <input required type="email" id="email" name="email" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
+                </div>
+                <div class="input">
+                    <label for="phone" class="popup__label-style">{{__('messages.phone_number')}}</label>
+                    <input required type="text" id="phone-number" name="phone" class="popup__input-style" placeholder="{{__('messages.phone_number')}}..." />
+                </div>
+                <div class="input">
+                    <label for="message" class="popup__label-style">{{__('messages.message')}}</label>
+                    <textarea id="message" name="message" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
+                </div>
+                <input required type="hidden" value="{{$job->id}}" name="job_id">
+                <button class="input-btn" type="submit">{{__('messages.submit')}}</button>
+
             </div>
-            <div class="input">
-                <label for="email" class="popup__label-style">{{__('messages.email')}}</label>
-                <input type="email" id="email" name="email" class="popup__input-style" placeholder="{{__('messages.email')}}..." />
-            </div>
-            <div class="input">
-                <label for="phone" class="popup__label-style">{{__('messages.phone_number')}}</label>
-                <input type="text" id="phone-number" name="phone" class="popup__input-style" placeholder="{{__('messages.phone_number')}}..." />
-            </div>
-            <div class="input">
-                <label for="message" class="popup__label-style">{{__('messages.message')}}</label>
-                <textarea id="message" name="message" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
-            </div>
-            <input type="hidden" value="{{$job->id}}" name="job_id">
-            <button class="input-btn" type="submit">{{__('messages.submit')}}</button>
-            </form>
         </div>
-    </div>
+    </form>
 </div>
 @endsection

@@ -34,16 +34,16 @@
             <input type="hidden" name="lang" value="{{$lang}}">
 
             <div class="input-group my-2">
-                <label>{{__('messages.specializations')}}</label>
-                <select class="form-control" name="specialization_id">
-                    @forelse($specializations as $specialization)
+                <label>{{__('messages.types')}}</label>
+                <select class="form-control" name="type_id">
+                    @forelse($types as $type)
 
-                    <option <?php if (isset($job) and $specialization->id == $job->specialization_id) echo 'selected' ?> value="{{$specialization->id}}">
-                        {{$specialization->name }}
+                    <option <?php if (isset($job) and $type->id == $job->type_id) echo 'selected' ?> value="{{$type->id}}">
+                        {{$type->name }}
                     </option>
                     @empty
                     <option disabled selected>
-                        {{__('messages.choose_specs')}}
+                        {{__('messages.choose_types')}}
                     </option>
                     @endforelse
                 </select>
@@ -58,8 +58,12 @@
                 <input type="text" name="description" class="form-control" value="{{isset($service)?$service->description:''}}">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">{{__('messages.content')}}</label>
+                <label >{{__('messages.instruction_buyer')}}</label>
                 <textarea class="form-control" name="content" id="" cols="50" rows="10">{{isset($service) ? $service->content : ''}}</textarea>
+            </div>
+            <div class="form-group">
+                <label>{{__('messages.deliver_time')}}</label>
+                <input type="date" name="delivery_time" class="form-control" value="{{isset($service)?$service->date:''}}">
             </div>
 
             <div class="form-group">

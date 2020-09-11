@@ -43,7 +43,7 @@
 
     </div>
 </div>
-<div class="pagination">
+<!-- <div class="pagination">
     <div class="pagination__left-arrow-box"></div>
     <a href="#"><img src="img/left-arrow.svg" alt="arrow" class="pagination__left-arrow" /></a>
     <a href="#" class="pagination__prev">prev</a>
@@ -60,6 +60,6 @@
     <div class="pagination__right-arrow-box">
         <a href="#"><img src="img/right-arrow.svg" alt="arrow" class="pagination__right-arrow" /></a>
     </div>
-</div>
+</div> -->
 
 @endsection

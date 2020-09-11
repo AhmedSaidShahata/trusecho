@@ -83,6 +83,12 @@
                 <label >{{__('messages.email')}} </label>
                 <input required type="text" name="email" class="form-control" value="{{isset($job)?$job->email:''}}">
             </div>
+
+            <div class="form-group">
+                <label >{{__('messages.contact')}} </label>
+                <input required type="text" name="contact" class="form-control" value="{{isset($job)?$job->contact:''}}">
+            </div>
+
             <div class="form-group">
                 @if(isset($job))
                 <div>

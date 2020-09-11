@@ -453,7 +453,23 @@ return [
     'org_name'=>'Organization Name',
     'org_type'=>'Type',
     'picture_org'=>'Organization Picture',
-    ''
+
+    'blog_title'=>'Blog Title',
+    'blog_cat'=>'Blog Category',
+    'simple_desc'=>'Simple Description',
+    'picturث_blog'=>'Picture Blog',
+    'picture_cat'=>'Picture Category',
+    'submit_for_review'=>'Submit For Review',
+
+
+    'service_name'=>'Service Name',
+    'service_type'=>'Service Type',
+    'deliver_time'=>'Expected Delivery Time',
+    'service_description'=>'Service Description',
+    'instruction_buyer'=>'Instruction Buyer',
+    'contact'=>'Contact',
+    'blog_requests'=>'Users Blogs'
+
 
 
 
