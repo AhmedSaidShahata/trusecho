@@ -333,7 +333,9 @@
                         <li class="footer__right-info-list-item">
                             <a href="#">{{__('messages.asked_question')}}</a>
                         </li>
-                        <li class="footer__right-info-list-item"><a href="{{route('user.contacts.index')}}">{{__("messages.contact_us")}}</a></li>
+                        <li class="footer__right-info-list-item">
+                            <a href="{{route('user.contacts.index')}}">{{__("messages.contact_us")}}</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="footer__right-info">

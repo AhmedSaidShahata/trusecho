@@ -40,7 +40,7 @@ class AppscholarshipController extends Controller
     {
         //
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -50,7 +50,13 @@ class AppscholarshipController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $appscholar=Appscholar::find($id);
+        $appscholar->seen='1';
+        $appscholar->save();
+        return view('admin.scholarships-applications.show', [
+            'appscholar' => $appscholar
+        ]);
     }
 
     /**

@@ -45,7 +45,7 @@
         </thead>
         <tbody>
             @forelse($appscholarships as $appscholarship)
-            <tr>
+            <tr class="{{ $appscholarship->seen == 0 ? 'bg-red': ''}} ">
                 <td>
                     {{$appscholarship->id}}
                 </td>
@@ -97,7 +97,7 @@
                 <td>{{$appscholarship->created_at}}</td>
 
                 <td class="d-flex">
-
+                <a href="{{route('admin.appscholarships.show',$appscholarship->id)}}" class="btn"> <i class="far fa-eye"></i></a>
                     <form method="POST" class="form-inline" action="{{route('admin.appscholarships.destroy',$appscholarship->id)}}">
                         @csrf
                         @method('DELETE')

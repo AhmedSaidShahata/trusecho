@@ -54,7 +54,7 @@ class ScholarspecializeController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

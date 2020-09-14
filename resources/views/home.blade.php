@@ -21,6 +21,8 @@
 
     <span hidden>{{! $count_request_blog =App\Blog::where(['lang'=> App::getLocale(),'status'=>0])->get()->count() }}</span>
     <span hidden>{{! $count_request_job =App\Jobapp::where(['seen'=>'0'])->get()->count() }}</span>
+    <span hidden>{{! $count_request_scholar =App\Appscholar::where(['seen'=>'0'])->get()->count() }}</span>
+    <span hidden>{{! $count_contact =App\Contact::where(['seen'=>'No'])->get()->count() }}</span>
     <span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
     <span hidden class="my_lang">{{'/'.LaravelLocalization::getCurrentLocale()}}</span>
 
@@ -252,14 +254,34 @@
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.appscholarships.index')}}"><i class="fas fa-gifts"></i> {{__('messages.scholar_app')}}</a>
+                        <a href="{{route('admin.appscholarships.index')}}" style="font-size: 15px;">
+                            <i class="fas fa-gifts"></i>
+                            {{__('messages.scholar_app')}}
+                            <span class="badge badge-danger">
+                                {{$count_request_scholar}}
+                            </span>
+
+                        </a>
                     </li>
+
                     <li class="list-group-item">
-                        <a href="{{route('admin.faqs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.faqs')}}</a>
+                        <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i>
+                            {{__('messages.contacts')}}
+                            <span class="badge badge-danger">
+                                {{$count_contact}}
+                            </span>
+                        </a>
                     </li>
+
                     <li class="list-group-item">
-                        <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i> {{__('messages.contacts')}}</a>
+                        <a href="{{route('admin.faqs.index')}}">
+                            <i class="fas fa-gifts"></i>
+
+                            {{__('messages.faqs')}}
+
+                        </a>
                     </li>
+
 
                 </ul>
             </div>
