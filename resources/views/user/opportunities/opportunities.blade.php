@@ -95,7 +95,7 @@
         </div>
         @empty
         <div class="alert alert-primary d-flex align-items-center" role="alert" style="transform: scale(4);height:600px;justify-content: center;align-items: center;display: flex;">
-            No Opportunities Yet
+            {{__('messages.no_opp')}}
         </div>
         @endforelse
 

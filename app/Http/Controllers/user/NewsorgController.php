@@ -37,7 +37,17 @@ class NewsorgController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if ($request->hasFile('picture')) {
+            $picture = $request->picture->store('images', 'public');
+            $data['picture'] = $picture;
+        }
+
+
+        Newsorg::create($data);
+        session()->flash('success_en', ' Post created successfully ');
+        session()->flash('success_ar', ' تم اضافة المنشور بنجاح ');
+        return redirect()->back();
     }
 
     /**
@@ -48,17 +58,16 @@ class NewsorgController extends Controller
      */
     public function show($id)
     {
-        $organization = Organization::where('id','=',$id)->get()->first();
+        $organization = Organization::where('id', '=', $id)->get()->first();
 
-        $news_org = Newsorg::where(['organization_id'=> $id])->get();
+        $news_org = Newsorg::where(['organization_id' => $id])->get();
 
 
-        return view('user.organizations.org-news',[
-            'news_org'=>$news_org,
-            'org'=>$organization
+        return view('user.organizations.org-news', [
+            'news_org' => $news_org,
+            'org' => $organization
 
         ]);
-
     }
 
     /**

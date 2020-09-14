@@ -195,7 +195,13 @@
                 @csrf
                 <!-- class="add-cv-input" -->
                 <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.add_cv')}}</h3>
-                <input required type="file" id="" name="cv" />
+                <div class="add-cv">
+                        <div class="add-cv__title-box">
+                            <img src="{{asset('img/adding icon.svg')}}" alt="add icon" class="add-cv-icon" />
+                            <input type="file" name="cv"   />
+                        </div>
+                    </div>
+
                 <!-- <div class="add-cv">
 
                     <div class="add-cv__title-box">

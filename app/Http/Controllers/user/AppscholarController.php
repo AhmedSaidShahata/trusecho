@@ -39,28 +39,118 @@ class AppscholarController extends Controller
     public function store(Request $request)
     {
 
+        $user_id = Auth::user()->id;
+        $scholar_id = $request->scholar_id;
+        $siblings =  $request->siblings;
 
-        $data = $request->all();
+        $app =  Appscholar::where([
+            'user_id' => $user_id,
+            'scholar_id' => $scholar_id
+        ]);
+
+        if ($app->get()->count() == 0) {
+
+            $app_scholar = Appscholar::create([
+                'user_id' => $user_id,
+                'scholar_id' => $scholar_id,
+                'fullname' => $request->fullname,
+                'nationality' => $request->nationality,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'father_status' => $request->father_status,
+                'mother_status' => $request->mother_status,
+                'degree' => $request->degree,
+                'siblings'=>$siblings
+            ]);
+
+
+        } else {
+           Appscholar::where([
+                'scholar_id' => $scholar_id,
+                'user_id' => $user_id
+            ])->update(array(
+                'fullname' => $request->fullname,
+                'nationality' => $request->nationality,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'father_status' => $request->father_status,
+                'mother_status' => $request->mother_status,
+                'degree' => $request->degree,
+                'siblings'=>$siblings
+
+            ));
+        }
+
+        return view('user.scholarships.application2', [
+            'scholar_id' => $scholar_id,
+
+        ]);
+    }
+
+
+    public function store2(Request $request)
+    {
+        $user_id = Auth::user()->id;
+
+        $scholar_id = $request->scholar_id;
+
         $user_picture = $request->user_picture->store('images', 'public');
-        $data['user_picture'] = $user_picture;
-        $high_school_picture = $request->high_school_picture->store('images', 'public');
-        $data['high_school_picture'] = $high_school_picture;
-        $university_picture = $request->university_picture->store('images', 'public');
-        $data['university_picture'] = $university_picture;
-        $letter_picture = $request->letter_picture->store('images', 'public');
-        $data['letter_picture'] = $letter_picture;
-        $language_picture = $request->language_picture->store('images', 'public');
-        $data['language_picture'] = $language_picture;
-        $payment_picture = $request->payment_picture->store('images', 'public');
-        $data['payment_picture'] = $payment_picture;
-        $passport_picture = $request->passport_picture->store('images', 'public');
-        $data['passport_picture'] = $passport_picture;
 
-        $data['user_id'] = Auth::user()->id;
-        Appscholar::create($data);
+        $high_school_picture = $request->high_school_picture->store('images', 'public');
+
+        $university_picture = $request->university_picture->store('images', 'public');
+
+        $letter_picture = $request->letter_picture->store('images', 'public');
+
+        $language_picture = $request->language_picture->store('images', 'public');
+
+        $passport_picture = $request->passport_picture->store('images', 'public');
+
+
+
+
+        Appscholar::where([
+            'scholar_id' => $scholar_id,
+            'user_id' => $user_id
+        ])->update(array(
+            'specialization' => $request->specialization,
+            'university' => $request->university,
+            'interview_location' => $request->interview_location,
+            'user_picture' => $user_picture,
+            'high_school_picture' => $high_school_picture,
+            'university_picture' => $university_picture,
+            'letter_picture' => $letter_picture,
+            'language_picture' => $language_picture,
+            'passport_picture' => $passport_picture
+
+        ));
+
+        return view('user.scholarships.application3', [
+            'scholar_id' => $scholar_id,
+        ]);
+    }
+
+    public function store3(Request $request)
+    {
+        $scholar_id = $request->scholar_id;
+        $user_id = Auth::user()->id;
+        $payment_picture = $request->payment_picture->store('images', 'public');
+
+
+        Appscholar::where([
+            'scholar_id' => $scholar_id,
+            'user_id' => $user_id
+        ])->update(array(
+            'research' => $request->research,
+            'payment_picture' => $payment_picture,
+
+        ));
 
         return view('user.scholarships.thanks');
     }
+
 
     /**
      * Display the specified resource.
@@ -71,7 +161,7 @@ class AppscholarController extends Controller
     public function show($id)
 
     {
-        $scholarship=Scholarship::find($id);
+        $scholarship = Scholarship::find($id);
         return view('user.scholarships.application')->with('scholarship', $scholarship);
     }
 

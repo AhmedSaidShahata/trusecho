@@ -22,6 +22,7 @@ class CreateJobappsTable extends Migration
             $table->string('cv');
             $table->integer('user_id');
             $table->integer('job_id');
+            $table->enum('seen',[0,1])->default(0);
             $table->timestamps();
         });
     }

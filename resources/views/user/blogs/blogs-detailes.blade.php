@@ -25,7 +25,7 @@
         @forelse($blogs as $blog)
         <div class="blogs-detailed-results__card">
             <div class="blogs-detailed-results__pic-box">
-                <img src="{{asset('storage/'.$blog->picture)}}" alt="blogs pic" class="blogs-detailed-results__pic" style="width:280px; height:124px;" />
+                <img src="{{asset('storage/'.$blog->picture)}}" alt="blogs pic" class="blogs-detailed-results__pic" style="width:280px; height:124px; border-radius:20px" />
             </div>
             <div class="blogs-card-content">
                 <h1 class="blogs-card-content__header">{{$blog->title }}</h1>

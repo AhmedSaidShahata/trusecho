@@ -115,7 +115,7 @@ class ServiceController extends Controller
     }
     public function search(Request $request)
     {
-        $services = Service::where($request->all())->get();
+        $services = Service::where($request->all())->paginate(10);
 
         return view('user.services.services', [
             'services' => $services,

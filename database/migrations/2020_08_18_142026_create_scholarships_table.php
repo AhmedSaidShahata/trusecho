@@ -25,9 +25,8 @@ class CreateScholarshipsTable extends Migration
             $table->date('deadline');
             $table->string('email');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('type_id')->constrained()->onDelete('cascade');
             $table->foreignId('cost_id')->constrained()->onDelete('cascade');
-            $table->foreignId('specialization_id')->constrained()->onDelete('cascade');
+            $table->integer('specialization_id');
             $table->string('picture');
             $table->timestamps();
         });

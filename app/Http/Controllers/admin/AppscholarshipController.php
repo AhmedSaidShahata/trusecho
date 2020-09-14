@@ -15,8 +15,8 @@ class AppscholarshipController extends Controller
      */
     public function index()
     {
-        return view('admin.scholarships-applications.index',[
-            'appscholarships'=>Appscholar::all()
+        return view('admin.scholarships-applications.index', [
+            'appscholarships' => Appscholar::all()
         ]);
     }
 
@@ -40,6 +40,7 @@ class AppscholarshipController extends Controller
     {
         //
     }
+    
 
     /**
      * Display the specified resource.
@@ -83,6 +84,14 @@ class AppscholarshipController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $appscholar = Appscholar::find($id);
+
+        $appscholar->delete();
+
+        session()->flash('success_en', 'Success Deleted Application Scholarship ');
+
+        session()->flash('success_ar', 'تم حذف طلب المنحة بنجاح ');
+
+        return redirect(route('admin.appscholarships.index'));
     }
 }

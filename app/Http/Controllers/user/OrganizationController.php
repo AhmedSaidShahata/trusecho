@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Organization;
 use App\Type;
+use App\Typeorg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -18,7 +19,8 @@ class OrganizationController extends Controller
     public function index()
     {
         return view('user.organizations.organizations', [
-            'organizations' => Organization::where('lang', App::getLocale())->paginate(10)
+            'organizations' => Organization::where('lang', App::getLocale())->paginate(10),
+            'types'=>Typeorg::where('lang', App::getLocale())->get()
         ]);
     }
 
@@ -41,10 +43,23 @@ class OrganizationController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('type');
-        $type =  Type::create([
+
+
+        $check_type = Typeorg::where([
             'name' => $request->type,
-            'lang'=>$request->lang
+            'lang' => $request->lang
+
         ]);
+
+        if ($check_type->get()->count() == 0) {
+
+            $type =  Typeorg::create([
+                'name' => $request->type,
+                'lang' => $request->lang,
+            ]);
+        } else {
+            $type = $check_type->get()->first();
+        }
 
         $picture_org = $request->picture_org->store('images', 'public');
         $picture_cover = $request->picture_cover->store('images', 'public');
@@ -101,5 +116,16 @@ class OrganizationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $organizations = Organization::where($request->all())->paginate(10);
+
+        return view('user.organizations.organizations', [
+            'organizations' => $organizations,
+            'types' => Typeorg::where('lang', App::getLocale())->get(),
+
+        ]);
     }
 }

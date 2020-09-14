@@ -473,10 +473,30 @@ return [
     'service_description'=>'وصف للخدمة',
     'instruction_buyer'=>'تعليمات للمشترى',
     'contact'=>'رقم التواصل ',
-    'blog_requests'=>'مقالات المستخدمين'
+    'blog_requests'=>'مقالات المستخدمين',
 
+    'types_org'=>' الأنواع الخاصة بالمنظمات',
+    'types_ser'=>'الأنواع الخاصة بالخدمات',
 
+    'education_level'=>'الدرجة العلمية ',
+    'male'=>'ذكر',
+    'female'=>'أنثى',
+    'phone'=>'رقم الهاتف',
+    'personal_desc'=>'معلومات شخصيه',
+    'db_of_birth'=>'تاريخ الميلاد',
+    'save'=>'حفظ',
+    'no_opp'=>'ليس هناك فرص متاحةالان',
+    'our_partiners' => 'شركائنا',
 
+    'new_post'=>'منشور جديد',
+    'add_post'=>'اضافة منشور',
+    'h'=>'ساعة',
+    'm'=>'دقيقة',
+    'd'=>'يوم',
+    'passport_picture'=>'صورة جواز السفر',
+    'siblings_count'=> 'عدد الأشقاء',
+    'jobs_specialize'=>'تخصصات الوظائف',
+    'cost_scholar'=>'تكلفات المنح'
 
 
 

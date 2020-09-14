@@ -9,21 +9,18 @@ class Scholarship extends Model
 
     protected $fillable = [
         'title', 'description', 'content', 'location', 'requirments','lang', 'user_id',
-        'company','deadline', 'email', 'picture', 'cost_id', 'type_id', 'specialization_id'
+        'company','deadline', 'email', 'picture', 'cost_id', 'specialization_id'
     ];
 
     public function cost()
     {
         return $this->belongsTo(Cost::class);
     }
-    public function type()
-    {
-        return $this->belongsTo(Type::class);
-    }
+ 
 
     public function specialization()
     {
-        return $this->belongsTo(specialization::class);
+        return $this->belongsTo(Scholarspecialize::class);
     }
     public function user()
     {

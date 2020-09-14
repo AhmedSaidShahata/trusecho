@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ScholarshipRequest;
 use App\Language;
 use App\Scholarship;
+use App\Scholarspecialize;
 use App\specialization;
 use App\Type;
 use Illuminate\Http\Request;
@@ -35,11 +36,9 @@ class ScholarshipController extends Controller
     public function create()
     {
         $costs = Cost::where('lang', App::getLocale())->get();
-        $types = Type::where('lang', App::getLocale())->get();
-        $specializations = specialization::where('lang', App::getLocale())->get();
+        $specializations = Scholarspecialize::where('lang', App::getLocale())->get();
         return view('admin.scholarships.create', [
             'costs' => $costs,
-            'types' => $types,
             'specializations' => $specializations,
 
         ]);
@@ -84,13 +83,11 @@ class ScholarshipController extends Controller
 
 
         $costs = Cost::where('lang', App::getLocale())->get();
-        $types = Type::where('lang', App::getLocale())->get();
-        $specializations = specialization::where('lang', App::getLocale())->get();
+        $specializations = Scholarspecialize::where('lang', App::getLocale())->get();
 
         return view('admin.scholarships.create', [
             'scholarship' => $scholarship,
             'costs' => $costs,
-            'types' => $types,
             'specializations' =>$specializations,
 
         ]);

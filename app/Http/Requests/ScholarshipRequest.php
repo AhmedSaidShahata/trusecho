@@ -34,7 +34,6 @@ class ScholarshipRequest extends FormRequest
             'email' => 'required',
             'deadline' => 'required',
             'cost_id' => 'required',
-            'type_id'=>'required',
             'specialization_id'=>'required',
 
         ];

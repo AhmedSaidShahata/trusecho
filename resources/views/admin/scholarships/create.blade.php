@@ -49,21 +49,7 @@
                     @endforelse
                 </select>
             </div>
-            <div class="input-group mt-2">
-                <label>{{__('messages.types')}}</label>
-                <select class="form-control" name="type_id">
-                    @forelse($types as $type)
 
-                    <option <?php if (isset($scholarship) and $type->id == $scholarship->type_id) echo 'selected' ?> value="{{$type->id}}">
-                        {{$type->name }}
-                    </option>
-                    @empty
-                    <option value="">
-                        {{__('messages.choose_types')}}
-                    </option>
-                    @endforelse
-                </select>
-            </div>
 
             <div class="input-group mt-2">
                 <label>{{__('messages.specializations')}}</label>

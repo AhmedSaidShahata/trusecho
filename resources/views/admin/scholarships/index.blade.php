@@ -25,7 +25,7 @@
                 <th scope="col">{{__('messages.email')}}</th>
                 <th scope="col">{{__('messages.creator')}}</th>
                 <th scope="col">{{__('messages.specialization')}}</th>
-                <th scope="col">{{__('messages.type')}}</th>
+
                 <th scope="col">{{__('messages.cost')}}</th>
                 <th>{{__('messages.controls')}}</th>
             </tr>
@@ -44,7 +44,6 @@
                 <td>{{$scholarship->email}}</td>
                 <td>{{$scholarship->user->name}}</td>
                 <td>{{$scholarship->specialization->name}}</td>
-                <td>{{$scholarship->type->name}}</td>
                 <td>{{$scholarship->cost->name}}</td>
                 <td class="d-flex">
                     <div hidden>{{!$best_scholar=App\Bestscholar::where('scholarship_id', '=',$scholarship->id)->count()}}</div>

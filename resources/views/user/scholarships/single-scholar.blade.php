@@ -37,16 +37,6 @@
                 <h1 class="views">{{__('messages.deadline')}}:</h1>
                 <p class="views__values"> {{ $scholarship->deadline}}</p>
             </div>
-            <ul class="right-panel__job-requirements-list">
-                <?php $requirments_exp = explode("-", $scholarship->requirements) ?>
-                @foreach($requirments_exp as $requirment)
-                <li class="right-panel__job-requirements-item">
-                    {{$requirment}}
-                </li>
-                @endforeach
-
-            </ul>
-
 
             <div class="blog-summary__details-rate">
                 <h1 class="rate">{{__('messages.rate')}}:</h1>
@@ -96,15 +86,17 @@
                 </div>
 
             </div>
+
+            <a href="{{route('user.appscholars.show',$scholarship->id)}}" class="orgs-job-apply-btn my-apply" style="font-size: 18px;">{{__('messages.apply_now')}}</a>
         </div>
     </div>
 
     <div class="blog-summary__picutre-box">
         <div class="blog-summary__favourite">
-        {{!$favourite = App\Favscholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}};
+            {{!$favourite = App\Favscholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}};
             <div class="blog-summary__favourite-icon-box">
 
-            <i data-scholarid="{{$scholarship->id}}" class="fas fa-heart fa-2x  add-fav-scholar {{$favourite->count()>0?'red':''}}"></i>
+                <i data-scholarid="{{$scholarship->id}}" class="fas fa-heart fa-2x  add-fav-scholar {{$favourite->count()>0?'red':''}}"></i>
             </div>
             <h1 class="blog-summary__favourite-word">{{__('messages.add_fav')}}</h1>
         </div>
@@ -118,11 +110,24 @@
         <p class="blog-details__paragraph">
             {{$scholarship->content }}
         </p>
+
+        <h1 class="views" style="margin-top: 20px;">{{__('messages.requirments')}}:</h1>
+        <div class="blog-summary__details-views" style="margin: 0!important;">
+            <ul class="right-panel__job-requirements-list" style="margin: 16px;">
+                <?php $requirments_exp = explode("-", $scholarship->requirments) ?>
+                @foreach($requirments_exp as $requirment)
+                <li class="right-panel__job-requirements-item" style="font-size: 20px;">
+                    {{$requirment}}
+                </li>
+                @endforeach
+
+            </ul>
+        </div>
         <div class="blog-details__buttons">
-        {{!$like = App\Likescholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}};
+            {{!$like = App\Likescholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}};
             <button class=" like_scholar {{$like->count()>0?'blue':''}}" data-scholarid="{{$scholarship->id}}">
-            <span class="like-title  ">
-                {{__('messages.like')}} <i class="fas fa-thumbs-up"></i>
+                <span class="like-title  ">
+                    {{__('messages.like')}} <i class="fas fa-thumbs-up"></i>
                 </span>
 
             </button>
@@ -267,59 +272,47 @@
             <hr />
         </div>
         <h1 class="related-topics__header">Related Topics</h1>
-        <div class="related-topics__cards">
-            <div class="blogs-detailed-results__card responsive">
-                <div class="blogs-detailed-results__pic-box">
-                    <img src="img/education.svg" alt="blogs pic" class="blogs-detailed-results__pic responsive-pic" />
-                </div>
-                <div class="blogs-card-content">
-                    <h1 class="blogs-card-content__header">Events and conferences</h1>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Comments:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
+        <div class="best-scolarships-section-signed__cards-info">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @forelse($related_scholarships as $related_scholarship)
+                <div class="best-scolarships-section-signed__card swiper-slide">
+                    <div class="card-picture-box">
+                        <span class="opportunity-type-label my-label-span">{{ $related_scholarship->cost->name }}</span>
+                        <img src="{{asset('storage/'.$related_scholarship->picture)}}" alt="Picutre 1" class="card-picture my-image">
                     </div>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Participants:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
-                    </div>
-                </div>
-                <a href="#" class="blogs-detailed-results__btn">view</a>
-            </div>
-            <div class="blogs-detailed-results__card responsive">
-                <div class="blogs-detailed-results__pic-box">
-                    <img src="img/education.svg" alt="blogs pic" class="blogs-detailed-results__pic responsive-pic" />
-                </div>
-                <div class="blogs-card-content">
-                    <h1 class="blogs-card-content__header">Events and conferences</h1>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Comments:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
-                    </div>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Participants:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
+                    <h1 class="best-scolarships-section-signed__card-header">{{ $related_scholarship->title}}</h1>
+                    <p class="best-scolarships-section-signed__card-paragraph">{{ $related_scholarship->description}}</p>
+                    <div class="best-scolarships-section-signed__card-deadline-box">
+                        <img src="{{asset('img/Icon ionic-ios-timer.svg')}}" alt="deadline" class="best-scolarships-section-signed__card-deadline">
+                        <div class="deadline-number">
+                            <h2 class="deadline-header">{{__('messages.hours')}}:{{__('messages.days')}}:{{__('messages.months')}}</h2>
+                            <div hidden> {{!$created=$related_scholarship->created_at->format('Y-m-d')}}
+                                {{!$deadline=$related_scholarship->deadline}}
+                                {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
+                                {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
+                                {{!$different_days = $start_date->diffInDays($end_date)}}
+                                {{!$different_hours = $start_date->diffInHours($end_date)}}
+                                {{!$different_months = $start_date->diffInMonths($end_date)}}
+                            </div>
+
+                            <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
+
+
+                        </div>
+                        <a href="{{route('user.scholarships.show',$related_scholarship->id)}}" class="details-button">{{__('messages.details')}}</a>
                     </div>
                 </div>
-                <a href="#" class="blogs-detailed-results__btn">view</a>
-            </div>
-            <div class="blogs-detailed-results__card responsive">
-                <div class="blogs-detailed-results__pic-box">
-                    <img src="img/education.svg" alt="blogs pic" class="blogs-detailed-results__pic responsive-pic" />
+                @empty
+                <div class="alert alert-primary" role="alert" style="transform: scale(4);">
+                    {{__('messages.no_scholar')}}
                 </div>
-                <div class="blogs-card-content">
-                    <h1 class="blogs-card-content__header">Events and conferences</h1>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Comments:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
-                    </div>
-                    <div class="blogs-card-content-info">
-                        <p class="blogs-card-content__subtitle">Participants:</p>
-                        <p class="blogs-card-content__subtitle-value">539</p>
-                    </div>
-                </div>
-                <a href="#" class="blogs-detailed-results__btn">view</a>
+                @endforelse
+
+
             </div>
         </div>
+    </div>
     </div>
 </div>
 

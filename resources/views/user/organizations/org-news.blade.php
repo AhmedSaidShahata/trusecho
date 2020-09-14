@@ -1,6 +1,6 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
-{{!$lang='_'.LaravelLocalization::getCurrentLocale()}}
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 @auth
 
@@ -18,10 +18,14 @@
             <img src="{{asset('storage/'.$org->picture_org)}}" alt="Company Logo" class="organization-profile-pic" style="height:200px;width:200px" />
         </div>
         <div class="organization-info">
-            <h1 class="organization-name">{{$org->{'name'.$lang} }}</h1>
+            <h1 class="organization-name">{{$org->name}}</h1>
             <div class="followers-box">
                 <p class="followers-title">{{__('messages.followers')}}:</p>
-                <p class="followers-value">0</p>
+                <div hidden> {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $org->id)->get()}}
+                    {{!$followerCount = App\Followersorg::where('org_id', '=', $org->id)->get()->count()}}
+
+                </div>
+                <p class="followers-value">{{$followerCount}}</p>
             </div>
         </div>
     </div>
@@ -33,31 +37,38 @@
         <div class="org-job-section-info__options">
             <ul class="options__list">
                 <li class="options__items">
-                    <a href="organization-page-about.html" class="options__item">About</a>
+                    <a href="organization-page-about.html" class="options__item">
+
+                        {{__('messages.about')}}
+
+                    </a>
                 </li>
                 <hr />
                 <li class="options__items">
-                    <a href="#" class="options__item">News</a>
+                    <a href="#" class="options__item">
+
+                        {{__('messages.news')}}
+                    </a>
                 </li>
             </ul>
         </div>
         <div class="org-job-section-info__options u-margin-top-small">
             <ul class="options__list">
                 <li class="options__items">
-                    <a href="#" class="options__item">contact us</a>
+                    <a href="{{route('user.contacts.index')}}" class="options__item">{{__('messages.contact_us')}}</a>
                 </li>
                 <hr />
                 <li class="options__items">
-                    <a href="#" class="options__item">Call us</a>
+                    <a href="#" class="options__item">{{__('messages.call_us')}}</a>
                 </li>
                 <li class="options__items">
-                    <a href="#" class="options__item">Report a problem</a>
+                    <a href="#" class="options__item">{{__('messages.report')}}</a>
                 </li>
             </ul>
         </div>
-        <a href="#" class="orgs-job-new-post-btn">
-            <img src="{{asset('img/add-icon.svg')}}" alt="add-icon" class="contact-icon" />
-            new post
+        <a href="#apply-for-job" class="my-btn" style="margin: 30px 34px;">
+            <i class="fas fa-plus"></i>
+            {{__('messages.new_post')}}
         </a>
     </div>
     <div class="posts-section">
@@ -70,13 +81,39 @@
                 </div>
                 <div class="post-user-info__details">
                     <h1 class="post-user-info__details-name">{{$new_org->organization->user->name}}</h1>
-                    <h2 class="post-user-info__details-job">{{$new_org->organization->{'name'.$lang} }}</h2>
-                    <h3 class="post-user-info__details-time">0h</h3>
+                    <h2 class="post-user-info__details-job">{{$new_org->organization->name}}</h2>
+                    <h3 class="post-user-info__details-time">
+
+                        <div hidden>
+                            {{!$created=$org->created_at->format('Y-m-d')}}
+                            {{$mytime = Carbon\Carbon::now()->format('Y-m-d')}}
+                            {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
+                            {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$mytime)}}
+                            {{!$different_days = $start_date->diffInDays($end_date)}}
+                            {{!$different_hours = $start_date->diffInHours($end_date)}}
+                            {{!$different_months = $start_date->diffInMonths($end_date)}}
+
+                            {{!$created2=$org->created_at->format('H-i-s')}}
+                            {{$mytime2 = Carbon\Carbon::now()->format('H-i-s')}}
+                            {{!$start_date = \Carbon\Carbon::createFromFormat('H-i-s',$created2)}}
+                            {{!$end_date = \Carbon\Carbon::createFromFormat('H-i-s',$mytime2)}}
+                            {{!$different_min = $start_date->diffInMinutes($end_date)}}
+
+                        </div>
+                        @if($different_hours <= 0)
+                            {{$different_min}} {{__('messages.m')}}
+                        @elseif($different_hours >0)
+                            {{$different_hour}} {{__('messages.h')}}
+                        @else
+
+                        @endif
+
+                    </h3>
                 </div>
             </div>
-            <h1 class="post-user-info__title">{{$new_org->{'title'.$lang} }}</h1>
+            <h1 class="post-user-info__title">{{$new_org->title }}</h1>
             <p class="post-user-info__description">
-                {{$new_org->{'description'.$lang} }}
+                {{$new_org->description }}
             </p>
             <div class="post-user-info__sub-details-box">
                 <div class="post-user-info__sub-subtitle-box">
@@ -85,21 +122,21 @@
                 <p class="post-user-info__subtitle-value"> {{$new_org->deadline }}</p>
             </div>
             <div class="post-pic-box">
-                <img src="{{asset('storage/'.$new_org->picture)}}" alt="Post pic" class="post-pic"  style="height: 180px;"/>
+                <img src="{{asset('storage/'.$new_org->picture)}}" alt="Post pic" class="post-pic" style="height: 180px;" />
             </div>
             <div class="post-interaction-panel">
                 {{!$like = App\Newslike::where('user_id', '=', Auth::user()->id)->where('newsorg_id', '=', $new_org->id)->get()}};
                 <div class="post-interaction-panel__control like-news {{$like->count()>0?'blue':''}}" data-newsid="{{$new_org->id}}">
                     <i class="fas fa-thumbs-up fa-2x"></i>
-                    <span class="post-control-name">Like</span>
+                    <span class="post-control-name">{{__('messages.like')}}</span>
                 </div>
                 <div class="post-interaction-panel__control">
                     <img src="{{asset('img/Icon awesome-comment.svg')}}" alt="comment" class="post-btn" />
-                    <span class="post-control-name">Comment</span>
+                    <span class="post-control-name">{{__('messages.comments')}}</span>
                 </div>
                 <div class="post-interaction-panel__control">
                     <img src="{{asset('img/Icon awesome-share-alt.svg')}}" alt="share" class="post-btn" />
-                    <span class="post-control-name">Share</span>
+                    <span class="post-control-name">{{__('messages.share')}}</span>
                 </div>
             </div>
             <div class="comments-container" style="height: 200px; overflow-y:auto">
@@ -107,23 +144,9 @@
 
 
 
-            <div class="post-comment ">
-                    <div class="post-comment-pic-box">
-                        <img src="{{asset('img/user-comment-pic.png')}}" alt="user pic" class="post-comment-pic" />
-                    </div>
-                    <div class="post-comment-details">
-                        <h1 class="post-comment-name">Taylor Adams</h1>
-                        <p class="post-comment-paragraph">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste
-                            in beatae praesentium dolores porro, nobis labore ut omnis, nam
-                            temporibus neque inventore culpa dolore reiciendis molestias
-                            optio libero? Velit debitis eligendi necessitatibus enim ratione
-                            cupiditate
-                        </p>
-                    </div>
-                </div>
 
-                    @foreach($new_org->comments as $comment)
+
+                @foreach($new_org->comments as $comment)
                 <div class="post-comment ">
                     <div class="post-comment-pic-box">
                         <img src="{{asset('/storage/'.$comment->user->profile->picture)}}" alt="user pic" class="post-comment-pic" />
@@ -131,7 +154,7 @@
                     <div class="post-comment-details">
                         <h1 class="post-comment-name">{{$comment->user->name}}</h1>
                         <p class="post-comment-paragraph">
-                        {{$comment->body}}
+                            {{$comment->body}}
                         </p>
                     </div>
                 </div>
@@ -162,11 +185,64 @@
         </div>
 
         @empty
-        <div class="alert alert-danger" role="alert">
-            No News Yet
+        <div class="alert alert-danger" role="alert" style="font-size: 20px;">
+            {{__('messages.no_news')}}
         </div>
         @endforelse
 
 
     </div>
 </div>
+
+<div class="popup" id="apply-for-job" style="overflow: auto;">
+    <form action="{{route('user.newsorgs.store')}}" method="post" enctype="multipart/form-data">
+        <div class="popup__content" style="">
+            <div class="popup__left">
+                <h1 class="popup__header">{{__('messages.add_post')}}</h1>
+                <div class="header__underline"></div>
+
+                @csrf
+
+                <input required type="hidden" name="lang" value="{{$lang}}">
+
+                <input required type="hidden" name="organization_id" value="{{$org->id}}">
+                <!-- class="add-cv-input" -->
+                <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
+
+                <div class="add-cv">
+                    <div class="add-cv__title-box">
+                        <img src="{{asset('img/adding icon.svg')}}" alt="add icon" class="add-cv-icon" />
+                        <input type="file" name="picture" accept="image/*" onchange="showPreview(event);" />
+                    </div>
+                </div>
+
+                <div class="applying-for-job-illustration-box">
+                    <img src="{{asset('img/applying-for-a-job.svg')}}" alt="apply for job" class="applying-for-job-illustration" />
+                </div>
+            </div>
+            <div class="popup__right" style="position: relative;">
+                <a href="#tours_section" class="popup__closing">×</a>
+
+                <div class="input">
+                    <label for="fullname" class="popup__label-style">{{__('messages.title')}}</label>
+                    <input required type="text" name="title" class="popup__input-style" />
+                </div>
+
+                <div class="input">
+                    <label class="popup__label-style">{{__('messages.deadline')}}</label>
+                    <input required type="date" name="deadline" class="popup__input-style" />
+                </div>
+
+                <div class="input">
+                    <label for="message" class="popup__label-style">{{__('messages.description')}}</label>
+                    <textarea name="description" rows="3" cols="60" class="input-message"></textarea>
+                </div>
+
+                <input required class="input-btn" type="submit" value="{{__('messages.submit')}}">
+
+            </div>
+        </div>
+    </form>
+</div>
+
+@endsection

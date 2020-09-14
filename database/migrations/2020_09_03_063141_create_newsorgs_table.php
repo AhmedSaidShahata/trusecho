@@ -20,7 +20,7 @@ class CreateNewsorgsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->date('deadline');
-            $table->text('picture');
+            $table->text('picture')->nullable();
             $table->timestamps();
         });
     }

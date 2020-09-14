@@ -468,7 +468,35 @@ return [
     'service_description'=>'Service Description',
     'instruction_buyer'=>'Instruction Buyer',
     'contact'=>'Contact',
-    'blog_requests'=>'Users Blogs'
+    'blog_requests'=>'Users Blogs',
+
+    'types_org'=>' Organizations Types ',
+    'types_ser'=>'Services Types',
+
+    'education_level'=>'Education Level',
+    'male'=>'Male',
+    'female'=>'Female',
+    'phone'=>'Phone',
+    'personal_desc'=>'Personal Description',
+    'db_of_birth'=>'Date Of Birth',
+    'save'=>'Save',
+    'no_opp'=>'No Opportunities Yet',
+
+
+    'new_post'=>'New Post',
+    'add_post'=>'Add Post',
+    'h'=>'hour',
+    'm'=>'minute',
+    'd'=>'days',
+
+    'passport_picture'=>'Passport Picture',
+    'siblings_count'=> 'Siblings Count',
+    'jobs_specialize'=>'Jobs Specialization ',
+    'cost_scholar'=>'Scholarship Cost ',
+    'specialize_scholar'=>'Scholarship Specilalization'
+
+
+
 
 
 

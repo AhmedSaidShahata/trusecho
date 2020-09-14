@@ -51,7 +51,9 @@ Route::group([
         Route::resource('costs', 'CostController');
         Route::resource('jobs', 'JobController');
         Route::resource('types', 'TypeController');
+        Route::resource('typeorgs', 'TypeorgController');
         Route::resource('specializations', 'SpecializationController');
+        Route::resource('scholarspecializes', 'ScholarspecializeController');
         Route::resource('languages', 'LanguageController');
         Route::resource('faqs', 'FaqController');
         Route::resource('contacts', 'ContactController');
@@ -67,10 +69,11 @@ Route::group([
         Route::resource('bestorganizations', 'BestorganizationController');
         Route::get('blogs_request', 'BlogController@request')->name('blogs.request');
         Route::post('blogs_accept', 'BlogController@accept');
+
     });
 
 
-    Route::namespace('user')->name('user.')->group(function () {
+    Route::namespace('user')->name('user.')->middleware(['auth'])->group(function () {
         Route::resource('users', 'UserController');
         Route::resource('friends', 'FriendController');
         Route::post('friendrequest', 'FriendController@friendrequest');
@@ -80,6 +83,8 @@ Route::group([
         Route::resource('scholarships', 'ScholarshipController');
         Route::resource('scholarshipcomments', 'ScholarshipcommentController');
         Route::resource('appscholars', 'AppscholarController');
+        Route::post('appscholars-step2', 'AppscholarController@store2')->name('appscholar.store2');
+        Route::post('appscholars-step3', 'AppscholarController@store3')->name('appscholar.store3');
         Route::resource('scholarshiprates', 'ScholarshiprateController');
         Route::resource('contacts', 'ContactController');
         Route::resource('services', 'ServiceController');
@@ -103,6 +108,7 @@ Route::group([
         Route::resource('likescholars', 'LikescholarController');
         Route::resource('blogcomments', 'BlogcommentController');
         Route::resource('organizations', 'OrganizationController');
+        Route::get('organizations_search', 'OrganizationController@search')->name('search_orgs');
         Route::resource('followerorgs', 'FollowerorgController');
         Route::resource('rateorgs', 'RateorgController');
         Route::resource('ratesers', 'RateserController');

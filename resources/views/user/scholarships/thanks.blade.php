@@ -16,7 +16,7 @@
           <p class="left-container__paragraph">
             We will review your application and contact you shortly
           </p>
-          <a href="home-page.html" class="home-page-btn">homepage</a>
+          <a href="{{route('user.homepages.index')}}" class="home-page-btn">homepage</a>
         </div>
         <div class="right-container">
           <div class="right-container__illustration-box">

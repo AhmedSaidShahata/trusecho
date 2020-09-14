@@ -130,7 +130,7 @@
                 <div class="best-scolarships-section-signed__card swiper-slide">
                     <div class="card-picture-box">
                         <span class="opportunity-type-label">{{ $best_scholar->cost->name }}</span>
-                        <img src="{{asset('storage/'.$best_scholar->picture)}}" alt="Picutre 1" class="card-picture">
+                        <img src="{{asset('storage/'.$best_scholar->picture)}}" alt="Picutre 1" class="card-picture my-image">
                     </div>
                     <h1 class="best-scolarships-section-signed__card-header">{{ $best_scholar->title}}</h1>
                     <p class="best-scolarships-section-signed__card-paragraph">{{ $best_scholar->description}}</p>
@@ -179,7 +179,7 @@
                         <span class="opportunity-type-label">
                             {{$best_job->title}}
                         </span>
-                        <img src="/storage/{{$best_job->picture}}" alt="Picutre 1" class="card-picture" style="height: 162px;">
+                        <img src="/storage/{{$best_job->picture}}" alt="Picutre 1" class="card-picture my-image" >
                     </div>
                     <h1 class="best-jobs-section-signed__card-header"> {{__('messages.salary')}} {{$best_job->salary}} $</h1>
                     <p class="best-jobs-section-signed__card-paragraph">{{$best_job->description}}</p>
@@ -223,7 +223,7 @@
                 <div class="best-services-section-signed__card swiper-slide">
                     <div class="card-picture-box">
                         <span class="opportunity-type-label"></span>
-                        <img src="/storage/{{$best_service->picture}}" alt="Picutre 1" class="card-picture" style="height:210px ;">
+                        <img src="/storage/{{$best_service->picture}}" alt="Picutre 1" class="card-picture my-image" >
                     </div>
                     <h1 class="best-services-section-signed__card-header">{{$best_service->title}}</h1>
                     <p class="best-services-section-signed__card-paragraph">{{$best_service->description}}</p>
@@ -274,7 +274,7 @@
                     </div>
                 </div>
                 @empty
-                <div class="alert alert-primary" role="alert" style="transform: scale(4);">
+                <div class="alert alert-primary" role="alert" style="transform: scale(1);font-size: 35px;">
                     {{__('messages.no_services')}}
                 </div>
 

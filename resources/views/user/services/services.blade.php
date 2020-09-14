@@ -2,10 +2,20 @@
 @section('content')
 {{!$lang=LaravelLocalization::getCurrentLocale()}}
 
-
-
 <div class="search-section">
-    <h1 class="search-section__header">{{__('messages.services')}}</h1>
+
+
+    <h1 class="search-section__header">
+        @if(session()->has('success_ar') OR session()->has('success_en') )
+        <div class="alert alert-success">
+            {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+        </div>
+        @endif
+
+        {{__('messages.services')}}
+
+    </h1>
     <div class="search-section__info">
         <form action="{{ route('user.servicesearch')}}" class="landing-section__info-selections">
 
@@ -14,10 +24,10 @@
             <div class="selection-div u-margin-right-medium">
                 <label for="speicialization" class="landing-section__info-selections-label">{{__('messages.types')}}</label>
                 <div class="custom-select">
-                    <select name="specialize_id" id="speicialization">
+                    <select name="type_id" id="speicialization">
                         <option disabled selected value="">{{__('messages.types')}}</option>
                         @foreach($types as $type)
-                        <option <?php if (isset($_GET['specialize_id']) and $type->id == $_GET['specialize_id']) echo 'selected' ?> value="{{$type->id}}">{{$type->name}}</option>
+                        <option <?php if (isset($_GET['type_id']) and $type->id == $_GET['type_id']) echo 'selected' ?> value="{{$type->id}}">{{$type->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -27,16 +37,17 @@
             <div class="search-section__illustration-box">
                 <img src="{{asset('img/jobs-illustration.svg')}}" alt="jobs" class="search-section__illustrations">
             </div>
-    </div>
-    <div class="landing-section__info-buttons-section ">
-        <button class="landing-section__info-buttons" type="submit">
-            <img src="{{asset('img/Search icon.svg')}}" alt="Search icon" class="search-icon">
-            <p>{{__('messages.search')}}</p>
-        </button>
 
-        <a href="{{route('user.services.index')}}" class="landing-section__info-buttons">{{__('messages.reset')}}</a>
+            <div class="landing-section__info-buttons-section ">
+                <button class="landing-section__info-buttons" type="submit">
+                    <img src="{{asset('img/Search icon.svg')}}" alt="Search icon" class="search-icon">
+                    <p>{{__('messages.search')}}</p>
+                </button>
+
+                <a href="{{route('user.services.index')}}" class="landing-section__info-buttons">{{__('messages.reset')}}</a>
+            </div>
+        </form>
     </div>
-    </form>
 </div>
 
 
@@ -51,7 +62,7 @@
         <div class="search-results__card">
             <div class="card-picture-box">
                 <span class="opportunity-type-label">{{$service->type->name}}</span>
-                <img src="{{asset('storage/'.$service->picture)}}" alt="Picutre 1" class="card-picture" />
+                <img src="{{asset('storage/'.$service->picture)}}" alt="Picutre 1" class="card-picture" style="width: 309px; height:162px; border-radius:20px 20px 0 0" />
             </div>
             <h1 class="search-results__card-header">{{$service->title}}</h1>
             <p class="search-results__card-paragraph">
@@ -104,7 +115,7 @@
         </div>
         @empty
         <div class="alert alert-primary d-flex align-items-center" role="alert" style="transform: scale(4);height:600px;justify-content: center;align-items: center;display: flex;">
-            No Services Yet
+            {{__("messages.no_services")}}
         </div>
 
         @endforelse
@@ -128,7 +139,12 @@
                 <input required type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
                 <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
-                <input required type="file" name="picture" />
+                <div class="add-cv">
+                    <div class="add-cv__title-box">
+                        <img src="{{asset('img/adding icon.svg')}}" alt="add icon" class="add-cv-icon" />
+                        <input type="file" name="picture" accept="image/*" onchange="showPreview(event);" />
+                    </div>
+                </div>
 
                 <!-- <div class="add-cv">
 

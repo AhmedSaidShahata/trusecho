@@ -23,7 +23,7 @@ class JobController extends Controller
     {
         return view('user.jobs.jobs', [
             'jobs' => Job::paginate(10),
-            'specializations' => specialization::where('lang', App::getLocale()),
+            'specializations' => specialization::where('lang', App::getLocale())->get(),
         ]);
     }
 
@@ -130,9 +130,7 @@ class JobController extends Controller
 
         return view('user.jobs.jobs', [
             'jobs' => $jobs,
-            'costs' => Cost::where('lang', App::getLocale()),
-            'types' => Type::where('lang', App::getLocale()),
-            'specializations' => specialization::where('lang', App::getLocale())
+            'specializations' => specialization::where('lang', App::getLocale())->get()
 
         ]);
     }

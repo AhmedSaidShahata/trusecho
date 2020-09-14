@@ -24,6 +24,7 @@
                 <th scope="col">{{__('messages.address')}}</th>
                 <th scope="col">{{__('messages.father_status')}}</th>
                 <th scope="col">{{__('messages.mother_status')}}</th>
+                <th scope="col">{{__('messages.siblings_count')}}</th>
                 <th scope="col">{{__('messages.specialization')}}</th>
                 <th scope="col">{{__('messages.university')}}</th>
                 <th scope="col">{{__('messages.inteview_loc')}}</th>
@@ -34,6 +35,7 @@
                 <th scope="col">{{__('messages.language_pic')}}</th>
                 <th scope="col">{{__('messages.payment_pic')}}</th>
                 <th scope="col">{{__('messages.passport_pic')}}</th>
+                <th scope="col">{{__('messages.high_school')}}</th>
                 <th scope="col">{{__('messages.research')}}</th>
                 <th scope="col">{{__('messages.degree')}}</th>
                 <th scope="col">{{__('messages.apply_date')}}</th>
@@ -45,7 +47,10 @@
             @forelse($appscholarships as $appscholarship)
             <tr>
                 <td>
-                    {{App\Scholarship::where(['id'=>$appscholarship->scholar_id])->get()->first()->title_en}}
+                    {{$appscholarship->id}}
+                </td>
+                <td>
+                    {{App\Scholarship::where(['id'=>$appscholarship->scholar_id])->get()->first()->title}}
                 </td>
                 <td>{{$appscholarship->fullname}}</td>
                 <td>{{$appscholarship->email}}</td>
@@ -54,24 +59,44 @@
                 <td>{{$appscholarship->address}}</td>
                 <td>{{$appscholarship->father_status}}</td>
                 <td>{{$appscholarship->mother_status}}</td>
-                <td>{{$appscholarship->mother_status}}</td>
+                <td>{{$appscholarship->siblings}}</td>
                 <td>{{$appscholarship->specialization}}</td>
                 <td>{{$appscholarship->university}}</td>
                 <td>{{$appscholarship->interview_location}}</td>
-                <td>{{$appscholarship->user_picture}}</td>
-                <td>{{$appscholarship->high_school_picture}}</td>
-                <td>{{$appscholarship->university_picture}}</td>
-                <td>{{$appscholarship->letter_picture}}</td>
-                <td>{{$appscholarship->language_picture}}</td>
-                <td>{{$appscholarship->payment_picture}}</td>
-                <td>{{$appscholarship->passport_picture}}</td>
-                <td>{{$appscholarship->research}}</td>
-                <td>{{$appscholarship->degree}}</td>
-                <td>{{$appscholarship->high_school_picture}}</td>
+                <td>
+                    <img src="{{asset('storage/'.$appscholarship->user_picture)}}" alt="image organization" style="width:100px;height:100px">
+                </td>
+                <td>
+                    <img src="{{asset('storage/'.$appscholarship->high_school_picture)}}" alt="image organization" style="width:100px;height:100px">
+                </td>
+                <td>
+                    <img src="{{asset('storage/'.$appscholarship->university_picture)}}" alt="image organization" style="width:100px;height:100px">
+                </td>
+                <td>
+                    <img src="{{asset('storage/'.$appscholarship->letter_picture)}}" alt="image organization" style="width:100px;height:100px">
+                </td>
+                <td>
+                    <img src="{{asset('storage/'.$appscholarship->language_picture)}}" alt="image organization" style="width:100px;height:100px">
+                </td>
+                <td>
+                    <img src="{{asset('storage/'.$appscholarship->payment_picture)}}" alt="image organization" style="width:100px;height:100px">
+                </td>
+                <td>
+                    <img src="{{asset('storage/'.$appscholarship->passport_picture)}}" alt="image organization" style="width:100px;height:100px">
+                </td>
+                <td>
+                    <img src="{{asset('storage/'.$appscholarship->high_school_picture)}}" alt="image organization" style="width:100px;height:100px">
+                </td>
+                <td>
+                    {{$appscholarship->research}}
+                </td>
+                <td>
+                    {{$appscholarship->degree}}
+                </td>
+
                 <td>{{$appscholarship->created_at}}</td>
 
                 <td class="d-flex">
-
 
                     <form method="POST" class="form-inline" action="{{route('admin.appscholarships.destroy',$appscholarship->id)}}">
                         @csrf
@@ -82,7 +107,7 @@
             </tr>
             @empty
             <div class="alert alert-danger">
-            {{__('messages.no_scholar_app')}}
+                {{__('messages.no_scholar_app')}}
             </div>
 
             @endforelse

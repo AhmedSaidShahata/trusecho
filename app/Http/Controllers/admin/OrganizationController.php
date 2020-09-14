@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrganizationRequest;
 use App\Organization;
 use App\Type;
+use App\Typeorg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,7 @@ class OrganizationController extends Controller
     public function create()
     {
         return view('admin.organizations.create',[
-            'types'=>Type::where('lang',App::getLocale())->get()
+            'types'=>Typeorg::where('lang',App::getLocale())->get()
         ]);
     }
 
@@ -77,7 +78,7 @@ class OrganizationController extends Controller
     {
         return view('admin.organizations.create', [
             'organization' => $organization,
-            'types'=>Type::where('lang',App::getLocale())->get()
+            'types'=>Typeorg::where('lang',App::getLocale())->get()
             ]);
     }
 

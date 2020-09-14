@@ -19,7 +19,7 @@
         @forelse(categories as $categoty)
         <div class="blogs-results__card">
             <div class="blogs-results__pic-box">
-                <img src="img/blog-pic.png" alt="blogs pic" class="blogs-results__pic" />
+                <img src="img/blog-pic.png" alt="blogs pic" class="blogs-results__pic"  style="width:88; height:89px;"/>
             </div>
             <div class="blogs-card-content">
                 <h1 class="blogs-card-content__header">$category->name_en</h1>

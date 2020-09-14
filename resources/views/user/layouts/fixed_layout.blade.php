@@ -107,11 +107,11 @@
                     </div>
                 </li>
 
-                <li class="nav-bar__item dropdown">
+                <li class="nav-bar__item dropdown notify_app">
                     <div class="notification-icon-box">
                         <img src="{{asset('img/notification-icon.svg')}}" alt="notification" class="notification-icon" />
-                        <span class="notification-number">{{count(auth()->user()->unreadNotifications)}}</span>
-                        <div class="dropdown-content">
+                        <span class="notification-number ">{{count(auth()->user()->unreadNotifications)}}</span>
+                        <div class="dropdown-content ">
                             @foreach(auth()->user()->notifications as $note)
 
 
@@ -333,14 +333,14 @@
                         <li class="footer__right-info-list-item">
                             <a href="#">{{__('messages.asked_question')}}</a>
                         </li>
-                        <li class="footer__right-info-list-item"><a href="{{route('user.contacts.index')}}">Contact us</a></li>
+                        <li class="footer__right-info-list-item"><a href="{{route('user.contacts.index')}}">{{__("messages.contact_us")}}</a></li>
                     </ul>
                 </div>
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
                             <a href="#">{{__('messages.latest_posts')}}
-                                <</a> </li> <li class="footer__right-info-list-item">
+                                </a> </li> <li class="footer__right-info-list-item">
                                     <a href="#">{{__('messages.add_exp')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
@@ -426,10 +426,39 @@
 
     <script src="{{ asset('js/app.js') }} "></script>
 
+    <script>
+        let  preview ;
+        let previewScholar ;
+        $("input[type=file]").on("click", function() {
+             preview = $(this).siblings("img")
+             previewScholar = $(this).parent().siblings("img")
+        })
+
+        function showPreview(event) {
+            if (event.target.files.length > 0) {
+                let src = URL.createObjectURL(event.target.files[0]);
+                preview.attr("src", src)
+                previewScholar.attr("src", src)
+
+            }
+        }
+    </script>
 
     <script>
         $(function() {
 
+            // Start Image Upload
+
+
+            // Start Notification
+
+            $(".notify_app").hover(function() {
+                $(this).children().find(".notification-number").text(0)
+            })
+
+            // $(".unread").foreach(function(){
+            //         $(this).removeClass('unread')
+            //     })
 
             //=========================================== Start Comment scholar With Ajax ===============================
 
@@ -1051,32 +1080,25 @@
 
 
             // scholarship application
-            $(".second-form ,.third-form").hide()
 
-            $(".hide-form1").on("click", function() {
-                $(".first-form").hide();
-                $(".second-form").show();
-                $("html,body").animate({
-                    scrollTop: 0
-                }, 100)
-            })
 
-            $(".hide-form2").on("click", function() {
-                $(".second-form").hide();
-                $(".third-form").show();
-                $("html,body").animate({
-                    scrollTop: 0
-                }, 100)
-            })
 
             // Start Input
 
             $(".degree").on("click", function() {
+
                 $(this).addClass("active-degree").siblings().removeClass("active-degree")
                 $("input[name='degree']").val($(this).text())
                 console.log($("input[name='degree']").val())
             })
-            // $('.input-checkbox:checked').removeAttr("disabled")
+            $(".accept-rules").on("click", function() {
+
+                if ($(".continue").attr('disabled')) {
+                    $(".continue").removeAttr("disabled")
+                } else {
+                    $(".continue").attr("disabled", "disabled")
+                }
+            })
 
             $(".degree").css("cursor", "pointer")
         })
