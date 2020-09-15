@@ -24,6 +24,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['notifications'],
   methods: {
@@ -60,6 +63,9 @@ var render = function() {
     [
       _vm._l(_vm.notifications, function(notification, index) {
         return _c("a", { key: index }, [
+          _vm._v(
+            "\n                               some one commented on\n                              "
+          ),
           _c(
             "span",
             {
@@ -76,6 +82,9 @@ var render = function() {
                   "\n                               "
               )
             ]
+          ),
+          _vm._v(
+            "\n\n                               Blog\n                           "
           )
         ])
       }),

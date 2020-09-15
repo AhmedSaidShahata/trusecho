@@ -73,7 +73,7 @@ Route::group([
     });
 
 
-    Route::namespace('user')->name('user.')->middleware(['auth'])->group(function () {
+    Route::namespace('user')->name('user.')->group(function () {
         Route::resource('users', 'UserController');
         Route::resource('friends', 'FriendController');
         Route::post('friendrequest', 'FriendController@friendrequest');

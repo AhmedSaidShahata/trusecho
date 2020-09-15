@@ -17,7 +17,7 @@
             @else
             @if(isset($friend_is_exist->get()->first()->accept))
             @if($friend_is_exist->get()->first()->accept==0)
-            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">{{__('messages.friend_req)}}</button>
+            <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">{{__('messages.friend_req')}}</button>
             @else
             <button data-userid="{{$friend->id}}" class="change-profile-pic-btn add-friend">{{__('messages.friends')}}</button>
             @endif
@@ -44,9 +44,9 @@
 
 
             <button class="change-profile-pic-btn btn-grn-color">
-            {{__('messages.whats')}}
+            {{__('messages.whatsapp')}}
                 <p>
-                    ( {{$friend->whatsapp?? 'unavailable'}})
+                    {{$friend->whatsapp }}
                 </p>
             </button>
             <form action="mailto:{{$friend->email}}">
@@ -54,7 +54,7 @@
 
                 {{__('messages.email')}}
                     <p>
-                        {{$friend->email?? 'unavailable'}}
+                        {{$friend->email }}
                     </p>
                 </button>
             </form>
@@ -96,7 +96,7 @@
                         <h2 class="profile__subtitle">{{$friend->profile->date_of_birth}}</h2>
                     </div>
                     <div class="info-piece">
-                        <h1 class="profile__header">{{__('messages.specialize')}}</h1>
+                        <h1 class="profile__header">{{__('messages.specialization')}}</h1>
                         <div class="hr"></div>
                         <h2 class="profile__subtitle">{{$friend->profile->specialization}}</h2>
                     </div>

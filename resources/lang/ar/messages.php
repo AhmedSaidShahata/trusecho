@@ -203,7 +203,7 @@ return [
 
 
     'add_friend' => 'اضافة صديق',
-    'summary' => 'ملخض',
+    'summary' => 'ملخص عنى',
     'gender' => 'النوع',
     'db_birth' => 'تاريخ الميلاد',
     'job' => 'وظيفة',
@@ -496,7 +496,8 @@ return [
     'passport_picture'=>'صورة جواز السفر',
     'siblings_count'=> 'عدد الأشقاء',
     'jobs_specialize'=>'تخصصات الوظائف',
-    'cost_scholar'=>'تكلفات المنح'
+    'cost_scholar'=>'تكلفات المنح',
+    'whatsapp'=>'رقم الواتس'
 
 
 

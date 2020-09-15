@@ -69,9 +69,9 @@ class BlogController extends Controller
         $data['category_blog_id'] = $category->id;
         $blog  = Blog::create($data);
 
-        $user = User::all();
+        // $user = User::all();
 
-        Notification::send($user, new addPost($blog));
+        // Notification::send($user, new addPost($blog));
 
         session()->flash('success_en', 'Blog created successfully and admin will admin review blog first before show');
         session()->flash('success_ar', 'تم اضافة المقال بنجاح ولكن سيتم مراجعته من المدير اولا قبل ان يتم عرضه');

@@ -493,8 +493,10 @@ return [
     'siblings_count'=> 'Siblings Count',
     'jobs_specialize'=>'Jobs Specialization ',
     'cost_scholar'=>'Scholarship Cost ',
-    'specialize_scholar'=>'Scholarship Specilalization'
+    'specialize_scholar'=>'Scholarship Specilalization',
 
+    'whatsapp'=>'Whatsapp',
+    'your_friends'=>'Your Friends'
 
 
 

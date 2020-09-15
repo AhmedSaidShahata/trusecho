@@ -2,9 +2,12 @@
 
  <p>
                             <a  v-for="(notification,index) in notifications" :key="index">
+                                some one commented on
                                <span  v-on:click="markAsRead(notification)">
                                    {{ JSON.parse(notification.data).blog.title }}
                                 </span>
+
+                                Blog
                             </a>
 
                              <a v-if="notifications.length==0">
