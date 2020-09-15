@@ -9,7 +9,7 @@
             </p>
         </div>
         <div class="my-network-section__illustration-box">
-            <img src="img/my-network-friends.svg" alt="organization" class="my-network-section__illustrations" />
+            <img src="{{asset('img/my-network-friends.svg')}}" alt="organization" class="my-network-section__illustrations" />
         </div>
     </div>
 </div>
@@ -31,11 +31,10 @@
 
         <div class="friends-card u-margin-top-small" style="margin-bottom: 30px;">
             <div class="friends-card__user-details">
-            {{ $profile_picture =App\Profile::where(['user_id'=>$user->id])->get()->first() }}
-                <img src="{{asset('storage/'.$profile_picture)}}" alt="friends picture" class="friends-card__picture" style="border: 1px solid black;width: 100px;border-radius: 50%;height: 100px;" />
+                <img src="{{asset('storage/'.$user->profile->picture)}}" alt="friends picture" class="friends-card__picture" style="border: 1px solid black;width: 100px;border-radius: 50%;height: 100px;" />
                 <div class="user-info">
                     <h1 class="friends-card__name">{{$user->name}}</h1>
-
+                    <p class="friends-card__job">{{$user->profile->job ??'unavailable'}}</p>
                 </div>
             </div>
             <div class="friends-card__buttons">

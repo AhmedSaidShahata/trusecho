@@ -9,7 +9,7 @@
             </p>
         </div>
         <div class="my-network-section__illustration-box">
-            <img src="img/my-network-friends.svg" alt="organization" class="my-network-section__illustrations" />
+            <img src="{{asset('img/my-network-friends.svg')}}" alt="organization" class="my-network-section__illustrations" />
         </div>
     </div>
 </div>
