@@ -174,7 +174,7 @@
                     </div>
 
                     <div class="input">
-                        <label for="message" class="popup__label-style">{{__('messages.short_desc')}}</label>
+                        <label for="message" class="popup__label-style">{{__('messages.description')}}</label>
                         <textarea name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                     </div>
 
