@@ -245,7 +245,7 @@
 
             @empty
 
-            <div  role="alert" style="transform: scale(3);height:300px;justify-content: center;align-items: center;display: flex; width:100%">
+            <div  role="alert" style="transform: scale(3);height:120px;justify-content: center;align-items: center;display: flex; width:100%">
                <p>{{__('messages.no_related_blogs')}}</p>
             </div>
 

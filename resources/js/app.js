@@ -6,14 +6,27 @@ window.Vue = require("vue");
 Vue.component("chat", () => import("./components/Chat.vue"));
 Vue.component("chat-composer", () => import("./components/ChatComposer.vue"));
 Vue.component("online-users", () => import("./components/OnlineUsers.vue"));
+Vue.component("notification", () => import("./components/Notification.vue"));
 
 const app = new Vue({
     el: "#app",
     data: {
         chats: "",
-        onlineUsers:''
+        onlineUsers:'',
+        notifications:''
     },
     created() {
+
+axios.post('/notification/get').then(response=>{
+    this.notifications=response.data
+})
+
+
+
+
+
+
+
         const userId = $('meta[name="userId"]').attr("content");
         const friendId = $('meta[name="friendId"]').attr("content");
 

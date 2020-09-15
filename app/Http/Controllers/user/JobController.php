@@ -21,6 +21,8 @@ class JobController extends Controller
      */
     public function index()
     {
+
+        return 'hi';
         return view('user.jobs.jobs', [
             'jobs' => Job::paginate(10),
             'specializations' => specialization::where('lang', App::getLocale())->get(),

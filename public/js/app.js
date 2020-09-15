@@ -55710,23 +55710,30 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component("chat", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/Chat.vue */ "./resources/js/components/Chat.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/Chat.vue */ "./resources/js/components/Chat.vue"));
 });
 Vue.component("chat-composer", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/ChatComposer.vue */ "./resources/js/components/ChatComposer.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/ChatComposer.vue */ "./resources/js/components/ChatComposer.vue"));
 });
 Vue.component("online-users", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/OnlineUsers.vue */ "./resources/js/components/OnlineUsers.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/OnlineUsers.vue */ "./resources/js/components/OnlineUsers.vue"));
+});
+Vue.component("notification", function () {
+  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/Notification.vue */ "./resources/js/components/Notification.vue"));
 });
 var app = new Vue({
   el: "#app",
   data: {
     chats: "",
-    onlineUsers: ''
+    onlineUsers: '',
+    notifications: ''
   },
   created: function created() {
     var _this = this;
 
+    axios.post('/notification/get').then(function (response) {
+      _this.notifications = response.data;
+    });
     var userId = $('meta[name="userId"]').attr("content");
     var friendId = $('meta[name="friendId"]').attr("content");
 

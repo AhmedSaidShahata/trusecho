@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Blog;
 use App\Blogcomment;
 use App\Http\Controllers\Controller;
+use App\Notifications\Notifyblogcomment;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,6 +45,13 @@ class BlogcommentController extends Controller
         $blogId = $request->input('blogId');
 
 
+        $blog = Blog::find($blogId);
+
+        $user = User::find($blog->user->id);
+
+
+
+        $user->notify(new Notifyblogcomment($blog));
 
         Blogcomment::create([
             'body' => $commentblog,

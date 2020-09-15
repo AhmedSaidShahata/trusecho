@@ -122,8 +122,11 @@ Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.inde
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
 Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
 Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
+//======================================= notifucation =====================================
 
+Route::post('/notification/get', 'NotificationController@get');
 
+Route::post('/notification/read', 'NotificationController@read');
 //======================================= login with facebook =====================================
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider')->name('facebook.login');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');

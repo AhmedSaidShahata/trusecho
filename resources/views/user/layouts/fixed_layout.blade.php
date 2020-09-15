@@ -27,224 +27,218 @@
 </head>
 
 <body>
-    <span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
-    <span hidden class="my_lang">{{'/'.LaravelLocalization::getCurrentLocale()}}</span>
-    <div class="navigation" id="navbar">
-        <div class="navigation__logo-box">
-            <img src="{{asset('img/2.png')}}" alt="Logo" class="nav-bar__logo" />
-        </div>
-        <div class="nav-bar">
-            <ul class="nav-bar__list">
-                <li class="nav-bar__item">
-                    <a href="{{route('user.homepages.index')}}" class="nav-bar__item-nav">{{__('messages.home')}}</a>
-                </li>
-                <!-- <li class="nav-bar__item">
+    <div id="app">
+        <span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
+        <span hidden class="my_lang">{{'/'.LaravelLocalization::getCurrentLocale()}}</span>
+        <div class="navigation" id="navbar">
+            <div class="navigation__logo-box">
+                <img src="{{asset('img/2.png')}}" alt="Logo" class="nav-bar__logo" />
+            </div>
+            <div class="nav-bar">
+                <ul class="nav-bar__list">
+                    <li class="nav-bar__item">
+                        <a href="{{route('user.homepages.index')}}" class="nav-bar__item-nav">{{__('messages.home')}}</a>
+                    </li>
+                    <!-- <li class="nav-bar__item">
                     <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">Users</a>
                 </li> -->
-                @auth
-                <li class="nav-bar__item">
-                    <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">{{__('messages.network')}}</a>
-                </li>
-                @endauth
-                <li class="nav-bar__item dropdown">
-                    <a href="{{route('user.jobs.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.jobs')}}</a>
-                    <div class="dropdown-content">
-                        <!-- <a href="#">All Jobs</a>
+                    @auth
+                    <li class="nav-bar__item">
+                        <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">{{__('messages.network')}}</a>
+                    </li>
+                    @endauth
+                    <li class="nav-bar__item dropdown">
+                        <a href="{{route('user.jobs.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.jobs')}}</a>
+                        <div class="dropdown-content">
+                            <!-- <a href="#">All Jobs</a>
                         <a href="#">Engineering</a>
                         <a href="#">Information Technology</a>
                         <a href="#">Media, TV, and Jounrals</a>
                         <a href="#">Future Jobs</a>
                         <a href="#">Education Sector</a> -->
-                    </div>
-                </li>
-                <li class="nav-bar__item dropdown">
-                    <a href="{{route('user.services.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.services')}}</a>
-                    <div class="dropdown-content">
-                        <!-- <a href="#">Link 1</a>
+                        </div>
+                    </li>
+                    <li class="nav-bar__item dropdown">
+                        <a href="{{route('user.services.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.services')}}</a>
+                        <div class="dropdown-content">
+                            <!-- <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
                         <a href="#">Link 3</a> -->
-                    </div>
-                </li>
-                <li class="nav-bar__item">
-                    <a href="{{route('user.organizations.index')}}" class="nav-bar__item-nav">{{__('messages.organizations')}}</a>
-                </li>
-                <!-- <li class="nav-bar__item">
+                        </div>
+                    </li>
+                    <li class="nav-bar__item">
+                        <a href="{{route('user.organizations.index')}}" class="nav-bar__item-nav">{{__('messages.organizations')}}</a>
+                    </li>
+                    <!-- <li class="nav-bar__item">
                     <a href="{{route('user.faqs.index')}}" class="nav-bar__item-nav">Faq</a>
                 </li> -->
-                <li class="nav-bar__item dropdown">
-                    <a href="{{route('user.opportunitys.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.opportunities')}}</a>
-                    <div class="dropdown-content">
-                        {{!$opportunities=App\Opportunity::all()}}
-                        @forelse($opportunities as $opportunity)
-                        <a href="{{route('user.opportunitys.show',$opportunity->id)}}">{{$opportunity->title_en}}</a>
-                        @empty
-
-                        @endforelse
-                    </div>
-                </li>
-
-
-
-                @guest
-
-                @if (Route::has('register'))
-                <li class="nav-bar__item ">
-                    <a class="nav-bar__item-nav nav-btn" href="{{ route('register') }}">{{ __('messages.sign_up') }}</a>
-                </li>
-                @endif
-                <li class="nav-bar__item ">
-                    <a class="nav-bar__item-nav" href="{{ route('login') }} ">{{ __('messages.login') }}</a>
-                </li>
-                @else
-                <li class="nav-bar__item dropdown">
-                    <div class="messages-icon-box">
-                        <a href="/chat"> <img src="{{asset('img/messages-icon.svg')}}" alt="messages" class="messages-icon" /> </a>
-
-                        <!-- <span class="messages-number">3</span> -->
+                    <li class="nav-bar__item dropdown">
+                        <a href="{{route('user.opportunitys.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.opportunities')}}</a>
                         <div class="dropdown-content">
-
-                        </div>
-                    </div>
-                </li>
-
-                <li class="nav-bar__item dropdown notify_app">
-                    <div class="notification-icon-box">
-                        <img src="{{asset('img/notification-icon.svg')}}" alt="notification" class="notification-icon" />
-                        <span class="notification-number ">{{count(auth()->user()->unreadNotifications)}}</span>
-                        <div class="dropdown-content ">
-                            @foreach(auth()->user()->notifications as $note)
-
-
-                            <a href="" class="{{$note->read_at == null ? 'unread' : ''}}">
-                                {!! $note->data['data'] !!}
-                                <?php $note->markAsRead() ?>
-                            </a>
-
-
-                            @endforeach
-                        </div>
-                    </div>
-                </li>
-
-                <li class="nav-bar__item dropdown">
-                    <div class="notification-icon-box">
-                        <i class="fas fa-user-friends fa-2x"></i>
-                        <!-- <span class="notification-number">3</span> -->
-                        <div class="dropdown-content">
-                            <!-- <a href="#">Faisl just posted a blog</a>
-                            <a href="#">Memo just added a job role</a>
-                            <a href="#">Lily reacted to your post</a> -->
-                            {{!$friends_request=App\Friend::where(['friend_id'=> Auth::user()->id,'accept'=>0])->get()}}
-
-                            @forelse($friends_request as $friend_request )
-                            {{!$user_request= $friend_request->user_id}}
-                            {{!$friend=App\User::where(['id'=>$user_request])->get()->first()}}
-                            {{!$friend_profile=App\Profile::where(['user_id'=>$user_request])->get()->first()}}
-                            <span class="friend_id" hidden>{{$user_request}}</span>
-                            <div class="requset-friend">
-                                <img src="{{asset('storage/'.$friend_profile->picture)}}" alt="friend image{{$friend->name}}" style="width: 60px; height:60px; float:left">
-
-                                <a href="{{route('user.friends.show',$user_request)}}" style="float: left;">
-                                    {{$friend->name}}
-                                </a>
-                                <a style="clear:both;">
-                                    <button data-friend="{{$friend->id}}" class="accept">{{ __('messages.accept') }}</button>
-                                    <button data-friend="{{$friend->id}}" class="delete">{{ __('messages.delete') }}</button>
-                                </a>
-                            </div>
+                            {{!$opportunities=App\Opportunity::all()}}
+                            @forelse($opportunities as $opportunity)
+                            <a href="{{route('user.opportunitys.show',$opportunity->id)}}">{{$opportunity->title_en}}</a>
                             @empty
 
                             @endforelse
                         </div>
-                    </div>
-                </li>
+                    </li>
 
-                <li class="nav-bar__item user-info dropdown">
-                    <div class="user-pic-box">
-                        <img style="width:70px;height:70px;border-radius: 50%;" src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-pic" />
-                    </div>
-                    <div class="user-info__name dropbtn"> {{ Auth::user()->name }}</div>
-                    <div class="dropdown-content u-absolute-top">
 
-                        <a class="dropdown-item" href="{{route('user.users.edit',  Auth::user()->id )}}">
-                            {{__('messages.profile')}}
-                        </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('messages.log_out') }}
-                            </a>
+                    @guest
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                    @if (Route::has('register'))
+                    <li class="nav-bar__item ">
+                        <a class="nav-bar__item-nav nav-btn" href="{{ route('register') }}">{{ __('messages.sign_up') }}</a>
+                    </li>
+                    @endif
+                    <li class="nav-bar__item ">
+                        <a class="nav-bar__item-nav" href="{{ route('login') }} ">{{ __('messages.login') }}</a>
+                    </li>
+                    @else
+                    <li class="nav-bar__item dropdown">
+                        <div class="messages-icon-box">
+                            <a href="/chat"> <img src="{{asset('img/messages-icon.svg')}}" alt="messages" class="messages-icon" /> </a>
+
+                            <!-- <span class="messages-number">3</span> -->
+                            <div class="dropdown-content">
+
+                            </div>
                         </div>
+                    </li>
 
+                    <li class="nav-bar__item dropdown notify_app">
+                        <div class="notification-icon-box">
+                            <img src="{{asset('img/notification-icon.svg')}}" alt="notification" class="notification-icon" />
+                            <span class="notification-number ">{{count(auth()->user()->unreadNotifications)}}</span>
+                            <div class="dropdown-content ">
+                                <notification :notifications="notifications">
 
-                        @endguest
+                                </notification>
+                            </div>
+                        </div>
+                    </li>
 
-                <li class="nav-bar__item">
-                    <ul style="list-style: none; font-size:20px;">
-                        {{!$lang=LaravelLocalization::getCurrentLocale()}}
-                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                        <li class="{{ $localeCode == $lang ? 'hidden' : '' }}">
+                    <li class="nav-bar__item dropdown">
+                        <div class="notification-icon-box">
+                            <i class="fas fa-user-friends fa-2x"></i>
+                            <!-- <span class="notification-number">3</span> -->
+                            <div class="dropdown-content">
+                                <!-- <a href="#">Faisl just posted a blog</a>
+                            <a href="#">Memo just added a job role</a>
+                            <a href="#">Lily reacted to your post</a> -->
+                                {{!$friends_request=App\Friend::where(['friend_id'=> Auth::user()->id,'accept'=>0])->get()}}
 
-                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                {{ $localeCode }}
+                                @forelse($friends_request as $friend_request )
+                                {{!$user_request= $friend_request->user_id}}
+                                {{!$friend=App\User::where(['id'=>$user_request])->get()->first()}}
+                                {{!$friend_profile=App\Profile::where(['user_id'=>$user_request])->get()->first()}}
+                                <span class="friend_id" hidden>{{$user_request}}</span>
+                                <div class="requset-friend">
+                                    <img src="{{asset('storage/'.$friend_profile->picture)}}" alt="friend image{{$friend->name}}" style="width: 60px; height:60px; float:left">
+
+                                    <a href="{{route('user.friends.show',$user_request)}}" style="float: left;">
+                                        {{$friend->name}}
+                                    </a>
+                                    <a style="clear:both;">
+                                        <button data-friend="{{$friend->id}}" class="accept">{{ __('messages.accept') }}</button>
+                                        <button data-friend="{{$friend->id}}" class="delete">{{ __('messages.delete') }}</button>
+                                    </a>
+                                </div>
+                                @empty
+
+                                @endforelse
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-bar__item user-info dropdown">
+                        <div class="user-pic-box">
+                            <img style="width:70px;height:70px;border-radius: 50%;" src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-pic" />
+                        </div>
+                        <div class="user-info__name dropbtn"> {{ Auth::user()->name }}</div>
+                        <div class="dropdown-content u-absolute-top">
+
+                            <a class="dropdown-item" href="{{route('user.users.edit',  Auth::user()->id )}}">
+                                {{__('messages.profile')}}
                             </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </li>
-            </ul>
-        </div>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('messages.log_out') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
 
 
-        @auth
-        <div class="responsive-nav-icons">
-            <ul class="responsive-nav-icons__list">
-                <li class="responsive-nav-icons__list-item">
-                    <div class="messages-icon-box">
-                        <a href="/chat"> <img src="{{asset('img/messages-icon.svg')}}" alt="messages" class="messages-icon" /> </a>
-                        <!-- <span class="messages-number">1</span> -->
-                    </div>
-                </li>
-                <li class="responsive-nav-icons__list-item">
-                    <div class="notification-icon-box">
-                        <img src="{{asset('img/notification-icon.svg')}}" alt="notification" class="notification-icon" />
-                        <!-- <span class="notification-number"></span> -->
-                    </div>
-                </li>
-                <li class="responsive-nav-icons__list-item">
-                    <div class="user-pic-box">
-                        <a href="{{route('user.users.edit',  Auth::user()->id )}}"><img src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-pic" style="width:70px;height:70px;border-radius: 50%;" /></a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                            @endguest
 
-        @endauth
-        <!-- Burger Side bar -->
-        <nav role="responsive-navigation">
-            <div id="menuToggle">
-                <!--
+                    <li class="nav-bar__item">
+                        <ul style="list-style: none; font-size:20px;">
+                            {{!$lang=LaravelLocalization::getCurrentLocale()}}
+                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li class="{{ $localeCode == $lang ? 'hidden' : '' }}">
+
+                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    {{ $localeCode }}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+            @auth
+            <div class="responsive-nav-icons">
+                <ul class="responsive-nav-icons__list">
+                    <li class="responsive-nav-icons__list-item">
+                        <div class="messages-icon-box">
+                            <a href="/chat"> <img src="{{asset('img/messages-icon.svg')}}" alt="messages" class="messages-icon" /> </a>
+                            <!-- <span class="messages-number">1</span> -->
+                        </div>
+                    </li>
+                    <li class="responsive-nav-icons__list-item">
+                        <div class="notification-icon-box">
+                            <img src="{{asset('img/notification-icon.svg')}}" alt="notification" class="notification-icon" />
+                            <!-- <span class="notification-number"></span> -->
+                        </div>
+                    </li>
+                    <li class="responsive-nav-icons__list-item">
+                        <div class="user-pic-box">
+                            <a href="{{route('user.users.edit',  Auth::user()->id )}}"><img src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="user-pic" style="width:70px;height:70px;border-radius: 50%;" /></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            @endauth
+            <!-- Burger Side bar -->
+            <nav role="responsive-navigation">
+                <div id="menuToggle">
+                    <!--
   A fake / hidden checkbox is used as click reciever,
   so you can use the :checked selector on it.
   -->
-                <input type="checkbox" />
+                    <input type="checkbox" />
 
-                <!--
+                    <!--
   Some spans to act as a hamburger.
 
   They are acting like a real hamburger,
   not that McDonalds stuff.
   -->
-                <span></span>
-                <span></span>
-                <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
 
-                <!--
+                    <!--
   Too bad the menu has to be inside of the button
   but hey, it's pure CSS magic.
   -->
@@ -253,49 +247,50 @@
 
 
 
-                <ul id="menu">
+                    <ul id="menu">
 
-                    <a href="{{route('user.homepages.index')}}">
-                        <li>{{__('messages.home')}}</li>
-                    </a>
-                    @auth
-                    <a href="{{route('user.friends.index')}}">
-                        <li>{{__('messages.network')}}</li>
-                    </a>
-                    @endauth
-                    <a href="{{route('user.organizations.index')}}">
-                        <li>{{__('messages.organizations')}}</li>
-                    </a>
-                    <a href="{{route('user.jobs.index')}}">
-                        <li>{{__('messages.jobs')}}</li>
-                    </a>
-                    <a href="opportunities-signed.html">
-                        <li>{{__('messages.opportunities')}}</li>
-                    </a>
-                    <a href="{{route('user.services.index')}}">
-                        <li>{{__('messages.services')}}</li>
-                    </a>
-                    @auth
-                    <a href="{{route('user.users.edit',  Auth::user()->id )}}">
-                        <li>{{__('messages.profile')}}</li>
-                    </a>
+                        <a href="{{route('user.homepages.index')}}">
+                            <li>{{__('messages.home')}}</li>
+                        </a>
+                        @auth
+                        <a href="{{route('user.friends.index')}}">
+                            <li>{{__('messages.network')}}</li>
+                        </a>
+                        @endauth
+                        <a href="{{route('user.organizations.index')}}">
+                            <li>{{__('messages.organizations')}}</li>
+                        </a>
+                        <a href="{{route('user.jobs.index')}}">
+                            <li>{{__('messages.jobs')}}</li>
+                        </a>
+                        <a href="opportunities-signed.html">
+                            <li>{{__('messages.opportunities')}}</li>
+                        </a>
+                        <a href="{{route('user.services.index')}}">
+                            <li>{{__('messages.services')}}</li>
+                        </a>
+                        @auth
+                        <a href="{{route('user.users.edit',  Auth::user()->id )}}">
+                            <li>{{__('messages.profile')}}</li>
+                        </a>
 
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        <li> {{ __('messages.log_out') }} </li>
-                    </a>
-                    @endauth
+                            <li> {{ __('messages.log_out') }} </li>
+                        </a>
+                        @endauth
 
 
-                </ul>
-            </div>
-        </nav>
-    </div>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
-    <div id="app">
-        <main class="py-5">
-            @yield('content')
-        </main>
+        <div>
+            <main class="py-5">
+                @yield('content')
+            </main>
+        </div>
     </div>
 
     <footer class="footer">
@@ -342,8 +337,9 @@
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
                             <a href="#">{{__('messages.latest_posts')}}
-                                </a> </li> <li class="footer__right-info-list-item">
-                                    <a href="#">{{__('messages.add_exp')}}</a>
+                            </a> </li>
+                        <li class="footer__right-info-list-item">
+                            <a href="#">{{__('messages.add_exp')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
                             <a href="#">{{__('messages.promot_post')}}</a>
@@ -381,7 +377,7 @@
                         <li class="footer__right-info-list-item">
                             <a href="#"> {{__('messages.asked_question')}}</a>
                         </li>
-                        <li class="footer__right-info-list-item"><a href="#"> {{__('messages.contact_us')}}</a></li>
+                        <li class="footer__right-info-list-item"><a href="{{route('user.contacts.index')}}"> {{__('messages.contact_us')}}</a></li>
                     </ul>
                 </div>
                 <div class="footer__right-info">
@@ -429,11 +425,11 @@
     <script src="{{ asset('js/app.js') }} "></script>
 
     <script>
-        let  preview ;
-        let previewScholar ;
+        let preview;
+        let previewScholar;
         $("input[type=file]").on("click", function() {
-             preview = $(this).siblings("img")
-             previewScholar = $(this).parent().siblings("img")
+            preview = $(this).siblings("img")
+            previewScholar = $(this).parent().siblings("img")
         })
 
         function showPreview(event) {
