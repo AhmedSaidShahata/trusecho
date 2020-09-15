@@ -27,7 +27,6 @@ class ScholarshipRequest extends FormRequest
 
             'title' => 'required',
             'description' => 'required',
-            'content' => 'required',
             'location' => 'required',
             'requirments' => 'required',
             'company' => 'required',

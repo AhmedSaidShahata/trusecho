@@ -496,7 +496,10 @@ return [
     'specialize_scholar'=>'Scholarship Specilalization',
 
     'whatsapp'=>'Whatsapp',
-    'your_friends'=>'Your Friends'
+    'your_friends'=>'Your Friends',
+    'add_scholarship'=>'Add Scholarship',
+    'scholarship_name'=>'Scholarship Name',
+    'no_scholarships'=>'No Scholarships Yet'
 
 
 

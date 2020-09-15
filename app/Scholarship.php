@@ -8,7 +8,7 @@ class Scholarship extends Model
 {
 
     protected $fillable = [
-        'title', 'description', 'content', 'location', 'requirments','lang', 'user_id',
+        'title', 'description', 'location', 'requirments','lang', 'user_id',
         'company','deadline', 'email', 'picture', 'cost_id', 'specialization_id'
     ];
 
@@ -16,7 +16,7 @@ class Scholarship extends Model
     {
         return $this->belongsTo(Cost::class);
     }
- 
+
 
     public function specialization()
     {

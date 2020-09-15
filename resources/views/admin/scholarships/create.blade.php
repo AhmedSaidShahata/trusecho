@@ -71,10 +71,6 @@
                 <label > {{__('messages.title')}}</label>
                 <input type="text" name="title" class="form-control" value="{{isset($scholarship)?$scholarship->title:''}}">
             </div>
-            <div class="form-group">
-                <label >{{__('messages.description')}} </label>
-                <input type="text" name="description" class="form-control" value="{{isset($scholarship)?$scholarship->description:''}}">
-            </div>
 
             <div class="form-group">
                 <label >{{__('messages.location')}}</label>
@@ -87,8 +83,8 @@
 
 
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">{{__('messages.content')}}</label>
-                <textarea class="form-control" name="content" id="" cols="50" rows="10">{{isset($scholarship) ? $scholarship->content : ''}}</textarea>
+                <label for="exampleFormControlTextarea1">{{__('messages.description')}}</label>
+                <textarea class="form-control" name="description" id="" cols="50" rows="10">{{isset($scholarship) ? $scholarship->description : ''}}</textarea>
             </div>
 
             <div class="form-group">

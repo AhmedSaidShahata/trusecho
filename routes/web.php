@@ -93,6 +93,7 @@ Route::group([
         Route::resource('ratejobs', 'RatejobController');
         Route::resource('jobs', 'JobController');
         Route::get('jobsearch', 'JobController@search')->name('jobsearch');
+        Route::get('scholarship-search', 'ScholarshipController@search')->name('scholarshipsearch');
         Route::resource('jobapps', 'JobappController');
         Route::resource('faqs', 'FaqController');
         Route::resource('favouritesers', 'FavouriteserController');

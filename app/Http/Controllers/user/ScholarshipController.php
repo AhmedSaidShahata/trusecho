@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Cost;
 use App\Http\Controllers\Controller;
 use App\Scholarship;
+use App\Scholarspecialize;
+use App\specialization;
 use App\Viewscholar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -18,7 +21,15 @@ class ScholarshipController extends Controller
      */
     public function index()
     {
-        //
+        $scholarships = Scholarship::where(['lang' => App::getLocale()])->paginate(10);
+        $specializations = Scholarspecialize::where(['lang' => App::getLocale()])->get();
+        $costs = Cost::where(['lang' => App::getLocale()])->get();
+
+        return view('user.scholarships.scholarships', [
+            'scholarships' => $scholarships,
+            'specializations' =>  $specializations,
+            'costs' => $costs
+        ]);
     }
 
     /**
@@ -39,7 +50,52 @@ class ScholarshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('specialization', 'cost');
+        $picture = $request->picture->store('images', 'public');
+        $data['picture'] = $picture;
+
+        $check_specialization = Scholarspecialize::where([
+            'lang' => $request->lang,
+            'name' => $request->specialization
+        ]);
+
+        if ($check_specialization->get()->count() == 0) {
+
+            $specialization =  Scholarspecialize::create([
+                'name' => $request->specialization,
+                'lang' => $request->lang,
+
+            ]);
+        } else {
+            $specialization = $check_specialization->get()->first();
+        }
+
+        $data['specialization_id'] = $specialization->id;
+
+
+
+        $check_cost = Cost::where([
+            'lang' => $request->lang,
+            'name' => $request->cost
+        ]);
+
+        if ($check_cost->get()->count() == 0) {
+
+            $cost =  Cost::create([
+                'name' => $request->cost,
+                'lang' => $request->lang,
+
+            ]);
+        } else {
+            $cost = $check_cost->get()->first();
+        }
+
+        $data['cost_id'] = $cost->id;
+
+        Scholarship::create($data);
+        session()->flash('success_en', ' Scholarship created successfully ');
+        session()->flash('success_ar', ' تم اضافة المنحة بنجاح ');
+        return redirect(route('user.scholarships.index'));
     }
 
     /**
@@ -74,20 +130,23 @@ class ScholarshipController extends Controller
 
 
 
-        $related_scholarships=scholarship::where([
-            'lang'=>App::getLocale(),
-            'specialization_id'=>$scholarship->specialization_id
-        ])->where('id','!=',$scholarship->id)->get();
+        $related_scholarships = scholarship::where([
+            'lang' => App::getLocale(),
+            'specialization_id' => $scholarship->specialization_id
+        ])->where('id', '!=', $scholarship->id)->get();
 
 
         $comment_scholarships = $scholarship->comment;
 
-        return view('user.scholarships.single-scholar',
-         [ 'views_count' => $viewsCount,
-         'scholarship' => $scholarship,
-         'comment_scholarships' => $comment_scholarships,
-         'related_scholarships'=>$related_scholarships
-         ]);
+        return view(
+            'user.scholarships.single-scholar',
+            [
+                'views_count' => $viewsCount,
+                'scholarship' => $scholarship,
+                'comment_scholarships' => $comment_scholarships,
+                'related_scholarships' => $related_scholarships
+            ]
+        );
     }
 
     /**
@@ -122,5 +181,18 @@ class ScholarshipController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function search(Request $request)
+    {
+        $scholarships = scholarship::where($request->all())->paginate(10);
+
+        return view('user.scholarships.scholarships', [
+            'scholarships' => $scholarships,
+            'costs'=>Cost::where(['lang' => App::getLocale()])->get(),
+            'specializations' => Scholarspecialize::where('lang', App::getLocale())->get()
+
+        ]);
     }
 }

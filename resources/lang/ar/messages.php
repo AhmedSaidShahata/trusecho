@@ -497,7 +497,10 @@ return [
     'siblings_count'=> 'عدد الأشقاء',
     'jobs_specialize'=>'تخصصات الوظائف',
     'cost_scholar'=>'تكلفات المنح',
-    'whatsapp'=>'رقم الواتس'
+    'whatsapp'=>'رقم الواتس',
+    'add_scholarship'=>'اضافة منحة',
+    'scholarship_name'=>'اسم المنحة',
+    'no_scholarships'=>'ليس هناك منح'
 
 
 

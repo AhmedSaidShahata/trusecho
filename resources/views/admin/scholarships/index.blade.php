@@ -18,7 +18,7 @@
                 <th scope="col">{{__('messages.picture')}}</th>
                 <th scope="col">{{__('messages.title')}}</th>
                 <th scope="col">{{__('messages.description')}}</th>
-                <th scope="col">{{__('messages.content')}}</th>
+
                 <th scope="col">{{__('messages.location')}}</th>
                 <th scope="col">{{__('messages.requirments')}}</th>
                 <th scope="col">{{__('messages.deadline')}}</th>
@@ -37,7 +37,7 @@
                 <td><img src="{{asset('storage/'.$scholarship->picture)}}" alt="image scholarship" style="width:100px;height:100px"></td>
                 <td>{{$scholarship->title}}</td>
                 <td>{{$scholarship->description}}</td>
-                <td>{{$scholarship->content}}</td>
+
                 <td>{{$scholarship->location}}</td>
                 <td>{{$scholarship->requirments}}</td>
                 <td>{{$scholarship->deadline}}</td>

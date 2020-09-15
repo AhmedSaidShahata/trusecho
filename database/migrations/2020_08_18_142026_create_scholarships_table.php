@@ -17,8 +17,7 @@ class CreateScholarshipsTable extends Migration
             $table->id();
             $table->string('lang');
             $table->string('title');
-            $table->string('description');
-            $table->text('content');
+            $table->text('description');
             $table->text('requirments');
             $table->string('location');
             $table->string('company');

@@ -8,9 +8,7 @@
             <p class="blog-summary__details-brief">
                 {{$scholarship->description }}
             </p>
-            <p class="blog-summary__details-quick-summary">
-                {{$scholarship->content }}
-            </p>
+
             <div class="blog-summary__details-comments">
                 <h1 class="comments">{{__('messages.comments')}}:</h1>
                 <p class="comments__values">0</p>
@@ -108,7 +106,7 @@
     <div class="blog-details__content-box" style="padding: 10px;">
         <h1 class="blog-details__header">{{__('messages.description')}}</h1>
         <p class="blog-details__paragraph">
-            {{$scholarship->content }}
+            {{$scholarship->description }}
         </p>
 
         <h1 class="views" style="margin-top: 20px;">{{__('messages.requirments')}}:</h1>
@@ -132,48 +130,48 @@
 
             </button>
             <button class="blog-details__buttons-share" style="margin: 0  10px;">
-                <img src="img/share-icon.svg" alt="share icon" class="share-button" />
+                <img src="{{asset('img/share-icon.svg')}}" alt="share icon" class="share-button" />
                 <span class="share-title">{{__('messages.share')}}</span>
             </button>
         </div>
-        <!-- <div class="blog-details__social-media">
+        <div class="blog-details__social-media">
                 <div class="social-media">
                     <div class="social-media__logo-box">
-                        <img src="img/facebook.png" alt="facebook" class="social-media__logo" />
+                        <img src="{{asset('img/facebook.png')}}" alt="facebook" class="social-media__logo" />
                     </div>
                     <span class="social-media__number">+1,001,564</span>
                 </div>
                 <div class="social-media">
                     <div class="social-media__logo-box">
-                        <img src="img/instagram.png" alt="instagram" class="social-media__logo" />
+                        <img src="{{asset('img/instagram.png')}}" alt="instagram" class="social-media__logo" />
                     </div>
                     <span class="social-media__number">+1,001,564</span>
                 </div>
                 <div class="social-media">
                     <div class="social-media__logo-box">
-                        <img src="img/telegram.png" alt="telegram" class="social-media__logo" />
+                        <img src="{{asset('img/telegram.png')}}" alt="telegram" class="social-media__logo" />
                     </div>
                     <span class="social-media__number">+1,001,564</span>
                 </div>
                 <div class="social-media">
                     <div class="social-media__logo-box">
-                        <img src="img/twitter.png" alt="twitter" class="social-media__logo" />
+                        <img src="{{asset('img/twitter.png')}}" alt="twitter" class="social-media__logo" />
                     </div>
                     <span class="social-media__number">+1,001,564</span>
                 </div>
                 <div class="social-media">
                     <div class="social-media__logo-box">
-                        <img src="img/linkedin.png" alt="linkedin" class="social-media__logo" />
+                        <img src="{{asset('img/linkedin.png')}}" alt="linkedin" class="social-media__logo" />
                     </div>
                     <span class="social-media__number">+1,001,564</span>
                 </div>
                 <div class="social-media">
                     <div class="social-media__logo-box">
-                        <img src="img/Truescho logo-edit.png" alt="truescho" class="social-media__logo" />
+                        <img src="{{asset('img/Truescho logo-edit.png')}}" alt="truescho" class="social-media__logo" />
                     </div>
                     <span class="social-media__number">+1,001,564</span>
                 </div>
-            </div> -->
+            </div>
         <div class="blog-details__rating">
             <h1 class="blog-details__rating-header">{{__('messages.rate_scholar')}}</h1>
             <div class="blog-details__rating-stars-box">
@@ -271,48 +269,48 @@
 
             <hr />
         </div>
-        <h1 class="related-topics__header">Related Topics</h1>
+        <h1 class="related-topics__header">Related Scholarships</h1>
         <div class="best-scolarships-section-signed__cards-info">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                @forelse($related_scholarships as $related_scholarship)
-                <div class="best-scolarships-section-signed__card swiper-slide">
-                    <div class="card-picture-box">
-                        <span class="opportunity-type-label my-label-span">{{ $related_scholarship->cost->name }}</span>
-                        <img src="{{asset('storage/'.$related_scholarship->picture)}}" alt="Picutre 1" class="card-picture my-image">
-                    </div>
-                    <h1 class="best-scolarships-section-signed__card-header">{{ $related_scholarship->title}}</h1>
-                    <p class="best-scolarships-section-signed__card-paragraph">{{ $related_scholarship->description}}</p>
-                    <div class="best-scolarships-section-signed__card-deadline-box">
-                        <img src="{{asset('img/Icon ionic-ios-timer.svg')}}" alt="deadline" class="best-scolarships-section-signed__card-deadline">
-                        <div class="deadline-number">
-                            <h2 class="deadline-header">{{__('messages.hours')}}:{{__('messages.days')}}:{{__('messages.months')}}</h2>
-                            <div hidden> {{!$created=$related_scholarship->created_at->format('Y-m-d')}}
-                                {{!$deadline=$related_scholarship->deadline}}
-                                {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
-                                {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
-                                {{!$different_days = $start_date->diffInDays($end_date)}}
-                                {{!$different_hours = $start_date->diffInHours($end_date)}}
-                                {{!$different_months = $start_date->diffInMonths($end_date)}}
-                            </div>
-
-                            <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
-
-
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @forelse($related_scholarships as $related_scholarship)
+                    <div class="best-scolarships-section-signed__card swiper-slide">
+                        <div class="card-picture-box">
+                            <span class="opportunity-type-label my-label-span">{{ $related_scholarship->cost->name }}</span>
+                            <img src="{{asset('storage/'.$related_scholarship->picture)}}" alt="Picutre 1" class="card-picture my-image">
                         </div>
-                        <a href="{{route('user.scholarships.show',$related_scholarship->id)}}" class="details-button">{{__('messages.details')}}</a>
+                        <h1 class="best-scolarships-section-signed__card-header">{{ $related_scholarship->title}}</h1>
+                        <p class="best-scolarships-section-signed__card-paragraph">{{ $related_scholarship->description}}</p>
+                        <div class="best-scolarships-section-signed__card-deadline-box">
+                            <img src="{{asset('img/Icon ionic-ios-timer.svg')}}" alt="deadline" class="best-scolarships-section-signed__card-deadline">
+                            <div class="deadline-number">
+                                <h2 class="deadline-header">{{__('messages.hours')}}:{{__('messages.days')}}:{{__('messages.months')}}</h2>
+                                <div hidden> {{!$created=$related_scholarship->created_at->format('Y-m-d')}}
+                                    {{!$deadline=$related_scholarship->deadline}}
+                                    {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
+                                    {{!$end_date = \Carbon\Carbon::createFromFormat('Y-m-d',$deadline)}}
+                                    {{!$different_days = $start_date->diffInDays($end_date)}}
+                                    {{!$different_hours = $start_date->diffInHours($end_date)}}
+                                    {{!$different_months = $start_date->diffInMonths($end_date)}}
+                                </div>
+
+                                <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
+
+
+                            </div>
+                            <a href="{{route('user.scholarships.show',$related_scholarship->id)}}" class="details-button">{{__('messages.details')}}</a>
+                        </div>
                     </div>
-                </div>
-                @empty
-                <div class="alert alert-primary" role="alert" style="transform: scale(4);">
-                    {{__('messages.no_scholar')}}
-                </div>
-                @endforelse
+                    @empty
+                    <div class="alert alert-primary" role="alert" style="transform: scale(4);">
+                        {{__('messages.no_scholar')}}
+                    </div>
+                    @endforelse
 
 
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 
