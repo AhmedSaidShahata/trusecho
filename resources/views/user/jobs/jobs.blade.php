@@ -50,7 +50,7 @@
     </div>
 </form>
 <div class="search-results">
-    <a href="#apply-for-job" class="my-btn">
+    <a href="#add-job" class="my-btn">
         <i class="fas fa-plus"></i>
         {{__('messages.add_job')}}
     </a>
@@ -95,7 +95,7 @@
 
 
 
-    <div class="popup" id="apply-for-job" style="overflow: auto;">
+    <div class="popup" id="add-job" style="overflow: auto;">
         <form action="{{route('user.jobs.store')}}" method="post" enctype="multipart/form-data">
             <div class="popup__content" style="padding-top: 520px;">
                 <div class="popup__left">

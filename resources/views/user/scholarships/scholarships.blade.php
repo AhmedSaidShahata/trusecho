@@ -62,7 +62,7 @@
 </form>
 
 <div class="search-results">
-    <a href="#apply-for-scholarship" class="my-btn">
+    <a href="#add-scholarship" class="my-btn">
         <i class="fas fa-plus"></i>
         {{__('messages.add_scholarship')}}
     </a>
@@ -107,7 +107,7 @@
 
 
 
-    <div class="popup" id="apply-for-scholarship" style="overflow: auto;">
+    <div class="popup" id="add-scholarship" style="overflow: auto;">
         <form action="{{route('user.scholarships.store')}}" method="post" enctype="multipart/form-data">
             <div class="popup__content" style="padding-top: 420px;">
                 <div class="popup__left">

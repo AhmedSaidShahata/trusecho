@@ -53,7 +53,7 @@
 </form>
 
 <div class="search-results">
-    <a href="#apply-for-job" class="my-btn">
+    <a href="#add-service" class="my-btn">
         <i class="fas fa-plus"></i>
         {{__('messages.add_service')}}
     </a>
@@ -126,7 +126,7 @@
 </div>
 
 
-<div class="popup" id="apply-for-job" style="overflow: auto;">
+<div class="popup" id="add-service" style="overflow: auto;">
     <form action="{{route('user.services.store')}}" method="post" enctype="multipart/form-data">
         <div class="popup__content" style="padding-top: 160px;">
             <div class="popup__left">

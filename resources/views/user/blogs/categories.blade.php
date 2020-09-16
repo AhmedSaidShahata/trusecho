@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-<a href="#apply-for-job" class="my-btn">
+<a href="#add-blog" class="my-btn">
     <i class="fas fa-plus"></i>
     {{__('messages.add_blog')}}
 </a>
@@ -59,7 +59,7 @@
 
 
 
-<div class="popup" id="apply-for-job">
+<div class="popup" id="add-blog">
     <form action="{{route('user.blogs.store')}}" method="post" enctype="multipart/form-data">
         <div class="popup__content" style="padding-top:100px;">
             <div class="popup__left">
