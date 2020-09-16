@@ -103,24 +103,13 @@
 </div>
 </div>
 <div class="blog-details">
-    <div class="blog-details__content-box" style="padding: 10px;">
+    <div class="blog-details__content-box" style="padding: 10px; ">
         <h1 class="blog-details__header">{{__('messages.description')}}</h1>
         <p class="blog-details__paragraph">
             {{$scholarship->description }}
         </p>
 
-        <h1 class="views" style="margin-top: 20px;">{{__('messages.requirments')}}:</h1>
-        <div class="blog-summary__details-views" style="margin: 0!important;">
-            <ul class="right-panel__job-requirements-list" style="margin: 16px;">
-                <?php $requirments_exp = explode("-", $scholarship->requirments) ?>
-                @foreach($requirments_exp as $requirment)
-                <li class="right-panel__job-requirements-item" style="font-size: 20px;">
-                    {{$requirment}}
-                </li>
-                @endforeach
 
-            </ul>
-        </div>
         <div class="blog-details__buttons">
             {{!$like = App\Likescholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}};
             <button class=" like_scholar {{$like->count()>0?'blue':''}}" data-scholarid="{{$scholarship->id}}">
@@ -134,44 +123,44 @@
                 <span class="share-title">{{__('messages.share')}}</span>
             </button>
         </div>
-        <div class="blog-details__social-media">
-                <div class="social-media">
-                    <div class="social-media__logo-box">
-                        <img src="{{asset('img/facebook.png')}}" alt="facebook" class="social-media__logo" />
-                    </div>
-                    <span class="social-media__number">+1,001,564</span>
+        <!-- <div class="blog-details__social-media">
+            <div class="social-media">
+                <div class="social-media__logo-box">
+                    <img src="{{asset('img/facebook.png')}}" alt="facebook" class="social-media__logo" />
                 </div>
-                <div class="social-media">
-                    <div class="social-media__logo-box">
-                        <img src="{{asset('img/instagram.png')}}" alt="instagram" class="social-media__logo" />
-                    </div>
-                    <span class="social-media__number">+1,001,564</span>
-                </div>
-                <div class="social-media">
-                    <div class="social-media__logo-box">
-                        <img src="{{asset('img/telegram.png')}}" alt="telegram" class="social-media__logo" />
-                    </div>
-                    <span class="social-media__number">+1,001,564</span>
-                </div>
-                <div class="social-media">
-                    <div class="social-media__logo-box">
-                        <img src="{{asset('img/twitter.png')}}" alt="twitter" class="social-media__logo" />
-                    </div>
-                    <span class="social-media__number">+1,001,564</span>
-                </div>
-                <div class="social-media">
-                    <div class="social-media__logo-box">
-                        <img src="{{asset('img/linkedin.png')}}" alt="linkedin" class="social-media__logo" />
-                    </div>
-                    <span class="social-media__number">+1,001,564</span>
-                </div>
-                <div class="social-media">
-                    <div class="social-media__logo-box">
-                        <img src="{{asset('img/Truescho logo-edit.png')}}" alt="truescho" class="social-media__logo" />
-                    </div>
-                    <span class="social-media__number">+1,001,564</span>
-                </div>
+                <span class="social-media__number">+1,001,564</span>
             </div>
+            <div class="social-media">
+                <div class="social-media__logo-box">
+                    <img src="{{asset('img/instagram.png')}}" alt="instagram" class="social-media__logo" />
+                </div>
+                <span class="social-media__number">+1,001,564</span>
+            </div>
+            <div class="social-media">
+                <div class="social-media__logo-box">
+                    <img src="{{asset('img/telegram.png')}}" alt="telegram" class="social-media__logo" />
+                </div>
+                <span class="social-media__number">+1,001,564</span>
+            </div>
+            <div class="social-media">
+                <div class="social-media__logo-box">
+                    <img src="{{asset('img/twitter.png')}}" alt="twitter" class="social-media__logo" />
+                </div>
+                <span class="social-media__number">+1,001,564</span>
+            </div>
+            <div class="social-media">
+                <div class="social-media__logo-box">
+                    <img src="{{asset('img/linkedin.png')}}" alt="linkedin" class="social-media__logo" />
+                </div>
+                <span class="social-media__number">+1,001,564</span>
+            </div>
+            <div class="social-media">
+                <div class="social-media__logo-box">
+                    <img src="{{asset('img/Truescho logo-edit.png')}}" alt="truescho" class="social-media__logo" />
+                </div>
+                <span class="social-media__number">+1,001,564</span>
+            </div>
+        </div> -->
         <div class="blog-details__rating">
             <h1 class="blog-details__rating-header">{{__('messages.rate_scholar')}}</h1>
             <div class="blog-details__rating-stars-box">
@@ -215,8 +204,8 @@
             <span class="comments-section__word">{{__('messages.comments')}}</span>
             <hr class="horizontal-line" />
         </div>
-        <div class="comments-section__send-box">
-            <textarea name="comment" id="blog-comment" cols="30" rows="7" class="comments-section__content comment-scholar"></textarea>
+        <div class="comments-section__send-box" style="position: relative; left:-10%">
+            <textarea name="comment" id="blog-comment" cols="30" rows="7" class="comments-section__content comment-scholar" style="width:70%"></textarea>
             <a type="button" class="comments-section__send-icon add-comment-scholar">
                 <img src="{{asset('img/Send blue icon.png')}}" alt="send " class="send-icon" />
             </a>
