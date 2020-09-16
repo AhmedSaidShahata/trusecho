@@ -71,7 +71,8 @@
                     </a>
                 </li>
                 @endforeach
-                <ul class="d-lg-none responsive_control d-xs-block list-group">
+
+                <ul class=" list-group d-lg-none responsive_control d-xs-block list-group">
                     <li class="list-group-item">
                         <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i>{{__('messages.users')}}</a>
                     </li>
@@ -105,6 +106,9 @@
                     <li class="list-group-item">
                         <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> {{__('messages.cost_scholar')}}</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{route('admin.scholarspecializes.index')}}"><i class="fas fa-gifts"></i> {{__('messages.specialize_scholar')}}</a>
+                    </li>
 
                     <li class="list-group-item">
                         <a href="{{route('admin.types.index')}}"><i class="fas fa-gifts"></i> {{__('messages.types_ser')}}</a>
@@ -113,24 +117,63 @@
                     <li class="list-group-item">
                         <a href="{{route('admin.typeorgs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.types_org')}}</a>
                     </li>
-
-
                     <li class="list-group-item">
                         <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> {{__('messages.jobs_specialize')}}</a>
                     </li>
 
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
+
                     <li class="list-group-item">
-                        <a href="{{route('admin.jobapps.index')}}"><i class="fas fa-gifts"></i> {{__('messages.job_app')}}</a>
+                        <a href="{{route('admin.blogs.request')}}">
+                            <i class="fas fa-gifts"></i>
+                            {{__('messages.blog_requests')}}
+                            <span class="badge badge-danger">
+
+                                {{$count_request_blog}}
+                            </span>
+
+                        </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.appscholarships.index')}}"><i class="fas fa-gifts"></i> {{__('messages.scholar_app')}}</a>
+                        <a href="{{route('admin.jobapps.index')}}">
+                            <i class="fas fa-gifts"></i>
+                            {{__('messages.job_app')}}
+                            <span class="badge badge-danger">
+
+                                {{$count_request_job}}
+                            </span>
+
+
+
+                        </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{route('admin.faqs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.faqs')}}</a>
+                        <a href="{{route('admin.appscholarships.index')}}" style="font-size: 15px;">
+                            <i class="fas fa-gifts"></i>
+                            {{__('messages.scholar_app')}}
+                            <span class="badge badge-danger">
+                                {{$count_request_scholar}}
+                            </span>
+
+                        </a>
                     </li>
+
                     <li class="list-group-item">
-                        <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i> {{__('messages.contacts')}}</a>
+                        <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i>
+                            {{__('messages.contacts')}}
+                            <span class="badge badge-danger">
+                                {{$count_contact}}
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.faqs.index')}}">
+                            <i class="fas fa-gifts"></i>
+
+                            {{__('messages.faqs')}}
+
+                        </a>
                     </li>
 
 
