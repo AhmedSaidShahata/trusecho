@@ -500,7 +500,17 @@ return [
     'whatsapp'=>'رقم الواتس',
     'add_scholarship'=>'اضافة منحة',
     'scholarship_name'=>'اسم المنحة',
-    'no_scholarships'=>'ليس هناك منح'
+    'no_scholarships'=>'ليس هناك منح',
+    'first_name'=>'الاسم الأول',
+    'last_name'=>'الاسم الأخير',
+    'educational_degree'=>'الدرجة العلمية',
+    'phone_verification'=>'التحقق من الهاتف ',
+    'verification_code'=>'شيفرة التأكيد  ',
+    'enter_code'=>'الرجاء إدخال الرمز الذي تم إرساله إلى رقم الهاتف',
+    'please_code'=>'الرجاء إدخال رمز الهاتف',
+    'submit'=>'إرسال',
+    'no_friends_req'=>'ليس هناك طلبات صداقة جديدة',
+    'no_notifications'=>'ليس هناك اشعارات جديدة'
 
 
 

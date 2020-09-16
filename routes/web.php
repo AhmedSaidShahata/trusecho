@@ -74,6 +74,8 @@ Route::group([
 
 
     Route::namespace('user')->name('user.')->group(function () {
+        Route::resource('regs','RegController');
+        Route::resource('homepages', 'HomePageController');
         Route::resource('users', 'UserController');
         Route::resource('friends', 'FriendController');
         Route::post('friendrequest', 'FriendController@friendrequest');
@@ -98,7 +100,7 @@ Route::group([
         Route::resource('faqs', 'FaqController');
         Route::resource('favouritesers', 'FavouriteserController');
         Route::resource('newscomments', 'NewscommentController');
-        Route::resource('homepages', 'HomePageController');
+
         Route::resource('categoryblogs', 'CategoryblogController');
         Route::resource('blogs', 'BlogController');
         Route::resource('favblogs', 'FavblogController');

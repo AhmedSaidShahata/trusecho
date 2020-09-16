@@ -121,12 +121,13 @@
                     <li class="nav-bar__item dropdown">
                         <div class="notification-icon-box">
                             <i class="fas fa-user-friends fa-2x"></i>
-                            <!-- <span class="notification-number">3</span> -->
+                            {{!$friends_request=App\Friend::where(['friend_id'=> Auth::user()->id,'accept'=>0])->get()}}
+                            <span class="notification-number">{{$friends_request->count()}}</span>
                             <div class="dropdown-content">
                                 <!-- <a href="#">Faisl just posted a blog</a>
                             <a href="#">Memo just added a job role</a>
                             <a href="#">Lily reacted to your post</a> -->
-                                {{!$friends_request=App\Friend::where(['friend_id'=> Auth::user()->id,'accept'=>0])->get()}}
+
 
                                 @forelse($friends_request as $friend_request )
                                 {{!$user_request= $friend_request->user_id}}
@@ -145,6 +146,10 @@
                                     </a>
                                 </div>
                                 @empty
+                                <a>
+                                    {{__('messages.no_friends_req')}}
+
+                                </a>
 
                                 @endforelse
                             </div>

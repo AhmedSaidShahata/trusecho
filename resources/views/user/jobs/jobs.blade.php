@@ -132,7 +132,7 @@
                     <a href="#tours_section" class="popup__closing">×</a>
 
                     <div class="input">
-                        <label for="fullname" class="popup__label-style">{{__('messages.job_name')}}</label>
+                        <label  class="popup__label-style">{{__('messages.job_name')}}</label>
                         <input required type="text" name="title" class="popup__input-style" />
                     </div>
                     <div class="input">
@@ -140,12 +140,12 @@
                         <input required type="text" id="company" name="company" class="popup__input-style" />
                     </div>
                     <div class="input">
-                        <label for="fullname" class="popup__label-style">{{__('messages.salary')}}</label>
+                        <label  class="popup__label-style">{{__('messages.salary')}}</label>
                         <input required type="number" name="salary" class="popup__input-style" />
                     </div>
 
                     <div class="input">
-                        <label for="fullname" class="popup__label-style">{{__('messages.specializations')}}</label>
+                        <label  class="popup__label-style">{{__('messages.specializations')}}</label>
                         <input required type="text" name="specialization" class="popup__input-style" />
                     </div>
                     <div class="input">
@@ -167,15 +167,15 @@
 
                     <div class="input">
                         <label for="message" class="popup__label-style">{{__('messages.requirments')}}</label>
-                        <textarea name="requirments" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
+                        <textarea required name="requirments" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                     </div>
 
                     <div class="input">
                         <label for="message" class="popup__label-style">{{__('messages.short_desc')}}</label>
-                        <textarea name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
+                        <textarea required name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                     </div>
 
-                    <input required class="input-btn" type="submit" value="{{__('messages.submit')}}">
+                    <input  class="input-btn" type="submit" value="{{__('messages.submit')}}">
 
                 </div>
             </div>

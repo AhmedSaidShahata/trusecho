@@ -129,47 +129,47 @@
 
                         <div class="input">
                             <label class="popup__label-style">{{__('messages.org_name')}}</label>
-                            <input required required type="text" name="name" class="popup__input-style" />
+                            <input required  type="text" name="name" class="popup__input-style" />
                         </div>
                         <div class="input">
                             <label class="popup__label-style">{{__('messages.org_type')}}</label>
-                            <input required required type="text" name="type" class="popup__input-style" />
+                            <input required  type="text" name="type" class="popup__input-style" />
                         </div>
 
                         <div class="input">
                             <label class="popup__label-style">{{__('messages.country')}}</label>
-                            <input required required type="text" name="country" class="popup__input-style" />
+                            <input required  type="text" name="country" class="popup__input-style" />
                         </div>
 
                         <div class="input">
                             <label class="popup__label-style">{{__('messages.location')}}</label>
-                            <input required required type="text" name="location" class="popup__input-style" />
+                            <input required  type="text" name="location" class="popup__input-style" />
                         </div>
 
                         <div class="input">
                             <label class="popup__label-style">{{__('messages.about')}}</label>
-                            <input required required type="text" name="about" class="popup__input-style" />
+                            <input required  type="text" name="about" class="popup__input-style" />
                         </div>
                         <div class="input">
                             <label class="popup__label-style">{{__('messages.website')}}</label>
-                            <input required required type="text" name="website" class="popup__input-style" />
+                            <input required  type="text" name="website" class="popup__input-style" />
                         </div>
                         <div class="input">
                             <label class="popup__label-style">{{__('messages.whatsapp_num')}}</label>
-                            <input required required type="text" name="whatsapp" class="popup__input-style" />
+                            <input required  type="text" name="whatsapp" class="popup__input-style" />
                         </div>
 
                         <div class="input">
                             <label class="popup__label-style">{{__('messages.email')}}</label>
-                            <input required required type="email" name="email" class="popup__input-style" />
+                            <input required  type="email" name="email" class="popup__input-style" />
                         </div>
 
                         <div class="input">
                             <label for="message" class="popup__label-style">{{__('messages.description')}}</label>
-                            <textarea id="message" name="description" rows="3" cols="60" class="input-message" ></textarea>
+                            <textarea required id="message" name="description" rows="3" cols="60" class="input-message" ></textarea>
                         </div>
 
-                        <input required required class="input-btn" type="submit" value="{{__('messages.submit')}}">
+                        <input  class="input-btn" type="submit" value="{{__('messages.submit')}}">
 
                     </div>
                 </div>

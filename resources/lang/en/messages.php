@@ -499,7 +499,17 @@ return [
     'your_friends'=>'Your Friends',
     'add_scholarship'=>'Add Scholarship',
     'scholarship_name'=>'Scholarship Name',
-    'no_scholarships'=>'No Scholarships Yet'
+    'no_scholarships'=>'No Scholarships Yet',
+    'first_name'=>'First Name',
+    'last_name'=>'Last Name',
+    'educational_degree'=>'Educational Degree',
+    'phone_verification'=>'Phone Verification',
+    'verification_code'=>'VERIFICATION CODE',
+    'enter_code'=>'PLEASE ENTER THE CODE THAT WAS SENT TO THE PHONE NUMBER',
+    'please_code'=>'please enter code',
+    'submit'=>'Submit',
+    'no_friends_req'=>'No Request For Friendship',
+    'no_notifications'=>'No New Notifications'
 
 
 

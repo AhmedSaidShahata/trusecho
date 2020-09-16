@@ -9,7 +9,8 @@ class Profile extends Model
 {
     protected $fillable = [
         'picture', 'nationality', 'job', 'fullname', 'country', 'phone', 'date_of_birth',
-        'gender','education_level','specialization','address', 'personal_desc',  'user_id'
+        'gender','education_level','specialization','address', 'personal_desc', 'user_id',
+        'first_name','last_name'
 
     ];
 

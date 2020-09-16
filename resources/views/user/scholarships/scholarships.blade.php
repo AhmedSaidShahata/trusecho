@@ -170,15 +170,15 @@
 
                     <div class="input">
                         <label for="message" class="popup__label-style">{{__('messages.requirments')}}</label>
-                        <textarea name="requirments" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
+                        <textarea required name="requirments" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                     </div>
 
                     <div class="input">
                         <label for="message" class="popup__label-style">{{__('messages.description')}}</label>
-                        <textarea name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
+                        <textarea required  name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                     </div>
 
-                    <input required class="input-btn" type="submit" value="{{__('messages.submit')}}">
+                    <input  class="input-btn" type="submit" value="{{__('messages.submit')}}">
 
                 </div>
             </div>

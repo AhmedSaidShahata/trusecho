@@ -25,7 +25,12 @@
 
                 <div class="profile-input">
                     <label for="Nationality" class="profile-input__label">{{__("messages.nationality")}}</label>
-                    <input type="text" value="{{$profile->country}}" name="country" id="Nationality" class="profile-input__input"  />
+                    <input type="text" value="{{$profile->nationality}}" name="nationality" id="Nationality" class="profile-input__input"  />
+                </div>
+
+                <div class="profile-input">
+                    <label for="country" class="profile-input__label">{{__("messages.country")}}</label>
+                    <input type="text" value="{{$profile->country}}" name="country" id="country" class="profile-input__input"  />
                 </div>
                 <div class="profile-input">
                     <label for="job" class="profile-input__label">{{__("messages.job")}}</label>
