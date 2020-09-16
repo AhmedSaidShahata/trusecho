@@ -61,7 +61,7 @@
 
 <div class="popup" id="add-blog">
     <form action="{{route('user.blogs.store')}}" method="post" enctype="multipart/form-data">
-        <div class="popup__content" style="padding-top:100px;">
+        <div class="popup__content" style="padding-top:140px;">
             <div class="popup__left">
                 <h1 class="popup__header">{{__('messages.add_blog')}}</h1>
                 <div class="header__underline"></div>
