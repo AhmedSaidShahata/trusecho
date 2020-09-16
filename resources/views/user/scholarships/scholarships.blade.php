@@ -75,7 +75,7 @@
             </div>
             <h1 class="search-results__card-header">{{$scholarship->title}}</h1>
             <p class="search-results__card-paragraph">{{$scholarship->description}}</p>
-            <div class="best-scholarships-section__card-deadline-box">
+            <div class="best-jobs-section__card-deadline-box">
                 <img src="{{asset('img/Icon ionic-ios-timer.svg')}}" alt="deadline" class="best-scholarships-section__card-deadline">
                 <div class="deadline-number">
                     <h2 class="deadline-header">Hours:Days:Months</h2>
