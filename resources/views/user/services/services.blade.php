@@ -1,23 +1,23 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
 {{!$lang=LaravelLocalization::getCurrentLocale()}}
+<form action="{{ route('user.servicesearch')}}" class="landing-section__info-selections" style="display: block;">
+    <div class="search-section">
 
-<div class="search-section">
 
+        <h1 class="search-section__header">
+            @if(session()->has('success_ar') OR session()->has('success_en') )
+            <div class="alert alert-success">
+                {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
 
-    <h1 class="search-section__header">
-        @if(session()->has('success_ar') OR session()->has('success_en') )
-        <div class="alert alert-success">
-            {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+            </div>
+            @endif
 
-        </div>
-        @endif
+            {{__('messages.services')}}
 
-        {{__('messages.services')}}
+        </h1>
+        <div class="search-section__info">
 
-    </h1>
-    <div class="search-section__info">
-        <form action="{{ route('user.servicesearch')}}" class="landing-section__info-selections">
 
 
 
@@ -38,18 +38,19 @@
                 <img src="{{asset('img/jobs-illustration.svg')}}" alt="jobs" class="search-section__illustrations">
             </div>
 
-            <div class="landing-section__info-buttons-section ">
-                <button class="landing-section__info-buttons" type="submit">
-                    <img src="{{asset('img/Search icon.svg')}}" alt="Search icon" class="search-icon">
-                    <p>{{__('messages.search')}}</p>
-                </button>
 
-                <a href="{{route('user.services.index')}}" class="landing-section__info-buttons">{{__('messages.reset')}}</a>
-            </div>
-        </form>
+
+        </div>
+        <div class="landing-section__info-buttons-section ">
+            <button class="landing-section__info-buttons" type="submit">
+                <img src="{{asset('img/Search icon.svg')}}" alt="Search icon" class="search-icon">
+                <p>{{__('messages.search')}}</p>
+            </button>
+
+            <a href="{{route('user.services.index')}}" class="landing-section__info-buttons">{{__('messages.reset')}}</a>
+        </div>
     </div>
-</div>
-
+</form>
 
 <div class="search-results">
     <a href="#apply-for-job" class="my-btn">

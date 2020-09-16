@@ -3,7 +3,7 @@
  <p>
                             <a  v-for="(notification,index) in notifications" :key="index">
                                 some one commented on
-                               <span  v-on:click="markAsRead(notification)">
+                               <span style="width:100%"  v-on:click="markAsRead(notification)">
                                    {{ JSON.parse(notification.data).blog.title }}
                                 </span>
 

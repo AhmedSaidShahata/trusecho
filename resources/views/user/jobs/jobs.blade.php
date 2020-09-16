@@ -3,17 +3,18 @@
 {{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 
-<div class="search-section">
+<form action="{{route('user.jobsearch')}}" class="landing-section__info-selections" style="display: block;">
+    <div class="search-section">
 
-    <h1 class="search-section__header">
-        @if(session()->has('success_ar') OR session()->has('success_en') )
-        <div class="alert alert-success">
-            {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+        <h1 class="search-section__header">
+            @if(session()->has('success_ar') OR session()->has('success_en') )
+            <div class="alert alert-success">
+                {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
 
-        </div>
-        @endif
-        {{__('messages.jobs')}}</h1>
-    <form action="{{route('user.jobsearch')}}" class="landing-section__info-selections">
+            </div>
+            @endif
+            {{__('messages.jobs')}}</h1>
+
         <div class="search-section__info">
 
 
@@ -34,6 +35,7 @@
             <div class="search-section__illustration-box">
                 <img src="{{asset('img/jobs-illustration.svg')}}" alt="jobs" class="search-section__illustrations">
             </div>
+
         </div>
         <div class="landing-section__info-buttons-section ">
             <button class="landing-section__info-buttons" type="submit">
@@ -43,8 +45,10 @@
 
             <a href="{{route('user.jobs.index')}}" class="landing-section__info-buttons">{{__("messages.reset")}}</a>
         </div>
-    </form>
-</div>
+
+
+    </div>
+</form>
 <div class="search-results">
     <a href="#apply-for-job" class="my-btn">
         <i class="fas fa-plus"></i>
@@ -81,7 +85,7 @@
         </div>
         @empty
         <div class="alert alert-primary d-flex align-items-center" role="alert" style="transform: scale(4);height:600px;justify-content: center;align-items: center;display: flex;">
-        {{__("messages.no_jobs")}}
+            {{__("messages.no_jobs")}}
         </div>
         @endforelse
 
@@ -132,36 +136,36 @@
                     <a href="#tours_section" class="popup__closing">×</a>
 
                     <div class="input">
-                        <label  class="popup__label-style">{{__('messages.job_name')}}</label>
+                        <label class="popup__label-style">{{__('messages.job_name')}}</label>
                         <input required type="text" name="title" class="popup__input-style" />
                     </div>
                     <div class="input">
-                        <label  class="popup__label-style">{{__('messages.the_company')}}</label>
+                        <label class="popup__label-style">{{__('messages.the_company')}}</label>
                         <input required type="text" id="company" name="company" class="popup__input-style" />
                     </div>
                     <div class="input">
-                        <label  class="popup__label-style">{{__('messages.salary')}}</label>
+                        <label class="popup__label-style">{{__('messages.salary')}}</label>
                         <input required type="number" name="salary" class="popup__input-style" />
                     </div>
 
                     <div class="input">
-                        <label  class="popup__label-style">{{__('messages.specializations')}}</label>
+                        <label class="popup__label-style">{{__('messages.specializations')}}</label>
                         <input required type="text" name="specialization" class="popup__input-style" />
                     </div>
                     <div class="input">
-                        <label  class="popup__label-style">{{__('messages.deadline')}}</label>
+                        <label class="popup__label-style">{{__('messages.deadline')}}</label>
                         <input required type="date" name="deadline" class="popup__input-style" />
                     </div>
                     <div class="input">
-                        <label  class="popup__label-style">{{__('messages.location')}}</label>
+                        <label class="popup__label-style">{{__('messages.location')}}</label>
                         <input required type="text" name="location" class="popup__input-style" />
                     </div>
                     <div class="input">
-                        <label  class="popup__label-style">{{__('messages.the_contact')}}</label>
+                        <label class="popup__label-style">{{__('messages.the_contact')}}</label>
                         <input required type="text" name="contact" class="popup__input-style" />
                     </div>
                     <div class="input">
-                        <label  class="popup__label-style">{{__('messages.email')}}</label>
+                        <label class="popup__label-style">{{__('messages.email')}}</label>
                         <input required type="text" name="email" class="popup__input-style" />
                     </div>
 
@@ -175,7 +179,7 @@
                         <textarea required name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                     </div>
 
-                    <input  class="input-btn" type="submit" value="{{__('messages.submit')}}">
+                    <input class="input-btn" type="submit" value="{{__('messages.submit')}}">
 
                 </div>
             </div>
