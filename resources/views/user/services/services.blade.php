@@ -111,7 +111,7 @@
                                     @endif
 
                                     <span class="rating-number">{{$sum_values_rate ?? 0  }}</span>
-                                    <a href="{{route('user.services.show',$service->id)}}" class="details-button">Details</a>
+                                    <a href="{{route('user.services.show',$service->id)}}" class="details-button">{{__('messages.details')}}</a>
             </div>
         </div>
         @empty

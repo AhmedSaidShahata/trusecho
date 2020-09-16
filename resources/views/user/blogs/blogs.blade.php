@@ -24,11 +24,11 @@
             <div class="blogs-card-content">
                 <h1 class="blogs-card-content__header">$category->name_en</h1>
                 <div class="blogs-card-content-info">
-                    <p class="blogs-card-content__subtitle">Comments:</p>
+                    <p class="blogs-card-content__subtitle">{{__('messages.comments')}}:</p>
                     <p class="blogs-card-content__subtitle-value">0</p>
                 </div>
                 <div class="blogs-card-content-info">
-                    <p class="blogs-card-content__subtitle">Participants:</p>
+                    <p class="blogs-card-content__subtitle">{{__('messages.participants')}}:</p>
                     <p class="blogs-card-content__subtitle-value">1</p>
                 </div>
             </div>

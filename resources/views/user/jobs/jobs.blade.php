@@ -69,7 +69,7 @@
             <div class="best-jobs-section__card-deadline-box">
                 <img src="{{asset('img/Icon ionic-ios-timer.svg')}}" alt="deadline" class="best-jobs-section__card-deadline">
                 <div class="deadline-number">
-                    <h2 class="deadline-header">Hours:Days:Months</h2>
+                    <h2 class="deadline-header">{{__('messages.hours')}}:{{__('messages.days')}}:{{__('messages.months')}}</h2>
                     <div hidden> {{!$created=$job->created_at->format('Y-m-d')}}
                         {{!$deadline=$job->deadline}}
                         {{!$start_date = \Carbon\Carbon::createFromFormat('Y-m-d',$created)}}
@@ -80,7 +80,7 @@
                     </div>
                     <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
                 </div>
-                <a href="{{route('user.jobs.show',$job->id)}}" class="details-button">Details</a>
+                <a href="{{route('user.jobs.show',$job->id)}}" class="details-button">{{('messages.details')}}</a>
             </div>
         </div>
         @empty
