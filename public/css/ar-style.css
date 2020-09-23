@@ -712,3 +712,31 @@ body {
   padding-left: 5rem;
 }
 }
+
+
+
+.iti__flag-container{
+    position: absolute;
+    right: 0!important;
+    top: 16px !important;
+
+}
+
+#phone{
+    direction: ltr;
+    padding: 0 0 0 10px !important;
+    position: absolute;
+    right: 0;
+    margin-bottom: 30px;
+
+}
+.my-phone{
+    margin:43px 0 !important;
+
+
+}
+#error-msg , #valid-msg{
+position: relative;
+top: 38px;
+
+}

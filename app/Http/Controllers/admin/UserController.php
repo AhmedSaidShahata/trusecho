@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index')->with('users', User::all());
+        return view('admin.users.index')->with('users', User::paginate(10));
     }
 
     /**
@@ -42,7 +43,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
-            'password' => bcrypt($request->password)
+            'password' => Hash::make($request->password)
         ]);
 
         return redirect(route('admin.users.index'));
@@ -83,7 +84,7 @@ class UserController extends Controller
         $data=$request->only(['name','email','role']);
 
         if (strlen($request->password) >= 8) {
-            $password = bcrypt($request->password);
+            $password = Hash::make($request->password);
             $data['password'] = $password;
         }
         $user->update($data);

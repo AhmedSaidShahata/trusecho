@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\SendCode;
+use App\User;
 
 class RegController extends Controller
 {
@@ -68,14 +70,32 @@ class RegController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+
     {
-        $data = $request->except('_token', '_method');
+
+        $phone_explode =  explode('+', $request->full_number);
+
+
+         $phone = $phone_explode[1];
+
+
+        $data = $request->except('_token', '_method','full_number');
 
         Profile::where(['user_id' => $id])->update($data);
 
         $profile =  Profile::where(['user_id' => $id])->get()->first();
 
-        return view('user.sign-up.sign-up-3')->with('phone', $profile->phone);
+        $user = User::find(Auth::user()->id);
+
+
+        if ($user) {
+            $user->code = "1234";
+            // $user->code = SendCode::sendCode("201008131721");
+            $user->save();
+        }
+
+
+        return redirect(route('user.getverify', $request->full_number));
     }
 
     /**

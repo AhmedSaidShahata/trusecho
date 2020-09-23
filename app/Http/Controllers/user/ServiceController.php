@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Orderservice;
 use App\Service;
 use App\Type;
 use Illuminate\Http\Request;
@@ -76,8 +77,14 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
+        $number_of_buyers= Orderservice::where([
+            'service_id'=>$service->id
+        ])->get()->count();
 
-        return view('user.services.single-service-page', ['service' => $service]);
+        return view('user.services.single-service-page', [
+            'service' => $service,
+            'number_of_buyers'=>$number_of_buyers
+            ]);
     }
 
     /**

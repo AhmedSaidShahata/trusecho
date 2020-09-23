@@ -513,7 +513,23 @@ return [
     'no_notifications'=>'ليس هناك اشعارات جديدة',
     'check_cat'=>'اطلع على آخر الأخبار حول فئات المدونات التي تم نشرها مؤخرا    ',
     'specialize_scholar'=>'التخصصات الخاصة بالمنح',
-    'cat'=>'القسم'
+    'cat'=>'القسم',
+    'report-job'=>'الإبلاغ عن مشكلة',
+
+    'buyer'=>'المشترى',
+    'servvice_name'=>'اسم الخدمة ',
+    'order_date'=>'وقت الطلب',
+    'no_order'=>'ليس هناك طلبات للخدمات حتى الان',
+    'order_services'=>'طلبات الخدمات',
+    'service_price'=>'سعر الخدمة',
+
+
+    'user_report'=>"المبلغ عن المشكلة",
+    'description_report'=>"وصف المشكلة",
+    'report_date'=>'وقت التبليغ',
+    'service_reports'=>'مشكلات الخدمات ',
+    'job_reports'=>'مشكلات الوظائف',
+    'report_service'=>'مشكلة الخدمة'
 
 
 

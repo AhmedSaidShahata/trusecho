@@ -1,6 +1,12 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
-{{!$lang='_'.LaravelLocalization::getCurrentLocale()}}
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+@if(session()->has('success_ar') OR session()->has('success_en') )
+<div class="alert alert-success" style="margin-top:105px">
+    {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+</div>
+@endif
 <div class="organization-cover-pic-box">
     <img src="{{asset('storage/'.$job->picture)}}" alt="org cover pic" class="organization-cover-pic" style="height:376px; width:100%" />
     <div class="organization-profile-info-box">
@@ -21,15 +27,33 @@
         <div class="org-job-section-info__options">
             <ul class="options__list">
                 <li class="options__items">
-                    <a href="#" class="options__item">{{__('messages.contact_company')}}</a>
+                    @auth
+                    <a href="{{route('user.contacts.index')}}" class="options__item">{{__('messages.contact_company')}}</a>
+                    @endauth
+
+                    @guest
+                    <a href="{{route('login')}}" class="options__item">{{__('messages.contact_company')}}</a>
+                    @endguest
                 </li>
                 <hr />
                 <li class="options__items">
-                    <a href="#" class="options__item">{{__('messages.report')}}</a>
+                    @auth
+                    <a href="#report-the-job" class="options__item">{{__('messages.report')}}</a>
+                    @endauth
+                    @guest
+                    <a href="{{route('login')}}" class="options__item">{{__('messages.report')}}</a>
+                    @endguest
+
                 </li>
             </ul>
         </div>
+        @auth
         <a href="#apply-for-job" class="orgs-job-apply-btn">{{__('messages.apply_now')}}</a>
+        @endauth
+
+        @guest
+        <a href="{{route('login')}}" class="orgs-job-apply-btn">{{__('messages.apply_now')}}</a>
+        @endguest
     </div>
     <div class="right-panel" style="margin-bottom: 17px;">
         <h1 class="right-panel__header">
@@ -77,14 +101,17 @@
         <p class="right-panel__description">
             {{$job->content}}
         </p>
+
         <div class="right-panel__details-box">
+        @auth
             <div class="right-panel__subtitle-box">
-                <p class="right-panel__subtitle">{{__('messages.rate_scholar')}}:</p>
+                <p class="right-panel__subtitle">{{__('messages.rate_job')}}:</p>
             </div>
             <div class="right-panel__subtitle-value">
                 <div hidden>{{!$count_rate_of_job=App\Ratejob::where('job_id', '=', $job->id)->get()->count()}}</div>
 
                 @if($count_rate_of_job ==0)
+
 
                 @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star rate-job fa-2x"></i>
 
@@ -125,7 +152,11 @@
 
                                     @endif
 
+
+
             </div>
+            @endauth
+
         </div>
         <div class="right-panel__details-box">
             <div class="right-panel__subtitle-box">
@@ -150,9 +181,16 @@
                 </div>
                 <div class="job-comments__send-box">
                     <textarea id="blog-comment" cols="30" rows="7" class="job-comments__content comment-job" placeholder="Please write your comments here..."></textarea>
+                    @guest
+                    <a type="button" class="job-comments__send-icon add-comment" method="POST" href="{{route('login')}}">
+                        <img src="{{asset('img/Send blue icon.png')}}" alt="send " class="send-icon" />
+                    </a>
+                    @endguest
+                    @auth
                     <a type="button" class="job-comments__send-icon add-comment" method="POST">
                         <img src="{{asset('img/Send blue icon.png')}}" alt="send " class="send-icon" />
                     </a>
+                    @endauth
                 </div>
                 <div class="job-comments__reviews">
                     @auth
@@ -186,7 +224,7 @@
     </div>
 </div>
 <div class="popup" id="apply-for-job">
-    <form action="{{route('user.jobapps.store')}}" method="post" enctype="multipart/form-data">
+    <form class="send-cv" action="{{route('user.jobapps.store')}}" method="post" enctype="multipart/form-data">
         <div class="popup__content">
             <div class="popup__left">
                 <h1 class="popup__header">{{__('messages.apply_job')}}</h1>
@@ -196,11 +234,14 @@
                 <!-- class="add-cv-input" -->
                 <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.add_cv')}}</h3>
                 <div class="add-cv">
-                        <div class="add-cv__title-box">
-                            <img src="{{asset('img/adding icon.svg')}}" alt="add icon" class="add-cv-icon" />
-                            <input type="file" name="cv"   />
-                        </div>
+                    <div class="add-cv__title-box">
+                        <img src="{{asset('img/adding icon.svg')}}" alt="add icon" class="add-cv-icon" />
+                        <input type="file" accept="*.pdf" onchange="showPdf(event);" name="cv" />
+                        <p class="error-cv" style="font-size: 16px; color:red">
+
+                        </p>
                     </div>
+                </div>
 
                 <!-- <div class="add-cv">
 
@@ -232,6 +273,44 @@
                 <div class="input">
                     <label for="message" class="popup__label-style">{{__('messages.message')}}</label>
                     <textarea id="message" name="message" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
+                </div>
+                <input required type="hidden" value="{{$job->id}}" name="job_id">
+                <input class="input-btn send-cv-btn" type="submit" value="{{__('messages.submit')}}">
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="popup" id="report-the-job">
+    <form action="{{route('user.reportjobs.store')}}" method="post" enctype="multipart/form-data">
+        <div class="popup__content">
+            <div class="popup__left">
+                <h1 class="popup__header">{{__('messages.report_job')}}</h1>
+                <div class="header__underline"></div>
+                <input type="hidden" name="lang" value="{{$lang}}">
+                <input type="hidden" name="seen" value="0">
+                @auth
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                @endauth
+                <input type="hidden" name="job_id" value="{{$job->id}}">
+
+                @csrf
+                <!-- class="add-cv-input" -->
+                <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.report-job')}}</h3>
+
+
+                <div class="applying-for-job-illustration-box">
+                    <img src="{{asset('img/applying-for-a-job.svg')}}" alt="apply for job" class="applying-for-job-illustration" />
+                </div>
+            </div>
+            <div class="popup__right">
+                <a href="#tours_section" class="popup__closing">×</a>
+
+                <div class="input">
+                    <label for="message" class="popup__label-style">{{__('messages.description_report')}}</label>
+                    <textarea id="message" name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
                 </div>
                 <input required type="hidden" value="{{$job->id}}" name="job_id">
                 <button class="input-btn" type="submit">{{__('messages.submit')}}</button>

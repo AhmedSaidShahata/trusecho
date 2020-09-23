@@ -15,7 +15,7 @@ class JobappController extends Controller
      */
     public function index()
     {
-        return view('admin.job-applications.index')->with('jobapps', Jobapp::all());
+        return view('admin.job-applications.index')->with('jobapps', Jobapp::paginate(10));
     }
 
     /**

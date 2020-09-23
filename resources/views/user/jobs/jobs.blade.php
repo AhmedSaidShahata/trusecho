@@ -17,8 +17,6 @@
 
         <div class="search-section__info">
 
-
-
             <div class="selection-div u-margin-right-medium">
                 <label for="speicialization" class="landing-section__info-selections-label">{{__('messages.specializations')}}</label>
                 <div class="custom-select">
@@ -50,10 +48,12 @@
     </div>
 </form>
 <div class="search-results">
+    @auth
     <a href="#add-job" class="my-btn">
         <i class="fas fa-plus"></i>
         {{__('messages.add_job')}}
     </a>
+    @endauth
 
     <div class="search-results__content-box">
 
@@ -80,7 +80,7 @@
                     </div>
                     <h3 class="deadline-value">{{ $different_hours}}:{{ $different_days}}:{{ $different_months}}</h3>
                 </div>
-                <a href="{{route('user.jobs.show',$job->id)}}" class="details-button">{{('messages.details')}}</a>
+                <a href="{{route('user.jobs.show',$job->id)}}" class="details-button">{{__('messages.details')}}</a>
             </div>
         </div>
         @empty
@@ -105,8 +105,9 @@
                     @csrf
 
                     <input required type="hidden" name="lang" value="{{$lang}}">
-
+                    @auth
                     <input required type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                    @endauth
                     <!-- class="add-cv-input" -->
                     <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
 

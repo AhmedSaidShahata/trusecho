@@ -30,18 +30,28 @@
 
             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
+            <div class="input-group my-4">
+                <label>{{__('messages.specializations')}}</label>
+                <select class="form-control" name="specialization_id">
+                    @foreach($specializations as $specialization)
+
+                    <option <?php if (isset($job) and $specialization->id == $job->specialization_id) echo 'selected' ?> value="{{$specialization->id}}">{{$specialization->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <div class="form-group">
-                <label >{{ __('messages.title')}}</label>
+                <label>{{ __('messages.title')}}</label>
                 <input required type="text" name="title" class="form-control" value="{{isset($job)?$job->title:''}}">
             </div>
             <div class="form-group">
-                <label >{{__('messages.description')}}</label>
+                <label>{{__('messages.description')}}</label>
                 <input required type="text" name="description" class="form-control" value="{{isset($job)?$job->description:''}}">
             </div>
 
             <div class="form-group">
-                <label >{{__('messages.location')}}</label>
+                <label>{{__('messages.location')}}</label>
                 <input required type="text" name="location" class="form-control" value="{{isset($job)?$job->location:''}}">
             </div>
             <div class="form-group">
@@ -50,12 +60,12 @@
             </div>
 
             <div class="form-group">
-                <label >{{ __('messages.salary')}}</label>
+                <label>{{ __('messages.salary')}}</label>
                 <input required type="number" name="salary" class="form-control" value="{{isset($job)?$job->salary:''}}">
             </div>
 
             <div class="form-group">
-                <label >{{ __('messages.company')}}</label>
+                <label>{{ __('messages.company')}}</label>
                 <input required type="text" name="company" class="form-control" value="{{isset($job)?$job->company:''}}">
             </div>
 
@@ -75,17 +85,17 @@
 
 
             <div class="form-group">
-                <label >{{__('messages.deadline')}}</label>
+                <label>{{__('messages.deadline')}}</label>
                 <input required type="date" name="deadline" class="form-control" value="{{isset($job)?$job->deadline:''}}">
             </div>
 
             <div class="form-group">
-                <label >{{__('messages.email')}} </label>
+                <label>{{__('messages.email')}} </label>
                 <input required type="text" name="email" class="form-control" value="{{isset($job)?$job->email:''}}">
             </div>
 
             <div class="form-group">
-                <label >{{__('messages.contact')}} </label>
+                <label>{{__('messages.contact')}} </label>
                 <input required type="text" name="contact" class="form-control" value="{{isset($job)?$job->contact:''}}">
             </div>
 
@@ -103,25 +113,9 @@
                 </div>
             </div>
 
-            <div class="input-group mt-4">
-                <label>{{__('messages.types')}}</label>
-                <select class="form-control" name="type_id">
-                    @foreach($types as $type)
 
-                    <option <?php if (isset($job) and $type->id == $job->type_id) echo 'selected' ?> value="{{$type->id}}">{{$type->name }}</option>
-                    @endforeach
-                </select>
-            </div>
 
-            <div class="input-group my-4">
-                <label>{{__('messages.specializations')}}</label>
-                <select class="form-control" name="specialization_id">
-                    @foreach($specializations as $specialization)
 
-                    <option <?php if (isset($job) and $specialization->id == $job->specialization_id) echo 'selected' ?> value="{{$specialization->id}}">{{$specialization->name }}</option>
-                    @endforeach
-                </select>
-            </div>
 
             <div class="form-group">
                 <input required class="btn btn-success form-control" type="submit" value="{{isset($job)? __('messages.update') : __('messages.publish') }}" />

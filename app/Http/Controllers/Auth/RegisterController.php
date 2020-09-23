@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+
 class RegisterController extends Controller
 {
     /*
@@ -30,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/regs';
 
     /**
      * Create a new controller instance.
@@ -57,6 +60,16 @@ class RegisterController extends Controller
         ]);
     }
 
+    // public function register(Request $request)
+    // {
+    //     $this->validator($request->all())->validate();
+    //     event(new Registered($user = $this->create($request->all())));
+
+    //     return $this->registered($request,$user)?:redirect('
+    //     /en/verify?phone='.$request->phone);
+
+    // }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -68,9 +81,12 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'active'=>0,
             'password' => Hash::make($data['password']),
         ]);
+
+
        $profile =  Profile::create(['user_id'=>$user->id]);
-        return $user; 
+        return $user;
     }
 }

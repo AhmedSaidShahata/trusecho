@@ -90,14 +90,25 @@
     </div>
 
     <div class="blog-summary__picutre-box">
+        @auth
         <div class="blog-summary__favourite">
+
             {{!$favourite = App\Favscholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}};
             <div class="blog-summary__favourite-icon-box">
-
                 <i data-scholarid="{{$scholarship->id}}" class="fas fa-heart fa-2x  add-fav-scholar {{$favourite->count()>0?'red':''}}"></i>
             </div>
             <h1 class="blog-summary__favourite-word">{{__('messages.add_fav')}}</h1>
         </div>
+        @endauth
+
+        @guest
+        <div class="blog-summary__favourite">
+            <div class="blog-summary__favourite-icon-box">
+                <i class="fas fa-heart fa-2x "></i>
+            </div>
+            <h1 class="blog-summary__favourite-word">{{__('messages.add_fav')}}</h1>
+        </div>
+        @endguest
         <img src="{{asset('storage/'.$scholarship->picture)}}" alt="single post pic" class="blog-summary__picture" style="width:582px;height:490px;border-radius:20px;margin:0 10px;" />
     </div>
 </div>
@@ -111,6 +122,7 @@
 
 
         <div class="blog-details__buttons">
+            @auth
             {{!$like = App\Likescholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}};
             <button class=" like_scholar {{$like->count()>0?'blue':''}}" data-scholarid="{{$scholarship->id}}">
                 <span class="like-title  ">
@@ -118,6 +130,17 @@
                 </span>
 
             </button>
+            @endauth
+
+            @guest
+
+            <button class=" like_scholar">
+                <span class="like-title  ">
+                    {{__('messages.like')}} <i class="fas fa-thumbs-up"></i>
+                </span>
+
+            </button>
+            @endguest
             <button class="blog-details__buttons-share" style="margin: 0  10px;">
                 <img src="{{asset('img/share-icon.svg')}}" alt="share icon" class="share-button" />
                 <span class="share-title">{{__('messages.share')}}</span>

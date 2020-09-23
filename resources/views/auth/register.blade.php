@@ -4,11 +4,6 @@
 
 
 
-
-
-
-
-
 <div class="fluid-containter">
     <img src="img/sign-up-1-left.svg" alt="illustration" class="fluid-containter__left-illustration">
     <img src="img/sign-up-1-right.svg" alt="illustration" class="fluid-containter__right-illustration">

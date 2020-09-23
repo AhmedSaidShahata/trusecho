@@ -7498,15 +7498,39 @@ margin-top: 8px;
 
 .alert.alert-success{
     color: #1d643b;
-    background-color: #d7f3e3;
+    padding: 100px;
+    background-color: #12c06a;
     border-color: #c7eed8;
+    font-size: 20px;
+    padding:  10px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    border-radius: 20px;
+}
+.alert.alert-danger{
+    color: #761b18;
+    background-color: #f9d6d5;
+    border-color: #f7c6c5;
     font-size: 20px;
     padding: 10px;
     width: 100%;
     text-align: center;
     font-weight: bold;
+
+
+
 }
 
+.img-success{
+position: absolute;
+top: 0;
+
+width: 100px;
+height: 88px;
+}
 
 .unread{
     background-color: gray;
@@ -7608,4 +7632,40 @@ cursor: pointer;
 .my-upload{
     max-height: 30% ;
     max-width: 30%;
+}
+.invalid-feedback{
+    font-size: 13px;
+
+    color: red;
+
+}
+
+#phone{
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.gender-options{
+    display: flex;
+    margin-top: 10px;
+
+}
+.gender-options input{
+    width: 13px !important;
+    height: 13px !important;
+    margin: 0 10px ;
+
+}
+
+.hide{
+display: none;
+
+}
+
+#error-msg{
+    color: red;
+}
+
+#valid-msg{
+    color: green;
 }

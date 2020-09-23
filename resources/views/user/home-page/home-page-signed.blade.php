@@ -1,7 +1,7 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
 
-{{!$lang='_'.LaravelLocalization::getCurrentLocale()}}
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 @guest
 <div class="landing-section">
     <div class="landing-section__info">
@@ -118,6 +118,11 @@
 
 @endguest
 <div class="best-scolarships-section-signed">
+    @if(session()->has('success_ar') OR session()->has('success_en') )
+    <div class="alert alert-success" style="margin-top: 100px;">
+        {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+    </div>
+    @endif
     <h1 class="best-scolarships-section-signed__header">{{__('messages.best_scholarships')}}</h1>
     <div class="best-scolarships-section-signed__cards-info">
         <div class="swiper-container">
@@ -179,7 +184,7 @@
                         <span class="opportunity-type-label">
                             {{$best_job->title}}
                         </span>
-                        <img src="/storage/{{$best_job->picture}}" alt="Picutre 1" class="card-picture my-image" >
+                        <img src="/storage/{{$best_job->picture}}" alt="Picutre 1" class="card-picture my-image">
                     </div>
                     <h1 class="best-jobs-section-signed__card-header"> {{__('messages.salary')}} {{$best_job->salary}} $</h1>
                     <p class="best-jobs-section-signed__card-paragraph">{{$best_job->description}}</p>
@@ -223,7 +228,7 @@
                 <div class="best-services-section-signed__card swiper-slide">
                     <div class="card-picture-box">
                         <span class="opportunity-type-label"></span>
-                        <img src="/storage/{{$best_service->picture}}" alt="Picutre 1" class="card-picture my-image" >
+                        <img src="/storage/{{$best_service->picture}}" alt="Picutre 1" class="card-picture my-image">
                     </div>
                     <h1 class="best-services-section-signed__card-header">{{$best_service->title}}</h1>
                     <p class="best-services-section-signed__card-paragraph">{{$best_service->description}}</p>
@@ -403,21 +408,21 @@
             <img src="{{asset('img/jobs-icon.svg')}}" alt="jobs" class="stats-section__jobs-icon">
         </div>
         <h1 class="stats-section__card-header">{{__('messages.jobs')}} </h1>
-        <h1 class="stats-section__card-number" id="jobsNumber">+365</h1>
+        <h1 class="stats-section__card-number" id="jobsNumber">+{{$count_organizations}}</h1>
     </div>
     <div class="stats-section__card">
         <div class="stats-section__card-icon-box">
             <img src="{{asset('img/opportunity-icon.svg')}}" alt="jobs" class="stats-section__jobs-icon">
         </div>
         <h1 class="stats-section__card-header">{{__('messages.opportunities')}} </h1>
-        <h1 class="stats-section__card-number">+684</h1>
+        <h1 class="stats-section__card-number">+{{$count_opportunities}}</h1>
     </div>
     <div class="stats-section__card">
         <div class="stats-section__card-icon-box">
             <img src="{{asset('img/org-icon.svg')}}" alt="jobs" class="stats-section__jobs-icon">
         </div>
         <h1 class="stats-section__card-header">{{__('messages.organizations')}}</h1>
-        <h1 class="stats-section__card-number">+267</h1>
+        <h1 class="stats-section__card-number">+{{$count_organizations}}</h1>
     </div>
 
 </div>

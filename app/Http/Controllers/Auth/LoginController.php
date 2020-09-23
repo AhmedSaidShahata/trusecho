@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Profile;
 use App\Providers\RouteServiceProvider;
+use App\SendCode;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -45,6 +47,53 @@ class LoginController extends Controller
     }
 
 
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+        if($this->hasTooManyLoginAttempts($request)){
+            $this->fireLockoutResponse($request);
+        }
+
+
+        if($this->guard()->validate($this->credentials($request))){
+            $user = $this->guard()->getLastAttempted();
+
+            if($user->active&&$this->attemptLogin($request)){
+                return $this->sendLoginResponse($request);
+            }
+            else{
+
+                $this->incrementLoginAttempts($request);
+                $user->code=SendCode::sendCode($user->profile->phone);
+                if($user->save()){
+                    return redirect(route('user.getverify',$user->profile->phone));
+                }
+            }
+        }
+
+            $this->incrementLoginAttempts($request);
+            return $this->sendFailedLoginResponse($request);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,6 +126,7 @@ class LoginController extends Controller
             $user->password = bcrypt(123456);
             $user->save();
             Auth::login($user);
+
             Profile::create(['user_id'=>$user->id]);
 
         }

@@ -42,4 +42,9 @@ return [
 
     ],
 
+    'stripe' => [
+        'secret' => 'sk_test_51HTLqOEYe0z21SOXRCqFtwcwvAWB3mcTfFdI5FU1cEo7xIXgZCHmxRFh6G17fDkeRb2AkQ5KNp6ynYe25RAGG2xD00rKO2BgUW',
+    ]
+
+
 ];

@@ -509,7 +509,31 @@ return [
     'please_code'=>'please enter code',
     'submit'=>'Submit',
     'no_friends_req'=>'No Request For Friendship',
-    'no_notifications'=>'No New Notifications'
+    'no_notifications'=>'No New Notifications',
+    'report-job'=>'Report The Job',
+
+    'buyer'=>'Buyer',
+    'service_name'=>'Service Name',
+    'order_date'=>'Order Date',
+    'no_order'=>'No Order For Services Yet',
+    'order_services'=>'Orders Of Services',
+    'service_price'=>'Service Price',
+
+    'user_report'=>"User's Report",
+    'description_report'=>"Description Problem",
+    'report_date'=>'Reporting time',
+    'service_reports'=>'Service Reports',
+    'job_reports'=>'Job Problems',
+    'report_service'=>'Service Problems',
+    'report_job'=>'Report Job'
+
+
+
+
+
+
+
+
 
 
 

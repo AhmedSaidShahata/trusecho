@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -7,7 +8,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Truescho - Shape Your Dreams</title>
+    @yield('payment-style')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    
+
 
     <link rel="stylesheet" href="/css/{{LaravelLocalization::getCurrentLocale()}}-style.css" />
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
@@ -19,7 +23,12 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5f52b54ca2d54400112ddf54&product=inline-share-buttons"></script>
+
+    <!-- <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5f52b54ca2d54400112ddf54&product=inline-share-buttons"></script> -->
+
+
+
+
 
 
 </head>
@@ -421,13 +430,79 @@
             </div>
         </div>
     </footer>
-    <!-- DESIGN IN JS -->
 
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+
+
+    <script>
+        // Custom styling can be passed to options when creating an Element.
+        // (Note that this demo uses a wider set of styles than the guide below.)
+        window.onload = function() {
+
+
+
+            var stripe = Stripe('pk_test_51HTLqOEYe0z21SOXcMAEqy5YVCPmJz2Ga2q3utvALHsucpW0LrZ5TQIrRC4krFlwXC92Y0GXrzIhAb6jQygeNKGd00w8SIoXbB');
+            var elements = stripe.elements();
+
+
+            // Custom styling can be passed to options when creating an Element.
+            var style = {
+                base: {
+                    // Add your base input styles here. For example:
+                    fontSize: '16px',
+                    color: '#32325d',
+                },
+            };
+
+            // Create an instance of the card Element.
+            var card = elements.create('card', {
+                style: style
+            });
+
+            // Add an instance of the card Element into the `card-element` <div>.
+            card.mount('#card-element');
+
+
+
+            // Create a token or display an error when the form is submitted.
+            var form = document.getElementById('payment-form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                stripe.createToken(card).then(function(result) {
+                    if (result.error) {
+                        // Inform the customer that there was an error.
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Send the token to your server.
+                        stripeTokenHandler(result.token);
+                    }
+                });
+            });
+
+
+            function stripeTokenHandler(token) {
+                // Insert the token ID into the form so it gets submitted to the server
+                var form = document.getElementById('payment-form');
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', token.id);
+                form.appendChild(hiddenInput);
+
+                // Submit the form
+                form.submit();
+            }
+        }
+    </script>
 
     <script src="{{ asset('js/app.js') }} "></script>
 
+
     <script>
+        //============================ Start preview image with custom input file =========================
         let preview;
         let previewScholar;
         $("input[type=file]").on("click", function() {
@@ -443,23 +518,49 @@
 
             }
         }
+
+
+
+        function showPdf(event) {
+            if (event.target.files.length > 0) {
+
+                if (event.target.files[0].type == "application/pdf") {
+                    preview.attr("src", "https://www.egypte.campusfrance.org/sites/pays/files/egypte/unnamed.png")
+                    $(".error-cv").text("")
+                    $(".send-cv-btn").removeAttr("disabled")
+                } else {
+                    preview.attr("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRNebyPfAWXNkbRZtrnS3ncrO1XjTaoJyrYvA&usqp=CAU")
+                    $(".error-cv").text("your cv should be pdf file")
+                    $(".send-cv-btn").attr("disabled", "disabled")
+
+                }
+
+
+            }
+        }
     </script>
+
+
+
+
+
+
+
 
     <script>
         $(function() {
 
-            // Start Image Upload
+        //     $(".alert-success").append(`
+        // <img
+        //  src="https://i.pinimg.com/originals/e8/06/52/e80652af2c77e3a73858e16b2ffe5f9a.gif"
+        //  class="img-success">
+        // `)
+
+        // setTimeout(()=>{
+        //     $(".alert-success").fadeOut("6000")
+        // },4000)
 
 
-            // Start Notification
-
-            $(".notify_app").hover(function() {
-                $(this).children().find(".notification-number").text(0)
-            })
-
-            // $(".unread").foreach(function(){
-            //         $(this).removeClass('unread')
-            //     })
 
             //=========================================== Start Comment scholar With Ajax ===============================
 

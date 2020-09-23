@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 <div class="fluid-containter">
     <img src="img/sign-up-1-left.svg" alt="illustration" class="fluid-containter__left-illustration">
@@ -9,6 +10,11 @@
         <h1 id="my_sign" class="sign-up-box__header">Sign in</h1>
         <div class="horizontal-line"></div>
         <form method="POST" action="{{ route('login') }}">
+        @if(session()->has('success_ar') OR session()->has('success_en') )
+            <div class="alert alert-success">
+                {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+            </div>
+            @endif
             @csrf
             <div class="sign-up-box__input">
                 <label id="my_email" for="email" class="sign-up-box__input-label">Email</label>

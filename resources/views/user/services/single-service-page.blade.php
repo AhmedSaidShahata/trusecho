@@ -1,7 +1,31 @@
 @extends('user.layouts.fixed_layout')
 @section('content')
-{{!$lang='_'.LaravelLocalization::getCurrentLocale()}}
+
+{{!$lang=LaravelLocalization::getCurrentLocale()}}
+
+@section('payment-style')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+@endsection
+
 <div class="service-summary">
+    @if(session()->has('success_ar') OR session()->has('success_en') )
+    <div class="alert alert-success">
+        {{ $lang == 'ar' ? session()->get('success_ar')   :  session()->get('success_en') }}
+
+    </div>
+    @endif
+
+
+    @if(session()->has('error_ar') OR session()->has('error_en') )
+    <div class="alert alert-danger">
+        {{ $lang == 'ar' ? session()->get('error_ar')   :  session()->get('error_en') }}
+
+    </div>
+    @endif
+
+
+
+
     <div class="service-summary__info">
         <div class="service-summary__details">
             <h1 class="service-summary__details-header">{{$service->title }}</h1>
@@ -13,7 +37,7 @@
             </p>
             <div class="service-summary__details-comments">
                 <h1 class="comments">{{__('messages.num_buy')}}:</h1>
-                <p class="comments__values">0</p>
+                <p style="font-size:20px">{{$number_of_buyers}}</p>
             </div>
             <div class="service-summary__details-views">
                 <h1 class="views">{{__('messages.price')}}:</h1>
@@ -69,15 +93,26 @@
             </div>
         </div>
         <div class="service-summary__picutre-box" style="padding:0 20px ">
+            @auth
             <div class="service-summary__favourite">
                 <div class="service-summary__favourite-icon-box">
-                    {{!$favourite = App\Favouriteservice::where('user_id', '=', Auth::user()->id)->where('service_id', '=', $service->id)->get()}};
-
+                    {{!$favourite = App\Favouriteservice::where('user_id', '=', Auth::user()->id)->where('service_id', '=', $service->id)->get()}}
 
                     <i data-serviceid="{{$service->id}}" class="fas fa-heart fa-2x  add-fav {{$favourite->count()>0?'red':''}}"></i>
                 </div>
                 <h1 class="service-summary__favourite-word">{{__('messages.add_fav')}}</h1>
             </div>
+            @endauth
+
+            @guest
+            <div class="service-summary__favourite">
+                <div class="service-summary__favourite-icon-box">
+
+                    <i  class="fas fa-heart fa-2x "></i>
+                </div>
+                <h1 class="service-summary__favourite-word">{{__('messages.add_fav')}}</h1>
+            </div>
+            @endguest
             <img src="{{asset('storage/'.$service->picture)}}" alt="single post pic" class="service-summary__picture" style="width:582px;height:490px;border-radius: 20px;" />
         </div>
     </div>
@@ -93,11 +128,22 @@
                 <div class="service__options">
                     <ul class="options__list">
                         <li class="options__items">
-                            <a href="#" class="options__item">{{__('messages.ask_ser')}}</a>
+                            @auth
+                            <a href="{{route('user.contacts.index')}}" class="options__item">{{__('messages.ask_ser')}}</a>
+                            @endauth
+
+                            @guest
+                            <a href="{{route('login')}}" class="options__item">{{__('messages.ask_ser')}}</a>
+                            @endguest
                         </li>
                         <hr />
                         <li class="options__items">
-                            <a href="#" class="options__item">{{__('messages.report')}}</a>
+                            @auth
+                            <a href="#report-the-service" class="options__item">{{__('messages.report')}}</a>
+                            @endauth
+                            @guest
+                            <a href="{{route('login')}}" class="options__item">{{__('messages.report')}}</a>
+                            @endguest
                         </li>
                     </ul>
                 </div>
@@ -114,22 +160,44 @@
                 <div class="payment-section">
                     <h1 class="service__right-panel-title">{{__('messages.get_ser')}}</h1>
                     <div class="bottom-line"></div>
-                    <form action="#" class="service__payment">
+
+
+
+                    <form class="service__payment" action="{{route('user.checkout')}}" method="post" id="payment-form">
+                        @csrf()
                         <label for="name" class="name-label">{{__('messages.name_card')}}</label>
-                        <input type="text" id="name" name="name" placeholder="{{__('messages.name_card')}}.." class="name-input" />
+                        @auth
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        @endauth
+                        <input type="hidden" name="service_id" value="{{$service->id}}">
+                        <input type="text" id="name" name="name_on_card" placeholder="{{__('messages.name_card')}}.." class="name-input" />
                         <label for="card-number" class="name-label">{{__('messages.card_num')}}</label>
-                        <input type="text" id="card-number" name="lastname" placeholder="4242 4242 4242 4242" class="name-input" />
+
+                        <div class="card-body">
+                            <div id="card-element">
+                                <!-- A Stripe Element will be inserted here. -->
+                            </div>
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                            <input type="hidden" name="plan" value="" />
+                        </div>
+
                         <div class="extra-card-info">
                             <div class="extra-card-info__expiry">
                                 <label for="exp" class="small-labels">{{__('messages.expire')}}</label>
-                                <input type="text" id="exp" name="firstname" placeholder="{{__('messages.expire')}}..." class="small-inputs" />
+                                <input style="font-size: 14px;" type="date" id="exp" name="date_expire" placeholder="{{__('messages.expire')}}..." class="small-inputs" />
                             </div>
                             <div class="extra-card-info__cvc">
                                 <label for="cvc" class="small-labels">CVC</label>
-                                <input type="text" id="cvc" name="lastname" placeholder="4242 4242 4242 4242" class="small-inputs" />
+                                <input style="font-size: 14px;" type="text" id="cvc" name="cvc" placeholder="4242 4242 4242 4242" class="small-inputs" />
                             </div>
                         </div>
+                        @auth
                         <button class="payment-submit-btn">{{__('messages.get_ser')}}</button>
+                        @endauth
+                        @guest
+                        <a href="{{route('login')}}" class="payment-submit-btn">{{__('messages.get_ser')}}</a>
+                        @endguest
                     </form>
                 </div>
                 <div class="payment-illustration-box">
@@ -139,4 +207,44 @@
         </div>
     </div>
 </div>
+
+
+<div class="popup" id="report-the-service">
+    <form action="{{route('user.reportservices.store')}}" method="post" enctype="multipart/form-data">
+        <div class="popup__content">
+            <div class="popup__left">
+                <h1 class="popup__header">{{__('messages.report_service')}}</h1>
+                <div class="header__underline"></div>
+                <input type="hidden" name="seen" value="0">
+                @auth
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                @endauth
+                <input type="hidden" name="service_id" value="{{$service->id}}">
+
+                @csrf
+                <!-- class="add-cv-input" -->
+                <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.report_service')}}</h3>
+
+
+                <div class="applying-for-job-illustration-box">
+                    <img src="{{asset('img/applying-for-a-job.svg')}}" alt="apply for job" class="applying-for-job-illustration" />
+                </div>
+            </div>
+            <div class="popup__right">
+                <a href="#tours_section" class="popup__closing">×</a>
+
+                <div class="input">
+                    <label for="message" class="popup__label-style">{{__('messages.description_report')}}</label>
+                    <textarea id="message" name="description" rows="3" cols="60" class="input-message" placeholder="{{__('messages.message')}}...."></textarea>
+                </div>
+
+                <button class="input-btn" type="submit">{{__('messages.submit')}}</button>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
 @endsection

@@ -53,12 +53,14 @@
 </form>
 
 <div class="search-results">
+    @auth
     <a href="#add-service" class="my-btn">
         <i class="fas fa-plus"></i>
         {{__('messages.add_service')}}
     </a>
-    <div class="search-results__content-box">
+    @endauth
 
+    <div class="search-results__content-box">
         @forelse($services as $service)
         <div class="search-results__card">
             <div class="card-picture-box">
@@ -137,7 +139,9 @@
 
                 <input required type="hidden" name="lang" value="{{$lang}}">
                 <input required type="hidden" name="status" value="0">
+                @auth
                 <input required type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                @endauth
 
                 <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
                 <div class="add-cv">

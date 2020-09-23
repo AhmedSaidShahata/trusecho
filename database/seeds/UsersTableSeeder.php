@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('123456'),
+                'active'=>1,
                 'role' => 'admin'
             ]);
             Profile::create(['user_id' => $user->id]);

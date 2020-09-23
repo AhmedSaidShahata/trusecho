@@ -10,7 +10,8 @@ use App\CategoryBlog;
 use App\Cost;
 use App\Friend;
 use App\Http\Controllers\Controller;
-
+use App\Job;
+use App\Opportunity;
 use App\Organization;
 
 
@@ -32,7 +33,7 @@ class HomePageController extends Controller
 
         return view('user.home-page.home-page-signed',
          [
-           'scholarships'=>Bestscholar::where('lang',App::getLocale())->get(),
+          'scholarships'=>Bestscholar::where('lang',App::getLocale())->get(),
           'jobs' => Bestjob::where('lang',App::getLocale())->get(),
           'costs' => Cost::where('lang',App::getLocale())->get(),
           'services'=>Bestservice::where('lang',App::getLocale())->get(),
@@ -40,7 +41,10 @@ class HomePageController extends Controller
               'lang'=>App::getLocale(),
               'status'=>1
               ])->get(),
-          'organizations'=>Bestorganization::where('lang',App::getLocale())->get()
+          'organizations'=>Bestorganization::where('lang',App::getLocale())->get(),
+            'count_organizations'=>Organization::all()->count(),
+            'count_opportunities'=>Opportunity::all()->count(),
+            'count_jobs'=>Job::all()->count(),
          ]);
     }
 

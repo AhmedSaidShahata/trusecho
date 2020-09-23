@@ -18,15 +18,17 @@
 </head>
 
 <body>
-
     <span hidden>{{! $count_request_blog =App\Blog::where(['lang'=> App::getLocale(),'status'=>0])->get()->count() }}</span>
     <span hidden>{{! $count_request_job =App\Jobapp::where(['seen'=>'0'])->get()->count() }}</span>
     <span hidden>{{! $count_request_scholar =App\Appscholar::where(['seen'=>'0'])->get()->count() }}</span>
     <span hidden>{{! $count_contact =App\Contact::where(['seen'=>'No'])->get()->count() }}</span>
+    <span hidden>{{! $count_services =App\Orderservice::where(['seen'=>'0'])->get()->count() }}</span>
+    <span hidden>{{! $count_job_reports =App\Reportjob::where(['seen'=>'0'])->get()->count() }}</span>
+    <span hidden>{{! $count_service_reports =App\Reportservice::where(['seen'=>'0'])->get()->count() }}</span>
     <span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
     <span hidden class="my_lang">{{'/'.LaravelLocalization::getCurrentLocale()}}</span>
-
-    <!-- <div class="popup ">
+<!-- 
+    <div class="popup ">
         <div class="row justify-content-center align-items-center w-100">
             <div class="text-center features col-md-3">
                 <a href="{{route('admin.users.index')}}">
@@ -61,6 +63,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+
             <ul style="list-style: none; font-size:20px;" class="parent-ul ">
                 {{!$lang=LaravelLocalization::getCurrentLocale()}}
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -71,6 +74,8 @@
                     </a>
                 </li>
                 @endforeach
+
+
 
                 <ul class=" list-group d-lg-none responsive_control d-xs-block list-group">
                     <li class="list-group-item">
@@ -175,9 +180,11 @@
 
                         </a>
                     </li>
-
-
                 </ul>
+
+            </ul>
+
+            <img src="{{asset('img/2.png')}}" alt="">
 
 
         </div>
@@ -317,6 +324,35 @@
                     </li>
 
                     <li class="list-group-item">
+                        <a href="{{route('admin.orderservices.index')}}"><i class="fas fa-gifts"></i>
+                            {{__('messages.order_services')}}
+                            <span class="badge badge-danger">
+                                {{$count_services}}
+                            </span>
+                        </a>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.reportjobs.index')}}"><i class="fas fa-gifts"></i>
+                            {{__('messages.job_reports')}}
+                            <span class="badge badge-danger">
+                                {{$count_job_reports}}
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{{route('admin.reportservices.index')}}"><i class="fas fa-gifts"></i>
+                            {{__('messages.service_reports')}}
+                            <span class="badge badge-danger">
+                                {{$count_service_reports}}
+                            </span>
+                        </a>
+                    </li>
+
+
+                    <li class="list-group-item">
                         <a href="{{route('admin.faqs.index')}}">
                             <i class="fas fa-gifts"></i>
 
@@ -343,7 +379,7 @@
 
 
 
-            //=========================================== Start best jobs  With Ajax ===============================
+            //=========================================== Start accept blog  With Ajax ===============================
             $(document).on("click", ".accept-blog", function() {
 
                 let reference = $(this);

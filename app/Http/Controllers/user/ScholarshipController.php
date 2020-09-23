@@ -110,19 +110,22 @@ class ScholarshipController extends Controller
 
 
 
+        if (auth()->user()) {
 
-        $user_id = Auth::user()->id;
 
-        $views = Viewscholar::where([
-            'user_id' => $user_id,
-            'scholarship_id' => $scholarship->id
-        ]);
+            $user_id = Auth::user()->id;
 
-        if ($views->count() == 0) {
-            Viewscholar::create([
+            $views = Viewscholar::where([
                 'user_id' => $user_id,
                 'scholarship_id' => $scholarship->id
             ]);
+
+            if ($views->count() == 0) {
+                Viewscholar::create([
+                    'user_id' => $user_id,
+                    'scholarship_id' => $scholarship->id
+                ]);
+            }
         }
         $viewsCount = Viewscholar::where([
             'scholarship_id' => $scholarship->id
@@ -183,7 +186,7 @@ class ScholarshipController extends Controller
         //
     }
 
-  
+
 
 
     public function search(Request $request)
@@ -192,7 +195,7 @@ class ScholarshipController extends Controller
 
         return view('user.scholarships.scholarships', [
             'scholarships' => $scholarships,
-            'costs'=>Cost::where(['lang' => App::getLocale()])->get(),
+            'costs' => Cost::where(['lang' => App::getLocale()])->get(),
             'specializations' => Scholarspecialize::where('lang', App::getLocale())->get()
 
         ]);
