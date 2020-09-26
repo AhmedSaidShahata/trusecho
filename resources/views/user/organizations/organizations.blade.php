@@ -57,7 +57,9 @@
     <div class="search-results__content-box">
         @forelse($organizations as $organization)
         <div hidden>
+            @auth
             {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $organization->id)->get()}}
+            @endauth
             {{!$followerCount = App\Followersorg::where('org_id', '=', $organization->id)->get()->count()}}</div>
         <div class="organizations-card u-margin-top-small">
             <div class="colored-container"></div>
@@ -66,9 +68,18 @@
             </div>
             <h1 class="best-organizations-section-signed__sub-header"> <a href="{{route('user.organizations.show',$organization->id)}}">{{$organization->name}}</a></h1>
 
-            @auth <p class="best-organizations-section-signed__followers"><span class="follow-count" style="color: green;">{{$followerCount}}</span> {{__('messages.followers')}}</p>
+            <p class="best-organizations-section-signed__followers"><span class="follow-count" style="color: green;">{{$followerCount}}</span> {{__('messages.followers')}}</p>
+
+
+            @auth
             <a data-orgid="{{$organization->id}}" type="button" class="best-organizations-section-signed__btn-follow add-follower" style="cursor:pointer">@if($follower->count()>0) {{__('messages.following')}} @else {{__('messages.follow')}} @endif</a>
             @endauth
+
+            @guest
+            <a  href="{{route('login')}}" class="best-organizations-section-signed__btn-follow add-follower" style="cursor:pointer">
+                {{__('messages.follow')}}
+            </a>
+            @endguest
         </div>
 
 
@@ -97,8 +108,9 @@
                         @csrf
 
                         <input required type="hidden" name="lang" value="{{$lang}}">
-
+                        @auth
                         <input required type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        @endauth
                         <!-- class="add-cv-input" -->
                         <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
                         <div class="add-cv">

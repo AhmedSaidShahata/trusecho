@@ -130,8 +130,16 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' => [
+            'required' => 'حقل الأسم مطلوب',
+        ],
+        'email' => [
+            'exist' => 'حقل الأسم مطلوب',
+            'unique'=>'هذا البريد الألكترونى مستخدم أكتب بريد ألكترونى أخر'
+        ],
+        'password' => [
+            'confirmed' => 'كلمة المرور غير مطابقة',
+
         ],
     ],
 

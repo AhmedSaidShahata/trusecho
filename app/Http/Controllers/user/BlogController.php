@@ -86,18 +86,20 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        $user_id = Auth::user()->id;
-        $comments = $blog->comment;
-        $views = Watchblog::where([
-            'user_id' => $user_id,
-            'blog_id' => $blog->id
-        ]);
-
-        if ($views->count() == 0) {
-            Watchblog::create([
+        if (auth()->user()) {
+            $user_id = Auth::user()->id;
+            $views = Watchblog::where([
                 'user_id' => $user_id,
                 'blog_id' => $blog->id
             ]);
+
+
+            if ($views->count() == 0) {
+                Watchblog::create([
+                    'user_id' => $user_id,
+                    'blog_id' => $blog->id
+                ]);
+            }
         }
         $viewsCount = Watchblog::where([
             'blog_id' => $blog->id
@@ -108,7 +110,7 @@ class BlogController extends Controller
         ])->where('id', '!=', $blog->id)->get();
 
 
-
+        $comments = $blog->comment;
         return view('user.blogs.single-post-blog', [
             'blog' => $blog,
             'comments' => $comments,

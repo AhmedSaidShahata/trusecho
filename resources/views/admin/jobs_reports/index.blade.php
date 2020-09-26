@@ -23,7 +23,10 @@
                 <th scope="row">{{$job_report->id}}</th>
                 <td>{{$job_report->user->name}}</td>
                 <td>{{$job_report->job->title}}</td>
-                <td>{{$job_report->description}}</td>
+                <td>
+
+                    {{ substr($job_report->requirments,0,20) }}
+                </td>
                 <td>
                     {{$job_report->seen==1 ? __('messages.watched') : __('messages.not_watched') }}
 
@@ -40,7 +43,7 @@
                 </td>
             </tr>
             @empty
-            <div class="alert alert-danger">
+            <div class="alert alert-primary">
                 {{__('messages.no_job_report')}}
             </div>
 
@@ -48,6 +51,7 @@
 
         </tbody>
     </table>
+    {{$job_reports->links()}}
 </div>
 
 

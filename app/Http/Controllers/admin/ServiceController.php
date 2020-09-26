@@ -21,7 +21,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::where('lang', App::getLocale())->get();
+        $services = Service::where('lang', App::getLocale())->orderBy('created_at','desc')->paginate(10);
         return view('admin.services.index', [
             'services' => $services,
 
@@ -65,9 +65,12 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Service $service)
     {
-        //
+        return view('admin.services.show',[
+            'service'=>$service
+
+        ]);
     }
 
     /**

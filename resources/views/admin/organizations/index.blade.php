@@ -23,6 +23,7 @@
                 <th scope="cpl">{{__('messages.name')}}</th>
                 <th scope="cpl">{{__('messages.pic_org')}}</th>
                 <th scope="cpl">{{__('messages.pic_cover')}}</th>
+                <th scope="cpl">{{__('messages.count_followers')}}</th>
                 <th scope="cpl">{{__('messages.website')}}</th>
                 <th scope="cpl">{{__('messages.email')}}</th>
                 <th scope="col">{{__('messages.country')}}</th>
@@ -42,6 +43,10 @@
                 <th scope="row">{{$organization->name}}</th>
                 <td><img src="{{asset('storage/'.$organization->picture_org)}}" alt="image organization" style="width:100px;height:100px"></td>
                 <td><img src="{{asset('storage/'.$organization->picture_cover)}}" alt="image organization" style="width:100px;height:100px"></td>
+                <td>
+                    {{!$folllowers=App\Followersorg::where('org_id',$organization->id)->get() }}
+                    {{$folllowers->count()}}
+                </td>
                 <td>{{$organization->website}}</td>
                 <td>{{$organization->email}}</td>
                 <td>{{$organization->country}}</td>
@@ -74,5 +79,7 @@
             @endforelse
         </tbody>
     </table>
+
+    {{$organizations->links()}}
 </div>
 @endsection

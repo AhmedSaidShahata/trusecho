@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="card">
+<div class="card show">
 
     <div class="card-header">
         <h2>{{$blog->title}}</h2>
@@ -31,12 +31,7 @@
                 {{$blog->content}}
             </li>
 
-            <li class="list-group-item">
-                {{__('messages.description')}}
-            </li>
-            <li class="list-group-item">
-                {{$blog->description}}
-            </li>
+
             <li class="list-group-item">
                 {{__('messages.picture')}}
             </li>

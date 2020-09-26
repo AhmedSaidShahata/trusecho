@@ -138,7 +138,10 @@
                         <img src="{{asset('storage/'.$best_scholar->picture)}}" alt="Picutre 1" class="card-picture my-image">
                     </div>
                     <h1 class="best-scolarships-section-signed__card-header">{{ $best_scholar->title}}</h1>
-                    <p class="best-scolarships-section-signed__card-paragraph">{{ $best_scholar->description}}</p>
+                    <p class="best-scolarships-section-signed__card-paragraph">
+
+                    {{ substr($best_scholar->description,0,30) }}
+                </p>
                     <div class="best-scolarships-section-signed__card-deadline-box">
                         <img src="{{asset('img/Icon ionic-ios-timer.svg')}}" alt="deadline" class="best-scolarships-section-signed__card-deadline">
                         <div class="deadline-number">
@@ -187,7 +190,11 @@
                         <img src="/storage/{{$best_job->picture}}" alt="Picutre 1" class="card-picture my-image">
                     </div>
                     <h1 class="best-jobs-section-signed__card-header"> {{__('messages.salary')}} {{$best_job->salary}} $</h1>
-                    <p class="best-jobs-section-signed__card-paragraph">{{$best_job->description}}</p>
+                    <p class="best-jobs-section-signed__card-paragraph">
+
+                    {{ substr($best_job->description,0,30) }}
+
+                    </p>
                     <div class="best-jobs-section-signed__card-deadline-box">
                         <img src="{{asset('img/Icon ionic-ios-timer.svg')}}" alt="deadline" class="best-jobs-section-signed__card-deadline">
                         <div class="deadline-number">
@@ -227,14 +234,16 @@
                 {{!$best_service= App\Service::find($service->service_id)}}
                 <div class="best-services-section-signed__card swiper-slide">
                     <div class="card-picture-box">
-                        <span class="opportunity-type-label"></span>
+                        <span class="opportunity-type-label">{{$best_service->type->name}}</span>
                         <img src="/storage/{{$best_service->picture}}" alt="Picutre 1" class="card-picture my-image">
                     </div>
                     <h1 class="best-services-section-signed__card-header">{{$best_service->title}}</h1>
-                    <p class="best-services-section-signed__card-paragraph">{{$best_service->description}}</p>
+                    <p class="best-services-section-signed__card-paragraph">
+                        {{ substr($best_service->description,0,30) }}
+                    </p>
                     <div class="best-services-section-signed__card-rating-box" style="padding-left: 25px;">
 
-                        <div hidden> {{!$count_rate_of_ser=App\Rateser::where('ser_id', '=', $best_service->id)->get()->count()}}</div> @if($count_rate_of_ser==0) @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                        <div hidden> {{!$count_rate_of_ser=App\Rateser::where('ser_id', '=', $best_service->id)->get()->count()}}</div> @if($count_rate_of_ser==0) @for($i=1; $i<=5; $i++) <i class="far fa-star fa-2x"></i>
 
                             @endfor
 
@@ -250,13 +259,13 @@
                                 {{!$is_desimal = $decimal_total_rate - $integer_total_rate }}
                             </div>
 
-                            @for ($i = 1; $i <= $integer_total_rate ; $i++) <i data-value="{{$i}}" class="fas fa-star fa-2x"></i>
+                            @for ($i = 1; $i <= $integer_total_rate ; $i++) <i class="fas fa-star fa-2x"></i>
 
                                 @endfor
 
-                                @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
+                                @if ($is_desimal >= .3 && $is_desimal <= .8) <i class="fas fa-star-half-alt fa-2x"></i>
 
-                                    @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
+                                    @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i class="far fa-star fa-2x"></i>
                                         @endfor
 
                                         @else
@@ -371,7 +380,7 @@
     <div class="subscriptions-section__content-box">
         <div class="subscriptions-card" data-aos="fade-up" data-aos-delay="250">
             <h1 class="subscriptions-card__header">{{__('messages.monthly_subscription')}}</h1>
-            <p class="subscriptions-card__description">{{__('messages.lorem1')}}</p>
+            <p class="subscriptions-card__description" style="padding-bottom:100px!important">{{__('messages.lorem1')}}</p>
             <a href="#" class="subscriptions-card__button">{{__('messages.sing_up_now')}}</a>
         </div>
         <div class="subscriptions-card" data-aos="fade-up" data-aos-delay="300">
@@ -424,8 +433,70 @@
         <h1 class="stats-section__card-header">{{__('messages.organizations')}}</h1>
         <h1 class="stats-section__card-number">+{{$count_organizations}}</h1>
     </div>
-
 </div>
+
+<!-------------------------------------------- Start Testimonials----------------------------------->
+<div class="testmonials-section">
+    <h1 class="testmonials-section__header">{{__('messages.testimonials')}}</h1>
+    <div class="testmonials-section__content-box">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @forelse($testimonials as $testimonial)
+
+                <div class="testmonials-section__card swiper-slide">
+                    <div class="testmonials-section__card-profile-pic-box">
+                        <img src="{{asset('storage/'.$testimonial->picture)}}" alt="testmonials-pic-1" class="testmonials-section__card-profile-pic" style="width:55px; height:55px; border-radius:50%;">
+                    </div>
+                    <h1 class="testmonials-section__card-name"> {{$testimonial->name}}</h1>
+                    <p class="testmonials-section__card-description">
+                        {{$testimonial->description}}
+                    </p>
+                    <div class="testmonials-section__card-rating-box">
+
+                        {{!$decimal_total_rate_testimonial = substr($testimonial->rate, 0, 3)}}
+
+                        {{!$integer_total_rate_testimonial = substr($testimonial->rate, 0, 1)}}
+
+                        <div hidden>
+                            {{!$is_desimal_testimonial = $decimal_total_rate_testimonial - $integer_total_rate_testimonial }}
+                        </div>
+
+                        @for ($i = 1; $i <= $integer_total_rate_testimonial ; $i++) <i class="fas fa-star fa-2x"></i>
+
+                            @endfor
+
+                            @if ($is_desimal_testimonial >= .3 && $is_desimal_testimonial <= .8) <i class="fas fa-star-half-alt fa-2x"></i>
+
+                                @for ($i = $integer_total_rate_testimonial + 2; $i <= 5; $i++) <i class="far fa-star fa-2x"></i>
+                                    @endfor
+
+
+                                    @else
+
+                                    @for ($i = $integer_total_rate_testimonial + 1; $i <= 5; $i++) <i data-value={{$i}} class="far fa-star fa-2x"></i>
+
+                                        @endfor
+
+
+                                        @endif
+
+                                        <span class="testmonials-section__card-rating-number">{{$testimonial->rate}}</span>
+                    </div>
+                </div>
+                @empty
+
+                <div class="alert alert-primary" role="alert" style="font-size:20px">
+                    {{__('messages.no_testimonials')}}
+                </div>
+
+                @endforelse
+            </div>
+        </div>
+    </div>
+    <a href="{{route('user.testimonials.index')}}" class="btn-read-more">{{__('messages.more')}}</a>
+</div>
+
+<!-------------------------------------------- Start Our Partners----------------------------------->
 
 <div class="partners-section">
     <h1 class="partners-section__header">{{__('messages.our_partiners')}} </h1>

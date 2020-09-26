@@ -14,10 +14,7 @@
 </a>
 <div style="overflow-x:auto ;">
     <table class="table table-dark">
-
         <thead>
-
-
             <tr>
                 <th scope="col">{{__('messages.serial')}}</th>
                 <th scope="col">{{__('messages.picture')}}</th>
@@ -75,5 +72,6 @@
             @endforelse
         </tbody>
     </table>
+    {{$opportunities->links()}}
 </div>
 @endsection

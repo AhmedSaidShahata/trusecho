@@ -59,10 +59,10 @@ return [
     'asked_question' => 'FREQUENTLY ASKED QUESTION',
     'contact_us' => 'CONTACT US',
     'all_jobs' => 'ALL JOBS',
-    'copyright' => 'Copywrites © reserved at Truescho',
+    'copyright' => 'Copywrites © Reserved at Truescho',
     'latest_posts' => 'LATEST POSTS',
-    'add_exp' => 'ADD AN EXPERIENCE',
-    'promot_post' => 'ADD A PROMOTED POST',
+    'add_exp' => 'ADD AN EXPERIMENT',
+    'promot_post' => 'advertise with us',
     'volunter' => 'VOLUNTEER',
     'fav' => 'FAVOURTIES',
     'terms' => 'TERMS AND CONITIONS',
@@ -81,7 +81,7 @@ return [
     'search' => 'SEARCH',
     'reset' => 'RESET',
     'world_opport' => 'Worldwide Opportunities for Youth',
-    'lorem1' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta facere voluptatum sequi! Fugiat provident beatae accusantium ad officiis tempora eum autem quos repellat, odit perferendis, commodi, accusamus inventore molestiae? Hic maiores quo rerum accusantium error veritatis',
+    'lorem1' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta! Fugiat provident beatae accusantium ad officiis tempora eum autem quos repellat, odit perferendis,Hic maiores quo rerum accusantium error veritatis',
     'find_best_opport' => 'FIND YOUR BEST OPPORTUNITY',
     'find_best_opport_text' => 'LOOK FOR YOUR STUDYING OPPORTUNITY AND SHAPE YOUR PATH',
     'future' => 'YOUR FUTURE CAREER IS HERE',
@@ -374,7 +374,7 @@ return [
     'writer' => 'Writer',
     'cat_en' => 'English Category',
     'cat_ar' => 'Arabic Category',
-    'cat' => 'Caregory',
+    'cat' => 'Category',
 
 
 
@@ -525,7 +525,48 @@ return [
     'service_reports'=>'Service Reports',
     'job_reports'=>'Job Problems',
     'report_service'=>'Service Problems',
-    'report_job'=>'Report Job'
+    'report_job'=>'Report Job',
+
+    'password'=>'Password',
+    'confirm_password'=>'Confirm Password',
+    'facebook_login'=>'Log In With Facebook',
+    'google_login'=>'Log In With Google',
+    'submit'=>'Submit',
+    'register'=>'Register',
+
+    'sign_in'=>'Sign In',
+    'remember_me'=>'Remember me',
+    'or'=>'OR',
+
+    'all_opportunitys'=>'All Opportunities',
+    'all_services'=>'All Services',
+    'all_orgs'=>'All Organizations',
+
+    'picture_testimonial'=>'Testimonial Picture',
+    'name_testimonial'=>'Testimonial Name',
+    'description_testimonial'=>'Testimonial Description',
+    'rate_testimonial'=>'Testimonial Rate Opinion',
+    'add_testimonial'=>'Add Testimonial',
+    'from_1_to_5'=>' ( Rate from 1 to 5 ) ',
+    'no_testimonials'=>'No Testimonials Yet',
+
+    'statitics'=>'Statitics',
+    'admin_dashboard'=>'Admin Dashboard',
+    'no_service_report'=>'No Services Reports Yet',
+    'no_job_report'=>'No Jobs Reports Yet',
+    'count_followers'=>'Count Followers',
+    'related_scholarship'=>'Related Scholarship',
+    'rate_opportunity'=>'Rate Opportunity',
+
+    'truscho_academy'=>'Truscho Academy',
+    'truscho_training'=>'TRUSCO training courses',
+    'verify_certification'=>'Verify your certification',
+    'support_academic'=>'Contact the Academic Support Team'
+
+
+
+
+
 
 
 

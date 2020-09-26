@@ -15,13 +15,16 @@
         </div>
     </div>
 </div>
+@auth
 <a href="#add-blog" class="my-btn">
     <i class="fas fa-plus"></i>
     {{__('messages.add_blog')}}
 </a>
+
+@endauth
 <div class="blogs-results">
 
-    <div class="blogs-results__content">
+    <div class="blogs-results__content" style="padding: 10px;">
         @forelse($blogs as $blog)
         <div class="blogs-detailed-results__card">
             <div class="blogs-detailed-results__pic-box">
@@ -66,8 +69,10 @@
 
                 <input type="hidden" name="lang" value="{{$lang}}">
                 <input type="hidden" name="status" value="0">
+                @auth
                 <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
+                @endauth
 
                 <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
 

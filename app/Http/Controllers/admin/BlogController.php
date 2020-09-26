@@ -23,7 +23,7 @@ class BlogController extends Controller
         $blogs = Blog::where([
             'lang'=> App::getLocale(),
             'status'=>1
-            ])->get();
+            ])->orderBy('created_at','desc')->paginate(10);
         return view('admin.blogs.index')->with('blogs', $blogs);
     }
 
@@ -131,7 +131,7 @@ class BlogController extends Controller
         $blogs = Blog::where([
             'lang'=> App::getLocale(),
             'status'=>0
-            ])->paginate(10);
+            ])->orderBy('created_at','desc')->paginate(10);
         return view('admin.blogs_requests.index')->with('blogs', $blogs);
     }
 

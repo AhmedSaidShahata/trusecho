@@ -15,7 +15,7 @@ class ReportserviceController extends Controller
      */
     public function index()
     {
-        $service_reports = Reportservice::paginate(10);
+        $service_reports = Reportservice::orderBy('created_at','desc')->paginate(10);
         return view('admin.services_reports.index')->with([
             'service_reports' => $service_reports
         ]);

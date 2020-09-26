@@ -50,6 +50,6 @@
 </table>
 
 
-
+{{$costs->links()}}
 
 @endsection

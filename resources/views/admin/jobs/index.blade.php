@@ -83,5 +83,6 @@
             @endforelse
         </tbody>
     </table>
+    {{$jobs->links()}}
 </div>
 @endsection

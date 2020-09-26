@@ -2,8 +2,22 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Blog;
+use App\CategoryBlog;
+use App\Contact;
+use App\Faq;
 use App\Http\Controllers\Controller;
+use App\Job;
+use App\Jobapp;
+use App\Opportunity;
+use App\Organization;
+use App\Reportjob;
+use App\Reportservice;
+use App\Scholarship;
+use App\Service;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class StatiticsController extends Controller
 {
@@ -14,7 +28,32 @@ class StatiticsController extends Controller
      */
     public function index()
     {
-        return view('admin.statitics.index');
+        return view('admin.statitics.index',[
+            'count_new_contacts'=>Contact::where('seen','No')->get()->count(),
+            'count_all_contacts'=>Contact::all()->count(),
+            'count_all_users'=>User::all()->count(),
+            'count_all_blogs'=>Blog::where('lang',App::getLocale())->get()->count(),
+            'count_all_categories'=>CategoryBlog::where('lang',App::getLocale())->get()->count(),
+            'count_all_jobs'=>Job::where('lang',App::getLocale())->get()->count(),
+            'count_all_scholarships'=>Scholarship::where('lang',App::getLocale())->get()->count(),
+            'count_all_organizations'=>Organization::where('lang',App::getLocale())->get()->count(),
+            'count_all_services'=>Service::where('lang',App::getLocale())->get()->count(),
+            'count_all_opportunities'=>Opportunity::where('lang',App::getLocale())->get()->count(),
+            'count_all_faq'=>Faq::where('lang',App::getLocale())->get()->count(),
+            'count_all_job_reports'=>Reportjob::all()->count(),
+            'count_all_service_reports'=>Reportservice::all()->count(),
+
+
+
+
+
+
+
+
+
+
+
+        ]);
     }
 
     /**

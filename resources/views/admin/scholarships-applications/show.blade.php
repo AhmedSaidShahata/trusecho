@@ -4,7 +4,7 @@
 
 {{!$lang=LaravelLocalization::getCurrentLocale()}}
 
-<div class="card">
+<div class="card show">
 
     <div class="card-header">
 

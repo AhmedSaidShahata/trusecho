@@ -1010,6 +1010,7 @@ a:hover {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
+
     .search-section {
         width: 100%;
         background-color: #e8e8e8;
@@ -7448,7 +7449,7 @@ a:hover {
     color: white;
 }
 .rate-total {
-    transform: scale(1.3) translate(12px, 12px);
+    /* transform: scale(1.3) translate(12px, 12px); */
 }
 .hidden {
     display: none;
@@ -7668,4 +7669,20 @@ display: none;
 
 #valid-msg{
     color: green;
+}
+
+
+
+.subscriptions-card__button{
+    bottom: 2.6rem !important;
+    right: 17rem !important;
+}
+@media(max-width: 767px) {
+    .custom-email{
+        word-break: break-word !important;
+        width: 288px !important;
+    }
+    .blog-summary__favourite{
+        justify-content: center;
+    }
 }

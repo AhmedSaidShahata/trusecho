@@ -20,14 +20,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Auth::routes();
+
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
 
-
+    Auth::routes();
     Route::get('/', function () {
         return view('welcome');
     });
@@ -72,6 +72,9 @@ Route::group([
         Route::resource('bestorganizations', 'BestorganizationController');
         Route::get('blogs_request', 'BlogController@request')->name('blogs.request');
         Route::post('blogs_accept', 'BlogController@accept');
+        Route::resource('testimonials', 'TestimonialController');
+        Route::resource('statitics', 'StatiticsController');
+
     });
 
 
@@ -83,6 +86,7 @@ Route::group([
         Route::post('/checkout', 'CheckoutController@checkout')->name('checkout');
         Route::resource('reportjobs', 'ReportjobController');
         Route::group(['middleware' => ['user-is-active']], function () {
+
             Route::resource('reportservices', 'ReportserviceController');
             Route::resource('homepages', 'HomePageController');
             Route::resource('users', 'UserController');
@@ -126,6 +130,7 @@ Route::group([
             Route::resource('ratesers', 'RateserController');
             Route::resource('rateblogs', 'RateblogController');
             Route::resource('opportunitys', 'OpportunityController');
+            Route::resource('testimonials', 'TestimonialController');
         });
     });
 });

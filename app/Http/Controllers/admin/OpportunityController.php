@@ -18,7 +18,7 @@ class OpportunityController extends Controller
      */
     public function index()
     {
-        $opportunities = Opportunity::where('lang',App::getLocale())->get();
+        $opportunities = Opportunity::where('lang',App::getLocale())->orderBy('created_at','desc')->paginate(10);
 
         return view('admin.opportunities.index',[
             'opportunities'=> $opportunities,

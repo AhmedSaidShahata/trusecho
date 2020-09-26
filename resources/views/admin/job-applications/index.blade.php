@@ -66,7 +66,7 @@
                 </td>
             </tr>
             @empty
-            <div class="alert alert-danger">
+            <div class="alert alert-primary">
                 {{__('messages.no_job_app')}}
             </div>
 
@@ -74,9 +74,6 @@
 
         </tbody>
     </table>
+    {{$jobapps->links()}}
 </div>
-
-
-
-
 @endsection

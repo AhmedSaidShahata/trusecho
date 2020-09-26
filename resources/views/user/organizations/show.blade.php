@@ -11,7 +11,11 @@
             <h1 class="organization-name">{{$organization->name }}</h1>
             <div class="followers-box">
                 <p class="followers-title">{{__('messages.followers')}}:</p>
-                <div hidden> {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $organization->id)->get()}}
+                <div hidden>
+                    @auth
+                    {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $organization->id)->get()}}
+                    @endauth
+                    
                     {{!$followerCount = App\Followersorg::where('org_id', '=', $organization->id)->get()->count()}}
 
                 </div>

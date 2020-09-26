@@ -46,6 +46,7 @@
                 <td>{{$scholarship->specialization->name}}</td>
                 <td>{{$scholarship->cost->name}}</td>
                 <td class="d-flex">
+                <a href="{{route('admin.scholarships.show',$scholarship->id)}}" class="btn"> <i class="far fa-eye"></i></a>
                     <div hidden>{{!$best_scholar=App\Bestscholar::where('scholarship_id', '=',$scholarship->id)->count()}}</div>
                     <input {{$best_scholar > 0 ? 'checked' : ''}} type="checkbox" data-scholarid="{{$scholarship->id}}" class="best-scholar btn btn-primary">
                     <a href="{{route('admin.scholarships.edit',$scholarship->id)}}" class="btn"><i class="far fa-edit"></i> </a>
@@ -64,5 +65,6 @@
             @endforelse
         </tbody>
     </table>
+    {{$scholarships->links()}}
 </div>
 @endsection

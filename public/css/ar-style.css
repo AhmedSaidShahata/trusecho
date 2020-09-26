@@ -740,3 +740,23 @@ position: relative;
 top: 38px;
 
 }
+
+
+.subscription-input__email-button{
+    padding: 3.1rem 4.3rem !important;
+}
+
+.subscriptions-card__button{
+    bottom: 2.4rem !important;
+    right: 5rem !important;
+}
+
+
+.my-comment{
+    left:5% !important;
+}
+
+
+.rate-total{
+    transform: none !important;
+}

@@ -47,7 +47,7 @@
 
                             @endfor
 
-                            @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
+                            @if ($is_desimal >= .3 && $is_desimal <= .8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
 
                                 @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
                                     @endfor
@@ -71,11 +71,19 @@
         </div>
         <div class="blog-summary__picutre-box" style="padding: 0 60px;">
             <div class="blog-summary__favourite">
+                @auth
                 {{!$favourite = App\Favblog::where('user_id', '=', Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}}
 
                 <div class="blog-summary__favourite-icon-box">
                     <i data-blogid="{{$blog->id}}" class="fas fa-heart fa-2x  add-fav-blog {{$favourite->count()>0?'red':''}}"></i>
                 </div>
+                @endauth
+
+                @guest
+                <div class="blog-summary__favourite-icon-box">
+                    <i class="fas fa-heart fa-2x"></i>
+                </div>
+                @endguest
                 <h1 class="blog-summary__favourite-word">{{__('messages.add_fav')}}</h1>
             </div>
             <img src="{{asset('storage/'.$blog->picture)}}" alt="single post pic" class="blog-summary__picture" style="width:582px;height:490px;border-radius:20px" />
@@ -88,6 +96,8 @@
         <p class="blog-details__paragraph">
             {{$blog->content }}
         </p>
+
+        @auth
         {{!$like = App\Likeblog::where('user_id', '=', Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}}
         <div class="blog-details__buttons">
 
@@ -98,8 +108,24 @@
             </button>
 
             <div class="sharethis-inline-share-buttons" style="padding:10px 30px"></div>
-
         </div>
+        @endauth
+
+
+
+        @guest
+
+        <div class="blog-details__buttons">
+            <button class=" blog-like ">
+                <span class="like-title  ">
+                    {{__('messages.like')}} <i class="fas fa-thumbs-up"></i>
+                </span>
+            </button>
+            <div class="sharethis-inline-share-buttons" style="padding:10px 30px"></div>
+        </div>
+        @endguest
+
+
         <div class="blog-details__social-media">
             <div class="social-media">
                 <div class="social-media__logo-box">
@@ -138,12 +164,13 @@
                 <span class="social-media__number">+1,001,564</span>
             </div>
         </div>
+        @auth
         <div class="blog-details__rating">
             <h1 class="blog-details__rating-header">{{__('messages.rate_blog')}}</h1>
             <div class="blog-details__rating-stars-box">
                 <div class="rating">
                     <div class="rate_user" blog_id="{{$blog->id}}">
-                        @auth
+
 
                         {{!$rate_user=App\Rateblog::where('user_id', '=',Auth::user()->id)->where('blog_id', '=', $blog->id)->get()}}
 
@@ -167,12 +194,28 @@
                                     @endfor
 
                                     @endif
-                                    @endauth
 
                     </div>
                 </div>
             </div>
         </div>
+        @endauth
+
+        @guest
+        <div class="blog-details__rating">
+            <h1 class="blog-details__rating-header">{{__('messages.rate_blog')}}</h1>
+            <div class="blog-details__rating-stars-box">
+                <div class="rating">
+                    <div>
+                        @for($i=1; $i<=5; $i++)
+                            <i data-value="{{$i}}" class="far fa-star rate-blog fa-2x"></i>
+                        @endfor
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endguest
+
     </div>
 </div>
 @auth
@@ -245,8 +288,8 @@
 
             @empty
 
-            <div  role="alert" style="transform: scale(3);height:120px;justify-content: center;align-items: center;display: flex; width:100%">
-               <p>{{__('messages.no_related_blogs')}}</p>
+            <div role="alert" style="transform: scale(3);height:120px;justify-content: center;align-items: center;display: flex; width:100%">
+                <p>{{__('messages.no_related_blogs')}}</p>
             </div>
 
 

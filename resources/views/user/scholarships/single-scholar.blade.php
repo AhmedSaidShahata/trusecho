@@ -27,7 +27,9 @@
 
             <div class="blog-summary__details-views">
                 <h1 class="views">{{__('messages.email')}}:</h1>
-                <p class="views__values">{{ $scholarship->email}} </p>
+                <p class="views__values custom-email" style="word-break: break-word; width:383px;">
+                    {{ $scholarship->email}}
+                </p>
             </div>
 
 
@@ -63,7 +65,7 @@
 
                             @endfor
 
-                            @if ($is_desimal >= .3 && $is_desimal <= 8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
+                            @if ($is_desimal >= .3 && $is_desimal <= .8) <i data-value="{{$i}}" class="fas fa-star-half-alt fa-2x"></i>
 
                                 @for ($i = $integer_total_rate + 2; $i <= 5; $i++) <i data-value="{{$i}}" class="far fa-star fa-2x"></i>
                                     @endfor
@@ -84,8 +86,13 @@
                 </div>
 
             </div>
-
+            @auth
             <a href="{{route('user.appscholars.show',$scholarship->id)}}" class="orgs-job-apply-btn my-apply" style="font-size: 18px;">{{__('messages.apply_now')}}</a>
+            @endauth
+
+            @guest
+            <a href="{{route('login')}}" class="orgs-job-apply-btn my-apply" style="font-size: 18px;">{{__('messages.apply_now')}}</a>
+            @endguest
         </div>
     </div>
 
@@ -93,7 +100,7 @@
         @auth
         <div class="blog-summary__favourite">
 
-            {{!$favourite = App\Favscholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}};
+            {{!$favourite = App\Favscholar::where('user_id', '=', Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}}
             <div class="blog-summary__favourite-icon-box">
                 <i data-scholarid="{{$scholarship->id}}" class="fas fa-heart fa-2x  add-fav-scholar {{$favourite->count()>0?'red':''}}"></i>
             </div>
@@ -184,18 +191,23 @@
                 <span class="social-media__number">+1,001,564</span>
             </div>
         </div> -->
+
+
+        @auth
         <div class="blog-details__rating">
             <h1 class="blog-details__rating-header">{{__('messages.rate_scholar')}}</h1>
             <div class="blog-details__rating-stars-box">
                 <div class="rating">
                     <div class="rate_user-scholar" scholar_id="{{$scholarship->id}}">
-                        @auth
+
+
+
 
                         {{!$rate_user=App\Scholarshiprate::where('user_id', '=',Auth::user()->id)->where('scholarship_id', '=', $scholarship->id)->get()}}
 
                         @if($rate_user->count() ==0)
 
-                        @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star rate-blog fa-2x"></i>
+                        @for($i=1; $i<=5; $i++) <i data-value="{{$i}}" class="far fa-star  fa-2x"></i>
                             @endfor
 
                             @else
@@ -213,12 +225,30 @@
                                     @endfor
 
                                     @endif
-                                    @endauth
 
                     </div>
                 </div>
             </div>
         </div>
+        @endauth
+        @guest
+        <div class="blog-details__rating">
+            <h1 class="blog-details__rating-header">{{__('messages.rate_scholar')}}</h1>
+            <div class="blog-details__rating-stars-box">
+                <div class="rating">
+                    <div>
+                        @for($i=1; $i<=5; $i++) <a href="{{route('login')}}">
+                            <i data-value="{{$i}}" class="far fa-star fa-2x">
+                            </i>
+                            </a>
+                            @endfor
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endguest
     </div>
 </div>
 <div class="comments-section">
@@ -227,7 +257,7 @@
             <span class="comments-section__word">{{__('messages.comments')}}</span>
             <hr class="horizontal-line" />
         </div>
-        <div class="comments-section__send-box" style="position: relative; left:-10%">
+        <div class="comments-section__send-box my-comment" style="position: relative; left:-10%">
             <textarea name="comment" id="blog-comment" cols="30" rows="7" class="comments-section__content comment-scholar" style="width:70%"></textarea>
             <a type="button" class="comments-section__send-icon add-comment-scholar">
                 <img src="{{asset('img/Send blue icon.png')}}" alt="send " class="send-icon" />
@@ -240,30 +270,9 @@
             <span hidden class="commentor-image">{{Auth::user()->profile->picture}}</span>
             <span hidden class="scholar-id">{{$scholarship->id}}</span>
             @endauth
-            <div class="user-comment">
-                <div class="user-pic-box">
-                    <img src="{{asset('img/user-comment-pic.png')}}" alt="user pic" class="user-pic" />
-                </div>
-                <div class="user-details">
-                    <h1 class="user-name">Taylor Adams</h1>
-                    <p class="user-comment-paragraph">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste
-                        in beatae praesentium dolores porro, nobis labore ut omnis, nam
-                        temporibus neque inventore culpa dolore reiciendis molestias
-                        optio libero? Velit debitis eligendi necessitatibus enim ratione
-                        cupiditate, veritatis facere? Sapiente iure quos tempora quasi
-                        quo fugit suscipit consequuntur qui neque dolorem voluptate
-                        temporibus, fugiat provident corporis delectus. Explicabo magnam
-                        culpa amet modi facere exercitationem deleniti fugit ab minima
-                        reiciendis numquam rerum officiis, nemo dolorem natus ipsa!
-                        Repudiandae, veniam? Eligendi molestias debitis culpa iure
-                        harum, esse id qui fuga reiciendis nobis dolorem repellat
-                        perspiciatis neque amet vero itaque odit ipsum dolores eveniet
-                        accusamus.
-                    </p>
-                </div>
-            </div>
-            <hr>
+
+            <br>
+            <br>
             @foreach($comment_scholarships as $comment_scholarship)
             <div class="user-comment">
                 <div class="user-pic-box">
@@ -279,9 +288,8 @@
             <hr>
             @endforeach
 
-            <hr />
         </div>
-        <h1 class="related-topics__header">Related Scholarships</h1>
+        <h1 class="related-topics__header">{{__('messages.related_scholarship')}}</h1>
         <div class="best-scolarships-section-signed__cards-info">
             <div class="swiper-container">
                 <div class="swiper-wrapper">

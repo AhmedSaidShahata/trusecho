@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="card">
+<div class="card show">
 
     <div class="card-header">
         <h2>Organization {{$organization->name}} </h2>

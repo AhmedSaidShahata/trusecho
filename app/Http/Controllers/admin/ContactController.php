@@ -16,7 +16,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('admin.contacts.index')->with('contacts', Contact::all());
+        return view('admin.contacts.index')->with('contacts', Contact::orderBy('created_at','desc')->paginate(10));
     }
 
     /**

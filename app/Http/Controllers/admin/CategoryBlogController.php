@@ -21,7 +21,7 @@ class CategoryBlogController extends Controller
         $categories=CategoryBlog::where([
             'lang'=> App::getLocale(),
             'status'=>1
-        ])->paginate(10);
+        ])->orderBy('created_at','desc')->paginate(10);
         return view('admin.categories_blogs.index')->with('categories',$categories);
     }
 

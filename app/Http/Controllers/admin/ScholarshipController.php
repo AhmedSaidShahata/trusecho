@@ -23,7 +23,7 @@ class ScholarshipController extends Controller
      */
     public function index()
     {
-        $scholarships = Scholarship::where('lang', App::getLocale())->get();
+        $scholarships = Scholarship::where('lang', App::getLocale())->orderBy('created_at','desc')->paginate(10);
 
         return view('admin.scholarships.index')->with('scholarships', $scholarships);
     }
@@ -67,9 +67,9 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Scholarship $scholarship)
     {
-        //
+        return view('admin.scholarships.show')->with('scholarship',$scholarship);
     }
 
     /**

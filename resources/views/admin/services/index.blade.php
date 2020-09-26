@@ -33,14 +33,20 @@
                 <th scope="row">{{$service->id}}</th>
                 <td><img src="{{asset('storage/'.$service->picture)}}" alt="image service" style="width:100px;height:100px"></td>
                 <td>{{$service->title}}</td>
-                <td>{{$service->description}}</td>
-                <td>{{$service->content}}</td>
+                <td>
+                    {{substr($service->description,0,20)}}
+                </td>
+                <td>
+                    {{substr($service->content,0,20)}}
+
+                </td>
                 <td>{{$service->delivery_time}}</td>
                 <td>{{$service->type->name}}</td>
                 <td>{{$service->user->name}}</td>
                 <td>{{$service->price}}</td>
 
                 <td class="d-flex">
+                    <a href="{{route('admin.services.show',$service->id)}}" class="btn"> <i class="far fa-eye"></i></a>
                     <div hidden>{{!$best_service=App\Bestservice::where('service_id', '=',$service->id)->count()}}</div>
                     <input {{$best_service > 0 ? 'checked' : '' }} type="checkbox" data-serviceid="{{$service->id}}" class="best-service btn btn-primary">
                     <a href="{{route('admin.services.edit',$service->id)}}" class="btn"><i class="far fa-edit"></i> </a>
@@ -59,5 +65,6 @@
             @endforelse
         </tbody>
     </table>
+    {{$services->links()}}
 </div>
 @endsection

@@ -16,7 +16,7 @@ class ReportjobController extends Controller
     public function index()
     {
 
-        $job_reports = Reportjob::paginate(10);
+        $job_reports = Reportjob::orderBy('created_at','desc')->paginate(10);
         return view('admin.jobs_reports.index')->with([
             'job_reports' => $job_reports
         ]);

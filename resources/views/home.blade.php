@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{__('messages.admin_dashboard')}}</title>
     <link rel="stylesheet" href="/css/admin/{{LaravelLocalization::getCurrentLocale()}}-style.css" />
 
     <!-- Scripts -->
@@ -27,7 +27,7 @@
     <span hidden>{{! $count_service_reports =App\Reportservice::where(['seen'=>'0'])->get()->count() }}</span>
     <span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
     <span hidden class="my_lang">{{'/'.LaravelLocalization::getCurrentLocale()}}</span>
-<!-- 
+    <!--
     <div class="popup ">
         <div class="row justify-content-center align-items-center w-100">
             <div class="text-center features col-md-3">
@@ -78,57 +78,60 @@
 
 
                 <ul class=" list-group d-lg-none responsive_control d-xs-block list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item statitics">
                         <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i>{{__('messages.users')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item users">
+                        <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i>{{__('messages.users')}}</a>
+                    </li>
+                    <li class="list-group-item organizations">
                         <a href="{{route('admin.organizations.index')}}"><i class="fas fa-users"></i> {{__('messages.organizations')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item newsorg">
                         <a href="{{route('admin.newsorgs.index')}}"><i class="fas fa-users"></i> {{__('messages.news')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item services">
                         <a href="{{route('admin.services.index')}}"><i class="fas fa-gifts"></i> {{__('messages.services')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item scholarships">
                         <a href="{{route('admin.scholarships.index')}}"><i class="fas fa-gifts"></i> {{__('messages.scholarships')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item jobs">
                         <a href="{{route('admin.jobs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.jobs')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item blogs">
                         <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> {{__('messages.blogs')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item opportunitys ">
                         <a href="{{route('admin.opportunitys.index')}}"><i class="far fa-clipboard"></i> {{__('messages.opportunities')}}</a>
                     </li>
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item categories">
                         <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> {{__('messages.categories')}}</a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item costs">
                         <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> {{__('messages.cost_scholar')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item scholarspecializes">
                         <a href="{{route('admin.scholarspecializes.index')}}"><i class="fas fa-gifts"></i> {{__('messages.specialize_scholar')}}</a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item types">
                         <a href="{{route('admin.types.index')}}"><i class="fas fa-gifts"></i> {{__('messages.types_ser')}}</a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item typeorgs">
                         <a href="{{route('admin.typeorgs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.types_org')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item specializations">
                         <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> {{__('messages.jobs_specialize')}}</a>
                     </li>
 
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item blogs_request">
                         <a href="{{route('admin.blogs.request')}}">
                             <i class="fas fa-gifts"></i>
                             {{__('messages.blog_requests')}}
@@ -139,7 +142,7 @@
 
                         </a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item jobapps">
                         <a href="{{route('admin.jobapps.index')}}">
                             <i class="fas fa-gifts"></i>
                             {{__('messages.job_app')}}
@@ -147,23 +150,19 @@
 
                                 {{$count_request_job}}
                             </span>
-
-
-
                         </a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item appscholarships">
                         <a href="{{route('admin.appscholarships.index')}}" style="font-size: 15px;">
                             <i class="fas fa-gifts"></i>
                             {{__('messages.scholar_app')}}
                             <span class="badge badge-danger">
                                 {{$count_request_scholar}}
                             </span>
-
                         </a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item contacts">
                         <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i>
                             {{__('messages.contacts')}}
                             <span class="badge badge-danger">
@@ -172,12 +171,10 @@
                         </a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item faqs">
                         <a href="{{route('admin.faqs.index')}}">
                             <i class="fas fa-gifts"></i>
-
                             {{__('messages.faqs')}}
-
                         </a>
                     </li>
                 </ul>
@@ -185,8 +182,6 @@
             </ul>
 
             <img src="{{asset('img/2.png')}}" alt="">
-
-
         </div>
         <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
@@ -201,9 +196,6 @@
             @endif
             @else
             <li class="nav-item dropdown">
-
-
-
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <img style="width:50px;height:50px;" src="/storage/{{ Auth::user()->profile->picture }}" alt="user pic" class="user-pic rounded-circle" />
                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -229,57 +221,62 @@
         <div class="row">
             <div class="col-lg-3  d-none  d-lg-block pr-0 side-bar">
                 <ul class=" list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item statitics">
+                        <a href="{{route('admin.statitics.index')}}"><i class="fas fa-users"></i>{{__('messages.statitics')}}</a>
+                    </li>
+                    <li class="list-group-item users">
                         <a href="{{route('admin.users.index')}}"><i class="fas fa-users"></i>{{__('messages.users')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item organizations">
                         <a href="{{route('admin.organizations.index')}}"><i class="fas fa-users"></i> {{__('messages.organizations')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item newsorgs">
                         <a href="{{route('admin.newsorgs.index')}}"><i class="fas fa-users"></i> {{__('messages.news')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item services">
                         <a href="{{route('admin.services.index')}}"><i class="fas fa-gifts"></i> {{__('messages.services')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item scholarships">
                         <a href="{{route('admin.scholarships.index')}}"><i class="fas fa-gifts"></i> {{__('messages.scholarships')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item jobs">
                         <a href="{{route('admin.jobs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.jobs')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item blogs">
                         <a href="{{route('admin.blogs.index')}}"><i class="far fa-clipboard"></i> {{__('messages.blogs')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item opportunitys">
                         <a href="{{route('admin.opportunitys.index')}}"><i class="far fa-clipboard"></i> {{__('messages.opportunities')}}</a>
                     </li>
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item categories">
                         <a href="{{route('admin.categories.index')}}"><i class="fas fa-plus-circle"></i> {{__('messages.categories')}}</a>
                     </li>
-
-                    <li class="list-group-item">
+                    <li class="list-group-item costs">
                         <a href="{{route('admin.costs.index')}}"><i class="fas fa-money-bill-alt"></i> {{__('messages.cost_scholar')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item scholarspecializes">
                         <a href="{{route('admin.scholarspecializes.index')}}"><i class="fas fa-gifts"></i> {{__('messages.specialize_scholar')}}</a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item types">
                         <a href="{{route('admin.types.index')}}"><i class="fas fa-gifts"></i> {{__('messages.types_ser')}}</a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item typeorgs">
                         <a href="{{route('admin.typeorgs.index')}}"><i class="fas fa-gifts"></i> {{__('messages.types_org')}}</a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item specializations">
                         <a href="{{route('admin.specializations.index')}}"><i class="fas fa-gifts"></i> {{__('messages.jobs_specialize')}}</a>
+                    </li>
+                    <li class="list-group-item testimonials">
+                        <a href="{{route('admin.testimonials.index')}}"><i class="fas fa-gifts"></i> {{__('messages.testimonials')}}</a>
                     </li>
 
                     <li class="list-group-item" style="border-bottom: 1px solid white;"></li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item blogs_request">
                         <a href="{{route('admin.blogs.request')}}">
                             <i class="fas fa-gifts"></i>
                             {{__('messages.blog_requests')}}
@@ -290,7 +287,7 @@
 
                         </a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item jobapps">
                         <a href="{{route('admin.jobapps.index')}}">
                             <i class="fas fa-gifts"></i>
                             {{__('messages.job_app')}}
@@ -298,23 +295,19 @@
 
                                 {{$count_request_job}}
                             </span>
-
-
-
                         </a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item appscholarships">
                         <a href="{{route('admin.appscholarships.index')}}" style="font-size: 15px;">
                             <i class="fas fa-gifts"></i>
                             {{__('messages.scholar_app')}}
                             <span class="badge badge-danger">
                                 {{$count_request_scholar}}
                             </span>
-
                         </a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item contacts">
                         <a href="{{route('admin.contacts.index')}}"><i class="fas fa-gifts"></i>
                             {{__('messages.contacts')}}
                             <span class="badge badge-danger">
@@ -323,7 +316,7 @@
                         </a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item orderservices">
                         <a href="{{route('admin.orderservices.index')}}"><i class="fas fa-gifts"></i>
                             {{__('messages.order_services')}}
                             <span class="badge badge-danger">
@@ -333,7 +326,7 @@
                     </li>
 
 
-                    <li class="list-group-item">
+                    <li class="list-group-item reportjobs">
                         <a href="{{route('admin.reportjobs.index')}}"><i class="fas fa-gifts"></i>
                             {{__('messages.job_reports')}}
                             <span class="badge badge-danger">
@@ -342,7 +335,7 @@
                         </a>
                     </li>
 
-                    <li class="list-group-item">
+                    <li class="list-group-item reportservices">
                         <a href="{{route('admin.reportservices.index')}}"><i class="fas fa-gifts"></i>
                             {{__('messages.service_reports')}}
                             <span class="badge badge-danger">
@@ -352,16 +345,12 @@
                     </li>
 
 
-                    <li class="list-group-item">
+                    <li class="list-group-item faqs">
                         <a href="{{route('admin.faqs.index')}}">
                             <i class="fas fa-gifts"></i>
-
                             {{__('messages.faqs')}}
-
                         </a>
                     </li>
-
-
                 </ul>
             </div>
             <div class="contain col-lg-9 ">
@@ -375,6 +364,11 @@
     <script>
         $(function() {
 
+            //========================================== Start Acive sidebar=====================================
+            let infoUrl = window.location.href
+            let infoUrlTarget = infoUrl.split('/')
+            console.log(infoUrlTarget)
+            $("." + infoUrlTarget[5]).addClass('active').siblings().removeClass('active')
 
 
 

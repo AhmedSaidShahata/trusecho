@@ -176,8 +176,6 @@
                     <input required type="text" name="type" class="popup__input-style" />
                 </div>
 
-
-
                 <div class="input">
                     <label for="fullname" class="popup__label-style">{{__('messages.price')}}</label>
                     <input required type="number" name="price" class="popup__input-style" />

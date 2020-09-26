@@ -51,8 +51,8 @@
         </div>
 
         @endforelse
-
     </tbody>
+    {{$categories->links()}}
 </table>
 
 

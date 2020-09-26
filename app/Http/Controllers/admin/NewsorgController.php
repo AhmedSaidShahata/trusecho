@@ -19,7 +19,7 @@ class NewsorgController extends Controller
      */
     public function index()
     {
-        $news_orgs=Newsorg::where('lang',App::getLocale())->get();
+        $news_orgs=Newsorg::where('lang',App::getLocale())->orderBy('created_at','desc')->paginate(10);
 
         return view('admin.news_orgs.index')->with('news_orgs',$news_orgs) ;
     }

@@ -65,5 +65,6 @@
             @endforelse
         </tbody>
     </table>
+    {{$news_orgs->links()}}
 </div>
 @endsection

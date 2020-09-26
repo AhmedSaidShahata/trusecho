@@ -20,7 +20,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        $organization=Organization::where('lang',App::getLocale())->get() ;
+        $organization=Organization::where('lang',App::getLocale())->orderBy('created_at','desc')->paginate(10);
         return view('admin.organizations.index')->with([
             'organizations'=> $organization
             ]);

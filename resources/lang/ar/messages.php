@@ -23,7 +23,7 @@ return [
     'log_out' => 'تسجيل الخروج',
     'accept' => 'قبول',
     'delete' => 'رفض',
-    'org' => 'سجل الدخول كمنظمة',
+    'org' => 'سجل الأن كمنظمة',
 
     'best_scholarships' => 'أفضل المنح ',
     'best_jobs' => 'أفضل الوظائف',
@@ -59,8 +59,8 @@ return [
     'all_jobs' => 'كل الوظائف',
     'copyright' => 'حقوق الملكيه محفوظه لتروسكو 2020',
     'latest_posts' => 'اخر المنشورات',
-    'add_exp' => 'اضافة خبرة',
-    'promot_post' => 'اضافة منشور مدفوع',
+    'add_exp' =>'اضافة منشور مدفوع',
+    'promot_post' => 'أعلن معن',
     'volunter' => 'تطوع',
     'fav' => 'المفضلة',
     'terms' => 'الشروط و الأحكام',
@@ -92,8 +92,8 @@ return [
     'monthly_subscription' => 'الأشتراكات الشهرية',
     'sing_up_now' => 'سجل الأن',
     'ready_sign' => 'هل مستعد للتسجيل الأن؟',
-    'sign_person' => 'سجل الدخول كشخص',
-    'sign_org' => 'سجل الدخول كمؤسسة',
+    'sign_person' => 'سجل الأن كشخص',
+
     'testimonials' => 'أراء العملاء',
     'our_partinars' => 'شركائنا',
     'social_media' => 'متابعينا علي وسائل التواصل الأجتماعي',
@@ -529,7 +529,46 @@ return [
     'report_date'=>'وقت التبليغ',
     'service_reports'=>'مشكلات الخدمات ',
     'job_reports'=>'مشكلات الوظائف',
-    'report_service'=>'مشكلة الخدمة'
+    'report_service'=>'مشكلة الخدمة',
+
+    'password'=>'كلمة المرور',
+    'confirm_password'=>'إعادة كلمة المرور',
+    'facebook_login'=>'التسجيل عبر حسابك فى الفيسبوك',
+    'google_login'=>'التسجل عبر حسابك فى جوجل',
+    'submit'=>'تسجيل',
+    'register'=>'التسجيل',
+
+    'sign_in'=>'تسجل الدخول',
+    'remember_me'=>'تذكرنى',
+    'or'=>'أو',
+
+    'all_opportunitys'=>'كل الفرص',
+    'all_services'=>'كل الخدمات',
+    'all_orgs'=>'كل المنظمات',
+
+
+    'picture_testimonial'=>'صورة العميل',
+    'name_testimonial'=>'اسم العميل',
+    'description_testimonial'=>'رأي العميل',
+    'rate_testimonial'=>'تقييم رأى العميل ',
+    'from_1_to_5'=>' ( قيم من واحد لخمسة ) ',
+    'add_testimonial'=>'إضافة العميل',
+    'no_testimonials'=>'ليس هناك عملاء حتى الان',
+    'statitics'=>'الأحصائيات',
+    'admin_dashboard'=>'لوحة التحكم',
+    'no_service_report'=>'ليس هناك تقارير عن الخدمات الان',
+    'no_job_report'=>'ليس هناك تقارير عن الوظائف الان',
+    'count_followers'=>'عدد المتابعين',
+    'related_scholarship'=>'المنح المشابهة',
+    'rate_opportunity'=>'قيم الفرصة',
+
+    'truscho_academy'=>'تروسكو أكاديمى',
+    'truscho_training'=>'دورات تروسكو التدریبیة',
+    'verify_certification'=>'التحقق من شھادتك',
+    'support_academic'=>'تواصل مع فریق الدعم الأكادیمي'
+
+
+
 
 
 

@@ -106,7 +106,7 @@
                 </td>
             </tr>
             @empty
-            <div class="alert alert-danger">
+            <div class="alert alert-primary">
                 {{__('messages.no_scholar_app')}}
             </div>
 
@@ -114,6 +114,7 @@
 
         </tbody>
     </table>
+    {{$appscholarship->links()}}
 
 </div>
 

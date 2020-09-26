@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="card">
+<div class="card show">
 
     <div class="card-header">
         <h2>{{__('messages.read_msg')}} {{$contact->fullname}}</h2>

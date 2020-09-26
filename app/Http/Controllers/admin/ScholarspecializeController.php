@@ -17,7 +17,7 @@ class ScholarspecializeController extends Controller
      */
     public function index()
     {
-        $specializations =Scholarspecialize::where('lang',App::getLocale())->paginate(10);
+        $specializations =Scholarspecialize::where('lang',App::getLocale())->orderBy('created_at')->paginate(10);
         return view('admin.specializations_scholar.index')->with('specializations',$specializations );
     }
 
@@ -54,7 +54,7 @@ class ScholarspecializeController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**

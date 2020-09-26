@@ -4,8 +4,8 @@
 
 <div class="search-section">
     <h1 class="search-section__header">{{__('messages.opportunities')}}</h1>
-    <!-- <div class="search-section__info">
-            <form action="#" class="landing-section__info-selections">
+    <div class="search-section__info">
+            <!-- <form action="#" class="landing-section__info-selections">
                 <div class="selection-div u-margin-right-medium">
                   <label for="cars" class="landing-section__info-selections-label"
                     >Cost</label
@@ -52,12 +52,12 @@
                     </select>
                   </div>
                 </div>
-            </form>
+            </form> -->
             <div class="search-section__illustration-box">
                 <img src="{{asset('img/org-illustration.svg')}}" alt="organization" class="search-section__illustrations">
             </div>
         </div>
-        <div class="landing-section__info-buttons-section">
+        <!-- <div class="landing-section__info-buttons-section">
             <button class="landing-section__info-buttons">
                 <img src="{{asset('img/Search icon.svg')}}" alt="Search icon" class="search-icon">
                 <p>search</p>

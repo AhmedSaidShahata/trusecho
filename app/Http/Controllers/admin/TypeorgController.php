@@ -17,7 +17,7 @@ class TypeorgController extends Controller
      */
     public function index()
     {
-        $types=Typeorg::where('lang',App::getLocale())->get();
+        $types=Typeorg::where('lang',App::getLocale())->orderBy('created_at','desc')->paginate(10);
         return view('admin.types_org.index')->with('types',$types);
     }
 

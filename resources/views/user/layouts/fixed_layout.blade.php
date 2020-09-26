@@ -10,7 +10,7 @@
     <title>Truescho - Shape Your Dreams</title>
     @yield('payment-style')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-    
+
 
 
     <link rel="stylesheet" href="/css/{{LaravelLocalization::getCurrentLocale()}}-style.css" />
@@ -35,8 +35,10 @@
 
 <body>
     <div id="app">
-        <span hidden class="lang">{{$lang='_'.LaravelLocalization::getCurrentLocale()}}</span>
+        <span hidden class="lang">{{$lang=LaravelLocalization::getCurrentLocale()}}</span>
         <span hidden class="my_lang">{{'/'.LaravelLocalization::getCurrentLocale()}}</span>
+        {{!$scholarships_footer = App\Scholarship::where('lang', App::getLocale())->limit(10)->get()}}
+        {{!$jobs_footer = App\Job::where('lang', App::getLocale())->limit(10)->get()}}
         <div class="navigation" id="navbar">
             <div class="navigation__logo-box">
                 <img src="{{asset('img/2.png')}}" alt="Logo" class="nav-bar__logo" />
@@ -46,9 +48,7 @@
                     <li class="nav-bar__item">
                         <a href="{{route('user.homepages.index')}}" class="nav-bar__item-nav">{{__('messages.home')}}</a>
                     </li>
-                    <!-- <li class="nav-bar__item">
-                    <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">Users</a>
-                </li> -->
+
                     @auth
                     <li class="nav-bar__item">
                         <a href="{{route('user.friends.index')}}" class="nav-bar__item-nav">{{__('messages.network')}}</a>
@@ -57,34 +57,39 @@
                     <li class="nav-bar__item dropdown">
                         <a href="{{route('user.jobs.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.jobs')}}</a>
                         <div class="dropdown-content">
-                            <!-- <a href="#">All Jobs</a>
-                        <a href="#">Engineering</a>
-                        <a href="#">Information Technology</a>
-                        <a href="#">Media, TV, and Jounrals</a>
-                        <a href="#">Future Jobs</a>
-                        <a href="#">Education Sector</a> -->
+                            <a href="{{route('user.jobs.index')}}">{{__('messages.all_jobs')}}</a>
+                            {{!  $jobs = App\Job::where('lang',$lang)->orderBy('created_at','desc')->limit(10)->get() }}
+                            @forelse($jobs as $job)
+                            <a href="{{route('user.jobs.show' ,$job->id)}}">{{$job->title}}</a>
+                            @empty
+                            @endforelse
+
                         </div>
                     </li>
                     <li class="nav-bar__item dropdown">
                         <a href="{{route('user.services.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.services')}}</a>
                         <div class="dropdown-content">
-                            <!-- <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a> -->
+                            <a href="{{route('user.services.index')}}">{{__('messages.all_services')}}</a>
+                            {{! $services =  App\service::where('lang',$lang)->orderBy('created_at','desc')->limit(10)->get() }}
+                            @forelse($services as $service)
+                            <a href="{{route('user.services.show' ,$service->id)}}">{{$service->title}}</a>
+                            @empty
+
+                            @endforelse
                         </div>
                     </li>
-                    <li class="nav-bar__item">
+                    <li class="nav-bar__item dropdown">
                         <a href="{{route('user.organizations.index')}}" class="nav-bar__item-nav">{{__('messages.organizations')}}</a>
+
                     </li>
-                    <!-- <li class="nav-bar__item">
-                    <a href="{{route('user.faqs.index')}}" class="nav-bar__item-nav">Faq</a>
-                </li> -->
+
                     <li class="nav-bar__item dropdown">
                         <a href="{{route('user.opportunitys.index')}}" class="nav-bar__item-nav dropbtn">{{__('messages.opportunities')}}</a>
                         <div class="dropdown-content">
-                            {{!$opportunities=App\Opportunity::all()}}
-                            @forelse($opportunities as $opportunity)
-                            <a href="{{route('user.opportunitys.show',$opportunity->id)}}">{{$opportunity->title_en}}</a>
+                            <a href="{{route('user.opportunitys.index')}}">{{__('messages.all_opportunitys')}}</a>
+                            {{! $opportunitys =  App\opportunity::where('lang',$lang)->orderBy('created_at','desc')->limit(10)->get() }}
+                            @forelse($opportunitys as $opportunity)
+                            <a href="{{route('user.opportunitys.show' ,$opportunity->id)}}">{{$opportunity->title}}</a>
                             @empty
 
                             @endforelse
@@ -275,7 +280,7 @@
                         <a href="{{route('user.jobs.index')}}">
                             <li>{{__('messages.jobs')}}</li>
                         </a>
-                        <a href="opportunities-signed.html">
+                        <a href="{{route('user.opportunitys.index')}}">
                             <li>{{__('messages.opportunities')}}</li>
                         </a>
                         <a href="{{route('user.services.index')}}">
@@ -338,7 +343,7 @@
                             <a href="#">{{__('messages.important_links')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">{{__('messages.asked_question')}}</a>
+                            <a href="{{route('user.faqs.index')}}">{{__('messages.asked_question')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
                             <a href="{{route('user.contacts.index')}}">{{__("messages.contact_us")}}</a>
@@ -348,7 +353,7 @@
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#">{{__('messages.latest_posts')}}
+                            <a href="{{route('user.categoryblogs.index')}}">{{__('messages.latest_posts')}}
                             </a> </li>
                         <li class="footer__right-info-list-item">
                             <a href="#">{{__('messages.add_exp')}}</a>
@@ -364,6 +369,10 @@
                         </li>
                     </ul>
                 </div>
+
+
+
+
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
@@ -373,7 +382,7 @@
                             <a href="#">{{__('messages.policy')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">{{__('messages.blogs')}}</a>
+                            <a href="{{route('user.categoryblogs.index')}}">{{__('messages.blogs')}}</a>
                         </li>
                         <li class="footer__right-info-list-item"><a href="#">{{__('messages.privacy')}}</a></li>
                     </ul>
@@ -381,41 +390,50 @@
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#">{{__('messages.about_company')}}</a>
+                            <a href="#" class="footer__title">{{__('messages.truscho_academy')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#">{{__('messages.important_links')}}</a>
+                            <a href="#">{{__('messages.truscho_training')}}</a>
                         </li>
                         <li class="footer__right-info-list-item">
-                            <a href="#"> {{__('messages.asked_question')}}</a>
+                            <a href="{{route('user.categoryblogs.index')}}">{{__('messages.verify_certification')}}</a>
                         </li>
-                        <li class="footer__right-info-list-item"><a href="{{route('user.contacts.index')}}"> {{__('messages.contact_us')}}</a></li>
+                        <li class="footer__right-info-list-item"><a href="#">{{__('messages.support_academic')}}</a></li>
                     </ul>
                 </div>
+
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#" class="footer__title"> {{__('messages.all_jobs')}}</a>
+                            <a href="{{route('user.jobs.index')}}" class="footer__title"> {{__('messages.all_jobs')}}</a>
                         </li>
-                        <!-- <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Engineering</a>
-                        </li> -->
+                        @forelse($jobs_footer as $job_footer)
+                        <li class="footer__right-info-list-item sub-item">
+                            <a href="{{route('user.jobs.show',$job_footer->id)}}">
+                                {{$job_footer->title}}
+                            </a>
+                        </li>
+                        @empty
+                        @endforelse
 
                     </ul>
                 </div>
                 <div class="footer__right-info">
                     <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
-                            <a href="#" class="footer__title"> {{__('messages.scholarships')}}</a>
+                            <a href="{{route('user.scholarships.index')}}" class="footer__title"> {{__('messages.scholarships')}}</a>
                         </li>
-                        <!-- <li class="footer__right-info-list-item sub-item">
-                            <a href="#">Bachelor Scholarships</a>
-                        </li> -->
+                        @forelse($scholarships_footer as $scholarship_footer)
+                        <li class="footer__right-info-list-item sub-item">
+                            <a href="{{route('user.scholarships.show',$scholarship_footer->id)}}">{{$scholarship_footer->title}}</a>
+                        </li>
+                        @empty
+                        @endforelse
 
                     </ul>
                 </div>
                 <div class="footer__right-info">
-                    <ul class="footer__right-info-list">
+                <ul class="footer__right-info-list">
                         <li class="footer__right-info-list-item">
                             {{__('messages.get_app')}}
                         </li>
@@ -550,15 +568,15 @@
     <script>
         $(function() {
 
-        //     $(".alert-success").append(`
-        // <img
-        //  src="https://i.pinimg.com/originals/e8/06/52/e80652af2c77e3a73858e16b2ffe5f9a.gif"
-        //  class="img-success">
-        // `)
+            //     $(".alert-success").append(`
+            // <img
+            //  src="https://i.pinimg.com/originals/e8/06/52/e80652af2c77e3a73858e16b2ffe5f9a.gif"
+            //  class="img-success">
+            // `)
 
-        // setTimeout(()=>{
-        //     $(".alert-success").fadeOut("6000")
-        // },4000)
+            // setTimeout(()=>{
+            //     $(".alert-success").fadeOut("6000")
+            // },4000)
 
 
 

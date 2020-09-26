@@ -1,18 +1,15 @@
 @extends('home')
 
 @section('content')
-{{!$lang='_'.LaravelLocalization::getCurrentLocale()}}
 
-<div class="card">
+
+<div class="card show">
 
     <div class="card-header">
-        <h2>  {{$newsorg->{'title'.$lang} }} </h2>
+        <h2> {{$newsorg->title }} </h2>
     </div>
     <div class="card-body">
         <ul class="list-group">
-
-
-
             <li class="list-group-item">
                 {{__('messages.organization')}}
             </li>

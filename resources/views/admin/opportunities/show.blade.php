@@ -3,16 +3,15 @@
 @section('content')
 
 
-<div class="card">
+<div class="card show">
 
     <div class="card-header">
         <h2>{{$opportunity->title}} </h2>
     </div>
     <div class="card-body">
         <ul class="list-group">
-
-
-        <li class="list-group-item">
+        
+            <li class="list-group-item">
                 {{__('messages.creator')}}
             </li>
             <li class="list-group-item">

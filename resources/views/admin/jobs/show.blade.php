@@ -4,7 +4,7 @@
 
 {{!$lang=LaravelLocalization::getCurrentLocale()}}
 
-<div class="card">
+<div class="card show">
 
     <div class="card-header">
         <h2>{{$job->title }} </h2>
@@ -19,19 +19,6 @@
                 {{$job->description}}
             </li>
 
-            <li class="list-group-item">
-                {{__('messages.content')}}
-            </li>
-            <li class="list-group-item">
-                {{$job->content}}
-            </li>
-
-            <li class="list-group-item">
-                {{__('messages.head_det')}}
-            </li>
-            <li class="list-group-item">
-                {{$job->heading_details}}
-            </li>
 
             <li class="list-group-item">
                 {{__('messages.location')}}
@@ -55,26 +42,12 @@
             </li>
 
             <li class="list-group-item">
-                {{__('messages.company_name')}}
+                {{__('messages.name_company')}}
             </li>
             <li class="list-group-item">
                 {{$job->company}}
             </li>
 
-            <li class="list-group-item">
-                {{__('messages.location')}}
-            </li>
-            <li class="list-group-item">
-                {{$job->location_ar}}
-            </li>
-
-            <li class="list-group-item">
-                {{__('messages.requirments')}}
-            </li>
-            <li class="list-group-item">
-                {{$job->requirments_ar}}
-            </li>
-            <p class="text-center p-2 mt-4" style="background:burlywood">{{__('messages.other_inf')}}</p>
 
             <li class="list-group-item">
                 {{__('messages.email')}}
@@ -93,9 +66,21 @@
 
 
             <li class="list-group-item">
+                {{__('messages.picture')}}
+            </li>
+
+            <li class="list-group-item">
                 <img src="{{asset('storage/'.$job->picture)}}" alt="image job" style="width:100px;height:100px">
             </li>
 
+
+            <li class="list-group-item">
+                {{__('messages.picture_company')}}
+            </li>
+
+            <li class="list-group-item">
+                <img src="{{asset('storage/'.$job->picture_company)}}" alt="image job" style="width:100px;height:100px">
+            </li>
 
 
         </ul>

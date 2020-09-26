@@ -23,7 +23,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::where('lang', App::getLocale())->get();
+        $jobs = Job::where('lang', App::getLocale())->orderBy('created_at','desc')->paginate(10);
         return view('admin.jobs.index')->with('jobs', $jobs);
     }
 

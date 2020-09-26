@@ -17,7 +17,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::where('lang', App::getLocale())->get();
+        $faqs = Faq::where('lang', App::getLocale())->orderBy('created_at','desc')->paginate(10);
 
         return view('admin.faqs.index')->with('faqs', $faqs);
     }
@@ -53,9 +53,9 @@ class FaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Faq $faq)
     {
-        //
+    return view('admin.faqs.show')->with('faq',$faq);
     }
 
     /**

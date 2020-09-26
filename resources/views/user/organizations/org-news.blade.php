@@ -3,14 +3,9 @@
 {{!$lang=LaravelLocalization::getCurrentLocale()}}
 
 @auth
-
 <span hidden class="commentor-name">{{ Auth::user()->name }}</span>
 <span hidden class="commentor-image">{{Auth::user()->profile->picture}}</span>
 @endauth
-
-
-
-
 <div class="organization-cover-pic-box">
     <img src="{{asset('storage/'.$org->picture_cover)}}" alt="org cover pic" class="organization-cover-pic" style="height:376px; width:100%" />
     <div class="organization-profile-info-box">
@@ -21,7 +16,11 @@
             <h1 class="organization-name">{{$org->name}}</h1>
             <div class="followers-box">
                 <p class="followers-title">{{__('messages.followers')}}:</p>
-                <div hidden> {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $org->id)->get()}}
+                <div hidden>
+                    @auth
+                    {{!$follower = App\Followersorg::where('user_id', '=', Auth::user()->id)->where('org_id', '=', $org->id)->get()}}
+                    @endauth
+
                     {{!$followerCount = App\Followersorg::where('org_id', '=', $org->id)->get()->count()}}
 
                 </div>
@@ -32,7 +31,7 @@
 </div>
 
 
-<div class="org-job-section-info">
+<div class="org-job-section-info" style="padding:12px">
     <div class="left-panel">
         <div class="org-job-section-info__options">
             <ul class="options__list">
@@ -66,10 +65,12 @@
                 </li>
             </ul>
         </div>
+        @auth
         <a href="#apply-for-job" class="my-btn" style="margin: 30px 34px;">
             <i class="fas fa-plus"></i>
             {{__('messages.new_post')}}
         </a>
+        @endauth
     </div>
     <div class="posts-section">
 
@@ -100,13 +101,11 @@
                             {{!$different_min = $start_date->diffInMinutes($end_date)}}
 
                         </div>
-                        @if($different_hours <= 0)
-                            {{$different_min}} {{__('messages.m')}}
-                        @elseif($different_hours >0)
-                            {{$different_hour}} {{__('messages.h')}}
-                        @else
+                        @if($different_hours <= 0) {{$different_min}} {{__('messages.m')}} @elseif($different_hours>0)
+                            {{$different_hours}} {{__('messages.h')}}
+                            @else
 
-                        @endif
+                            @endif
 
                     </h3>
                 </div>
@@ -125,11 +124,20 @@
                 <img src="{{asset('storage/'.$new_org->picture)}}" alt="Post pic" class="post-pic" style="height: 180px;" />
             </div>
             <div class="post-interaction-panel">
-                {{!$like = App\Newslike::where('user_id', '=', Auth::user()->id)->where('newsorg_id', '=', $new_org->id)->get()}};
+                @auth
+                {{!$like = App\Newslike::where('user_id', '=', Auth::user()->id)->where('newsorg_id', '=', $new_org->id)->get()}}
+
                 <div class="post-interaction-panel__control like-news {{$like->count()>0?'blue':''}}" data-newsid="{{$new_org->id}}">
                     <i class="fas fa-thumbs-up fa-2x"></i>
                     <span class="post-control-name">{{__('messages.like')}}</span>
                 </div>
+                @endauth
+                @guest
+                <div class="post-interaction-panel__control">
+                    <i class="fas fa-thumbs-up fa-2x"></i>
+                    <span class="post-control-name">{{__('messages.like')}}</span>
+                </div>
+                @endauth
                 <div class="post-interaction-panel__control">
                     <img src="{{asset('img/Icon awesome-comment.svg')}}" alt="comment" class="post-btn" />
                     <span class="post-control-name">{{__('messages.comments')}}</span>
@@ -167,7 +175,9 @@
             <div class="post comment-input">
                 <div class="post-comment">
                     <div class="post-comment-pic-box">
+                        @auth
                         <img src="{{asset('storage/'.Auth::user()->profile->picture)}}" alt="user pic" class="post-comment-pic" />
+                        @endauth
                     </div>
                     <div class="post-comment-details">
 

@@ -13,8 +13,8 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use App\Opportunity;
 use App\Organization;
-
-
+use App\Scholarship;
+use App\Testiomonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -31,21 +31,25 @@ class HomePageController extends Controller
 
 
 
-        return view('user.home-page.home-page-signed',
-         [
-          'scholarships'=>Bestscholar::where('lang',App::getLocale())->get(),
-          'jobs' => Bestjob::where('lang',App::getLocale())->get(),
-          'costs' => Cost::where('lang',App::getLocale())->get(),
-          'services'=>Bestservice::where('lang',App::getLocale())->get(),
-          'categories'=>CategoryBlog::where([
-              'lang'=>App::getLocale(),
-              'status'=>1
-              ])->get(),
-          'organizations'=>Bestorganization::where('lang',App::getLocale())->get(),
-            'count_organizations'=>Organization::all()->count(),
-            'count_opportunities'=>Opportunity::all()->count(),
-            'count_jobs'=>Job::all()->count(),
-         ]);
+        return view(
+            'user.home-page.home-page-signed',
+            [
+            
+                'scholarships' => Bestscholar::where('lang', App::getLocale())->get(),
+                'jobs' => Bestjob::where('lang', App::getLocale())->get(),
+                'costs' => Cost::where('lang', App::getLocale())->get(),
+                'services' => Bestservice::where('lang', App::getLocale())->get(),
+                'categories' => CategoryBlog::where([
+                    'lang' => App::getLocale(),
+                    'status' => 1
+                ])->get(),
+                'organizations' => Bestorganization::where('lang', App::getLocale())->get(),
+                'count_organizations' => Organization::where('lang', App::getLocale())->count(),
+                'count_opportunities' => Opportunity::where('lang', App::getLocale())->count(),
+                'count_jobs' => Job::where('lang', App::getLocale())->count(),
+                'testimonials' => Testiomonial::where('lang', App::getLocale())->orderBy('created_at', 'desc')->get()
+            ]
+        );
     }
 
     /**

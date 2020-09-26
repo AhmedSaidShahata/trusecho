@@ -17,7 +17,7 @@ class CostController extends Controller
      */
     public function index()
     {
-        $costs=Cost::where('lang',App::getLocale())->get();
+        $costs=Cost::where('lang',App::getLocale())->orderBy('created_at','desc')->paginate(10);
         return view('admin.costs.index')->with('costs',$costs);
     }
 

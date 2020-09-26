@@ -5,6 +5,9 @@ html {
 .admin-body .side-bar ul li a {
     float: right;
 }
+.side-bar{
+    padding: 0;
+}
 
 table th,
 table td,
@@ -24,11 +27,19 @@ label {
     float: right;
 }
 
+.list-group{
+
+    padding-right: 10px;
+}
 .list-group-item {
     direction: rtl;
 }
 .card {
-
     margin-right: 0;
     margin-left: 13px;
+}
+
+
+.show ul li{
+    display: flex;
 }

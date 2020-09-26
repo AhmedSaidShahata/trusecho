@@ -17,7 +17,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types=Type::where('lang',App::getLocale())->get();
+        $types=Type::where('lang',App::getLocale())->orderBy('created_at','desc')->paginate(10);
         return view('admin.types.index')->with('types',$types);
     }
 

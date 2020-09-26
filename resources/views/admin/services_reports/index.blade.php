@@ -22,7 +22,9 @@
                 <th scope="row">{{$service_report->id}}</th>
                 <td>{{$service_report->user->name}}</td>
                 <td>{{$service_report->service->title}}</td>
-                <td>{{$service_report->description}}</td>
+                <td>
+                {{ substr($service_report->requirments,0,20) }}
+                </td>
                 <td>
                     {{$service_report->seen==1 ? __('messages.watched') : __('messages.not_watched') }}
 
@@ -39,7 +41,7 @@
                 </td>
             </tr>
             @empty
-            <div class="alert alert-danger">
+            <div class="alert alert-primary">
                 {{__('messages.no_service_report')}}
             </div>
 
@@ -47,6 +49,7 @@
 
         </tbody>
     </table>
+    {{$service_reports->links()}}
 </div>
 
 

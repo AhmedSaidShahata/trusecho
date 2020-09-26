@@ -67,6 +67,7 @@
 
         </tbody>
     </table>
+    {{$order_services->links()}}
 </div>
 
 

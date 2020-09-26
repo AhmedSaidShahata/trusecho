@@ -3,7 +3,7 @@
 @section('content')
 
 {{! $service=App\Service::find($orderservice->service_id) }}
-<div class="card">
+<div class="card show">
 
     <div class="card-header">
         <h2>

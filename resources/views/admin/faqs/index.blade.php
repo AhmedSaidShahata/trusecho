@@ -30,12 +30,17 @@
             @forelse($faqs as $faq)
             <tr>
                 <th scope="row">{{$faq->id}}</th>
-                <td>{{$faq->question}}</td>
-                <td>{{$faq->answer}}</td>
+                <td>
+                    {{ substr($faq->question,0,20) }}
+
+                </td>
+                <td>
+                {{ substr($faq->answer,0,20) }}
+                </td>
                 <td>{{$faq->created_at}}</td>
                 <td>{{$faq->updated_at}}</td>
                 <td class="d-flex">
-
+                <a href="{{route('admin.faqs.show',$faq->id)}}" class="btn"> <i class="far fa-eye"></i></a>
                     <a href="{{route('admin.faqs.edit',$faq->id)}}" class="btn"> <i class="far fa-edit"></i></a>
                     <form method="POST" class="form-inline" action="{{route('admin.faqs.destroy',$faq->id)}}">
                         @csrf
@@ -45,14 +50,15 @@
                 </td>
             </tr>
             @empty
-            <div class="alert alert-danger">
-            {{__('messages.no_faqs')}}
+            <div class="alert alert-primary">
+                {{__('messages.no_faqs')}}
             </div>
 
             @endforelse
 
         </tbody>
     </table>
+    {{$faqs->links()}}
 </div>
 
 

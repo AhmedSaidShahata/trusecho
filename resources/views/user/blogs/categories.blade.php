@@ -20,10 +20,12 @@
         </div>
     </div>
 </div>
+@auth
 <a href="#add-blog" class="my-btn">
     <i class="fas fa-plus"></i>
     {{__('messages.add_blog')}}
 </a>
+@endauth
 <div class="blogs-results" style="margin-bottom: 77px;">
 
     <div class="blogs-results__content">
@@ -70,12 +72,13 @@
 
                 <input type="hidden" name="lang" value="{{$lang}}">
                 <input type="hidden" name="status" value="0">
+                @auth
                 <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-
+                @endauth
                 <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture')}}</h3>
 
 
-                <div class="add-cv" >
+                <div class="add-cv">
                     <div class="add-cv__title-box">
                         <img src="{{asset('img/adding icon.svg')}}" alt="add icon" class="add-cv-icon" />
                         <input type="file" name="picture" accept="image/*" onchange="showPreview(event);" />
@@ -84,7 +87,7 @@
 
                 <h3 class="add-cv__title" style="font-size: 20px; color:black">{{__('messages.picture_cat')}}</h3>
 
-                <div class="add-cv" >
+                <div class="add-cv">
                     <div class="add-cv__title-box">
                         <img src="{{asset('img/adding icon.svg')}}" alt="add icon" class="add-cv-icon" />
                         <input type="file" name="picture_category" accept="image/*" onchange="showPreview(event);" />

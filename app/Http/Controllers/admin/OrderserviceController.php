@@ -16,7 +16,7 @@ class OrderserviceController extends Controller
     public function index()
     {
         return view('admin.order-services.index',[
-            'order_services'=>Orderservice::paginate(10)
+            'order_services'=>Orderservice::orderBy('created_at','desc')->paginate(10)
         ]);
     }
 
